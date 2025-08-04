@@ -18,24 +18,24 @@
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>6</number>
    </property>
    <item>
     <widget class="QFrame" name="frame">
      <property name="frameShape">
-      <enum>QFrame::Box</enum>
+      <enum>QFrame::Shape::Box</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Sunken</enum>
+      <enum>QFrame::Shadow::Sunken</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,1,3">
       <property name="spacing">
@@ -47,17 +47,17 @@
          <string notr="true">1</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QSpinBox" name="spinBox_InputNumber">
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+         <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
         </property>
        </widget>
       </item>

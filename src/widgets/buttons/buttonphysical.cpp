@@ -19,8 +19,9 @@ const QString ButtonPhysical::m_darkStyleOff = QStringLiteral(R"(
         border-radius: 13px;
         min-height: 26px;
         min-width: 26px;
-        background-color: rgb(90, 90, 90);
+        background-color: rgb(27, 29, 35);
         color: rgb(220, 221, 222);
+        border: 1px solid rgb(27, 29, 35);
     }
 )");
 
@@ -29,8 +30,10 @@ const QString ButtonPhysical::m_styleOn = QStringLiteral(R"(
         border-radius: 13px;
         min-height: 26px;
         min-width: 26px;
-        background-color: rgb(5, 170, 61); //changed to invictus green
+        background-color: rgb(5, 170, 61);
         color: rgb(220, 221, 222);
+        border: 1px solid rgb(36, 39, 49);  /* Optional: FLAT_BLACK border */
+        background-clip: padding;
     }
 )");
 
@@ -56,7 +59,9 @@ void ButtonPhysical::setButtonState(bool state)
 {
     if (state != m_currentState) {
         if (state) {
-            ui->label_PhysicalButton->setStyleSheet(m_styleOn);
+            ui->label_PhysicalButton->setStyleSheet("");              // Force reset to fix transparent button toggling
+            ui->label_PhysicalButton->setStyleSheet(m_styleOn);       // Apply Invictus Green
+
             emit physButtonPressed(m_buttonIndex);
             m_lastAct.start();
             m_currentState = state;

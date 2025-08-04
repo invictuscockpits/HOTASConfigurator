@@ -59,7 +59,7 @@
       <string notr="true">1</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -75,10 +75,10 @@
       </size>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
      <property name="correctionMode">
-      <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+      <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
      </property>
      <property name="minimum">
       <number>0</number>
@@ -103,7 +103,7 @@
       </size>
      </property>
      <property name="layoutDirection">
-      <enum>Qt::RightToLeft</enum>
+      <enum>Qt::LayoutDirection::RightToLeft</enum>
      </property>
      <property name="text">
       <string/>

@@ -22,16 +22,19 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="layoutG_MainLayout" rowstretch="10,1" columnstretch="1,5">
     <property name="leftMargin">
-     <number>6</number>
+     <number>20</number>
     </property>
     <property name="topMargin">
-     <number>6</number>
+     <number>20</number>
     </property>
     <property name="rightMargin">
-     <number>6</number>
+     <number>20</number>
     </property>
     <property name="bottomMargin">
-     <number>6</number>
+     <number>20</number>
+    </property>
+    <property name="spacing">
+     <number>12</number>
     </property>
     <item row="1" column="0" colspan="2">
      <layout class="QVBoxLayout" name="layoutV_DebugWindow">
@@ -48,8 +51,16 @@
         <height>0</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">
+ background: rgb(36, 39, 49); /* FLAT_BLACK */
+
+QTabBar::tab:first {
+    margin-left:20px;
+}</string>
+      </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_PinConfig">
        <attribute name="title">
@@ -95,19 +106,19 @@
        </attribute>
        <layout class="QVBoxLayout" name="layoutV_tabAxesConfig">
         <property name="spacing">
-         <number>0</number>
+         <number>6</number>
         </property>
         <property name="leftMargin">
-         <number>0</number>
+         <number>6</number>
         </property>
         <property name="topMargin">
          <number>6</number>
         </property>
         <property name="rightMargin">
-         <number>0</number>
+         <number>6</number>
         </property>
         <property name="bottomMargin">
-         <number>0</number>
+         <number>6</number>
         </property>
        </layout>
       </widget>
@@ -263,7 +274,7 @@
        </size>
       </property>
       <property name="title">
-       <string>Device</string>
+       <string/>
       </property>
       <layout class="QGridLayout" name="gridLayout_7" rowstretch="0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0" columnstretch="0">
        <property name="leftMargin">

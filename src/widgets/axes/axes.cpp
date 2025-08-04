@@ -56,8 +56,8 @@ Axes::Axes(int axisNumber, QWidget *parent)
     m_axesExtend = new AxesExtended(m_axisNumber, this);
     m_axesExtend->setVisible(true);  //axes extended mode enabled by default
 
-    ui->layoutH_AxesExtend->addWidget(m_axesExtend);
-    //ui->layoutV_Axes->addWidget(axes_extend);
+    //ui->layoutH_AxesExtend->addWidget(m_axesExtend);
+    ui->layoutV_Axes->addWidget(m_axesExtend);
 
     // output checked
     connect(ui->checkBox_Output, &QCheckBox::toggled, this, &Axes::outputValueChanged);
