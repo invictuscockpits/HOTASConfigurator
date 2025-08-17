@@ -1,3 +1,5 @@
+![Software Screenshot](https://github.com/invictuscockpits/HOTASConfigurator/blob/main/Screenshot%202025-08-17%20070136.png)
+
 # Important NOTE
 
 Please install the **latest release** of the Invictus SSC Firmware from the [Releases page](https://github.com/invictuscockpits/invitus-ssc-firmware/releases)  before using this software.
