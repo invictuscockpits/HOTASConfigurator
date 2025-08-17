@@ -31,7 +31,8 @@ public:
 
     Flasher *flasher() const; // const?
 
-    void checkForUpdatesSilent();   // call from MainWindow on startup
+    void checkForUpdatesSilent();   // GUI
+    void checkForFirmwareUpdatesSilent(); // Firmware
 
 signals:
     void languageChanged(const QString &language);
@@ -39,7 +40,8 @@ signals:
 
     void fontChanged();
 
-    void updateAvailable(const QString& tag, const QUrl& url);
+    void updateAvailable(const QString& tag, const QUrl& url); //GUI
+    void firmwareUpdateAvailable(const QString& tag, const QUrl& url); //firmware
 
 
 private slots:
@@ -57,6 +59,7 @@ private slots:
     void on_pushButton_LangDeutsch_clicked();
 
     void on_pushButton_CheckUpdates_clicked();
+    void on_pushButton_CheckFirmware_clicked();
 
 
 private:
@@ -69,7 +72,8 @@ private:
 
 
 #ifdef Q_OS_WIN
-    void checkForUpdatesWinHTTP(bool silent); // your WinHTTP helper
+    void checkForUpdatesWinHTTP(bool silent); // GUI WinHTTP Helper
+    void checkForFirmwareUpdatesWinHTTP(bool silent); // Firmware
 #endif
 };
 

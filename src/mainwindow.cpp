@@ -171,8 +171,43 @@ MainWindow::MainWindow(QWidget *parent)
     ui->layoutV_tabAdvSettings->addWidget(m_advSettings);
     qDebug()<<"advanced settings load time ="<< timer.restart() << "ms";
 
+    //GUI Update Checker
     connect(m_advSettings, &AdvancedSettings::updateAvailable,
             this, &MainWindow::onUpdateAvailable);
+
+    //Firmware Update Checker
+    connect(m_advSettings, &AdvancedSettings::firmwareUpdateAvailable,
+            this, [this](const QString& tag, const QUrl& url){
+                // defer if window not ready/visible (same gating as GUI)
+                if (!m_guiReady || !isVisible()) {
+                    // stash and show after showEvent()
+                    QTimer::singleShot(0, this, [=]{
+                        QMessageBox box(this);
+                        box.setWindowTitle(tr("Firmware update available"));
+                        box.setText(tr("A newer firmware is available: %1").arg(tag));
+                        box.setInformativeText(tr("Open the firmware release page?"));
+                        box.setIcon(QMessageBox::NoIcon);
+                        box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+                        QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
+                        box.addButton(QMessageBox::Cancel);
+                        box.exec();
+                        if (box.clickedButton() == open) QDesktopServices::openUrl(url);
+                    });
+                    return;
+                }
+
+                // show immediately if GUI is ready
+                QMessageBox box(this);
+                box.setWindowTitle(tr("Firmware update available"));
+                box.setText(tr("A newer firmware is available: %1").arg(tag));
+                box.setInformativeText(tr("Open the firmware release page?"));
+                box.setIcon(QMessageBox::NoIcon);
+                box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+                QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
+                box.addButton(QMessageBox::Cancel);
+                box.exec();
+                if (box.clickedButton() == open) QDesktopServices::openUrl(url);
+            });
 
     // Create Developer panel and add it to the Developer tab
     m_developer = new Developer(this);
@@ -580,9 +615,13 @@ void MainWindow::showConnectDeviceInfo()
     if (!settings->value(suppressKey, false).toBool()) {
         QMessageBox msgBox(this);
         msgBox.setWindowTitle("Important: Save Configuration");
-        msgBox.setText("Each individual device is carefully calibrated with precise force values.\n\n"
-                       "Please save the original configuration file in a safe place.\n"
-                       "If you lose it, it cannot be recovered.");
+        msgBox.setText("Each individual device is carefully calibrated with precise force values.\n"
+                       "If your device shipped with a Gen 4 control board, it has hardcoded force values.\n"
+                       "If it shipped before 8/16/2025, it does not.\n"
+                       "Please read your config from your device and make note of the calibration values\n"
+                       "in the Axes Config Tab.  When you update your firmware, they will be overwritten.\n"
+                       "Save the original values in a safe place.\n"
+                       "If you lose them, they cannot be recovered.");
         msgBox.setIcon(QMessageBox::Warning);
         QCheckBox dontShow("Do not warn me again");
         msgBox.setCheckBox(&dontShow);
@@ -663,7 +702,7 @@ void MainWindow::getParamsPacket(bool firmwareCompatible)
             // set firmware version
             QString str = QString::number(gEnv.pDeviceConfig->paramsReport.firmware_version, 16);
             if (str.size() == 4) {
-                ui->label_DeviceStatus->setText(tr("Device firmware") + " v" + str[0] + "." + str[1] + "." + str[2] + "b" + str[3]);
+                ui->label_DeviceStatus->setText(tr("Device firmware") + " v" + str[0] + "." + str[1] + "." + str[2]);
             }
         }
         m_deviceChanged = false;
