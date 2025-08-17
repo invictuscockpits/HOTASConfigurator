@@ -106,7 +106,7 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                             // device names for UI combobox. pair for old firmware device
                             m_deviceNames.append(qMakePair(tmp_HidList[i].first, QString::fromWCharArray(tmp_HidList[i].second->product_string)));
                         }
-                        // emit all connected FJ devices names
+                        // emit all connected HOTAS devices names
                         emit hidDeviceList(m_deviceNames);
                         tmp_HidList.clear();
                         deviceCountChanged = true;
@@ -215,6 +215,45 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                     gEnv.readFinished = false;
                     #endif
                     QThread::msleep(200);
+                }
+                else if (m_currentWork == REPORT_ID_DEV) {
+                    // snapshot current request
+                    quint8 op = 0;
+                    QByteArray payload;
+                    {
+                        std::lock_guard<std::mutex> lock(m_devMutex);
+                        op = m_devOp;
+                        payload = m_devPayload;
+                    }
+
+                    // build one HID report: [ID=REPORT_ID_DEV][op][payload...]
+                    uint8_t tx[BUFFERSIZE]{};        // BUFFERSIZE = 64 in your code
+                    tx[0] = REPORT_ID_DEV;
+                    tx[1] = op;
+                    int copyLen = qMin<int>(payload.size(), BUFFERSIZE - 2);
+                    if (copyLen > 0)
+                        memcpy(tx + 2, payload.constData(), copyLen);
+
+                    // send
+                    hid_write(m_paramsRead, tx, BUFFERSIZE);
+
+                    // wait for a single reply with matching [ID, op]
+                    QElapsedTimer t; t.start();
+                    QByteArray devResp;
+                    int res = 0;
+                    while (t.elapsed() < 1000) {                 // 1s timeout; tune as needed
+                        if (!m_paramsRead) break;
+                        res = hid_read_timeout(m_paramsRead, buffer, BUFFERSIZE, 200);
+                        if (res < 0) { hid_close(m_paramsRead); m_paramsRead = nullptr; break; }
+                        if (res >= 2 && buffer[0] == REPORT_ID_DEV && buffer[1] == op) {
+                            devResp = QByteArray(reinterpret_cast<char*>(buffer + 2), res - 2);
+                            break;
+                        }
+                        // ignore other traffic (PARAM frames, etc.)
+                    }
+
+                    emit devPacket(op, devResp);      // empty devResp means timeout/error
+                    m_currentWork = REPORT_ID_PARAM;  // return to streaming
                 }
                 else if (m_oldFirmwareSelected) {
                     QThread::msleep(200);
@@ -571,4 +610,12 @@ bool HidDevice::enterToFlashMode()
         }
     }
     return false;
+}
+void HidDevice::devRequest(quint8 op, const QByteArray &payload)
+{
+    // minimal synchronization like you already do elsewhere
+    std::lock_guard<std::mutex> lock(m_devMutex);
+    m_devOp = op;
+    m_devPayload = payload;
+    m_currentWork = REPORT_ID_DEV;   // picked up by processData() loop
 }

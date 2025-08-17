@@ -23,7 +23,7 @@ int Converter::EnumToIndex(const int deviceEnum, const QVector<int> &list)
             return i;
         }
     }
-    qCritical() << "Converter::FindIndex returns -1";
+    //qCritical() << "Converter::FindIndex returns -1";
     return -1;
 }
 

@@ -5,7 +5,7 @@ InfoLabel::InfoLabel(QWidget *parent)
 {
     setMaximumSize(12, 12);
     setScaledContents(false);
-    setPixmap(QPixmap(":/Images/info_icon.png"));
+    setPixmap(QPixmap(":/Images/info_icon.svg"));
 }
 
 void InfoLabel::setPixmap(const QPixmap &p)

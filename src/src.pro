@@ -1,6 +1,9 @@
 TEMPLATE = app
 
 QT       += core gui
+QT += core gui widgets network svg
+win32: LIBS += -lwinhttp
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,6 +42,7 @@ SOURCES += \
     mainwindow_style.cpp \
     widgets/axes-curves/axescurvesbutton.cpp \
     widgets/axes-curves/axescurvesprofiles.cpp \
+    widgets/board_presets.cpp \
     widgets/centered_cbox.cpp \
     configtofile.cpp \
     converter.cpp \
@@ -50,7 +54,9 @@ SOURCES += \
     mousewheelguard.cpp \
     reportconverter.cpp \
     stm_main.c \
+    widgets/developer.cpp \
     widgets/infolabel.cpp \
+    widgets/pins/pinscontroller.cpp \
     widgets/selectfolder.cpp \
     widgets/switchbutton.cpp \
     widgets/adv-settings/advancedsettings.cpp \
@@ -73,8 +79,6 @@ SOURCES += \
     widgets/led/ledconfig.cpp \
     widgets/pins/pincombobox.cpp \
     widgets/pins/pinconfig.cpp \
-    widgets/pins/pinsbluepill.cpp \
-    widgets/pins/pinscontrlite.cpp \
     widgets/shift-reg/shiftregisters.cpp \
     widgets/shift-reg/shiftregistersconfig.cpp
 
@@ -82,6 +86,7 @@ HEADERS += \
     configmanager.h \
     widgets/axes-curves/axescurvesbutton.h \
     widgets/axes-curves/axescurvesprofiles.h \
+    widgets/board_presets.h \
     widgets/centered_cbox.h \
     common_defines.h \
     common_types.h \
@@ -96,7 +101,10 @@ HEADERS += \
     mousewheelguard.h \
     reportconverter.h \
     stm_main.h \
+    widgets/developer.h \
+    widgets/force_anchors.h \
     widgets/infolabel.h \
+    widgets/pins/pinscontroller.h \
     widgets/selectfolder.h \
     widgets/switchbutton.h \
     version.h \
@@ -120,8 +128,6 @@ HEADERS += \
     widgets/led/ledconfig.h \
     widgets/pins/pincombobox.h \
     widgets/pins/pinconfig.h \
-    widgets/pins/pinsbluepill.h \
-    widgets/pins/pinscontrlite.h \
     widgets/shift-reg/shiftregisters.h \
     widgets/shift-reg/shiftregistersconfig.h
 
@@ -138,6 +144,7 @@ FORMS += \
     widgets/buttons/buttonconfig.ui \
     widgets/buttons/buttonlogical.ui \
     widgets/buttons/buttonphysical.ui \
+    widgets/developer.ui \
     widgets/pins/currentconfig.ui \
     widgets/debugwindow.ui \
     widgets/encoders/encoders.ui \
@@ -147,8 +154,7 @@ FORMS += \
     widgets/led/ledconfig.ui \
     widgets/pins/pincombobox.ui \
     widgets/pins/pinconfig.ui \
-    widgets/pins/pinsbluepill.ui \
-    widgets/pins/pinscontrlite.ui \
+    widgets/pins/pinscontroller.ui \
     widgets/selectfolder.ui \
     widgets/shift-reg/shiftregisters.ui \
     widgets/shift-reg/shiftregistersconfig.ui

@@ -1,0 +1,356 @@
+#include "developer.h"
+#include "ui_developer.h"
+#include "common_defines.h"
+
+#include <QSpinBox>
+#include <QPushButton>
+#include <QMessageBox>
+#include <Qdebug>
+
+Developer::Developer(QWidget *parent)
+    : QWidget(parent),
+    ui(new Ui::Developer)
+{
+    ui->setupUi(this);
+    setDefaultSpinRanges();
+    initConnections();
+}
+
+Developer::~Developer()
+{
+    delete ui;
+}
+
+void Developer::initConnections()
+{
+    // Wire the three buttons by their EXACT objectNames
+    connect(ui->btnAnchorsRead,  &QPushButton::clicked, this, &Developer::onRead);
+    connect(ui->btnAnchorsWrite, &QPushButton::clicked, this, &Developer::onWrite);
+    connect(ui->btnAnchorsLock,  &QPushButton::clicked, this, &Developer::onLock);
+}
+
+void Developer::setDefaultSpinRanges()
+{
+    const int min = -32768, max = 32767;
+    // Only touch the known spin boxes; no renames
+    QSpinBox* spins[] = {
+        ui->spRL_100, ui->spRL_75, ui->spRL_50,
+        ui->spRR_100, ui->spRR_75, ui->spRR_50,
+        ui->spPD_100, ui->spPD_75, ui->spPD_50,
+        ui->spPUD_100, ui->spPUD_75, ui->spPUD_50,
+        ui->spPUA_100, ui->spPUA_75, ui->spPUA_50
+    };
+    for (QSpinBox* sp : spins) {
+        if (!sp) continue;
+        sp->setRange(min, max);
+        sp->setSingleStep(1);
+        sp->setAlignment(Qt::AlignCenter);
+    }
+}
+
+/* ===================== CRC32 (little-endian, poly 0xEDB88320) ===================== */
+quint32 Developer::crc32_le(const QByteArray& data) const
+{
+    quint32 crc = 0xFFFFFFFFu;
+    const unsigned char* p = reinterpret_cast<const unsigned char*>(data.constData());
+    int n = data.size();
+    while (n--) {
+        crc ^= *p++;
+        for (int k = 0; k < 8; ++k)
+            crc = (crc >> 1) ^ (0xEDB88320u & (-(qint32)(crc & 1)));
+    }
+    return ~crc;
+}
+
+
+/* ===================== UI <-> struct ===================== */
+void Developer::uiSet(const Anchors& a)
+{
+    // Roll Left
+    ui->spRL_100->setValue(a.rl_17.adc100);
+    ui->spRL_75 ->setValue(a.rl_17.adc75);
+    ui->spRL_50 ->setValue(a.rl_17.adc50);
+
+    // Roll Right
+    ui->spRR_100->setValue(a.rr_17.adc100);
+    ui->spRR_75 ->setValue(a.rr_17.adc75);
+    ui->spRR_50 ->setValue(a.rr_17.adc50);
+
+    // Pitch Down
+    ui->spPD_100->setValue(a.pd_17.adc100);
+    ui->spPD_75 ->setValue(a.pd_17.adc75);
+    ui->spPD_50 ->setValue(a.pd_17.adc50);
+
+    // Pitch Up Digital (25 lbf)
+    ui->spPUD_100->setValue(a.pu25.adc100);
+    ui->spPUD_75 ->setValue(a.pu25.adc75);
+    ui->spPUD_50 ->setValue(a.pu25.adc50);
+
+    // Pitch Up Analog (40 lbf)
+    ui->spPUA_100->setValue(a.pu40.adc100);
+    ui->spPUA_75 ->setValue(a.pu40.adc75);
+    ui->spPUA_50 ->setValue(a.pu40.adc50);
+}
+
+auto Developer::uiGet() const -> Anchors
+{
+    Anchors a;
+    // Roll Left
+    a.rl_17.adc100 = (qint16)ui->spRL_100->value();
+    a.rl_17.adc75  = (qint16)ui->spRL_75 ->value();
+    a.rl_17.adc50  = (qint16)ui->spRL_50 ->value();
+
+    // Roll Right
+    a.rr_17.adc100 = (qint16)ui->spRR_100->value();
+    a.rr_17.adc75  = (qint16)ui->spRR_75 ->value();
+    a.rr_17.adc50  = (qint16)ui->spRR_50 ->value();
+
+    // Pitch Down
+    a.pd_17.adc100 = (qint16)ui->spPD_100->value();
+    a.pd_17.adc75  = (qint16)ui->spPD_75 ->value();
+    a.pd_17.adc50  = (qint16)ui->spPD_50 ->value();
+
+    // Pitch Up Digital (25 lbf)
+    a.pu25.adc100  = (qint16)ui->spPUD_100->value();
+    a.pu25.adc75   = (qint16)ui->spPUD_75 ->value();
+    a.pu25.adc50   = (qint16)ui->spPUD_50 ->value();
+
+    // Pitch Up Analog (40 lbf)
+    a.pu40.adc100  = (qint16)ui->spPUA_100->value();
+    a.pu40.adc75   = (qint16)ui->spPUA_75 ->value();
+    a.pu40.adc50   = (qint16)ui->spPUA_50 ->value();
+
+    return a;
+}
+
+/* ===================== pack / unpack (match device struct layout) ===================== */
+QByteArray Developer::pack(const Anchors& a) const
+{
+    QByteArray b; b.reserve(sizeof(Anchors));
+
+    auto put16 = [&](quint16 v){ b.append(char(v & 0xFF)); b.append(char(v >> 8)); };
+    auto put32 = [&](quint32 v){ for(int i=0;i<4;++i) b.append(char((v>>(8*i)) & 0xFF)); };
+
+    put16(a.magic);
+    b.append(char(a.version));
+    b.append(char(a.sealed));
+    put32(0); // CRC placeholder
+
+    auto putTrip = [&](const Triplet& t){
+        put16((quint16)t.adc100);
+        put16((quint16)t.adc75);
+        put16((quint16)t.adc50);
+    };
+
+    putTrip(a.rl_17);
+    putTrip(a.rr_17);
+    putTrip(a.pd_17);
+    putTrip(a.pu25);
+    putTrip(a.pu40);
+
+    for (int i=0;i<8;i++) b.append(char(0));
+
+    // compute CRC over entire struct (with crc field included)
+    quint32 crc = crc32_le(b);
+    b[4] = char(crc & 0xFF);
+    b[5] = char((crc >> 8) & 0xFF);
+    b[6] = char((crc >> 16) & 0xFF);
+    b[7] = char((crc >> 24) & 0xFF);
+
+    return b;
+}
+
+bool Developer::unpack(const QByteArray& b, Anchors* out) const
+{
+    if (!out) return false;
+
+    constexpr int kLen = 46;
+    if (b.size() < kLen) return false;
+
+    const QByteArray view = b.left(kLen);  // ignore HID padding
+    auto get16 = [&](int off){ return quint16(quint8(view[off])) | (quint16(quint8(view[off+1]))<<8); };
+    auto get32 = [&](int off){ quint32 v=0; for (int i=0;i<4;++i) v |= (quint32(quint8(view[off+i]))<<(8*i)); return v; };
+
+    out->magic   = get16(0);
+    out->version = quint8(view[2]);
+    out->sealed  = quint8(view[3]);
+    out->crc32   = get32(4);
+
+    QByteArray tmp = view;
+    tmp[4] = tmp[5] = tmp[6] = tmp[7] = char(0);
+    const quint32 calc = crc32_le(tmp);
+
+    if (calc != out->crc32) {
+        qWarning().noquote() << "[Anchors] CRC mismatch: got=0x"
+                             << QString::number(out->crc32,16)
+                             << " calc=0x" << QString::number(calc,16)
+                             << " len=" << b.size();
+        // Soft-accept if header looks right (optional):
+        if (out->magic != 0xF00C || out->version != 0x01)
+            return false;
+    }
+
+    int off = 8;
+    auto getTrip = [&](Triplet* t){
+        t->adc100 = qint16(get16(off)); off += 2;
+        t->adc75  = qint16(get16(off)); off += 2;
+        t->adc50  = qint16(get16(off)); off += 2;
+    };
+    getTrip(&out->rl_17);
+    getTrip(&out->rr_17);
+    getTrip(&out->pd_17);
+    getTrip(&out->pu25);
+    getTrip(&out->pu40);
+    return true;
+}
+
+/* ===================== Buttons ===================== */
+void Developer::onRead()
+{
+    Anchors a{};
+    bool haveAnchors = false;
+
+
+    if (m_send && m_recv) {
+        QByteArray req, resp;
+        if (m_send(OP_GET_FACTORY_ANCHORS, QByteArray()) && m_recv(OP_GET_FACTORY_ANCHORS, &resp)) {
+
+            haveAnchors = unpack(resp, &a);
+            // consider anchors “missing” only if unpack failed OR all trips are zero
+            if (haveAnchors &&
+                isEmptyTrip(a.rl_17) && isEmptyTrip(a.rr_17) &&
+                isEmptyTrip(a.pd_17)  && isEmptyTrip(a.pu25)  && isEmptyTrip(a.pu40)) {
+                haveAnchors = false;
+            }
+        }
+    }
+
+    if (!haveAnchors && m_fallback) {
+        Calib roll{}, pitch{};
+        if (m_fallback(&roll, &pitch)) {
+            auto lerp = [](qint16 c, qint16 e, float f){ return qint16(c + (e - c) * f); };
+
+            a.magic   = 0xF00C;  // FACTORY_MAGIC
+            a.version = 0x01;    // FACTORY_VERSION
+            a.sealed  = 0;
+
+            // Roll: left=min, right=max
+            a.rl_17 = { roll.min,  lerp(roll.center, roll.min,  0.75f), lerp(roll.center, roll.min,  0.5f) };
+            a.rr_17 = { roll.max,  lerp(roll.center, roll.max,  0.75f), lerp(roll.center, roll.max,  0.5f) };
+
+            // Pitch: down=min, up=max (we use same triplet for both pitch-up paths)
+            a.pd_17 = { pitch.min, lerp(pitch.center, pitch.min, 0.75f), lerp(pitch.center, pitch.min, 0.5f) };
+            a.pu25  = { pitch.max, lerp(pitch.center, pitch.max, 0.75f), lerp(pitch.center, pitch.max, 0.5f) };
+            a.pu40  = a.pu25;
+
+            haveAnchors = true;
+
+            QMessageBox box(this);
+            box.setWindowTitle(tr("Force Anchors"));
+            box.setText(tr("Factory anchors missing; using calibration defaults."));
+
+            box.setIcon(QMessageBox::NoIcon); // prevent style’s default PNG
+            box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48)); // crisp at any DPI
+            box.setStandardButtons(QMessageBox::Ok);
+            box.exec();
+        }
+    }
+
+    if (!haveAnchors) {
+        QMessageBox box(this);
+        box.setWindowTitle(tr("Force Anchors"));
+        box.setText(tr("Unable to read anchors and no fallback available."));
+
+        box.setIcon(QMessageBox::NoIcon); // prevent style’s default PNG
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48)); // crisp at any DPI
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+
+    }
+
+
+
+    uiSet(a);
+}
+static QString hexDump(const QByteArray& ba, int headBytes = 16) {
+    const int n = qMin(headBytes, ba.size());
+    QString s; s.reserve(3*n);
+    for (int i=0;i<n;++i) s += QString("%1 ").arg(quint8(ba.at(i)),2,16,QLatin1Char('0'));
+    return s.trimmed().toUpper();
+}
+
+static int firstDiff(const QByteArray& a, const QByteArray& b) {
+    const int n = qMin(a.size(), b.size());
+    for (int i=0; i<n; ++i) if (a.at(i) != b.at(i)) return i;
+    return (a.size() == b.size()) ? -1 : n; // -1 means equal
+}
+
+void Developer::onWrite()
+{
+    if (!m_send || !m_recv) { QMessageBox::warning(this, "Anchors", "Transport not set"); return; }
+
+    // Pre-read: block if sealed
+    QByteArray resp;
+    Anchors current{};
+    if (m_send(OP_GET_FACTORY_ANCHORS, QByteArray()) &&
+        m_recv(OP_GET_FACTORY_ANCHORS, &resp) &&
+        unpack(resp, &current) && current.sealed == 1)
+    {
+        QMessageBox::warning(this, "Anchors", "Anchors are locked; writing is not allowed.");
+        return;
+    }
+
+    Anchors a = uiGet();
+    QByteArray blob = pack(a), ack;
+    if (!m_send(OP_SET_FACTORY_ANCHORS, blob) || !m_recv(OP_SET_FACTORY_ANCHORS, &ack)) {
+        QMessageBox::warning(this, "Anchors", "Write failed"); return;
+    }
+    QMessageBox::information(this, "Anchors", "Anchors written.");
+}
+void Developer::onLock()
+{
+    if (!m_send || !m_recv) {
+        QMessageBox::warning(this, tr("Force Anchors"), tr("Transport not set."));
+        return;
+    }
+    QByteArray ack;
+    const bool sent = m_send(OP_LOCK_FACTORY_ANCHORS, QByteArray());
+    qDebug() << "[Anchors] m_send(LOCK) returned" << sent;
+
+    const bool got = m_recv(OP_LOCK_FACTORY_ANCHORS, &ack);
+    qDebug().noquote() << "[Anchors] m_recv(LOCK) returned" << got
+                       << " ackLen=" << ack.size()
+                       << " ackHex=" << hexDump(ack, 8);
+
+    if (!sent || !got) {
+        QMessageBox::warning(this, tr("Force Anchors"), tr("Locking anchors failed (no reply)."));
+        return;
+    }
+
+    const quint8 status = ack.isEmpty() ? 1 : quint8(ack.at(0)); // 1=OK, 0=fail
+    if (status != 1) {
+        QMessageBox::warning(this, tr("Force Anchors"), tr("Device refused lock."));
+        return;
+    }
+
+    // Read back and verify the sealed bit
+    QByteArray resp;
+    Anchors a{};
+    if (m_send(OP_GET_FACTORY_ANCHORS, QByteArray()) && m_recv(OP_GET_FACTORY_ANCHORS, &resp) && unpack(resp, &a)) {
+        qDebug().noquote() << "[Anchors] GET after LOCK: len=" << resp.size()
+        << " head=" << hexDump(resp, 12);
+        uiSet(a);
+        if (a.sealed == 1) {
+            // Optional: disable editing after lock
+            if (ui->btnAnchorsWrite) ui->btnAnchorsWrite->setEnabled(false);
+            if (ui->btnAnchorsLock)  ui->btnAnchorsLock->setEnabled(false);
+            QMessageBox::information(this, tr("Force Anchors"), tr("Anchors locked."));
+            return;
+        } else {
+            QMessageBox::warning(this, tr("Force Anchors"), tr("Lock ACK OK but sealed flag is still 0."));
+            return;
+        }
+    }
+
+    QMessageBox::warning(this, tr("Force Anchors"), tr("Lock ACK OK but unable to read/parse anchors."));
+}

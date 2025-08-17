@@ -20,6 +20,9 @@
 #include "switchbutton.h"
  #include "configmanager.h"
 #include "shiftregisters.h"
+#include "developer.h"
+#include "board_presets.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -27,9 +30,12 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+class Developer;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -74,6 +80,7 @@ private slots:
 
     void on_pushButton_TestButton_clicked();
     void on_pushButton_TestButton_2_clicked();
+    void on_toolButton2_clicked();
 
     void on_pushButton_Wiki_clicked();
 
@@ -82,11 +89,20 @@ private slots:
     void on_toolButton_ConfigsDir_clicked();
 
     void onGripSelectionChanged(int index); //building modular profiles
+    void setAdvancedMode(bool enabled); // triggering advanced mode with developer mode
+    void onBoardPresetChanged(int index); //Building board presets for pin mapping
+
+    void onUpdateAvailable(const QString& tag, const QUrl& url); //update available popup when appropriate
+
+
+
+
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
     bool eventFilter(QObject *obj, QEvent *event) override; //preventskeypressevent from being blocked by adding grip profile
+    void showEvent(QShowEvent* e) override; //Show popup when update is available after building GUI
 
 private:
     Ui::MainWindow *ui;
@@ -125,12 +141,69 @@ private:
     void loadAppConfig();
     void saveAppConfig();
 
+    void checkForUpdates(bool silent = true); //GUI version check
+
+
     ConfigManager *configManager; //modular profiles
      QList<ShiftRegisters*> m_shiftRegsPtrList; //modular profiles
 
     void applyGripProfile(const QJsonObject &cfg);//modular profiles
     void remapLogicalButtonsForSim(const QString &simName);
     void onSimSoftwareChanged(const QString &simName);
+
+    //Setup Developer Mode
+    bool m_developerMode = false;
+    QWidget* m_devTab = nullptr;
+    QString  m_devTabText;
+    QIcon    m_devTabIcon;
+    void setDeveloperMode(bool on);
+    Developer* m_developer = nullptr;
+
+    //Force Anchor setup:
+
+    struct ForceTriplet { qint16 adc100, adc75, adc50; };
+    struct ForceAnchorsGUI {
+        quint16 magic;
+        quint8  version;
+        quint8  sealed;
+        quint32 crc32;
+        ForceTriplet rl_17;   // roll-left 17 lbf
+        ForceTriplet rr_17;   // roll-right 17 lbf
+        ForceTriplet pd_17;   // pitch-down 17 lbf
+        ForceTriplet pu25;    // pitch-up digital 25 lbf
+        ForceTriplet pu40;    // pitch-up analog 40 lbf
+        quint8   reserved[8];
+    };
+
+    void anchorsUiSet(const ForceAnchorsGUI& a);
+    ForceAnchorsGUI anchorsUiGet() const;
+
+    QByteArray packAnchors(const ForceAnchorsGUI& a) const;
+    bool       unpackAnchors(const QByteArray& buf, ForceAnchorsGUI* out) const;
+    quint32    crc32_le(const QByteArray& data) const;
+
+
+    void applyBoardPreset(BoardId id, bool ask = true); //Board preset application
+
+    //Popup when update available
+
+    bool m_guiReady = false;
+    QString m_pendingUpdateTag;
+    QUrl m_pendingUpdateUrl;
+    void showUpdatePopup(const QString& tag, const QUrl& url);
+
+    // --- Anchors-driven calibration wiring ---
+    enum AnchorsMode { AnchorsMode_FLCS40, AnchorsMode_Digital25 };
+
+    void wireForceButtons();                // find buttons in the Axes tab and connect them
+    bool readAnchorsFromDevice(ForceAnchorsGUI* out);
+    void applyAnchorsToAxes(int percent);   // percent ∈ {100, 75, 50}
+    int  pickForPercent(const ForceTriplet& t, int percent) const;
+
+    AnchorsMode m_anchorsMode = AnchorsMode_FLCS40; // default “FLCS” (40 lbf up)
+    int         m_anchorsPercent = 100;             // last chosen % (for UI feedback, if desired)
+    ForceAnchorsGUI m_cachedAnchors{};
+    bool m_cachedAnchorsValid = false;
 
 
 };

@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <qicon.h>
 #include <QSettings>
 #include <QTextStream>
 #include <QTimer>
@@ -15,12 +16,47 @@
 #include "global.h"
 
 #include <QDebug>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QDesktopServices>
+#include <QVersionNumber>
+#include <QCheckBox>
+#include <QPushButton>
+#include <QSslSocket>
+#include <QJsonArray>
+#include <QApplication>
+#include <QUrl>
+
+
+#ifdef Q_OS_WIN
+#include <qt_windows.h>  // safer with Qt than <windows.h>
+#include <winhttp.h>
+#endif
+
+static inline void showInfoBox(QWidget* parent, const QString& title, const QString& text)
+{
+    QMessageBox box(parent);
+    box.setWindowTitle(title);
+    box.setText(text);
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
+}
 
 AdvancedSettings::AdvancedSettings(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::AdvancedSettings)
 {
     ui->setupUi(this);
+
+    qDebug() << "Qt" << qVersion()
+             << "supportsSsl:" << QSslSocket::supportsSsl()
+             << "built:" << QSslSocket::sslLibraryBuildVersionString()
+             << "loaded:" << QSslSocket::sslLibraryVersionString();
 
     m_flasher = new Flasher(this);
     ui->layoutH_Flasher->addWidget(m_flasher);
@@ -45,9 +81,20 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     ui->info_removeName->hide();
 #endif
 
+
+
+
     ui->layoutG_Lang->setAlignment(Qt::AlignCenter);
 }
-
+void AdvancedSettings::checkForUpdatesSilent()
+{
+#ifdef Q_OS_WIN
+    // silent = true → no popups unless an update is available
+    checkForUpdatesWinHTTP(true);
+#else
+    // Non-Windows: no-op
+#endif
+}
 AdvancedSettings::~AdvancedSettings()
 {
     delete ui;
@@ -142,7 +189,7 @@ void AdvancedSettings::on_pushButton_About_clicked()
 
     const QString source = tr(R"(
         <p>Source code available under GPLv3 on
-        <a style="color: #14B307; text-decoration:none;" href="https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt">GitHub</a>.</p>
+        <a style="color: #14B307; text-decoration:none;" href="https://github.com/invictuscockpits/HOTASConfigurator">GitHub</a>.</p>
         <p>This software and firmware are based on
         <a style="color: #14B307; text-decoration:none;" href="https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt">FreeJoy</a>.
         We highly recommend starting there if you're building something similar.</p>)");
@@ -185,6 +232,219 @@ void AdvancedSettings::on_pushButton_removeName_clicked()
                   QSettings::NativeFormat).remove("OEMName");
 #endif
 }
+
+void AdvancedSettings::on_pushButton_CheckUpdates_clicked()
+{
+#ifdef Q_OS_WIN
+    checkForUpdatesWinHTTP(false);
+#else
+    QMessageBox::information(this, tr("Update Check"),
+                             tr("Update check is only implemented for Windows in this build."));
+#endif
+}
+
+/**
+ * \brief Check GitHub for the latest release using Windows WinHTTP (Schannel).
+ *
+ * This function avoids QtNetwork/OpenSSL entirely and relies on the OS TLS stack.
+ * It performs a HTTPS GET to:
+ *   https://api.github.com/repos/InvictusCockpits/InvictusHOTASConfigurator/releases/latest
+ *
+ * Behavior:
+ *  - Adds a required User-Agent and Accept headers for the GitHub API.
+ *  - Requests identity encoding to avoid dealing with gzip/deflate.
+ *  - Parses JSON for "tag_name" and "html_url".
+ *  - Compares against APP_VERSION (normalized to N.N.N).
+ *  - If newer, shows a dialog with an “Open GitHub” button and an
+ *    “Ignore this version” checkbox stored under Update/IgnoreTag.
+ *
+ * \param silent If true, suppresses “up to date” / network error popups.
+ */
+
+void AdvancedSettings::checkForUpdatesWinHTTP(bool silent)
+{
+    // Treat any pre-GUI call as silent, regardless of the caller.
+    const bool guiReady = qApp && qApp->property("invcs.guiReady").toBool();
+    const bool effectiveSilent = silent || !guiReady;
+
+    // 1) Open session
+    HINTERNET hSession = WinHttpOpen(L"InvictusHOTASConfigurator/1.0",
+                                     WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY,
+                                     WINHTTP_NO_PROXY_NAME,
+                                     WINHTTP_NO_PROXY_BYPASS, 0);
+    if (!hSession) {
+        if (!effectiveSilent)
+            showInfoBox(this, tr("Update Check"),
+                        tr("WinHTTP initialization failed (error %1).")
+                            .arg((qulonglong)GetLastError()));
+        return;
+    }
+
+    // 2) Connect
+    HINTERNET hConnect = WinHttpConnect(hSession, L"api.github.com",
+                                        INTERNET_DEFAULT_HTTPS_PORT, 0);
+    if (!hConnect) {
+        if (!effectiveSilent)
+            showInfoBox(this, tr("Update Check"),
+                        tr("Network connect failed (error %1).")
+                            .arg((qulonglong)GetLastError()));
+        WinHttpCloseHandle(hSession);
+        return;
+    }
+
+    // Helper to send GET and read body
+    auto getPath = [&](const wchar_t* path, QByteArray* out, DWORD* outStatus)->bool {
+        HINTERNET hRequest = WinHttpOpenRequest(hConnect, L"GET", path, NULL,
+                                                WINHTTP_NO_REFERER,
+                                                WINHTTP_DEFAULT_ACCEPT_TYPES,
+                                                WINHTTP_FLAG_SECURE);
+        if (!hRequest) return false;
+
+        // Required headers
+        const wchar_t* baseHdrs =
+            L"User-Agent: InvictusHOTASConfigurator\r\n"
+            L"Accept: application/vnd.github+json\r\n"
+            L"Accept-Encoding: identity\r\n"
+            L"X-GitHub-Api-Version: 2022-11-28\r\n";
+        WinHttpAddRequestHeaders(hRequest, baseHdrs, (DWORD)-1L, WINHTTP_ADDREQ_FLAG_ADD);
+
+        // Optional token (env var or QSettings)
+        QString token = qEnvironmentVariable("INVCS_GH_TOKEN");
+        if (token.isEmpty()) {
+            QSettings* st = gEnv.pAppSettings;
+            st->beginGroup("Update");
+            token = st->value("GitHubToken").toString();
+            st->endGroup();
+        }
+        if (!token.isEmpty()) {
+            const std::wstring auth = L"Authorization: Bearer " + token.toStdWString() + L"\r\n";
+            WinHttpAddRequestHeaders(hRequest, auth.c_str(), (DWORD)-1L, WINHTTP_ADDREQ_FLAG_ADD);
+        }
+
+        bool ok = WinHttpSendRequest(hRequest, WINHTTP_NO_ADDITIONAL_HEADERS, 0,
+                                     WINHTTP_NO_REQUEST_DATA, 0, 0, 0)
+                  && WinHttpReceiveResponse(hRequest, NULL);
+        if (!ok) { WinHttpCloseHandle(hRequest); return false; }
+
+        DWORD status = 0, sz = sizeof(status);
+        WinHttpQueryHeaders(hRequest,
+                            WINHTTP_QUERY_STATUS_CODE | WINHTTP_QUERY_FLAG_NUMBER,
+                            WINHTTP_HEADER_NAME_BY_INDEX, &status, &sz, WINHTTP_NO_HEADER_INDEX);
+
+        QByteArray body;
+        for (;;) {
+            DWORD avail = 0; if (!WinHttpQueryDataAvailable(hRequest, &avail) || !avail) break;
+            QByteArray chunk; chunk.resize((int)avail);
+            DWORD read = 0; if (!WinHttpReadData(hRequest, chunk.data(), avail, &read)) break;
+            chunk.resize((int)read); body += chunk;
+        }
+        WinHttpCloseHandle(hRequest);
+        if (out) *out = body;
+        if (outStatus) *outStatus = status;
+        return true;
+    };
+
+    // 3) Try /releases/latest first; if 404, fall back to /releases
+    QByteArray body;
+    DWORD status = 0;
+    getPath(L"/repos/InvictusCockpits/InvictusHOTASConfigurator/releases/latest", &body, &status);
+    if (status == 404) {
+        body.clear();
+        status = 0;
+        getPath(L"/repos/InvictusCockpits/InvictusHOTASConfigurator/releases", &body, &status);
+    }
+
+    WinHttpCloseHandle(hConnect);
+    WinHttpCloseHandle(hSession);
+
+    if (status != 200 || body.isEmpty()) {
+        if (!effectiveSilent)
+            showInfoBox(this, tr("Update Check"),
+                        tr("GitHub returned HTTP %1.").arg(status));
+        return; // never pop in silent or pre-GUI
+    }
+
+    // 4) Parse JSON
+    QJsonDocument doc = QJsonDocument::fromJson(body);
+    QString latestTag, releaseUrl;
+
+    if (doc.isObject()) {
+        const auto obj = doc.object();
+        latestTag  = obj.value("tag_name").toString();
+        releaseUrl = obj.value("html_url").toString();
+    } else if (doc.isArray()) {
+        const auto arr = doc.array();
+        for (const auto& v : arr) {
+            const auto o = v.toObject();
+            if (!o.value("draft").toBool() && !o.value("prerelease").toBool()) {
+                latestTag  = o.value("tag_name").toString();
+                releaseUrl = o.value("html_url").toString();
+                break;
+            }
+        }
+        if (latestTag.isEmpty() && !arr.isEmpty()) {
+            const auto o = arr.first().toObject();
+            latestTag  = o.value("tag_name").toString();
+            releaseUrl = o.value("html_url").toString();
+        }
+    }
+
+    if (latestTag.isEmpty()) {
+        if (!effectiveSilent)
+            showInfoBox(this, tr("Update Check"), tr("No releases found."));
+        return;
+    }
+
+    // Respect “ignore this tag”
+    QSettings* s = gEnv.pAppSettings;
+    s->beginGroup("Update");
+    const QString ignored = s->value("IgnoreTag").toString();
+    s->endGroup();
+    if (ignored == latestTag) return;
+
+    auto norm = [](QString v){ v=v.trimmed(); if(v.startsWith('v',Qt::CaseInsensitive)) v.remove(0,1);
+        int i=0; while(i<v.size() && (v[i].isDigit()||v[i]=='.')) ++i; return v.left(i); };
+    const QVersionNumber cur = QVersionNumber::fromString(norm(QString::fromLatin1(APP_VERSION)));
+    const QVersionNumber lat = QVersionNumber::fromString(norm(latestTag));
+    if (lat.isNull() || cur.isNull()) return;
+
+    if (QVersionNumber::compare(lat, cur) <= 0) {
+        if (!effectiveSilent)
+            showInfoBox(this, tr("Up to date"),
+                        tr("You’re on the latest version (%1).")
+                            .arg(QString::fromLatin1(APP_VERSION)));
+        return;
+    }
+
+    // Newer version available
+    if (effectiveSilent) {
+        emit updateAvailable(latestTag, QUrl(releaseUrl)); // MainWindow will show it when ready
+        return;
+    }
+
+    // Manual check (not silent) -> show dialog now
+    QMessageBox box(this);
+    box.setWindowTitle(tr("Update available"));
+    box.setText(tr("A newer version is available: %1\nYou have: %2")
+                    .arg(latestTag, QString::fromLatin1(APP_VERSION)));
+    box.setInformativeText(tr("Open the release page to download?"));
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+    QCheckBox dontShow(tr("Don’t remind me again for %1").arg(latestTag));
+    box.setCheckBox(&dontShow);
+    QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
+    box.addButton(QMessageBox::Cancel);
+    box.exec();
+
+    if (dontShow.isChecked()) {
+        s->beginGroup("Update");
+        s->setValue("IgnoreTag", latestTag);
+        s->endGroup();
+    }
+    if (box.clickedButton() == open)
+        QDesktopServices::openUrl(QUrl(releaseUrl));
+}
+
 
 
 void AdvancedSettings::readFromConfig()

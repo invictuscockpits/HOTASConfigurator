@@ -19,7 +19,7 @@ dev_config_t InitConfig (void)
 #endif
     dev_config_t init_config =
     {
-        .firmware_version = 0x2101,		// do not change
+        .firmware_version = 0x2111,		// do not change
 
         /*
                     Name of device in devices dispatcher
@@ -156,7 +156,7 @@ dev_config_t InitConfig (void)
         .axis_config[1].curve_shape[10] = 100,
         .axis_config[1].resolution = 15,
         .axis_config[1].deadband_size = 0,
-        .axis_config[1].channel = 0,
+        .axis_config[1].channel = 1,
         .axis_config[1].i2c_address = 0x48,
         .axis_config[1].source_main = -1,
         .axis_config[1].function = 0,

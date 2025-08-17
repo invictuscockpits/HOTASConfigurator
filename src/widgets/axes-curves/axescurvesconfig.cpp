@@ -240,7 +240,7 @@ void AxesCurvesConfig::handleAxisVisibility(int index, bool visible)
     const auto &curves = ui->widget_AxesCurves->curvesList();
     if (index >= 0 && index < curves.size())
         curves[index]->setVisible(visible);
-    qDebug() << "handleAxisVisibility:" << index << "visible:" << visible;
+    //qDebug() << "handleAxisVisibility:" << index << "visible:" << visible;
     static const QStringList labelNames = {
         "label",     // X
         "label_2",   // Y

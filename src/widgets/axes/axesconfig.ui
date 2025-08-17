@@ -21,7 +21,7 @@
     <number>6</number>
    </property>
    <property name="topMargin">
-    <number>6</number>
+    <number>0</number>
    </property>
    <property name="rightMargin">
     <number>6</number>
@@ -31,11 +31,17 @@
    </property>
    <item>
     <widget class="QScrollArea" name="scrollArea">
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
      <property name="frameShape">
       <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="widgetResizable">
       <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
      </property>
      <widget class="QWidget" name="scrollAreaWidgetContents">
       <property name="geometry">

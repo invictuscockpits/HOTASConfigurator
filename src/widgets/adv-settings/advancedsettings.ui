@@ -50,7 +50,7 @@
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>USB settings</string>
+      <string>Updater</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1,5,1,0,0">
       <property name="leftMargin">
@@ -71,23 +71,20 @@
       <property name="verticalSpacing">
        <number>9</number>
       </property>
-      <item row="1" column="0" colspan="3">
-       <widget class="QLineEdit" name="lineEdit_DeviceUSBName">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+      <item row="5" column="0">
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
-        <property name="text">
-         <string notr="true">F103Joy</string>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
         </property>
-        <property name="maxLength">
-         <number>26</number>
-        </property>
-       </widget>
+       </spacer>
       </item>
-      <item row="3" column="1">
+      <item row="5" column="1">
        <widget class="QSpinBox" name="spinBox_USBExchangePeriod">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -118,45 +115,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="4">
-       <spacer name="horizontalSpacer_5">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="3" column="2">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="3" column="0">
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="1" column="6">
        <spacer name="horizontalSpacer_6">
         <property name="orientation">
@@ -170,8 +128,64 @@
         </property>
        </spacer>
       </item>
-      <item row="3" column="3">
-       <spacer name="horizontalSpacer_2">
+      <item row="4" column="0" colspan="3">
+       <widget class="QLabel" name="text_USBExchangePeriod">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>USB exchange period</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="5">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
+        <property name="spacing">
+         <number>3</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="text_removeName">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="text">
+           <string>Remove device name with selected VID/PID from registry</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="InfoLabel" name="info_removeName">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="5" column="2">
+       <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
         </property>
@@ -183,7 +197,7 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="5" rowspan="4">
+      <item row="0" column="5" rowspan="6">
        <layout class="QGridLayout" name="gridLayout_2">
         <property name="topMargin">
          <number>0</number>
@@ -231,7 +245,7 @@
            <string notr="true">HHHH</string>
           </property>
           <property name="text">
-           <string notr="true">0483</string>
+           <string notr="true">16D0</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -256,7 +270,7 @@
            <string notr="true">HHHH</string>
           </property>
           <property name="text">
-           <string notr="true">5750</string>
+           <string notr="true">12D3</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -326,13 +340,13 @@
            </size>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some values may not work on some operating systems(PID 5750 on Ubuntu, for example). After choosing the wrong value, the controller needs to be reflashed with ST-link/UART.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You're grown, so do what you want. but changing these values can brick the device.  That is not covered by warranty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../../resources.qrc">:/Images/warning.png</pixmap>
+           <pixmap resource="../../resources.qrc">:/Images/warning_icon.svg</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -357,13 +371,13 @@
            </size>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some values may not work on some operating systems(PID 5750 on Ubuntu, for example). After choosing the wrong value, the controller needs to be reflashed with ST-link/UART.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You're grown, so do what you want. but changing these values can brick the device.  That is not covered by warranty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="../../resources.qrc">:/Images/warning.png</pixmap>
+           <pixmap resource="../../resources.qrc">:/Images/warning_icon.svg</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -375,23 +389,59 @@
         </item>
        </layout>
       </item>
-      <item row="2" column="0" colspan="3">
-       <widget class="QLabel" name="text_USBExchangePeriod">
+      <item row="5" column="3">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="6" column="5" colspan="2">
+       <widget class="QPushButton" name="pushButton_removeName">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Remove name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLineEdit" name="lineEdit_DeviceUSBName">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
         <property name="text">
-         <string>USB exchange period</string>
+         <string notr="true">Invictus SSC</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+        <property name="maxLength">
+         <number>26</number>
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="3">
+      <item row="1" column="0">
        <widget class="QLabel" name="text_DeviceUSBName">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -407,55 +457,12 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="5" colspan="2">
-       <widget class="QPushButton" name="pushButton_removeName">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButton_CheckUpdates">
         <property name="text">
-         <string>Remove name</string>
+         <string>Check for Software Updates</string>
         </property>
        </widget>
-      </item>
-      <item row="4" column="0" colspan="5">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
-        <property name="spacing">
-         <number>3</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="text_removeName">
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string>Remove device name with selected VID/PID from registry</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="InfoLabel" name="info_removeName">
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
       </item>
      </layout>
     </widget>
@@ -769,6 +776,7 @@
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="../../resources.qrc"/>
   <include location="../../resources.qrc"/>
  </resources>
  <connections/>

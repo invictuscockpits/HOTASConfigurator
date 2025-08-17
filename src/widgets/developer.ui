@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Developer</class>
+ <widget class="QWidget" name="Developer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1009</width>
+    <height>668</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>9</y>
+     <width>481</width>
+     <height>381</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>400</height>
+    </size>
+   </property>
+   <property name="title">
+    <string>Persistent Force Anchors</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0" columnminimumwidth="10,0,0">
+    <item row="2" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="title">
+       <string>Pitch Down</string>
+      </property>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>46</y>
+         <width>90</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Down 75%</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>22</y>
+         <width>90</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>90</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Down 100%</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spPD_75">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>46</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spPD_100">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>22</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>70</y>
+         <width>90</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Down 50%</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spPD_50">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>70</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="title">
+       <string>Roll Right</string>
+      </property>
+      <widget class="QSpinBox" name="spRR_75">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>46</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>22</y>
+         <width>100</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Roll Right 100%</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spRR_50">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>70</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spRR_100">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>22</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>70</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Roll Right 50%</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>46</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Roll Right 75%</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="title">
+       <string>Pitch Up Digital</string>
+      </property>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>46</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Up 75%</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>22</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Up 100%</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spPUD_75">
+       <property name="geometry">
+        <rect>
+         <x>142</x>
+         <y>46</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spPUD_100">
+       <property name="geometry">
+        <rect>
+         <x>142</x>
+         <y>22</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_12">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Up 50%</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spPUD_50">
+       <property name="geometry">
+        <rect>
+         <x>142</x>
+         <y>70</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="title">
+       <string>Pitch Up Analog</string>
+      </property>
+      <widget class="QSpinBox" name="spPUA_75">
+       <property name="geometry">
+        <rect>
+         <x>142</x>
+         <y>40</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spPUA_100">
+       <property name="geometry">
+        <rect>
+         <x>142</x>
+         <y>16</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_13">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>64</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Up 50%</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_14">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>16</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Up 100%</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_15">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Pitch Up 75%</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spPUA_50">
+       <property name="geometry">
+        <rect>
+         <x>142</x>
+         <y>64</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>Roll Left</string>
+      </property>
+      <widget class="QSpinBox" name="spRL_50">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>70</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spRL_75">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>46</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>22</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Roll Left 100%</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spRL_100">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>22</y>
+         <width>75</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>-32676</number>
+       </property>
+       <property name="maximum">
+        <number>32767</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>70</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Roll Left 50%</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>46</y>
+         <width>75</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>75</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Roll Left 75%</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_7">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>10</y>
+     <width>221</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Force Values Anchors</string>
+   </property>
+   <widget class="QPushButton" name="btnAnchorsRead">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Read Force Anchors from Device</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAnchorsWrite">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Write Force Anchors to Device</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAnchorsLock">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Lock Force Anchor</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

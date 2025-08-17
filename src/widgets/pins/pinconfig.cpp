@@ -1,20 +1,21 @@
 #include "pinconfig.h"
 #include "ui_pinconfig.h"
+#include "board_presets.h"
 #include <QLabel>
 
 #include "global.h"
 #include <QSettings>
+#include <QMessageBox>
 
 PinConfig::PinConfig(QWidget *parent) :         // пины - первое, что я начал кодить в конфигураторе и спустя время
     QWidget(parent),                            // заявляю - это говнокод!1 который даже мне тяжело понять
     ui(new Ui::PinConfig),                      // мои соболезнования тем кто будет разбираться)
-    m_bluePill{new PinsBluePill(this)},
-    m_contrLite{new PinsContrLite(this)}
+    m_Controller{new PinsController(this)}
 
 {
     ui->setupUi(this);
-    m_bluePill->hide();
-    m_contrLite->hide();
+    m_Controller->hide();
+
 
     m_maxButtonsWarning = false;
     m_shiftLatchCount = m_shiftDataCount = m_shiftClkCount = 0;
@@ -38,16 +39,12 @@ PinConfig::PinConfig(QWidget *parent) :         // пины - первое, чт
     gEnv.pAppSettings->endGroup();
 
     if (m_lastBoard == 0) {
-        m_bluePill->addPinComboBox(m_pinCBoxPtrList);
-        ui->layoutV_pins->addWidget(m_bluePill);
-        m_bluePill->show();
-    } else if (m_lastBoard == 1) {
-        m_contrLite->addPinComboBox(m_pinCBoxPtrList);
-        ui->layoutV_pins->addWidget(m_contrLite);
-        m_contrLite->show();
+        m_Controller->addPinComboBox(m_pinCBoxPtrList);
+        ui->layoutV_pins->addWidget(m_Controller);
+        m_Controller->show();
+
     }
-    ui->comboBox_board->addItem("Blue Pill");
-    ui->comboBox_board->addItem("Controller Lite");
+    ui->comboBox_board->addItem("VFT Controller");
     ui->comboBox_board->setCurrentIndex(m_lastBoard);
     connect(ui->comboBox_board, qOverload<int>(&CenteredCBox::currentIndexChanged),
             this, &PinConfig::boardChanged);
@@ -92,27 +89,30 @@ void PinConfig::retranslateUi()
 
 void PinConfig::boardChanged(int index)
 {
+    // existing widget swap…
     if (index == 0 && m_lastBoard == 1) {
-        Q_ASSERT(qobject_cast<PinsContrLite *>(ui->layoutV_pins->takeAt(0)->widget()));
-        m_contrLite->hide();
-        ui->layoutV_pins->takeAt(0);
-
-        m_bluePill->addPinComboBox(m_pinCBoxPtrList);
-        ui->layoutV_pins->addWidget(m_bluePill);
-        m_bluePill->show();
+        // ... your existing BluePill show code ...
         m_lastBoard = 0;
     } else if (index == 1 && m_lastBoard == 0) {
-        Q_ASSERT(qobject_cast<PinsBluePill *>(ui->layoutV_pins->takeAt(0)->widget()));
-        m_bluePill->hide();
-        ui->layoutV_pins->takeAt(0);
-
-        m_contrLite->addPinComboBox(m_pinCBoxPtrList);
-        ui->layoutV_pins->addWidget(m_contrLite);
-        m_contrLite->show();
+        // ... your existing ControllerLite show code ...
         m_lastBoard = 1;
+    } else {
+        return; // no change
     }
-}
 
+    // Optional: ask before overwriting the current mapping
+    if (QMessageBox::question(this, tr("Apply board defaults?"),
+                              tr("Replace current pin mapping with %1 defaults?")
+                                  .arg(index==0 ? tr("VFT Controller Gen 3") : tr("VFT Controller Gen 4")))
+        != QMessageBox::Yes) return;
+
+    const auto& preset = boardPins(index==0 ? BoardId::VftControllerGen3 : BoardId::VFTControllerGen4);
+    for (int i = 0; i < USED_PINS_NUM; ++i)
+        gEnv.pDeviceConfig->config.pins[i] = preset.pins[i];
+
+    // One line to refresh the GUI from config:
+    readFromConfig();  // uses PinComboBox::readFromConfig() for each pin
+}
 void PinConfig::pinInteraction(int index, int senderIndex, int pin)
 {
     if (index != NOT_USED) {//current_enum_index

@@ -36,6 +36,486 @@
     <property name="spacing">
      <number>12</number>
     </property>
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7" rowstretch="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" columnstretch="0">
+       <property name="leftMargin">
+        <number>6</number>
+       </property>
+       <property name="topMargin">
+        <number>6</number>
+       </property>
+       <property name="rightMargin">
+        <number>6</number>
+       </property>
+       <property name="bottomMargin">
+        <number>6</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>6</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>9</number>
+       </property>
+       <item row="5" column="0">
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0,0">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Policy::Preferred</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_Wiki">
+           <property name="maximumSize">
+            <size>
+             <width>160</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="autoFillBackground">
+            <bool>true</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="resources.qrc">
+             <normaloff>:/Images/ST_wiki.png</normaloff>:/Images/ST_wiki.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>160</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="autoDefault">
+            <bool>true</bool>
+           </property>
+           <property name="default">
+            <bool>true</bool>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Policy::Preferred</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="7" column="0">
+        <widget class="QPushButton" name="pushButton_ReadConfig">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>165</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">height: 30px;</string>
+         </property>
+         <property name="text">
+          <string>Read config from Device</string>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QComboBox" name="comboBox_simSoftware">
+         <item>
+          <property name="text">
+           <string>DCS</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Falcon BMS</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MSFS</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="CenteredCBox" name="comboBox_HidDeviceList">
+         <property name="minimumSize">
+          <size>
+           <width>165</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">height: 22px;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Active Sim Software Profile</string>
+         </property>
+        </widget>
+       </item>
+       <item row="20" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QComboBox" name="comboBox_Configs"/>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_ConfigsDir">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="resources.qrc">
+             <normaloff>:/Images/setings.png</normaloff>:/Images/setings.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="14" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Device Control Board Version</string>
+         </property>
+        </widget>
+       </item>
+       <item row="27" column="0">
+        <widget class="QPushButton" name="pushButton_ShowDebug">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>165</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">height: 30px;</string>
+         </property>
+         <property name="text">
+          <string>Activate Advanced Mode</string>
+         </property>
+        </widget>
+       </item>
+       <item row="18" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="23" column="0">
+        <widget class="QPushButton" name="pushButton_SaveToFile">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>165</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">height: 30px;</string>
+         </property>
+         <property name="text">
+          <string>Save config to file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QComboBox" name="comboBox_GripSelection">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentText">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Choose Your Grip</string>
+         </property>
+        </widget>
+       </item>
+       <item row="16" column="0" rowspan="2">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QComboBox" name="comboBox_Board"/>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton2">
+           <property name="text">
+            <string>...</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normalon>:/Images/Info_icon.svg</normalon>
+            </iconset>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonStyle::ToolButtonIconOnly</enum>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="24" column="0" rowspan="2">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="8" column="0">
+        <widget class="QPushButton" name="pushButton_WriteConfig">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>165</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">height: 30px;</string>
+         </property>
+         <property name="text">
+          <string>Write config to Device</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="10" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Active Grip Profile</string>
+         </property>
+        </widget>
+       </item>
+       <item row="21" column="0">
+        <widget class="QPushButton" name="pushButton_LoadFromFile">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>165</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">height: 30px;</string>
+         </property>
+         <property name="text">
+          <string>Load config from file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="26" column="0">
+        <widget class="QPushButton" name="pushButton_ResetAllPins">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>165</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">height: 30px;</string>
+         </property>
+         <property name="text">
+          <string>Reset All</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_DeviceStatus">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
     <item row="1" column="0" colspan="2">
      <layout class="QVBoxLayout" name="layoutV_DebugWindow">
       <property name="spacing">
@@ -45,6 +525,12 @@
     </item>
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>87</height>
+       </size>
+      </property>
       <property name="baseSize">
        <size>
         <width>0</width>
@@ -60,7 +546,7 @@ QTabBar::tab:first {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_PinConfig">
        <attribute name="title">
@@ -120,6 +606,108 @@ QTabBar::tab:first {
         <property name="bottomMargin">
          <number>6</number>
         </property>
+        <item>
+         <widget class="QFrame" name="frame_ForceValues">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>87</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <widget class="QGroupBox" name="groupBox_ForceAnchors">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>0</y>
+             <width>391</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="title">
+            <string>Proportional Force Scaling</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <property name="topMargin">
+             <number>2</number>
+            </property>
+            <property name="bottomMargin">
+             <number>2</number>
+            </property>
+            <item row="0" column="2">
+             <widget class="QRadioButton" name="radio_Anchor50">
+              <property name="text">
+               <string>50% FLCS</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="radio_Anchor100">
+              <property name="text">
+               <string>Full FLCS Force</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QRadioButton" name="radio_Anchor75">
+              <property name="text">
+               <string>75% FLCS</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QGroupBox" name="groupBox_FlcsMode">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>0</y>
+             <width>201</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="title">
+            <string>FLCS Mode</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <property name="topMargin">
+             <number>2</number>
+            </property>
+            <property name="bottomMargin">
+             <number>2</number>
+            </property>
+            <item>
+             <widget class="QRadioButton" name="radioButton_2">
+              <property name="text">
+               <string>Analog</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton">
+              <property name="text">
+               <string>Digital</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_AxesCurves">
@@ -232,476 +820,12 @@ QTabBar::tab:first {
         </property>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_Debug">
+      <widget class="QWidget" name="tab_Developer">
        <attribute name="title">
-        <string> Debug </string>
+        <string> Developer</string>
        </attribute>
-       <widget class="QPushButton" name="pushButton_TestButton">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>71</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_TestButton_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>50</y>
-          <width>71</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>2</string>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="layoutV_tabDeveloper"/>
       </widget>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBox_4">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_7" rowstretch="0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0" columnstretch="0">
-       <property name="leftMargin">
-        <number>6</number>
-       </property>
-       <property name="topMargin">
-        <number>6</number>
-       </property>
-       <property name="rightMargin">
-        <number>6</number>
-       </property>
-       <property name="bottomMargin">
-        <number>6</number>
-       </property>
-       <property name="horizontalSpacing">
-        <number>6</number>
-       </property>
-       <property name="verticalSpacing">
-        <number>9</number>
-       </property>
-       <item row="0" column="0">
-        <widget class="CenteredCBox" name="comboBox_HidDeviceList">
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>26</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">height: 22px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="19" column="0" rowspan="2">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="14" column="0">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="7" column="0">
-        <widget class="QPushButton" name="pushButton_ReadConfig">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
-         </property>
-         <property name="text">
-          <string>Read config from Device</string>
-         </property>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QComboBox" name="comboBox_simSoftware">
-         <item>
-          <property name="text">
-           <string>DCS</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Falcon BMS</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>MSFS</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="16" column="0">
-        <widget class="QPushButton" name="pushButton_LoadFromFile">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
-         </property>
-         <property name="text">
-          <string>Load config from file</string>
-         </property>
-        </widget>
-       </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Active Sim Software Profile</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Active Grip Profile</string>
-         </property>
-        </widget>
-       </item>
-       <item row="15" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
-         <property name="spacing">
-          <number>6</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QComboBox" name="comboBox_Configs"/>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButton_ConfigsDir">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="resources.qrc">
-             <normaloff>:/Images/setings.png</normaloff>:/Images/setings.png</iconset>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="21" column="0">
-        <widget class="QPushButton" name="pushButton_ResetAllPins">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
-         </property>
-         <property name="text">
-          <string>Reset All</string>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <spacer name="verticalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="22" column="0">
-        <widget class="QPushButton" name="pushButton_ShowDebug">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
-         </property>
-         <property name="text">
-          <string>Activate Advanced Mode</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <widget class="QPushButton" name="pushButton_WriteConfig">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
-         </property>
-         <property name="text">
-          <string>Write config to Device</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="0">
-        <widget class="QComboBox" name="comboBox_GripSelection">
-         <property name="editable">
-          <bool>false</bool>
-         </property>
-         <property name="currentText">
-          <string/>
-         </property>
-         <property name="placeholderText">
-          <string>Choose Your Grip</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_DeviceStatus">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0,0">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <spacer name="horizontalSpacer_9">
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_Wiki">
-           <property name="maximumSize">
-            <size>
-             <width>160</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="autoFillBackground">
-            <bool>true</bool>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="resources.qrc">
-             <normaloff>:/Images/ST_wiki.png</normaloff>:/Images/ST_wiki.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>160</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="autoDefault">
-            <bool>true</bool>
-           </property>
-           <property name="default">
-            <bool>true</bool>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item row="18" column="0">
-        <widget class="QPushButton" name="pushButton_SaveToFile">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
-         </property>
-         <property name="text">
-          <string>Save config to file</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <spacer name="verticalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="5" column="0">
-        <spacer name="verticalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
      </widget>
     </item>
    </layout>
@@ -715,6 +839,7 @@ QTabBar::tab:first {
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="resources.qrc"/>
   <include location="resources.qrc"/>
  </resources>
  <connections/>

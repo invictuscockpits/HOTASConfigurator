@@ -18,6 +18,8 @@ public:
 
     void setIsFinish(bool isFinish);
     void setSelectedDevice(int deviceNumber);
+    // Called from MainWindow/Developer
+    void devRequest(quint8 op, const QByteArray &payload);
 
 public slots:
     void processData();
@@ -35,6 +37,9 @@ signals:
 
     void flasherFound(bool isFound);
     void flashStatus(int status, int percent);
+
+    // Emitted when a DEV reply arrives (payload is the bytes after [ID,op])
+    void devPacket(quint8 op, QByteArray data);
 
 private:
     struct Device
@@ -77,6 +82,11 @@ private:
     const QByteArray *m_firmware;
 
     mutable std::mutex m_mutex;
+
+    // state handed to the worker loop
+    std::mutex m_devMutex;
+    quint8     m_devOp = 0;
+    QByteArray m_devPayload;
 };
 
 #endif // HIDDEVICE_H

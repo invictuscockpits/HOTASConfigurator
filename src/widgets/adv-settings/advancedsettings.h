@@ -9,6 +9,7 @@ class QFile;
 class QPushButton;
 QT_END_NAMESPACE
 
+
 namespace Ui {
 class AdvancedSettings;
 }
@@ -30,11 +31,16 @@ public:
 
     Flasher *flasher() const; // const?
 
+    void checkForUpdatesSilent();   // call from MainWindow on startup
+
 signals:
     void languageChanged(const QString &language);
     void themeChanged(bool dark);
 
     void fontChanged();
+
+    void updateAvailable(const QString& tag, const QUrl& url);
+
 
 private slots:
     void on_pushButton_LangEnglish_clicked();
@@ -50,6 +56,9 @@ private slots:
 
     void on_pushButton_LangDeutsch_clicked();
 
+    void on_pushButton_CheckUpdates_clicked();
+
+
 private:
     Ui::AdvancedSettings *ui;
 
@@ -57,6 +66,11 @@ private:
 
     QString m_default_text;
     QString m_default_style;
+
+
+#ifdef Q_OS_WIN
+    void checkForUpdatesWinHTTP(bool silent); // your WinHTTP helper
+#endif
 };
 
 #endif // ADVANCEDSETTINGS_H

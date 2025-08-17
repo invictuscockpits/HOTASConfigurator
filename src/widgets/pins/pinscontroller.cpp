@@ -1,22 +1,22 @@
-#include "pinsbluepill.h"
-#include "ui_pinsbluepill.h"
+#include "pinscontroller.h"
+#include "ui_pinscontroller.h"
 #include <QComboBox>
 
-PinsBluePill::PinsBluePill(QWidget *parent) :
+PinsController::PinsController(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::PinsBluePill)
+    ui(new Ui::PinsController)
 {
     ui->setupUi(this);
 
-    ui->label_ControllerImage->contentsMargins();
+    //ui->label_ControllerImage->contentsMargins();
 }
 
-PinsBluePill::~PinsBluePill()
+PinsController::~PinsController()
 {
     delete ui;
 }
 
-void PinsBluePill::addPinComboBox(QList<PinComboBox *> pinList)
+void PinsController::addPinComboBox(QList<PinComboBox *> pinList)
 {
     QElapsedTimer timer;
     timer.start();

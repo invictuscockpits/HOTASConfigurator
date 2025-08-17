@@ -2,10 +2,8 @@
 #define PINCONFIG_H
 
 #include <QWidget>
-
 #include "pincombobox.h"
-#include "pinscontrlite.h"
-#include "pinsbluepill.h"
+#include "pinscontroller.h"
 //#include "currentconfig.h"
 
 QT_BEGIN_NAMESPACE
@@ -59,8 +57,7 @@ private slots:
 private:
     Ui::PinConfig *ui;
 
-    PinsBluePill *m_bluePill;
-    PinsContrLite *m_contrLite;
+    PinsController *m_Controller;
     int m_lastBoard;
 
     //! PinComboBox widget list

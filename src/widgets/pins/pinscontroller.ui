@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PinsBluePill</class>
- <widget class="QWidget" name="PinsBluePill">
+ <class>PinsController</class>
+ <widget class="QWidget" name="PinsController">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -29,7 +29,7 @@
    <item row="0" column="2">
     <spacer name="verticalSpacer_2">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -60,10 +60,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B15</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -77,10 +77,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A8</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -94,10 +94,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B3</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -111,10 +111,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A9</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -128,10 +128,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B6</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -145,10 +145,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B7</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -162,10 +162,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">3.3V</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -179,10 +179,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B14</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -196,10 +196,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B8</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -213,10 +213,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A11</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -230,10 +230,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B4</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -247,10 +247,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B12</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -264,10 +264,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B5</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -281,10 +281,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B9</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -298,10 +298,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A12</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -315,10 +315,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">5V</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -332,10 +332,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A15</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -349,10 +349,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">GND</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -366,10 +366,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B13</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -383,10 +383,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A10</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -401,13 +401,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">GND</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -422,13 +422,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">3.3V</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -443,13 +443,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">5V</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -464,13 +464,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">USBD-</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -485,13 +485,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">USBD+</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -515,10 +515,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A0</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -532,10 +532,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A5</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -549,10 +549,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B10</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -566,10 +566,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">C13</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -583,10 +583,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">GND</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -600,10 +600,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">3.3V</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -638,10 +638,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">GND</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -655,10 +655,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A4</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -672,10 +672,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">VB</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -689,10 +689,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A6</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -706,10 +706,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A7</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -723,10 +723,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">RST</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -740,10 +740,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A1</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -757,10 +757,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">C15</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -774,10 +774,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B1</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -791,10 +791,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A3</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -808,10 +808,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B11</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -825,10 +825,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">C14</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -842,10 +842,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">A2</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -859,10 +859,10 @@ color: rgb(0, 0, 0);</string>
         <string notr="true">B0</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
        <property name="textInteractionFlags">
-        <set>Qt::NoTextInteraction</set>
+        <set>Qt::TextInteractionFlag::NoTextInteraction</set>
        </property>
       </widget>
      </item>
@@ -877,13 +877,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">GND</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -898,13 +898,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">GND</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -919,13 +919,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">3.3V</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -940,13 +940,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">RESET</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -961,13 +961,13 @@ border-color: rgba(124, 124, 124, 130);
 background-color: rgba(105, 105, 105, 20);</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Shape::StyledPanel</enum>
        </property>
        <property name="text">
         <string notr="true">VBUS</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -976,7 +976,7 @@ background-color: rgba(105, 105, 105, 20);</string>
    <item row="1" column="0">
     <spacer name="horizontalSpacer">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -986,29 +986,10 @@ background-color: rgba(105, 105, 105, 20);</string>
      </property>
     </spacer>
    </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="label_ControllerImage">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="../../resources.qrc">:/Images/BluePill_render.jpg</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="2">
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -1021,7 +1002,7 @@ background-color: rgba(105, 105, 105, 20);</string>
    <item row="1" column="4">
     <spacer name="horizontalSpacer_2">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -1033,8 +1014,6 @@ background-color: rgba(105, 105, 105, 20);</string>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
