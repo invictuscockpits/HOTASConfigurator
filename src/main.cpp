@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 
     qRegisterMetaType<QList<QPair<bool, QString>> >();
 
-    QString docLoc = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    QString docLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     if (!docLoc.isEmpty()) {
         docLoc += "/HOTAS/";
     }
