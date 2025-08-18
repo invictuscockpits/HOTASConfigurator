@@ -4,6 +4,7 @@
 #include <QObject>
 #include <mutex>
 #include "hidapi.h"
+#include <QElapsedTimer>
 
 class HidDevice : public QObject
 {
@@ -87,6 +88,11 @@ private:
     std::mutex m_devMutex;
     quint8     m_devOp = 0;
     QByteArray m_devPayload;
+
+    //Instituting deboucing retrys to limit unintended disconnects from USB
+    int m_consecutiveErrors = 0;
+    QElapsedTimer m_lastGoodRx;
+
 };
 
 #endif // HIDDEVICE_H

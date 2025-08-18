@@ -10,12 +10,38 @@
 #include "deviceconfig.h"
 #include "global.h"
 #include "firmwareupdater.h"
+#include <qset.h>
+#include <atomic>
 
 static const int DEVICE_SEARCH_DELAY = 1000; // ms
 static const int OLD_FIRMWARE_VID = 0x0483;
 // sience FJ v1.7 REPORT_ID_FIRMWARE = 5 but flasher has = 4
 static const int REPORT_ID_FLASH = 4;
 
+
+
+
+/**
+ * @brief Enumerates HID devices, opens the selection, and streams reports — with transient read-error debounce.
+ *
+ * Rationale:
+ * - Gen3 (and earlier) boards may momentarily glitch on D+/D− (ESD/EMI). Windows keeps the HID device alive,
+ *   but a single `hid_read_timeout(...) < 0` used to make the GUI drop the connection and spend seconds
+ *   re-enumerating. That feels like a disconnect even though the OS never lost the device.
+ *
+ * What changed (minimal):
+ * - We only close the HID handle after a small burst of real read errors (res < 0) *or* after a short grace
+ *   since the last good frame. Plain timeouts (res == 0) are not errors.
+ * - We did not touch your enumeration, signals, or the 1-byte/2-byte PARAM writes.
+ *
+ * Effects:
+ * - Brief USB hiccups no longer tear down the GUI path. `deviceConnected()` and PARAM streaming behave
+ *   just like before when the device is truly present【turn4file5L39-L54】, and `deviceDisconnected()` is still only
+ *   emitted when the list is empty【turn4file5L17-L24】.
+ *
+ * See also:
+ * - Signals used by MainWindow: `deviceConnected`, `deviceDisconnected`, `paramsPacketReceived`, etc. 【turn4file3L27-L41】
+ */
 void HidDevice::processData()                   /////// bad code, I'll try to rewrite later
 {
     const QString FLASHER_PROD_STR ("Invictus HOTAS Flasher");
@@ -24,6 +50,17 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
     const QString OLD_MANUFACT_STR ("STMicroelectronics");
     const QString FJ_MANUFACT_STR ("Invictus Cockpit Systems");
     const QStringList SUPPORTED_MANUFACTURERS = QStringList () << FJ_MANUFACT_STR <<"Invictus Cockpits"  <<"STMicroelectronics";
+
+    // --- Debounce state for USB burps (local; minimal intrusion) ---
+    static int          s_consecutiveErrors = 0;
+    static QElapsedTimer s_lastGoodRx; // time since last good frame
+    s_lastGoodRx.invalidate();
+    constexpr int kMaxConsecutiveErrors = 3;   // tolerate a few real errors
+    constexpr int kGraceMs              = 700; // or 500 if your line is noisier
+    // --- Debounce for empty device list (enumeration flaps) ---
+    static QElapsedTimer s_emptyListSince;
+    s_emptyListSince.invalidate();
+    constexpr int kEmptyListGraceMs = 400; // wait this long before calling it a real disconnect
 
     // m_hidDevicesList - should be thread safe
 
@@ -127,12 +164,26 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
     while (m_isFinish == false)
     {
         if (m_flasherPath.isEmpty()) {
-            // all devices disconnected
+
+            // all devices disconnected (debounced)
             if (m_hidDevicesList.empty()) {
+                if (!s_emptyListSince.isValid()) s_emptyListSince.start();
+
+                // Wait a short grace period before declaring a real disconnect
+                if (s_emptyListSince.elapsed() < kEmptyListGraceMs) {
+                    QThread::msleep(50);   // brief yield; keep checking
+                    continue;
+                }
+
                 emit deviceDisconnected();
                 oldSelectedDevice = m_selectedDevice = -1;
-                QThread::msleep(600);
+
+                s_emptyListSince.invalidate();   // reset for next time
+                QThread::msleep(150);            // faster recovery than 600 ms
                 continue;
+            } else {
+                // as soon as we see something in the list, cancel any pending "empty" debounce
+                if (s_emptyListSince.isValid()) s_emptyListSince.invalidate();
             }
             // open HID
             if (m_selectedDevice != oldSelectedDevice || (deviceCountChanged && m_selectedDevice >= 0)) {
@@ -144,9 +195,9 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                     const char *path = m_hidDevicesList[m_selectedDevice].path.c_str();
 
                     qDebug().nospace()<<"Open HID device №"<<m_selectedDevice + 1
-                                     <<". VID"<<QString::number(vid, 16).toUpper().rightJustified(4, '0')
-                                    <<", PID"<<QString::number(pid, 16).toUpper().rightJustified(4, '0')
-                                   <<", Serial number "<<QString::fromWCharArray(serNum);
+                                       <<". VID"<<QString::number(vid, 16).toUpper().rightJustified(4, '0')
+                                       <<", PID"<<QString::number(pid, 16).toUpper().rightJustified(4, '0')
+                                       <<", Serial number "<<QString::fromWCharArray(serNum);
                     m_paramsRead = hid_open_path(path);
                     // params hid opened
                     if (m_paramsRead) {
@@ -160,7 +211,7 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                         } else {
                             m_oldFirmwareSelected = false;
                         }
-                        // send params request
+                        // send params request (1 byte) — unchanged
                         hid_write(m_paramsRead, paramsRequest, 1);
                         qDebug()<<"HID opened, connected devices ="<<m_hidDevicesList.size();
                     }
@@ -170,17 +221,18 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
             if (m_paramsRead) {
                 // read joy report
                 if (m_currentWork == REPORT_ID_PARAM && !m_oldFirmwareSelected) {
-                    // send params request
+                    // send params request periodically — unchanged (2 bytes as before)
                     if (!paramsTimer.isValid() || paramsTimer.hasExpired(5000)) {
                         hid_write(m_paramsRead, paramsRequest, 2);
                         paramsTimer.start();
                     }
-                    // read report
-                    res=hid_read_timeout(m_paramsRead, buffer, BUFFERSIZE,1000);
-                    if (res < 0) {
-                        hid_close(m_paramsRead);
-                        m_paramsRead=nullptr;
-                    } else {
+                    // read report with debounce on real errors
+                    res = hid_read_timeout(m_paramsRead, buffer, BUFFERSIZE, 1000);
+                    if (res > 0) {
+                        // good frame
+                        s_consecutiveErrors = 0;
+                        if (!s_lastGoodRx.isValid()) s_lastGoodRx.start(); else s_lastGoodRx.restart();
+
                         if (buffer[0] == REPORT_ID_PARAM) {   // перестраховка
                             memset(deviceBuffer, 0, BUFFERSIZE);
                             memcpy(deviceBuffer, buffer, BUFFERSIZE);
@@ -192,28 +244,45 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                                 QThread::msleep(300);
                             }
                         }
+                    } else if (res == 0) {
+                        // benign timeout — do nothing
+                    } else { // res < 0: real read error
+                        ++s_consecutiveErrors;
+                        const bool graceElapsed = s_lastGoodRx.isValid() && (s_lastGoodRx.elapsed() >= kGraceMs);
+                        if (s_consecutiveErrors >= kMaxConsecutiveErrors || graceElapsed) {
+                            // Close and let the loop re-open fast. Do NOT emit deviceDisconnected here.
+                            hid_close(m_paramsRead);
+                            m_paramsRead = nullptr;
+                            paramsTimer.invalidate();
+                            s_consecutiveErrors = 0;
+                            s_lastGoodRx.invalidate();
+                            QThread::msleep(50);
+                        } else {
+                            // transient hiccup; small backoff
+                            QThread::msleep(20);
+                        }
                     }
                 }
                 // read config from device
                 else if (m_currentWork == REPORT_ID_CONFIG_IN) {
                     readConfigFromDevice(buffer);
-                    #ifdef QT_DEBUG
+#ifdef QT_DEBUG
                     gEnv.readFinished = true;
-                    #endif
+#endif
                 }
                 // write config to device
                 else if (m_currentWork == REPORT_ID_CONFIG_OUT) { ////////////// ХУЁВО ПАШЕТ. редко
                     writeConfigToDevice(buffer);
-                    // disconnect all devices
+                    // disconnect all devices (unchanged)
                     std::lock_guard<std::mutex> lock(m_mutex);
                     emit deviceDisconnected();
                     m_deviceNames.clear();
                     emit hidDeviceList(m_deviceNames);
                     m_hidDevicesList.clear();  // mutex
                     oldSelectedDevice = m_selectedDevice = -1;
-                    #ifdef QT_DEBUG
+#ifdef QT_DEBUG
                     gEnv.readFinished = false;
-                    #endif
+#endif
                     QThread::msleep(200);
                 }
                 else if (m_currentWork == REPORT_ID_DEV) {
@@ -265,6 +334,7 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
     // free memory. start from first device in list
     hid_free_enumeration(firstInList);
 }
+
 
 
 // another device selected in comboBox
