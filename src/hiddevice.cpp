@@ -55,12 +55,12 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
     static int          s_consecutiveErrors = 0;
     static QElapsedTimer s_lastGoodRx; // time since last good frame
     s_lastGoodRx.invalidate();
-    constexpr int kMaxConsecutiveErrors = 3;   // tolerate a few real errors
+    constexpr int kMaxConsecutiveErrors = 5;   // tolerate a few real errors
     constexpr int kGraceMs              = 700; // or 500 if your line is noisier
     // --- Debounce for empty device list (enumeration flaps) ---
     static QElapsedTimer s_emptyListSince;
     s_emptyListSince.invalidate();
-    constexpr int kEmptyListGraceMs = 400; // wait this long before calling it a real disconnect
+    constexpr int kEmptyListGraceMs = 500; // wait this long before calling it a real disconnect
 
     // m_hidDevicesList - should be thread safe
 
