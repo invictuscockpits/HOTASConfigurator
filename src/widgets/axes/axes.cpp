@@ -9,8 +9,8 @@ const QVector <deviceEnum_guiName_t> &axesList()    // The order below must matc
 {
     static const QVector <deviceEnum_guiName_t> aL =
     {{
-        {0,      ("X")},
-        {1,      ("Y")},
+        {0,      ("Roll")},
+        {1,      ("Pitch")},
         {2,      ("Z")},
         {3,      ("Rx")},
         {4,      ("Ry")},
