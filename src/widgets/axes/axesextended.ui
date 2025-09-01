@@ -25,24 +25,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true"> background: rgb(36, 39, 49); /* FLAT_BLACK */
-    
-
-QGroupBox {
-        border: 1px solid rgb(255, 255, 255);
-
-    background: rgb(36, 39, 49); /* FLAT_BLACK if you're using that */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top center;
-    padding: 0 3px;
-    color: white;
-    background: transparent;
-}</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
    <property name="spacing">
     <number>6</number>
