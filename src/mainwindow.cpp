@@ -1768,6 +1768,49 @@ void MainWindow::showUpdatePopup(const QString& tag, const QUrl& url)
         QDesktopServices::openUrl(url);
 }
 
+/**
+ * @defgroup ForceAnchorsCalibration Force Anchors–driven calibration
+ * @brief Apply factory force anchors or fallback scaling to axis calibration.
+ *
+ * The UI exposes:
+ *  - Mode: **Digital (25 lbf)** or **FLCS (Analog, 40 lbf)**.
+ *  - Percent: **100% / 75% / 50%** force levels.
+ *
+ * When the user selects a mode + percent, we update the device’s calibration
+ * (axis_config[].calib_min/center/max) for Roll (X) and Pitch (Y):
+ *
+ * 1. If **factory anchors** exist on the device (valid magic/version/CRC), we
+ *    **overwrite** calibration from the corresponding anchor triplets:
+ *    - Roll Left/Right → 17 lbf triplets
+ *    - Pitch Down → 17 lbf triplet
+ *    - Pitch Up → Digital 25 lbf or Analog 40 lbf triplet (by selected mode)
+ *
+ * 2. If anchors are **absent** or invalid, we **fallback** by deriving values
+ *    from the current calibration:
+ *    - Roll: scale existing min/max toward center for 75/50%.
+ *    - Pitch: treat current max as 40 lbf; Digital ≈ 62.5% of Analog.
+ *
+ * All values are applied in the device’s signed 16-bit ADC domain (±32767).
+ *
+ * @note The Axes tab is repainted from @c dev_config_t after each apply.
+ * @see MainWindow::applyAnchorsToAxes, MainWindow::readAnchorsFromDevice,
+ *      MainWindow::pickForPercent, MainWindow::wireForceButtons
+ */
+
+
+/**
+ * @brief Connects the Force Anchors UI controls to calibration logic.
+ *
+ * Wires:
+ *  - Percent buttons (100/75/50) → applyAnchorsToAxes(percent).
+ *  - Mode buttons (Digital/FLCS) → re-apply using the last selected percent.
+ *
+ * The handlers ultimately call applyAnchorsToAxes(), which reads anchors (if any)
+ * and updates @c dev_config_t.axis_config[] accordingly, then repaints the Axes tab.
+ *
+ * @ingroup ForceAnchorsCalibration
+ */
+
 void MainWindow::wireForceButtons()
 {
     // Buttons live in the Axes tab (.ui). Try several likely objectNames so this works
@@ -1796,7 +1839,17 @@ void MainWindow::wireForceButtons()
         m_anchorsMode = AnchorsMode_FLCS40;
     });
 }
-
+/**
+ * @brief Reads factory force anchors from the device via REPORT_ID_DEV.
+ *
+ * Sends OP_GET_FACTORY_ANCHORS and waits for a matching devPacket.
+ * On success, unpacks the 46-byte payload into ForceAnchorsGUI.
+ *
+ * @param[out] out  Parsed anchors (magic, version, sealed, 5×triplets).
+ * @return true on success; false on timeout or format error.
+ *
+ * @ingroup ForceAnchorsCalibration
+ */
 bool MainWindow::readAnchorsFromDevice(ForceAnchorsGUI* out)
 {
     if (!out || !m_hidDeviceWorker) return false;
@@ -1822,7 +1875,13 @@ bool MainWindow::readAnchorsFromDevice(ForceAnchorsGUI* out)
 
     return ok && unpackAnchors(resp, out);
 }
-
+/**
+ * @brief Selects ADC for a given percent from a force triplet (100/75/50).
+ * @param t Force triplet (adc100/adc75/adc50)
+ * @param percent One of {100,75,50}. Defaults to 100 for other inputs.
+ * @return Selected ADC value (signed 16-bit domain).
+ * @ingroup ForceAnchorsCalibration
+ */
 int MainWindow::pickForPercent(const ForceTriplet& t, int percent) const
 {
     switch (percent) {
@@ -1833,52 +1892,111 @@ int MainWindow::pickForPercent(const ForceTriplet& t, int percent) const
     }
 }
 
+/**
+ * @brief Applies anchors (or fallback) to axis calibration for the given force level.
+ *
+ * Behavior:
+ *  - If anchors are present: OVERWRITE calibration from anchors (mode: Digital=25 lbf, FLCS=40 lbf).
+ *  - If anchors are missing: FALLBACK by scaling current calibration.
+ *
+ * Updates:
+ *  - Roll (X): calib_min/calib_max from roll-left/right.
+ *  - Pitch (Y): calib_min/calib_max from pitch-down/up (mode-dependent).
+ *  - Center is forced to 0; is_centered is set to 1.
+ *
+ * After writing @c dev_config_t.axis_config[], the Axes tab is refreshed.
+ *
+ * @param percent Force level {100,75,50}.
+ * @ingroup ForceAnchorsCalibration
+ */
 void MainWindow::applyAnchorsToAxes(int percent)
 {
     m_anchorsPercent = percent;
 
-    // 1) Read anchors from device
+    auto clamp16 = [](int v)->qint16 {
+        if (v < -32767) return qint16(-32767);
+        if (v >  32767) return qint16( 32767);
+        return qint16(v);
+    };
+
     ForceAnchorsGUI a{};
-    // after unpack + apply to axX/axY...
-    m_cachedAnchors = a;
-    m_cachedAnchorsValid = true;
+    const bool haveAnchors = readAnchorsFromDevice(&a);   // <-- re-enabled read
+    m_cachedAnchorsValid = haveAnchors;
+    if (haveAnchors) m_cachedAnchors = a;
 
-   /* if (!readAnchorsFromDevice(&a)) {
-        QMessageBox::warning(this, tr("Force Anchors"), tr("Unable to read anchors from device."));
-        return;
-    }*/
+    // Helper: pick adc value from a 100/75/50 triplet
+    auto pick = [&](const ForceTriplet& t)->int {
+        switch (percent) {
+        case 75:  return t.adc75;
+        case 50:  return t.adc50;
+        default:  return t.adc100; // 100
+        }
+    };
 
-    // 2) Pick per-direction ADCs based on % and mode
-    const int rollL = pickForPercent(a.rl_17, percent);  // roll-left @ % of 17 lbf
-    const int rollR = pickForPercent(a.rr_17, percent);  // roll-right @ % of 17 lbf
-    const int pitDn = pickForPercent(a.pd_17, percent);  // pitch-down @ % of 17 lbf
-    const ForceTriplet& pu = (m_anchorsMode == AnchorsMode_Digital25) ? a.pu25 : a.pu40;
-    const int pitUp = pickForPercent(pu, percent);       // pitch-up @ % of (25/40) lbf
-
-    // 3) Write into config: min/center/max per axis
     // Axis indices: 0 = Roll (X), 1 = Pitch (Y)
-    auto& cfgX = gEnv.pDeviceConfig->config.axis_config[0];
-    auto& cfgY = gEnv.pDeviceConfig->config.axis_config[1];
+    auto& axX = gEnv.pDeviceConfig->config.axis_config[0];
+    auto& axY = gEnv.pDeviceConfig->config.axis_config[1];
 
-    // Roll: ensure proper min/max ordering regardless of sensor polarity
-    const int xMin = std::min(rollL, rollR);
-    const int xMax = std::max(rollL, rollR);
-    cfgX.calib_min    = xMin;
-    cfgX.calib_max    = xMax;
-    cfgX.calib_center = 0;
+    if (haveAnchors) {
+        // ---------- A) ANCHORS PRESENT: overwrite calib from anchors ----------
+        const int rollL = pick(a.rl_17);                           // X negative (roll left @ % of 17 lbf)
+        const int rollR = pick(a.rr_17);                           // X positive (roll right @ % of 17 lbf)
+        const int pitDn = pick(a.pd_17);                           // Y negative (pitch down @ % of 17 lbf)
+        const ForceTriplet& pu = (m_anchorsMode == AnchorsMode_Digital25) ? a.pu25 : a.pu40;
+        const int pitUp = pick(pu);                                // Y positive (pitch up @ % of 25/40 lbf)
 
-    // Pitch: down vs up; order them
-    const int yMin = std::min(pitDn, pitUp);
-    const int yMax = std::max(pitDn, pitUp);
-    cfgY.calib_min    = yMin;
-    cfgY.calib_max    = yMax;
-    cfgY.calib_center = 0;
+        const int xMin = std::min(rollL, rollR);
+        const int xMax = std::max(rollL, rollR);
+        axX.calib_min    = clamp16(xMin);
+        axX.calib_max    = clamp16(xMax);
+        axX.calib_center = 0;
+        axX.is_centered  = 1;
 
-    // 4) Refresh the Axes tab from config so the UI reflects new calibration
+        const int yMin = std::min(pitDn, pitUp);
+        const int yMax = std::max(pitDn, pitUp);
+        axY.calib_min    = clamp16(yMin);
+        axY.calib_max    = clamp16(yMax);
+        axY.calib_center = 0;
+        axY.is_centered  = 1;
+    }
+    else {
+        // ---------- B) NO ANCHORS: fallback derived from current calibration ----------
+        // Roll: scale existing span symmetrically around center=0
+        auto lerp = [](int c,int e,double f){ return int(std::lround(c + (e - c) * f)); };
+
+        // Roll fallback: use existing min/max and scale toward center for 75/50%
+        const int rollL100 = axX.calib_min;
+        const int rollR100 = axX.calib_max;
+        const int rollLsel = (percent==75)? lerp(0, rollL100, 0.75) : (percent==50)? lerp(0, rollL100, 0.50) : rollL100;
+        const int rollRsel = (percent==75)? lerp(0, rollR100, 0.75) : (percent==50)? lerp(0, rollR100, 0.50) : rollR100;
+
+        axX.calib_min    = clamp16(std::min(rollLsel, rollRsel));
+        axX.calib_max    = clamp16(std::max(rollLsel, rollRsel));
+        axX.calib_center = 0;
+        axX.is_centered  = 1;
+
+        // Pitch fallback: treat current max as 40 lbf; digital up ~62.5% of analog
+        const int pitUp100_FLCS = axY.calib_max;
+        const int pitUp100_Dig  = lerp(0, pitUp100_FLCS, 0.625); // 25/40 ≈ 0.625
+        const int up100         = (m_anchorsMode == AnchorsMode_Digital25) ? pitUp100_Dig : pitUp100_FLCS;
+
+        const int pitDn100 = axY.calib_min;
+        auto pickScaled = [&](int full)->int {
+            return (percent==75)? lerp(0, full, 0.75) : (percent==50)? lerp(0, full, 0.50) : full;
+        };
+        const int pitUpSel = pickScaled(up100);
+        const int pitDnSel = pickScaled(pitDn100);
+
+        axY.calib_min    = clamp16(std::min(pitDnSel, pitUpSel));
+        axY.calib_max    = clamp16(std::max(pitDnSel, pitUpSel));
+        axY.calib_center = 0;
+        axY.is_centered  = 1;
+    }
+
+    // Refresh the Axes tab from config so the UI reflects the calibration we just wrote
     if (m_axesConfig) m_axesConfig->readFromConfig();
-
-
 }
+
 quint32 MainWindow::crc32_le(const QByteArray& data) const
 {
     quint32 crc = 0xFFFFFFFFu;
