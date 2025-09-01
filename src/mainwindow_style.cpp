@@ -1,326 +1,222 @@
+// mainwindow_style.cpp
+#include <QApplication>
+#include <QToolTip>
+#include <QDebug>
+
+#include <QGroupBox>
 #include <QCheckBox>
+#include <QRadioButton>
+#include <QSpinBox>
+#include <QDoubleSpinBox>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "common_types.h"
 #include "global.h"
 #include "deviceconfig.h"
 
-#include <QDebug>
-#include <QToolTip>
+#include "axesextended.h"
+#include "axesconfig.h"
 
 #ifdef Q_OS_WIN
-    #include <dwmapi.h>
-    #pragma comment (lib,"Dwmapi.lib") // fixes error LNK2019: unresolved external symbol __imp__DwmExtendFrameIntoClientArea
-
-    enum : WORD {
-        DwmwaUseImmersiveDarkMode = 20,
-        DwmwaUseImmersiveDarkModeBefore20h1 = 19
-    };
-
-    bool setDarkBorderToWindow(HWND hwnd, bool dark)
-    {
-        const BOOL darkBorder = dark ? TRUE : FALSE;
-        const bool ok =
-                SUCCEEDED(DwmSetWindowAttribute(hwnd, DwmwaUseImmersiveDarkMode, &darkBorder, sizeof(darkBorder)))
-                || SUCCEEDED(DwmSetWindowAttribute(hwnd, DwmwaUseImmersiveDarkModeBefore20h1, &darkBorder, sizeof(darkBorder)));
-        if (!ok) {
-            qDebug()<<QString("%1: Unable to set %2 window border.").arg(__FUNCTION__, dark ? "dark" : "light");
-        }
-        return ok;
-    }
-#endif
-
-////////////////////////////////////////////////// style //////////////////////////////////////////////////
-// i cannot use qApp->setStyleSheet() because it takes a long time. groupBox_LogicalButtons contains a lot of elements
-// this trick skips groupBox_LogicalButtons. If anyone has any ideas on how to do this better, please tell me
-void MainWindow::themeChanged(bool dark)
+#include <dwmapi.h>
+#pragma comment (lib,"Dwmapi.lib")
+enum : WORD {
+    DwmwaUseImmersiveDarkMode = 20,
+    DwmwaUseImmersiveDarkModeBefore20h1 = 19
+};
+static bool setDarkBorderToWindow(HWND hwnd, bool dark)
 {
-    // ЕБАНЫЙ БЛЯДЬ groupBox_LogicalButtons СУКА НАХУЙ!! В НЁМ ДОХУИЩЕ ЕБУЧИХ ЭЛЕМЕНТОВ И СТАЙЛЁБАНЫЕШИТЫ ПРИМЕНЯЮТСЯ ХУЙЛИАРД ЛЕТ
-    // Я УЖЕ НЕ ЗНАЮ КАК ИЗЪЕБНУТЬСЯ ЧТОБЫ УСКОРИТЬ ЭТО ДЕРЬМО
-    static QList<QGroupBox *> groupBoxes;
-
-    QString styleName;
-    ui->tabWidget->setDocumentMode(true);
-
-    if (groupBoxes.isEmpty()) {
-        for (auto &child : window()->findChildren<QGroupBox *>()) {
-            groupBoxes.append(child);
-        }
-    }
-
-    if (dark == false)
-    {
-        //qApp->setPalette(QPalette());
-        QPalette pal(QColor(240, 240, 240));
-        pal.setColor(QPalette::Disabled, QPalette::Button, QColor(210, 210, 210));
-        pal.setColor(QPalette::Dark, QColor(216, 216, 216));     // qframe
-        QToolTip::setPalette(pal);
-        qApp->setPalette(pal);
-
-        for (int i = 0; i < groupBoxes.size(); ++i) {
-            if (groupBoxes[i]->objectName() == QStringLiteral("groupBox_LogicalButtons") ||
-                    groupBoxes[i]->objectName() == QStringLiteral("groupBox_PhysicalButtons")) {
-                continue;
-            }
-
-            if (groupBoxes[i]->objectName() == QStringLiteral("groupBox_AxixName")) {
-                groupBoxes[i]->setStyleSheet(QStringLiteral(R"(
-                        QGroupBox {
-                             background: none;
-                             border: 1px solid #d8d8d8;
-                             border-radius: 3px;
-                             margin-top: 2ex;
-                             padding: 6px 0px 0px 0px ;
-                         }
-
-                        QGroupBox::title
-                        {
-                            color:#000000;
-                            subcontrol-position: top left;
-                            subcontrol-origin: margin;
-                            left: 6px;
-                            padding: -2px 0px 0px 2px;
-                            background: none;
-                         }
-                    )"));
-                continue;
-            }
-            groupBoxes[i]->setStyleSheet(QStringLiteral(R"(
-                    QGroupBox {
-                        background: none;
-                        border: 1px solid #d8d8d8;
-                        border-radius: 3px;
-                        margin-top: 2ex;
-                        padding: 6px 0px 0px 0px ;
-                     }
-
-                    QGroupBox::title
-                    {
-                        color:#000000;
-                        subcontrol-position: top center;
-                        subcontrol-origin: margin;
-                        left:-3px;
-                        padding: -2px 0px 0px 2px;
-                        background: none;
-                     }
-                )"));
-        }
-
-        ui->pushButton_Wiki->setStyleSheet(QStringLiteral(R"(
-                QPushButton#pushButton_Wiki {
-
-                    padding:0px;
-                    margin: 0px;
-                    min-width: 160;
-                    max-width: 160;
-                    max-height: 50;
-                    min-height: 50;
-                    width: 160;
-                    height: 50;
-                }
-
-                QPushButton#pushButton_Wiki:hover {
-                    //border: 1px solid;
-                    border-color: rgb(0, 120, 215);
-                    background-color: rgb(229, 241, 251);
-                    //border-radius:15px;
-                }
-            )"));
-
-        // stylesheet icon: url(...); does not work in linux?
-        ui->pushButton_Wiki->setIcon(QIcon(":/Images/ST_wiki.png"));
-        styleName = "white";
-#ifdef Q_OS_WIN
-        setDarkBorderToWindow((HWND)window()->winId(), false);
+    const BOOL darkBorder = dark ? TRUE : FALSE;
+    const bool ok =
+        SUCCEEDED(DwmSetWindowAttribute(hwnd, DwmwaUseImmersiveDarkMode, &darkBorder, sizeof(darkBorder))) ||
+        SUCCEEDED(DwmSetWindowAttribute(hwnd, DwmwaUseImmersiveDarkModeBefore20h1, &darkBorder, sizeof(darkBorder)));
+    return ok;
+}
 #endif
+
+// Dark-only. No global qApp stylesheet. Skip Logical Buttons subtree for performance.
+void MainWindow::themeChanged(bool /*dark*/)
+{
+    // ---------- Dark palette ----------
+    QPalette pal;
+    pal.setColor(QPalette::Window, QColor(94,97,105));            // FS36321
+    pal.setColor(QPalette::Button, QColor(36,39,49,80));          // semi over Window → lighter tile
+    pal.setColor(QPalette::Disabled, QPalette::Button, QColor(36,39,49,80));
+    pal.setColor(QPalette::Base, QColor(36,39,49));
+    pal.setColor(QPalette::Disabled, QPalette::Base, QColor(35,36,40));
+    pal.setColor(QPalette::AlternateBase, QColor(66,66,66));
+    pal.setColor(QPalette::ToolTipBase, QColor(75,76,77));
+
+    pal.setColor(QPalette::Dark, QColor(66,66,66));
+    pal.setColor(QPalette::Light, QColor(66,66,66));
+    pal.setColor(QPalette::Shadow, QColor(20,20,20));
+
+    pal.setColor(QPalette::Text, QColor(255,255,255));
+    pal.setColor(QPalette::Disabled, QPalette::Text, QColor(127,127,127));
+    pal.setColor(QPalette::WindowText, QColor(255,255,255));
+    pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor(127,127,127));
+    pal.setColor(QPalette::ToolTipText, QColor(230,231,232));
+    pal.setColor(QPalette::ButtonText, QColor(255,255,255));
+    pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(127,127,127));
+    pal.setColor(QPalette::BrightText, Qt::red);
+    pal.setColor(QPalette::Link, QColor(5,170,61));
+    pal.setColor(QPalette::Highlight, QColor(5,170,61));
+    pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor(80,80,80));
+    pal.setColor(QPalette::HighlightedText, QColor(255,255,255));
+    pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(127,127,127));
+
+    QToolTip::setPalette(pal);
+    qApp->setPalette(pal);
+
+#ifdef Q_OS_WIN
+    setDarkBorderToWindow(reinterpret_cast<HWND>(window()->winId()), true);
+#endif
+
+    // ---------- GroupBox chrome (unchanged) ----------
+    static const QString kDarkBox = QStringLiteral(
+        "QGroupBox{"
+        " font-weight:bold; background:rgb(36,39,49);"
+        " border:1px solid rgb(255,255,255); border-radius:3px;"
+        " margin-top:2ex; padding:6px 0 0 0; }"
+        "QGroupBox::title{ color:#fff; subcontrol-position:top center;"
+        " subcontrol-origin:margin; left:-3px; padding:-2px 0 0 2px; background:transparent; }"
+        );
+
+    // Re-collect every time (fast & avoids stale cache)
+    const auto gbs = window()->findChildren<QGroupBox*>();
+    for (QGroupBox* gb : gbs) {
+        const QString obj = gb->objectName();
+        if (obj == QLatin1String("groupBox_LogicalButtons")) continue; // perf
+        const bool isAxisBox = (obj == QLatin1String("groupBox_AxixName"));
+        gb->setStyleSheet(kDarkBox + (isAxisBox ? QStringLiteral("QGroupBox{padding:8px;}") : QString()));
     }
-    else
-    {
-        //qApp->setPalette(QPalette());
-        QPalette pal;
-        pal.setColor(QPalette::Window, QColor(94, 97, 105)); // FS36321 Dark Gull Gray
-        pal.setColor(QPalette::Button, QColor(36, 39, 49, 80));
-        pal.setColor(QPalette::Disabled, QPalette::Button, QColor(36, 39, 49, 80));
-        pal.setColor(QPalette::Base, QColor(36,39,49));//47,48,52//72,74,78
-        pal.setColor(QPalette::Disabled, QPalette::Base, QColor(35,36,40));
-        pal.setColor(QPalette::AlternateBase, QColor(66,66,66));
-        pal.setColor(QPalette::ToolTipBase, QColor(75,76,77));
 
-        pal.setColor(QPalette::Dark, QColor(66,66,66));     // qframe
-        pal.setColor(QPalette::Light, QColor(66,66,66));    // qframe
-        pal.setColor(QPalette::Shadow, QColor(20,20,20));
+    // ---------- Enhanced CSS with !important for better override ----------
+    static const QString kIndicatorCss =
+        "QCheckBox::indicator, QRadioButton::indicator {"
+        " width:12px; height:12px; border:1px solid rgb(66,66,66); }"
+        "QCheckBox::indicator:unchecked, QRadioButton::indicator:unchecked {"
+        " background-color: rgb(76,79,88) !important; }"
+        "QCheckBox::indicator:checked, QRadioButton::indicator:checked {"
+        " background-color: rgb(5,170,61) !important; border:1px solid rgb(66,66,66); }";
 
-        pal.setColor(QPalette::Text, QColor(255,255,255));
-        pal.setColor(QPalette::Disabled, QPalette::Text, QColor(127,127,127));
-        pal.setColor(QPalette::WindowText, QColor(255, 255, 255));
-        pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor(127,127,127));
-        pal.setColor(QPalette::ToolTipText, QColor(230,231,232));
-        pal.setColor(QPalette::ButtonText, QColor(255, 255, 255));
-        pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(127,127,127));
-        pal.setColor(QPalette::BrightText, Qt::red);
-        pal.setColor(QPalette::Link, QColor(5, 170, 61));
-        pal.setColor(QPalette::Highlight, QColor(5, 170, 61));
-        pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor(80,80,80));
-        pal.setColor(QPalette::HighlightedText, QColor(255,255,255));
-        pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(127,127,127));
-        QToolTip::setPalette(pal);
-        qApp->setPalette(pal);
+    static const QString kSpinCss =
+        "QSpinBox, QDoubleSpinBox {"
+        " background-color: rgb(76,79,88) !important;"
+        " color: white !important;"
+        " border: 1px solid rgb(66,66,66);"
+        " border-radius: 2px;"
+        " padding: 2px 6px;"
+        " selection-background-color: rgb(5,170,61); }"
+        "QSpinBox:focus, QDoubleSpinBox:focus {"
+        " border: 1px solid rgb(5,170,61); }"
+        "QSpinBox::up-button, QSpinBox::down-button,"
+        "QDoubleSpinBox::up-button, QDoubleSpinBox::down-button {"
+        " background-color: rgb(76,79,88) !important;"
+        " border: none;"
+        " width: 14px; }"
+        "QSpinBox::up-button:hover, QSpinBox::down-button:hover,"
+        "QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover {"
+        " background-color: rgb(66,66,66) !important; }";
 
-        for (int i = 0; i < groupBoxes.size(); ++i) {
-            if (groupBoxes[i]->objectName() == QStringLiteral("groupBox_LogicalButtons")) {
+    // ---------- Create custom palette for spinboxes ----------
+    QPalette spinPalette = pal;
+    spinPalette.setColor(QPalette::Base, QColor(76,79,88));
+    spinPalette.setColor(QPalette::Window, QColor(76,79,88));
+    spinPalette.setColor(QPalette::Button, QColor(76,79,88));
 
-                    groupBoxes[i]->setStyleSheet(QStringLiteral(R"(
-                QGroupBox {
-                 font-weight: bold;
-                    background: rgb(36, 39, 49); /* FLAT_BLACK */
-                    border: 1px solid rgb(255, 255,255);
-                    border-radius: 3px;
-                    margin-top: 2ex;
-                    padding: 6px 0px 0px 0px;
-                }
+    // ---------- Apply per-widget where groupbox scope doesn't reach ----------
 
-                QGroupBox::title {
-                    color: #ffffff;
-                    subcontrol-position: top center;
-                    subcontrol-origin: margin;
-                    left: -3px;
-                    padding: -2px 0px 0px 2px;
-                    background: transparent; /* Optional, or match FLAT_BLACK */
-                }
-            )"));
-                continue;
-            }
+    // 1) Hidden-axes checkboxes live directly under AxesConfig (not in a groupbox)
+    if (m_axesConfig) {
+        const auto hiddenCbs = m_axesConfig->findChildren<QCheckBox*>();
+        for (QCheckBox* cb : hiddenCbs) {
+            cb->setStyleSheet(QString());         // clear any stale sheet first
+            cb->setStyleSheet(kIndicatorCss);     // per-widget wins
+        }
+        m_axesConfig->update();
+        qDebug() << "Styled checkboxes in AxesConfig:" << hiddenCbs.size();
+    }
 
-            if (groupBoxes[i]->objectName() == QStringLiteral("groupBox_4")) {
+    // 2) AxesExtended panels contain spinboxes/indicators (own subtree) - Enhanced approach
+    const auto exts = findChildren<AxesExtended*>();
+    qDebug() << "Found AxesExtended panels:" << exts.size();
 
-                groupBoxes[i]->setStyleSheet(QStringLiteral(R"(
-                QGroupBox {
-                 font-weight: bold;
-                    background: transparent
-                    border: 1px solid rgb(66, 66,66);
-                    border-radius: 1px;
-                    margin-top: 2ex;
-                    padding: 6px 6px 6px 6px;
-                }
-
-                QGroupBox::title {
-                    color: #ffffff;
-                    subcontrol-position: top center;
-                    subcontrol-origin: margin;
-                    left: -3px;
-                    padding: -2px 0px 0px 2px;
-                    background: transparent; /* Optional, or match FLAT_BLACK */
-                }
-            )"));
-                continue;
-            }
-            if (groupBoxes[i]->objectName() == QStringLiteral("groupBox_PhysicalButtons")) {
-                groupBoxes[i]->setStyleSheet(QStringLiteral(R"(
-                QGroupBox {
-                 font-weight: bold;
-                    background: rgb(36, 39, 49); /* FLAT_BLACK */
-                    border: 1px solid rgb(255, 255,255);
-                    border-radius: 3px;
-                    margin-top: 2ex;
-                    padding: 6px 0px 0px 0px;
-                }
-
-                QGroupBox::title {
-                    color: #ffffff;
-                    subcontrol-position: top center;
-                    subcontrol-origin: margin;
-                    left: -3px;
-                    padding: -2px 0px 0px 2px;
-                    background: transparent; /* Optional, or match FLAT_BLACK */
-                }
-            )"));
-
-
-                continue;
-            }
-
-            if (groupBoxes[i]->objectName() == QStringLiteral("groupBox_AxixName")) {
-                groupBoxes[i]->setStyleSheet(QStringLiteral(R"(
-                QGroupBox {
-                 font-weight: bold;
-                    background: rgb(36, 39, 49); /* FLAT_BLACK */
-                    border: 1px solid rgb(255, 255,255);
-                    border-radius: 3px;
-                    margin-top: 2ex;
-                    padding: 8px 8px 8px 8px;
-                }
-
-                QGroupBox::title {
-                    color: #ffffff;
-                    subcontrol-position: top center;
-                    subcontrol-origin: margin;
-                    left: -3px;
-                    padding: -2px 0px 0px 2px;
-                    background: transparent; /* Optional, or match FLAT_BLACK */
-                }
-            )"));
-
-                continue;
-            }
-            groupBoxes[i]->setStyleSheet(QStringLiteral(R"(
-
-                QGroupBox {
-                 font-weight: bold;
-                    background: rgb(36, 39, 49); /* FLAT_BLACK */
-                    border: 1px solid rgb(255, 255,255);
-                    border-radius: 3px;
-                    margin-top: 2ex;
-                    padding: 6px 0px 0px 0px;
-                }
-
-                QGroupBox::title {
-                    color: #ffffff;
-                    subcontrol-position: top center;
-                    subcontrol-origin: margin;
-                    left: -3px;
-                    padding: -2px 0px 0px 2px;
-                    background: transparent; /* Optional, or match FLAT_BLACK */
-                }
-            )"));
-
+    for (AxesExtended* ax : exts) {
+        // Clear any existing stylesheets from the entire subtree first
+        const auto allWidgets = ax->findChildren<QWidget*>();
+        for (QWidget* widget : allWidgets) {
+            widget->setStyleSheet("");
         }
 
-        ui->pushButton_Wiki->setStyleSheet(QStringLiteral(R"(
-                QPushButton#pushButton_Wiki {
+        // Apply spinbox styling with multiple approaches for maximum compatibility
+        const auto spinBoxes = ax->findChildren<QSpinBox*>();
+        const auto doubleSpinBoxes = ax->findChildren<QDoubleSpinBox*>();
 
+        qDebug() << "  Panel" << ax->objectName() << "- SpinBoxes:" << spinBoxes.size()
+                 << "DoubleSpinBoxes:" << doubleSpinBoxes.size();
 
+        for (QSpinBox* sp : spinBoxes) {
+            // Method 1: Clear and apply stylesheet
+            sp->setStyleSheet("");
+            sp->setAutoFillBackground(true);
+            sp->setStyleSheet(kSpinCss);
 
-                    padding:0px;
-                    margin: 0px;
-                    min-width: 150;
-                    max-width: 150;
-                    max-height: 60;
-                    min-height: 60;
-                    width: 160;
-                    height: 70;
-                }
+            // Method 2: Also apply palette as backup
+            sp->setPalette(spinPalette);
 
-                QPushButton#pushButton_Wiki:hover {
+            qDebug() << "    Styled SpinBox:" << sp->objectName()
+                     << "Stylesheet length:" << sp->styleSheet().length();
 
-                    border-color: rgb(5, 170, 61);
-                    background-color: (5, 170, 61, 80);
+            // Force immediate visual update
+            sp->update();
+            sp->repaint();
+        }
 
-                }
-            )"));
+        for (QDoubleSpinBox* dsp : doubleSpinBoxes) {
+            // Method 1: Clear and apply stylesheet
+            dsp->setStyleSheet("");
+            dsp->setAutoFillBackground(true);
+            dsp->setStyleSheet(kSpinCss);
 
-        // stylesheet icon: url(...); does not work in linux?
-        ui->pushButton_Wiki->setIcon(QIcon(":/Images/ST_wiki_dark.png"));
-        styleName = "dark";
-#ifdef Q_OS_WIN
-        setDarkBorderToWindow((HWND)window()->winId(), true);
-#endif
+            // Method 2: Also apply palette as backup
+            dsp->setPalette(spinPalette);
+
+            qDebug() << "    Styled DoubleSpinBox:" << dsp->objectName()
+                     << "Stylesheet length:" << dsp->styleSheet().length();
+
+            // Force immediate visual update
+            dsp->update();
+            dsp->repaint();
+        }
+
+        // Apply checkbox styling
+        for (QCheckBox* cb : ax->findChildren<QCheckBox*>()) {
+            cb->setStyleSheet(QString());
+            cb->setStyleSheet(kIndicatorCss);
+        }
+
+        // Force update of the entire container
+        ax->update();
+        ax->repaint();
     }
+
+    // Optional: wiki hover accent
+    ui->pushButton_Wiki->setStyleSheet(
+        "QPushButton#pushButton_Wiki {"
+        " padding:0; margin:0;"
+        " min-width:150; max-width:150; min-height:60; max-height:60;"
+        " width:160; height:70; }"
+        "QPushButton#pushButton_Wiki:hover { border-color: rgb(5,170,61); }"
+        );
+    ui->pushButton_Wiki->setIcon(QIcon(":/Images/ST_wiki_dark.png"));
 
     updateColor();
 
-    gEnv.pAppSettings->beginGroup("StyleSettings");
-    gEnv.pAppSettings->setValue("StyleSheet", styleName);
-    gEnv.pAppSettings->endGroup();
+    // Debug summary
+    qDebug() << "=== Theme Change Complete ===";
+    qDebug() << "Total AxesExtended panels processed:" << exts.size();
+    qDebug() << "AxesConfig checkboxes:"
+             << (m_axesConfig ? m_axesConfig->findChildren<QCheckBox*>().size() : -1);
 }
