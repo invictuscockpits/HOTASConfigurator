@@ -689,6 +689,7 @@ void MainWindow::hidDeviceList(const QList<QPair<bool, QString>> &deviceNames)
 // received device report
 void MainWindow::getParamsPacket(bool firmwareCompatible)
 {
+    uint16_t fw = gEnv.pDeviceConfig->paramsReport.firmware_version;
     if (m_deviceChanged) {
         if (firmwareCompatible == false) {
             blockWRConfigToDevice(true);

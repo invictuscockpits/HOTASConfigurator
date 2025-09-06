@@ -83,13 +83,13 @@ SOURCES += \
     widgets/shift-reg/shiftregistersconfig.cpp
 
 HEADERS += \
+    common_defines.h \
+    common_types.h \
     configmanager.h \
     widgets/axes-curves/axescurvesbutton.h \
     widgets/axes-curves/axescurvesprofiles.h \
     widgets/board_presets.h \
     widgets/centered_cbox.h \
-    common_defines.h \
-    common_types.h \
     configtofile.h \
     converter.h \
     deviceconfig.h \

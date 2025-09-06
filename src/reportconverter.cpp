@@ -12,26 +12,39 @@ namespace ReportConverter
 //    }
 }
 
-int ReportConverter::paramReport(uint8_t *paramsBuf)
-{
-    if (paramsBuf != nullptr) {
+    int ReportConverter::paramReport(uint8_t *paramsBuf)
+    {
+        if (!paramsBuf) return 0;
+
+        // Page 0: ALWAYS copy first 62 bytes so UI shows what's actually on the wire
         if (paramsBuf[1] == 0) {
-            if ((*(uint16_t *)(paramsBuf + 2) & 0xFFF0) == (FIRMWARE_VERSION & 0xFFF0)) {
-                firmwareCompatible = 1;
-                memcpy((uint8_t *)&(gEnv.pDeviceConfig->paramsReport), paramsBuf + 2, 62); // paramsBuf +2  skip report ids
-                return 1;
-            } else {
-                firmwareCompatible = 0;
-            }
-        } else if (firmwareCompatible == 1) {
-            memcpy((uint8_t *)&(gEnv.pDeviceConfig->paramsReport) + 62, paramsBuf + 2, sizeof(params_report_t) - 62);
+            // copy raw payload (skip [0]=ID, [1]=page index)
+            memcpy(reinterpret_cast<uint8_t *>(&gEnv.pDeviceConfig->paramsReport),
+                   paramsBuf + 2, 62);
+
+            // Now decide compatibility from freshly copied bytes
+            const uint16_t fw_on_wire = gEnv.pDeviceConfig->paramsReport.firmware_version;
+            // keep your policy (was 0xFF00 while investigating)
+            firmwareCompatible = ((fw_on_wire & 0xFFF0) == (FIRMWARE_VERSION & 0xFFF0)) ? 1 : 0;
+
+            // Return 1 so the UI refreshes the displayed version immediately
             return 1;
-        } else if (firmwareCompatible == -1) {
-            return -1;
         }
+
+        // Page 1: only apply if compatible
+        if (paramsBuf[1] == 1) {
+            if (firmwareCompatible == 1) {
+                memcpy(reinterpret_cast<uint8_t *>(&gEnv.pDeviceConfig->paramsReport) + 62,
+                       paramsBuf + 2, sizeof(params_report_t) - 62);
+                return 1;
+            } else if (firmwareCompatible == -1) {
+                return -1; // haven't seen page 0 yet
+            }
+            return 0; // incompatible → ignore tail
+        }
+
+        return 0;
     }
-    return 0;
-}
 
 void ReportConverter::resetReport()
 {
