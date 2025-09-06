@@ -11,7 +11,7 @@
 
 //#define DEBUG
 
-#define FIRMWARE_VERSION					0x2111              // v2.1.1 (implememnted Force Anchors
+#define FIRMWARE_VERSION					0x2121              // v2.1.2 (Fixed firmware flasher)
 #define USED_PINS_NUM						30					// Contstant for HOTAS Control boards
 #define MAX_AXIS_NUM						8					// max 8
 #define MAX_BUTTONS_NUM						128					// power of 2, max 128
