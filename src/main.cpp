@@ -24,13 +24,21 @@ static const QtMessageHandler QT_DEFAULT_MESSAGE_HANDLER = qInstallMessageHandle
 // define QT_NO_DEBUG_OUTPUT - no debug info
 void CustomMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
+    // Dump extra context when that QString::arg warning appears
+    if (msg.contains("QString::arg")) {
+        qDebug().noquote()
+        << "[arg-warn]" << msg
+        << "\n  at" << (context.file ? context.file : "?")
+        << ":" << context.line
+        << (context.function ? QStringLiteral(" in %1").arg(context.function) : QString());
+    }
+
     if (gEnv.pDebugWindow != nullptr) {
         QMetaObject::invokeMethod(gEnv.pDebugWindow, "printMsg",
                                   Qt::QueuedConnection, Q_ARG(QString, msg));
     }
     (*QT_DEFAULT_MESSAGE_HANDLER)(type, context, msg);
 }
-
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)

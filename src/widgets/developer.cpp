@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <Qdebug>
+#include <QLineEdit>
 
 Developer::Developer(QWidget *parent)
     : QWidget(parent),
@@ -14,6 +15,22 @@ Developer::Developer(QWidget *parent)
     ui->setupUi(this);
     setDefaultSpinRanges();
     initConnections();
+    // Bind every Set button named "btnSet_*"
+    bindSetButtons();
+
+
+    auto prepLine = [](QLineEdit* le){
+        if (!le) return;
+        le->setReadOnly(true);
+        le->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        QFont f = le->font(); f.setStyleHint(QFont::Monospace); f.setFamily("Consolas");
+        le->setFont(f);
+    };
+    prepLine(ui->lineEdit_RawX);
+    prepLine(ui->lineEdit_RawY);
+
+    // start at 0
+    updateRawReadouts();
 }
 
 Developer::~Developer()
@@ -27,6 +44,7 @@ void Developer::initConnections()
     connect(ui->btnAnchorsRead,  &QPushButton::clicked, this, &Developer::onRead);
     connect(ui->btnAnchorsWrite, &QPushButton::clicked, this, &Developer::onWrite);
     connect(ui->btnAnchorsLock,  &QPushButton::clicked, this, &Developer::onLock);
+
 }
 
 void Developer::setDefaultSpinRanges()
@@ -353,4 +371,71 @@ void Developer::onLock()
     }
 
     QMessageBox::warning(this, tr("Force Anchors"), tr("Lock ACK OK but unable to read/parse anchors."));
+}
+
+
+void Developer::bindSetButtons()
+{
+    const auto buttons = findChildren<QPushButton*>(QRegularExpression("^btnSet_.*$"));
+    for (auto* b : buttons)
+        connect(b, &QPushButton::clicked, this, &Developer::onAnySetClicked);
+}
+
+void Developer::setLiveRaw(int rawX, int rawY)
+{
+    if (rawX == m_rawX && rawY == m_rawY) return; // avoid needless repaints
+    m_rawX = rawX;
+    m_rawY = rawY;
+    updateRawReadouts();
+}
+
+void Developer::updateRawReadouts()
+{
+    if (ui->lineEdit_RawX) ui->lineEdit_RawX->setText(QString::number(m_rawX));
+    if (ui->lineEdit_RawY) ui->lineEdit_RawY->setText(QString::number(m_rawY));
+}
+
+void Developer::onAnySetClicked()
+{
+    auto* b = qobject_cast<QPushButton*>(sender());
+    if (!b) return;
+
+    const QString name = b->objectName();            // e.g. "btnSet_RollLeft100"
+    const int value = isRollButtonName(name) ? m_rawX : m_rawY;
+
+    // Build the target spinbox objectName:
+    //  RollLeftNN -> spRL_NN
+    //  RollRightNN -> spRR_NN
+    //  PDNN -> spPD_NN
+    //  DPUNN -> spPUD_NN
+    //  APUNN -> spPUA_NN
+    QString tail = name.mid(QStringLiteral("btnSet_").size()); // e.g. "RollLeft100"
+    QString spinName;
+
+    // percentage suffix = last 3 (100/075/050) or last 2 (75/50)
+    // we can just capture ending digits:
+    QRegularExpression reSuffix("(\\d+)$");
+    QRegularExpressionMatch m = reSuffix.match(tail);
+    const QString pct = m.hasMatch() ? m.captured(1) : QString();
+
+    if (tail.startsWith("RollLeft", Qt::CaseInsensitive)) {
+        spinName = "spRL_" + pct;
+    } else if (tail.startsWith("RollRight", Qt::CaseInsensitive)) {
+        spinName = "spRR_" + pct;
+    } else if (tail.startsWith("PD", Qt::CaseInsensitive)) {
+        spinName = "spPD_" + pct;
+    } else if (tail.startsWith("DPU", Qt::CaseInsensitive)) {
+        spinName = "spPUD_" + pct;
+    } else if (tail.startsWith("APU", Qt::CaseInsensitive)) {
+        spinName = "spPUA_" + pct;
+    } else {
+        // Unknown pattern; nothing to set.
+        return;
+    }
+
+    if (auto* sb = findChild<QSpinBox*>(spinName)) {
+        sb->setValue(value);
+    } else if (auto* le = findChild<QLineEdit*>(spinName)) {
+        le->setText(QString::number(value));
+    }
 }

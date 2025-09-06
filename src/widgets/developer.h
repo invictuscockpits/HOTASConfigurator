@@ -29,6 +29,7 @@ public slots:
     void onRead();
     void onWrite();
     void onLock();
+    void setLiveRaw(int rawX, int rawY);
 
 private:
 
@@ -71,6 +72,24 @@ private:
     // Helpers
     void initConnections();
     void setDefaultSpinRanges(); // -32768..32767 and centered alignment
+
+    // Mirrored from params_report_t::raw_axis_data[0/1]
+    int m_rawX = 0;
+    int m_rawY = 0;
+
+    void updateRawReadouts();   // writes to lineEdit_RawX / lineEdit_RawY
+    void bindSetButtons();      // connects ^btnSet_.*$ -> onAnySetClicked()
+
+    // Decide X vs Y based on button name ("Roll" -> X, otherwise Y)
+    static inline bool isRollButtonName(const QString& n) {
+        return n.contains("Roll", Qt::CaseInsensitive);
+    }
+
+private slots:
+    // Handles any Set button named "btnSet_*"
+    void onAnySetClicked();
+
+
 };
 
 #endif // DEVELOPER_H

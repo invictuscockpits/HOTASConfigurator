@@ -689,7 +689,7 @@ void MainWindow::hidDeviceList(const QList<QPair<bool, QString>> &deviceNames)
 // received device report
 void MainWindow::getParamsPacket(bool firmwareCompatible)
 {
-    uint16_t fw = gEnv.pDeviceConfig->paramsReport.firmware_version;
+   // uint16_t fw = gEnv.pDeviceConfig->paramsReport.firmware_version;
     if (m_deviceChanged) {
         if (firmwareCompatible == false) {
             blockWRConfigToDevice(true);
@@ -724,6 +724,11 @@ void MainWindow::getParamsPacket(bool firmwareCompatible)
     }
     else if (timer.elapsed() > 17)    // update UI every 17ms(~60fps)
     {
+        if (m_developer) {
+            const auto& r = gEnv.pDeviceConfig->paramsReport;
+            // Axis 0 = Roll (X), Axis 1 = Pitch (Y)
+            m_developer->setLiveRaw(r.raw_axis_data[0], r.raw_axis_data[1]);
+        }
         if(ui->tab_LED->isVisible() == true) {
             m_ledConfig->setLedsState();
         }
