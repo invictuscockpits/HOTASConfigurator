@@ -30,6 +30,7 @@
 #include "converter.h"
 #include "buttonconfig.h"
 #include "developer.h"
+#include "hiddevice.h"
 
 //Update Check Includes:
 
@@ -211,6 +212,17 @@ MainWindow::MainWindow(QWidget *parent)
     m_advSettings = new AdvancedSettings(this);
     ui->layoutV_tabAdvSettings->addWidget(m_advSettings);
     qDebug()<<"advanced settings load time ="<< timer.restart() << "ms";
+
+    m_deviceInfo = new DeviceInfo(this);
+    connect(m_deviceInfo, &DeviceInfo::infoUpdated, this, [this]() {
+        // Pass the info to Advanced Settings
+        m_advSettings->showDeviceInfo(
+            m_deviceInfo->getModel(),
+            m_deviceInfo->getSerial(),
+            m_deviceInfo->getDateOfManufacture(),
+            m_deviceInfo->isLocked()
+            );
+    });
 
     //GUI Update Checker
     connect(m_advSettings, &AdvancedSettings::updateAvailable,
@@ -657,12 +669,12 @@ void MainWindow::showConnectDeviceInfo()
 
     if (!settings->value(suppressKey, false).toBool()) {
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle("Important: Save Configuration");
+        msgBox.setWindowTitle("Important: Record Values");
         msgBox.setText("Each individual device is carefully calibrated with precise force values.\n"
                        "If your device shipped with a Gen 4 control board, it has hardcoded force values.\n"
-                       "If it shipped before 8/16/2025, it does not.\n"
+                       "If it is a Gen 3 or earlier device shipped before 8/16/2025, it does not.\n"
                        "Please read your config from your device and make note of the calibration values\n"
-                       "in the Axes Config Tab.  When you update your firmware, they will be overwritten.\n"
+                       "in the Axes Settings Tab.  When you update your firmware, they will be overwritten.\n"
                        "Save the original values in a safe place.\n"
                        "If you lose them, they cannot be recovered.");
         msgBox.setIcon(QMessageBox::Warning);
@@ -673,7 +685,14 @@ void MainWindow::showConnectDeviceInfo()
         if (dontShow.isChecked()) {
             settings->setValue(suppressKey, true);
         }
-    }
+        if (ui->comboBox_HidDeviceList->itemData(ui->comboBox_HidDeviceList->currentIndex()).toInt() != 1) {
+            // Not old firmware, so we can read config
+            QTimer::singleShot(100, this, [this]() {
+                on_pushButton_ReadConfig_clicked();
+            }
+        );
+
+        }}
 }
 
 // device disconnected
@@ -972,19 +991,16 @@ void MainWindow::configReceived(bool success)
 {
     m_buttonDefaultStyle = ui->pushButton_ReadConfig->styleSheet();
     static QString button_default_text = ui->pushButton_ReadConfig->text();    //????????????????????????
-
     if (success == true)
     {
         UiReadFromConfig();
         // curves pointer activated
         m_axesCurvesConfig->deviceStatus(true);
-
         // set firmware version
         QString str = QString::number(gEnv.pDeviceConfig->config.firmware_version, 16);
         if (str.size() == 4) {
             ui->label_DeviceStatus->setText(tr("Device firmware") + " v" + str[0] + "." + str[1] + "." + str[2] + "b" + str[3] + " ✔");
         }
-
         ui->pushButton_ReadConfig->setText(tr("Received"));
         ui->pushButton_ReadConfig->setStyleSheet(m_buttonDefaultStyle + "color: rgb(235, 235, 235); background-color: rgb(5, 170, 61);");
         QTimer::singleShot(1500, this, [&] {
@@ -993,13 +1009,9 @@ void MainWindow::configReceived(bool success)
             if (ui->comboBox_HidDeviceList->currentIndex() >= 0){
                 blockWRConfigToDevice(false);
             }
-
-        }
-        );
-        // Update device info in advanced settings
-        if (m_advSettings) {
-            m_advSettings->updateDeviceInfo();
-        }
+        });
+        // Read device info after successful config read
+        readDeviceInfo();
     } else {
         ui->pushButton_ReadConfig->setText(tr("Error"));
         ui->pushButton_ReadConfig->setStyleSheet(m_buttonDefaultStyle + "color: rgb(235, 235, 235); background-color: rgb(200, 0, 0);");
@@ -1012,7 +1024,6 @@ void MainWindow::configReceived(bool success)
         });
     }
 }
-
 // slot after sending the config
 void MainWindow::configSent(bool success)
 {
@@ -2181,7 +2192,7 @@ QByteArray MainWindow::packAnchors(const ForceAnchorsGUI& a) const
 bool MainWindow::unpackAnchors(const QByteArray& buf, ForceAnchorsGUI* out) const
 {
     if (!out) return false;
-    constexpr int kLen = 89;  // Updated size with new fields
+    constexpr int kLen = 46;  // Changed from 89 - no more device info!
     if (buf.size() < kLen) return false;
 
     const QByteArray view = buf.left(kLen);
@@ -2228,9 +2239,6 @@ bool MainWindow::unpackAnchors(const QByteArray& buf, ForceAnchorsGUI* out) cons
         return QString::fromUtf8(bytes);
     };
 
-    out->serialNumber = getString(16);
-    out->modelNumber = getString(16);
-    out->manufactureDate = getString(11);
 
     return true;
 }
@@ -2306,5 +2314,35 @@ void MainWindow::on_pushButton_TestButton_2_clicked()
     }
 #endif
 }
+void MainWindow::readDeviceInfo()
+{
+    if (!m_hidDeviceWorker) return;
 
+    // Use one-shot connection to avoid memory leaks
+    QMetaObject::Connection conn = connect(
+        m_hidDeviceWorker, &HidDevice::devPacket,
+        this, [this](quint8 op, const QByteArray& data) {
+            if (op == OP_GET_DEVICE_INFO && data.size() == sizeof(device_info_t)) {
+                const device_info_t* info = reinterpret_cast<const device_info_t*>(data.constData());
+
+                QString model = QString::fromLatin1(info->model_number, strnlen(info->model_number, 16));
+                QString serial = QString::fromLatin1(info->serial_number, strnlen(info->serial_number, 16));
+                QString dom = QString::fromLatin1(info->manufacture_date, strnlen(info->manufacture_date, 11));
+
+                // Update advanced settings directly
+                if (m_advSettings) {
+                    m_advSettings->showDeviceInfo(model, serial, dom,
+                                                  gEnv.pDeviceConfig->config.firmware_version);
+                }
+            }
+        }
+        );
+
+    m_hidDeviceWorker->devRequest(OP_GET_DEVICE_INFO, QByteArray());
+
+    // Auto-disconnect after timeout
+    QTimer::singleShot(1000, this, [conn]() mutable {
+        if (conn) disconnect(conn);
+    });
+}
 

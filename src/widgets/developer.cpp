@@ -184,10 +184,10 @@ QByteArray Developer::pack(const Anchors& a) const
     b[6] = char((crc >> 16) & 0xFF);
     b[7] = char((crc >> 24) & 0xFF);
 
-    // Pack device identification strings
+    // Pack device identification strings - MUST be exact lengths
     auto packString = [&](const QString& str, int maxLen) {
         QByteArray bytes = str.toUtf8();
-        // Ensure exactly maxLen bytes are added
+        // Ensure we always write exactly maxLen bytes
         for (int i = 0; i < maxLen; i++) {
             if (i < bytes.size()) {
                 b.append(bytes[i]);
@@ -199,14 +199,17 @@ QByteArray Developer::pack(const Anchors& a) const
 
     packString(a.serialNumber, 16);
     packString(a.modelNumber, 16);
+    packString(a.manufactureDate, 11);
     return b;
+
+    for (int i=0;i<8;i++) b.append(char(0));  // reserved bytes
 }
 
 bool Developer::unpack(const QByteArray& b, Anchors* out) const
 {
     if (!out) return false;
 
-    constexpr int kLen = 89;  // 46 + 16 + 16 + 11 = 89
+    constexpr int kLen = 46;
     if (b.size() < kLen) return false;
 
     const QByteArray view = b.left(kLen);  // ignore HID padding
@@ -273,6 +276,10 @@ void Developer::onRead()
     if (m_send && m_recv) {
         QByteArray req, resp;
         if (m_send(OP_GET_FACTORY_ANCHORS, QByteArray()) && m_recv(OP_GET_FACTORY_ANCHORS, &resp)) {
+            // Debug output
+            qDebug() << "[Developer] Received anchors:";
+            qDebug() << "  - Response size:" << resp.size();
+            qDebug() << "  - First 16 bytes:" << resp.left(16).toHex(' ');
 
             haveAnchors = unpack(resp, &a);
             // consider anchors “missing” only if unpack failed OR all trips are zero
@@ -361,6 +368,14 @@ void Developer::onWrite()
 
     Anchors a = uiGet();
     QByteArray blob = pack(a), ack;
+
+    // Debug output
+    qDebug() << "[Developer] Sending anchors:";
+    qDebug() << "  - Blob size:" << blob.size();
+    qDebug() << "  - First 16 bytes:" << blob.left(16).toHex(' ');
+    qDebug() << "  - Serial:" << a.serialNumber;
+    qDebug() << "  - Model:" << a.modelNumber;
+    qDebug() << "  - Date:" << a.manufactureDate;
     if (!m_send(OP_SET_FACTORY_ANCHORS, blob) || !m_recv(OP_SET_FACTORY_ANCHORS, &ack)) {
         QMessageBox::warning(this, "Anchors", "Write failed"); return;
     }

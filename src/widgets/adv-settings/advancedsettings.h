@@ -4,6 +4,7 @@
 #include "flasher.h"
 #include <QWidget>
 #include "common_types.h"
+#include "device_info.h"
 
 QT_BEGIN_NAMESPACE
 class QFile;
@@ -34,7 +35,6 @@ public:
 
     void checkForUpdatesSilent();   // GUI
     void checkForFirmwareUpdatesSilent(); // Firmware
-    void updateDeviceInfo();
 
 signals:
     void languageChanged(const QString &language);
@@ -63,6 +63,11 @@ private slots:
     void on_pushButton_CheckUpdates_clicked();
     void on_pushButton_CheckFirmware_clicked();
 
+    void onDeviceInfoUpdated();
+    void onDeviceInfoError(const QString &error);
+    void on_pushButton_ReadDeviceInfo_clicked();
+    void on_pushButton_WriteDeviceInfo_clicked();
+
 
 private:
     Ui::AdvancedSettings *ui;
@@ -71,6 +76,7 @@ private:
 
     QString m_default_text;
     QString m_default_style;
+    DeviceInfo *m_deviceInfo;
 
 
 public slots:

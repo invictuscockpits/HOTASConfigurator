@@ -22,6 +22,7 @@
 #include "shiftregisters.h"
 #include "developer.h"
 #include "board_presets.h"
+#include "device_info.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -57,10 +58,6 @@ public:
         ForceTriplet pu40;    // pitch-up analog 40 lbf
         quint8   reserved[8];
 
-        // Device identification
-        QString serialNumber;
-        QString modelNumber;
-        QString manufactureDate;
     };
     bool readAnchorsFromDevice(ForceAnchorsGUI* out);
 signals:
@@ -114,7 +111,7 @@ private slots:
     void onBoardPresetChanged(int index); //Building board presets for pin mapping
 
     void onUpdateAvailable(const QString& tag, const QUrl& url); //update available popup when appropriate
-
+    void readDeviceInfo();
 
 
 
@@ -212,6 +209,8 @@ private:
     ForceAnchorsGUI m_cachedAnchors{};
     bool m_cachedAnchorsValid = false;
     bool devRequestReply(quint8 op, const QByteArray& payload, QByteArray* out);
+
+    DeviceInfo *m_deviceInfo;
 
 
 };

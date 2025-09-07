@@ -1,9 +1,3 @@
-/**
-  ******************************************************************************
-  * @file           : common_types.h
-  * @brief          : This file contains the common types for the app.
-  ******************************************************************************
-  */
 
 #ifndef __COMMON_TYPES_H__
 #define __COMMON_TYPES_H__
@@ -248,7 +242,7 @@ enum
     BUTTON_ACTION_IDLE = 0,
     BUTTON_ACTION_DELAY,
     BUTTON_ACTION_PRESS,
-    BUTTON_ACTION_BLOCK
+    BUTTON_ACTION_BLOCK,
 };
 typedef uint8_t button_action_t;
 
@@ -366,11 +360,13 @@ typedef struct
 } force_level_t;*/
 
 //* Per-direction triplet of ADC counts for 100/75/50 */
+#pragma pack(push, 1)
 typedef struct {
-    int16_t adc_100;   // measured ADC at full spec for this direction (see comments below)
-    int16_t adc_75;    // measured ADC at ~75% force (nonlinear-safe)
-    int16_t adc_50;    // measured ADC at ~50% force (nonlinear-safe)
+    int16_t adc_100;
+    int16_t adc_75;
+    int16_t adc_50;
 } force_triplet_t;
+#pragma pack(pop)
 
 /* Factory anchors (protected flash page). GUI Dev tab writes these;
  * normal end-users cannot modify. CRC covers the whole struct.
@@ -389,22 +385,29 @@ typedef struct {
     uint8_t  sealed;    /* 1 = locked against non-Dev writes */
     uint32_t crc32;     /* CRC of the entire struct (magic..end), sealed included */
 
-    /* anchors: each has ADC at 100/75/50% of the DIRECTION’S spec force */
+    /* anchors: each has ADC at 100/75/50% of the DIRECTION'S spec force */
     force_triplet_t roll_left_17lbf;
     force_triplet_t roll_right_17lbf;
     force_triplet_t pitch_down_17lbf;
+    force_triplet_t pitch_up_25lbf_digital;
+    force_triplet_t pitch_up_40lbf_analog;
 
-    force_triplet_t pitch_up_25lbf_digital; /* “digital pitch-up” */
-    force_triplet_t pitch_up_40lbf_analog;  /* “analog pitch-up”  */
-
-    /* Device identification fields */
-    char serial_number[16];      /* Device serial number (null-terminated) */
-    char model_number[16];       /* Model/part number (null-terminated) */
-    char manufacture_date[11];   /* Manufacturing date YYYY-MM-DD (null-terminated) */
-
-    /* future extension space if you later add 25% etc. */
+    /* future extension space */
     uint8_t  reserved[8];
 } force_factory_anchors_t;
+/* Device identification info - stored separately from force anchors */
+typedef struct {
+    uint16_t magic;              /* 0xDEF0 - different magic */
+    uint8_t  version;            /* 1 */
+    uint8_t  locked;             /* 1 = locked against writes */
+
+    char serial_number[16];      /* Device serial number */
+    char model_number[16];       /* Model/part number */
+    char manufacture_date[11];   /* YYYY-MM-DD */
+
+    uint8_t  reserved[9];        /* Future expansion */
+    uint32_t crc32;              /* CRC of entire struct */
+} device_info_t;
 
 /******************** RUNTIME FORCE PROFILE (safe to reset) *******************
  * Lives in dev_config_t. If the user overwrites config without reading first,

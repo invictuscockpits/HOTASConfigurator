@@ -70,6 +70,13 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     QString style = gEnv.pAppSettings->value("StyleSheet", "default").toString();
     gEnv.pAppSettings->endGroup();
 
+    m_deviceInfo = new DeviceInfo(this);
+    connect(m_deviceInfo, &DeviceInfo::infoUpdated, this, &AdvancedSettings::onDeviceInfoUpdated);
+    connect(m_deviceInfo, &DeviceInfo::errorOccurred, this, &AdvancedSettings::onDeviceInfoError);
+    // Initialize line edits as read-only by default
+    ui->line_DeviceModel->setReadOnly(true);
+    ui->line_DeviceSerial->setReadOnly(true);
+    ui->line_DeviceDoM->setReadOnly(true);
 
 #ifndef Q_OS_WIN
     ui->text_removeName->setHidden(true);
@@ -77,11 +84,65 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     ui->info_removeName->hide();
 #endif
 
+}
 
+void AdvancedSettings::onDeviceInfoUpdated()
+{
+    ui->line_DeviceModel->setText(m_deviceInfo->getModel());
+    ui->line_DeviceSerial->setText(m_deviceInfo->getSerial());
+    ui->line_DeviceDoM->setText(m_deviceInfo->getDateOfManufacture());
+
+    // Disable editing if locked
+    bool locked = m_deviceInfo->isLocked();
+    ui->line_DeviceModel->setReadOnly(locked);
+    ui->line_DeviceSerial->setReadOnly(locked);
+    ui->line_DeviceDoM->setReadOnly(locked);
 
 
 
 }
+
+void AdvancedSettings::onDeviceInfoError(const QString &error)
+{
+    QMessageBox::warning(this, tr("Device Info Error"), error);
+}
+
+void AdvancedSettings::on_pushButton_ReadDeviceInfo_clicked()
+{
+
+}
+
+void AdvancedSettings::on_pushButton_WriteDeviceInfo_clicked()
+{
+
+
+    // Confirm before writing
+    QMessageBox::StandardButton reply = QMessageBox::question(this,
+                                                              tr("Write Device Info"),
+                                                              tr("Are you sure you want to write device info to flash?"),
+                                                              QMessageBox::Yes | QMessageBox::No);
+
+    if (reply != QMessageBox::Yes) {
+        return;
+    }
+
+    QString model = ui->line_DeviceModel->text();
+    QString serial = ui->line_DeviceSerial->text();
+    QString dom = ui->line_DeviceDoM->text();
+
+    // Validate date format if provided
+    if (!dom.isEmpty() && !QRegExp("\\d{4}-\\d{2}-\\d{2}").exactMatch(dom)) {
+        QMessageBox::warning(this, tr("Error"), tr("Date must be in YYYY-MM-DD format"));
+        return;
+    }
+
+
+}
+
+
+
+
+
 void AdvancedSettings::checkForUpdatesSilent()
 {
 #ifdef Q_OS_WIN
@@ -92,11 +153,11 @@ void AdvancedSettings::checkForUpdatesSilent()
 #endif
 }
 void AdvancedSettings::checkForFirmwareUpdatesSilent()
-    {
-    #ifdef Q_OS_WIN
-        checkForFirmwareUpdatesWinHTTP(true);
-    #endif
-        }
+{
+#ifdef Q_OS_WIN
+    checkForFirmwareUpdatesWinHTTP(true);
+#endif
+}
 
 
 
@@ -228,13 +289,13 @@ void AdvancedSettings::on_pushButton_About_clicked()
 void AdvancedSettings::on_pushButton_removeName_clicked()
 {
 #ifdef Q_OS_WIN
-        qDebug()<<"Remove device OEMName from registry";
-        QString path("HKEY_CURRENT_USER\\System\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
-        QString path2("HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
-        QSettings(path.arg(QString::number(gEnv.pDeviceConfig->config.vid, 16), QString::number(gEnv.pDeviceConfig->config.pid, 16)),
-                  QSettings::NativeFormat).remove("OEMName");
-        QSettings(path2.arg(QString::number(gEnv.pDeviceConfig->config.vid, 16), QString::number(gEnv.pDeviceConfig->config.pid, 16)),
-                  QSettings::NativeFormat).remove("OEMName");
+    qDebug()<<"Remove device OEMName from registry";
+    QString path("HKEY_CURRENT_USER\\System\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
+    QString path2("HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
+    QSettings(path.arg(QString::number(gEnv.pDeviceConfig->config.vid, 16), QString::number(gEnv.pDeviceConfig->config.pid, 16)),
+              QSettings::NativeFormat).remove("OEMName");
+    QSettings(path2.arg(QString::number(gEnv.pDeviceConfig->config.vid, 16), QString::number(gEnv.pDeviceConfig->config.pid, 16)),
+              QSettings::NativeFormat).remove("OEMName");
 #endif
 }
 
@@ -684,27 +745,5 @@ void AdvancedSettings::showDeviceInfo(const QString& model,
         ui->line_DeviceFwVersion->setText(
             (s.size() >= 3) ? QStringLiteral("v%1.%2.%3").arg(s[0]).arg(s[1]).arg(s[2])
                             : QString() );
-    }
-}
-void AdvancedSettings::updateDeviceInfo()
-{
-    // Get the main window instance
-    QWidget* mainWindow = this->window();
-    if (!mainWindow) return;
-
-    MainWindow* mw = qobject_cast<MainWindow*>(mainWindow);
-    if (!mw) return;
-
-    // Read anchors from device
-    MainWindow::ForceAnchorsGUI anchors{};
-    if (mw->readAnchorsFromDevice(&anchors)) {
-        ui->line_DeviceSerial->setText(anchors.serialNumber);
-        ui->line_DeviceModel->setText(anchors.modelNumber);
-        ui->line_DeviceDoM->setText(anchors.manufactureDate);
-    } else {
-        // Clear fields if unable to read
-        ui->line_DeviceSerial->clear();
-        ui->line_DeviceModel->clear();
-        ui->line_DeviceDoM->clear();
     }
 }
