@@ -3,6 +3,7 @@
 
 #include "flasher.h"
 #include <QWidget>
+#include "common_types.h"
 
 QT_BEGIN_NAMESPACE
 class QFile;
@@ -33,6 +34,7 @@ public:
 
     void checkForUpdatesSilent();   // GUI
     void checkForFirmwareUpdatesSilent(); // Firmware
+    void updateDeviceInfo();
 
 signals:
     void languageChanged(const QString &language);
@@ -70,6 +72,13 @@ private:
     QString m_default_text;
     QString m_default_style;
 
+
+public slots:
+    void showDeviceInfo(const QString& model,
+                        const QString& serial,
+                        const QString& domISO,
+                        quint16 fwRaw);
+    void applyDeviceIdentity(const params_report_t& r);
 
 #ifdef Q_OS_WIN
     void checkForUpdatesWinHTTP(bool silent); // GUI WinHTTP Helper

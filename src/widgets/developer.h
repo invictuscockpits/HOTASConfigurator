@@ -51,6 +51,11 @@ private:
         Triplet pu25;   // pitch-up digital (25 lbf full)
         Triplet pu40;   // pitch-up analog  (40 lbf full)
 
+        // Device identification
+        QString serialNumber;
+        QString modelNumber;
+        QString manufactureDate;
+
         quint8  reserved[8]{};
     };
     FallbackFn m_fallback;

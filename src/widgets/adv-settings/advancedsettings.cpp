@@ -14,6 +14,7 @@
 #include "version.h"
 #include "deviceconfig.h"
 #include "global.h"
+#include "mainwindow.h"
 
 #include <QDebug>
 #include <QNetworkAccessManager>
@@ -96,6 +97,9 @@ void AdvancedSettings::checkForFirmwareUpdatesSilent()
         checkForFirmwareUpdatesWinHTTP(true);
     #endif
         }
+
+
+
 AdvancedSettings::~AdvancedSettings()
 {
     delete ui;
@@ -635,6 +639,11 @@ void AdvancedSettings::readFromConfig()
 
     // usb exchange period
     ui->spinBox_USBExchangePeriod->setValue(gEnv.pDeviceConfig->config.exchange_period_ms);
+    // Read device identification from force anchors
+    // Request this when the Read Config button is pressed
+    ui->line_DeviceSerial->clear();
+    ui->line_DeviceModel->clear();
+    ui->line_DeviceDoM->clear();
 }
 
 void AdvancedSettings::writeToConfig()
@@ -642,4 +651,60 @@ void AdvancedSettings::writeToConfig()
 
     // usb exchange period
     gEnv.pDeviceConfig->config.exchange_period_ms = uint8_t(ui->spinBox_USBExchangePeriod->value());
+}
+void AdvancedSettings::applyDeviceIdentity(const params_report_t& r)
+{
+
+
+    // Firmware version: vX.Y.Z (first 3 nybbles, matching your status label)
+    if (ui->line_DeviceFwVersion) {
+        const quint16 v = r.firmware_version;                              // e.g. 0x2121
+        const QString s = QString("%1").arg(v, 4, 16, QChar('0')).toUpper(); // "2121"
+        ui->line_DeviceFwVersion->setText(
+            (s.size() >= 4)
+                ? QStringLiteral("v%1.%2.b%3").arg(s[0]).arg(s[1]).arg(s[2]).arg(s[3])
+                : QString() /* unexpected */);
+    }
+
+    // Date of Manufacture (not in params yet) — leave empty for now
+    if (ui->line_DeviceDoM)
+        ui->line_DeviceDoM->clear();
+}
+void AdvancedSettings::showDeviceInfo(const QString& model,
+                                      const QString& serial,
+                                      const QString& domISO,
+                                      quint16 fwRaw)
+{
+    if (ui->line_DeviceModel)  ui->line_DeviceModel->setText(model);
+    if (ui->line_DeviceSerial) ui->line_DeviceSerial->setText(serial);
+    if (ui->line_DeviceDoM)    ui->line_DeviceDoM->setText(domISO);
+
+    if (ui->line_DeviceFwVersion) {
+        const QString s = QString("%1").arg(fwRaw, 4, 16, QChar('0')).toUpper(); // "2121"
+        ui->line_DeviceFwVersion->setText(
+            (s.size() >= 3) ? QStringLiteral("v%1.%2.%3").arg(s[0]).arg(s[1]).arg(s[2])
+                            : QString() );
+    }
+}
+void AdvancedSettings::updateDeviceInfo()
+{
+    // Get the main window instance
+    QWidget* mainWindow = this->window();
+    if (!mainWindow) return;
+
+    MainWindow* mw = qobject_cast<MainWindow*>(mainWindow);
+    if (!mw) return;
+
+    // Read anchors from device
+    MainWindow::ForceAnchorsGUI anchors{};
+    if (mw->readAnchorsFromDevice(&anchors)) {
+        ui->line_DeviceSerial->setText(anchors.serialNumber);
+        ui->line_DeviceModel->setText(anchors.modelNumber);
+        ui->line_DeviceDoM->setText(anchors.manufactureDate);
+    } else {
+        // Clear fields if unable to read
+        ui->line_DeviceSerial->clear();
+        ui->line_DeviceModel->clear();
+        ui->line_DeviceDoM->clear();
+    }
 }

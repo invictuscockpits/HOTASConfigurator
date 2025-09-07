@@ -397,6 +397,11 @@ typedef struct {
     force_triplet_t pitch_up_25lbf_digital; /* “digital pitch-up” */
     force_triplet_t pitch_up_40lbf_analog;  /* “analog pitch-up”  */
 
+    /* Device identification fields */
+    char serial_number[16];      /* Device serial number (null-terminated) */
+    char model_number[16];       /* Model/part number (null-terminated) */
+    char manufacture_date[11];   /* Manufacturing date YYYY-MM-DD (null-terminated) */
+
     /* future extension space if you later add 25% etc. */
     uint8_t  reserved[8];
 } force_factory_anchors_t;

@@ -733,11 +733,12 @@ void MainWindow::hidDeviceList(const QList<QPair<bool, QString>> &deviceNames)
 void MainWindow::getParamsPacket(bool firmwareCompatible)
 {
    // uint16_t fw = gEnv.pDeviceConfig->paramsReport.firmware_version;
+
     if (m_deviceChanged) {
         if (firmwareCompatible == false) {
             blockWRConfigToDevice(true);
-            ui->label_DeviceStatus->setStyleSheet("color: white; background-color: rgb(168, 168, 0);");
-            ui->label_DeviceStatus->setText(tr("Incompatible Firmware"));
+            ui->label_DeviceStatus->setStyleSheet("color: white; background-color: rgb(255, 135, 7);");
+            ui->label_DeviceStatus->setText(tr("Firmware Update Required"));
         } else {
             if (m_pinConfig->limitIsReached() == false) {
                 blockWRConfigToDevice(false);
@@ -749,6 +750,49 @@ void MainWindow::getParamsPacket(bool firmwareCompatible)
                 ui->label_DeviceStatus->setText(tr("Device firmware") + " v" + str[0] + "." + str[1] + "." + str[2]);
             }
         }
+        // NEW: push Model/Serial/FW to Advanced Settings once on connect
+        if (m_advSettings) {
+            const auto& r = gEnv.pDeviceConfig->paramsReport;
+            m_advSettings->applyDeviceIdentity(r);
+        }
+
+        // Auto-pull Model / Serial / DoM via dev-op on first good connect
+        if (firmwareCompatible && m_advSettings) {
+            const auto& r = gEnv.pDeviceConfig->paramsReport;
+            const quint16 fw = r.firmware_version;
+
+            QByteArray id;
+            QString model, serial, domISO;
+
+        if (devRequestReply(CMD_GET_DEVICE_ID, QByteArray(), &id)) {
+            auto readCStr = [&](int off, int max)->QString {
+                if (off < 0 || off >= id.size()) return {};
+                const int len = qMin(max, id.size() - off);
+                const QByteArray slice = id.mid(off, len);
+                int nul = slice.indexOf('\0');
+                const QByteArray s = (nul >= 0 ? slice.left(nul) : slice);
+                return QString::fromLatin1(s).trimmed();
+            };
+
+            // Layout: model[INV_MODEL_MAX_LEN], serial[INV_SERIAL_MAX_LEN], optional dom "YYYY-MM-DD"
+            const int mdlOff = 0;
+            const int serOff = mdlOff + INV_MODEL_MAX_LEN;
+            model  = readCStr(mdlOff, INV_MODEL_MAX_LEN);
+            serial = readCStr(serOff, INV_SERIAL_MAX_LEN);
+
+            const int domOff = serOff + INV_SERIAL_MAX_LEN;
+            if (id.size() - domOff >= 10) {                    // optional
+                const QByteArray dom = id.mid(domOff, 10);     // "YYYY-MM-DD"
+                if (dom.size() == 10 && dom[4]=='-' && dom[7]=='-')
+                    domISO = QString::fromLatin1(dom);
+            }
+            }
+
+            // Push to the viewer (uses your QLineEdits: line_DeviceModel/Serial/DoM/FwVersion)
+            // If you don't already have this slot, add it exactly as we used earlier.
+            m_advSettings->showDeviceInfo(model, serial, domISO, fw);
+        }
+
         m_deviceChanged = false;
     }
 
@@ -949,7 +993,13 @@ void MainWindow::configReceived(bool success)
             if (ui->comboBox_HidDeviceList->currentIndex() >= 0){
                 blockWRConfigToDevice(false);
             }
-        });
+
+        }
+        );
+        // Update device info in advanced settings
+        if (m_advSettings) {
+            m_advSettings->updateDeviceInfo();
+        }
     } else {
         ui->pushButton_ReadConfig->setText(tr("Error"));
         ui->pushButton_ReadConfig->setStyleSheet(m_buttonDefaultStyle + "color: rgb(235, 235, 235); background-color: rgb(200, 0, 0);");
@@ -1593,6 +1643,31 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
     return QMainWindow::eventFilter(obj, event);
 }
+bool MainWindow::devRequestReply(quint8 op, const QByteArray& payload, QByteArray* out)
+{
+    if (!m_hidDeviceWorker) return false;
+
+    // Send one DEV frame: [REPORT_ID_DEV, op, payload...]
+    m_hidDeviceWorker->devRequest(op, payload);
+
+    QEventLoop loop;
+    QByteArray resp;
+    bool ok = false;
+
+    QMetaObject::Connection c = connect(
+        m_hidDeviceWorker, &HidDevice::devPacket, this,
+        [&](quint8 rxOp, const QByteArray& data){
+            if (rxOp == op) { resp = data; ok = true; loop.quit(); }
+        }
+        );
+    QTimer::singleShot(1000, &loop, &QEventLoop::quit);  // 1s timeout
+    loop.exec();
+    disconnect(c);
+
+    if (ok && out) *out = resp;
+    return ok;
+}
+
 
 /**
  * @brief Enables or disables Developer Mode in the main window.
@@ -1905,25 +1980,29 @@ bool MainWindow::readAnchorsFromDevice(ForceAnchorsGUI* out)
 
     QByteArray resp;
     bool ok = false;
-
-    // Pattern copied from your Developer transport wiring: devRequest() then wait for devPacket(op) reply
     QEventLoop loop;
     QMetaObject::Connection c = connect(
         m_hidDeviceWorker, &HidDevice::devPacket, this,
         [&](quint8 op, const QByteArray& data){
-            if (op == OP_GET_FACTORY_ANCHORS) { resp = data; ok = true; loop.quit(); }
+            if (op == OP_GET_FACTORY_ANCHORS) {
+                resp = data;
+                ok = true;
+                loop.quit();
+            }
         }
         );
 
-    // Request anchors
     m_hidDeviceWorker->devRequest(OP_GET_FACTORY_ANCHORS, QByteArray());
-
-    QTimer::singleShot(1000, &loop, &QEventLoop::quit); // 1s timeout is plenty here
+    QTimer::singleShot(1000, &loop, &QEventLoop::quit);
     loop.exec();
     disconnect(c);
 
-    return ok && unpackAnchors(resp, out);
+    if (!ok) return false;
+
+    // Unpack the response
+    return unpackAnchors(resp, out);
 }
+
 /**
  * @brief Selects ADC for a given percent from a force triplet (100/75/50).
  * @param t Force triplet (adc100/adc75/adc50)
@@ -2097,13 +2176,15 @@ QByteArray MainWindow::packAnchors(const ForceAnchorsGUI& a) const
     return b;
 }
 
+
+
 bool MainWindow::unpackAnchors(const QByteArray& buf, ForceAnchorsGUI* out) const
 {
     if (!out) return false;
-    constexpr int kLen = 46;                 // exact payload length
+    constexpr int kLen = 89;  // Updated size with new fields
     if (buf.size() < kLen) return false;
 
-    const QByteArray view = buf.left(kLen);  // ignore any HID padding
+    const QByteArray view = buf.left(kLen);
     auto get16 = [&](int off){
         return quint16(quint8(view[off])) | (quint16(quint8(view[off+1])) << 8);
     };
@@ -2118,22 +2199,38 @@ bool MainWindow::unpackAnchors(const QByteArray& buf, ForceAnchorsGUI* out) cons
     out->sealed  = quint8(view[3]);
     out->crc32   = get32(4);
 
-    // verify CRC (zero the CRC field before recomputing)
-    QByteArray tmp = view;
-    tmp[4] = tmp[5] = tmp[6] = tmp[7] = char(0);
-
-
     int off = 8;
     auto getTrip = [&](ForceTriplet* t){
         t->adc100 = qint16(get16(off)); off += 2;
         t->adc75  = qint16(get16(off)); off += 2;
         t->adc50  = qint16(get16(off)); off += 2;
+
     };
+
     getTrip(&out->rl_17);
     getTrip(&out->rr_17);
     getTrip(&out->pd_17);
     getTrip(&out->pu25);
     getTrip(&out->pu40);
+
+    off += 8;  // Skip reserved bytes
+
+    // Get device identification strings
+    auto getString = [&](int len) -> QString {
+        if (off + len > view.size()) return QString();
+        QByteArray bytes;
+        for (int i = 0; i < len; i++) {
+            char c = view[off + i];
+            if (c == '\0') break;
+            bytes.append(c);
+        }
+        off += len;
+        return QString::fromUtf8(bytes);
+    };
+
+    out->serialNumber = getString(16);
+    out->modelNumber = getString(16);
+    out->manufactureDate = getString(11);
 
     return true;
 }

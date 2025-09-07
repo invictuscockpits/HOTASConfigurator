@@ -29,12 +29,43 @@
 #define FLASH_PAGE_SIZE                     0x400
 #define FACTORY_ADDR                        (CONFIG_ADDR - FLASH_PAGE_SIZE)  // protected page
 #define FACTORY_MAGIC                       0xF00C
-#define FACTORY_VERSION                     0x01
+#define FACTORY_VERSION                     0x02
 
 
 #define INVICTUS_GREEEN "rgb(5, 170, 61)"
 #define FLAT_BLACK "rgb(36, 39,49)"
 
+/* ---- Lock bits ---- */
+#ifndef LOCKBIT_SERIAL
+#define LOCKBIT_SERIAL      (1u << 0)
+#endif
+#ifndef LOCKBIT_MODEL
+#define LOCKBIT_MODEL       (1u << 1)
+#endif
+#ifndef LOCKBIT_DOM
+#define LOCKBIT_DOM         (1u << 2)   /* optional lock for DoM */
+#endif
+
+/* ---- Dev opcodes ---- */
+#ifndef CMD_GET_DEVICE_ID
+#define CMD_GET_DEVICE_ID   0xA4  /* reply: model[INV_MODEL_MAX_LEN], serial[INV_SERIAL_MAX_LEN], optional 10 bytes "YYYY-MM-DD" */
+#endif
+#ifndef CMD_SET_DEVICE_DOM
+#define CMD_SET_DEVICE_DOM  0xA7  /* payload: 10-byte ASCII "YYYY-MM-DD" (no NUL) */
+#endif
+
+/* ---- Identity lengths (already present) ---- */
+#ifndef INV_MODEL_MAX_LEN
+#define INV_MODEL_MAX_LEN   24
+#endif
+#ifndef INV_SERIAL_MAX_LEN
+#define INV_SERIAL_MAX_LEN  24
+#endif
+
+/* ---- Date format ---- */
+#ifndef DOM_ASCII_LEN
+#define DOM_ASCII_LEN       10     /* "YYYY-MM-DD" */
+#endif
 enum
 {
     REPORT_ID_JOY = 1,
@@ -52,5 +83,8 @@ enum {
     OP_UNLOCK_FACTORY_ANCHORS = 4,
 };
 
+#ifndef CMD_GET_DEVICE_ID
+#define CMD_GET_DEVICE_ID   0xA4  /* read model/serial/[optional DoM "YYYY-MM-DD"] */
+#endif
 
 #endif 	/* __COMMON_DEFINES_H__ */

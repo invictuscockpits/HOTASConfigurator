@@ -108,6 +108,11 @@ void Developer::uiSet(const Anchors& a)
     ui->spPUA_100->setValue(a.pu40.adc100);
     ui->spPUA_75 ->setValue(a.pu40.adc75);
     ui->spPUA_50 ->setValue(a.pu40.adc50);
+
+    // Set device identification fields
+    ui->lineEdit_SerialNumber->setText(a.serialNumber);
+    ui->lineEdit_Model->setText(a.modelNumber);
+    ui->lineEdit_ManufactureDate->setText(a.manufactureDate);
 }
 
 auto Developer::uiGet() const -> Anchors
@@ -138,6 +143,10 @@ auto Developer::uiGet() const -> Anchors
     a.pu40.adc75   = (qint16)ui->spPUA_75 ->value();
     a.pu40.adc50   = (qint16)ui->spPUA_50 ->value();
 
+    // Get device identification fields
+    a.serialNumber = ui->lineEdit_SerialNumber->text();
+    a.modelNumber = ui->lineEdit_Model->text();
+    a.manufactureDate = ui->lineEdit_ManufactureDate->text();
     return a;
 }
 
@@ -175,6 +184,21 @@ QByteArray Developer::pack(const Anchors& a) const
     b[6] = char((crc >> 16) & 0xFF);
     b[7] = char((crc >> 24) & 0xFF);
 
+    // Pack device identification strings
+    auto packString = [&](const QString& str, int maxLen) {
+        QByteArray bytes = str.toUtf8();
+        // Ensure exactly maxLen bytes are added
+        for (int i = 0; i < maxLen; i++) {
+            if (i < bytes.size()) {
+                b.append(bytes[i]);
+            } else {
+                b.append(char(0));  // pad with zeros
+            }
+        }
+    };
+
+    packString(a.serialNumber, 16);
+    packString(a.modelNumber, 16);
     return b;
 }
 
@@ -182,7 +206,7 @@ bool Developer::unpack(const QByteArray& b, Anchors* out) const
 {
     if (!out) return false;
 
-    constexpr int kLen = 46;
+    constexpr int kLen = 89;  // 46 + 16 + 16 + 11 = 89
     if (b.size() < kLen) return false;
 
     const QByteArray view = b.left(kLen);  // ignore HID padding
@@ -219,6 +243,23 @@ bool Developer::unpack(const QByteArray& b, Anchors* out) const
     getTrip(&out->pd_17);
     getTrip(&out->pu25);
     getTrip(&out->pu40);
+
+    // Unpack device identification strings
+    auto getString = [&](int len) -> QString {
+        if (off + len > view.size()) return QString();
+        QByteArray bytes;
+        for (int i = 0; i < len; i++) {
+            char c = view[off + i];
+            if (c == '\0') break;  // Stop at null terminator
+            bytes.append(c);
+        }
+        off += len;  // Always advance by full length
+        return QString::fromUtf8(bytes);
+    };
+
+    out->serialNumber = getString(16);
+    out->modelNumber = getString(16);
+    out->manufactureDate = getString(11);
     return true;
 }
 

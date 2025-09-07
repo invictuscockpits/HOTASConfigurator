@@ -55,7 +55,6 @@ SOURCES += \
     reportconverter.cpp \
     stm_main.c \
     widgets/developer.cpp \
-    widgets/factory_info.cpp \
     widgets/infolabel.cpp \
     widgets/pins/pinscontroller.cpp \
     widgets/selectfolder.cpp \
@@ -103,7 +102,6 @@ HEADERS += \
     reportconverter.h \
     stm_main.h \
     widgets/developer.h \
-    widgets/factory_info.h \
     widgets/force_anchors.h \
     widgets/infolabel.h \
     widgets/pins/pinscontroller.h \

@@ -1263,7 +1263,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_9">
+  <widget class="QGroupBox" name="groupBox_DeviceIdentity">
    <property name="geometry">
     <rect>
      <x>609</x>
@@ -1273,8 +1273,68 @@
     </rect>
    </property>
    <property name="title">
-    <string>GroupBox</string>
+    <string>Device Identity</string>
    </property>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>191</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="2" column="1">
+      <widget class="QLabel" name="label_Model">
+       <property name="text">
+        <string>Model:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_SerialNumber">
+       <property name="text">
+        <string>Serial #: </string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="lineEdit_Model">
+       <property name="maxLength">
+        <number>15</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_Model_2">
+       <property name="text">
+        <string>Date of Manufacture:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLineEdit" name="lineEdit_ManufactureDate">
+       <property name="inputMethodHints">
+        <set>Qt::InputMethodHint::ImhDate</set>
+       </property>
+       <property name="maxLength">
+        <number>15</number>
+       </property>
+       <property name="placeholderText">
+        <string>YYYY-MM-DD</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="lineEdit_SerialNumber">
+       <property name="maxLength">
+        <number>15</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
  </widget>
  <resources/>

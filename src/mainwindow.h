@@ -42,6 +42,27 @@ public:
     ~MainWindow();
     void setDefaultStyleSheet();
 
+    //Force Anchor setup:
+
+    struct ForceTriplet { qint16 adc100, adc75, adc50; };
+    struct ForceAnchorsGUI {
+        quint16 magic;
+        quint8  version;
+        quint8  sealed;
+        quint32 crc32;
+        ForceTriplet rl_17;   // roll-left 17 lbf
+        ForceTriplet rr_17;   // roll-right 17 lbf
+        ForceTriplet pd_17;   // pitch-down 17 lbf
+        ForceTriplet pu25;    // pitch-up digital 25 lbf
+        ForceTriplet pu40;    // pitch-up analog 40 lbf
+        quint8   reserved[8];
+
+        // Device identification
+        QString serialNumber;
+        QString modelNumber;
+        QString manufactureDate;
+    };
+    bool readAnchorsFromDevice(ForceAnchorsGUI* out);
 signals:
     void getConfigDone(bool success);
     void sendConfigDone(bool success);
@@ -159,21 +180,7 @@ private:
     void setDeveloperMode(bool on);
     Developer* m_developer = nullptr;
 
-    //Force Anchor setup:
 
-    struct ForceTriplet { qint16 adc100, adc75, adc50; };
-    struct ForceAnchorsGUI {
-        quint16 magic;
-        quint8  version;
-        quint8  sealed;
-        quint32 crc32;
-        ForceTriplet rl_17;   // roll-left 17 lbf
-        ForceTriplet rr_17;   // roll-right 17 lbf
-        ForceTriplet pd_17;   // pitch-down 17 lbf
-        ForceTriplet pu25;    // pitch-up digital 25 lbf
-        ForceTriplet pu40;    // pitch-up analog 40 lbf
-        quint8   reserved[8];
-    };
 
     void anchorsUiSet(const ForceAnchorsGUI& a);
     ForceAnchorsGUI anchorsUiGet() const;
@@ -196,7 +203,7 @@ private:
     enum AnchorsMode { AnchorsMode_FLCS40, AnchorsMode_Digital25 };
 
     void wireForceButtons();                // find buttons in the Axes tab and connect them
-    bool readAnchorsFromDevice(ForceAnchorsGUI* out);
+
     void applyAnchorsToAxes(int percent);   // percent ∈ {100, 75, 50}
     int  pickForPercent(const ForceTriplet& t, int percent) const;
 
@@ -204,6 +211,7 @@ private:
     int         m_anchorsPercent = 100;             // last chosen % (for UI feedback, if desired)
     ForceAnchorsGUI m_cachedAnchors{};
     bool m_cachedAnchorsValid = false;
+    bool devRequestReply(quint8 op, const QByteArray& payload, QByteArray* out);
 
 
 };
