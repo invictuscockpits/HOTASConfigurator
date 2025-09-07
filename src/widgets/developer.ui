@@ -31,7 +31,7 @@
    <property name="title">
     <string>Persistent Force Anchors</string>
    </property>
-   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0,0,0">
+   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0">
     <item row="0" column="0" colspan="2">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="maximumSize">
@@ -1262,6 +1262,19 @@
      <string>Lock Force Anchors</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_9">
+   <property name="geometry">
+    <rect>
+     <x>609</x>
+     <y>199</y>
+     <width>211</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>GroupBox</string>
+   </property>
   </widget>
  </widget>
  <resources/>

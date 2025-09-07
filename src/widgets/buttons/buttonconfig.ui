@@ -19,25 +19,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QGroupBox {
-    font-weight: bold;
-    background: rgb(36, 39, 49); /* FLAT_BLACK */
-    border: 1px solid rgb(65, 66, 70); /* subtle outline */
-    border-radius: 3px;
-    margin-top: 2ex;
-    padding: 6px 0px 0px 0px;
-}
-
-QGroupBox::title {
-    color: white;
-    subcontrol-position: top center;
-    subcontrol-origin: margin;
-    left: -3px;
-    padding: -2px 0px 0px 2px;
-    background: transparent; /* or rgb(36, 39, 49) if you want solid */
-}</string>
-  </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="1,10,1" columnstretch="5,10">
    <property name="leftMargin">
     <number>6</number>
@@ -448,7 +429,7 @@ QGroupBox::title {
            <x>0</x>
            <y>0</y>
            <width>695</width>
-           <height>458</height>
+           <height>466</height>
           </rect>
          </property>
          <property name="autoFillBackground">
@@ -518,7 +499,7 @@ QGroupBox::title {
            <x>0</x>
            <y>0</y>
            <width>347</width>
-           <height>492</height>
+           <height>500</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="layoutG_PhysicalButton"/>

@@ -68,12 +68,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     gEnv.pAppSettings->beginGroup("StyleSettings");
     QString style = gEnv.pAppSettings->value("StyleSheet", "default").toString();
     gEnv.pAppSettings->endGroup();
-    if (style == "dark") {
-        ui->widget_StyleSwitch->setChecked(true);
-    } else {
-        ui->widget_StyleSwitch->setChecked(false);
-    }
-    connect(ui->widget_StyleSwitch, &SwitchButton::stateChanged, this, &AdvancedSettings::themeChanged);
+
 
 #ifndef Q_OS_WIN
     ui->text_removeName->setHidden(true);
@@ -84,7 +79,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
 
 
 
-    ui->layoutG_Lang->setAlignment(Qt::AlignCenter);
+
 }
 void AdvancedSettings::checkForUpdatesSilent()
 {
@@ -637,32 +632,14 @@ void AdvancedSettings::on_pushButton_CheckFirmware_clicked()
 
 void AdvancedSettings::readFromConfig()
 {
-    // PID
-    ui->lineEdit_VID->setText(QString::number(gEnv.pDeviceConfig->config.vid, 16).toUpper().rightJustified(4, '0'));
-    // PID
-    //ui->lineEdit_PID->setInputMask("HHHH");
-    ui->lineEdit_PID->setText(QString::number(gEnv.pDeviceConfig->config.pid, 16).toUpper().rightJustified(4, '0'));
-    // device name
-    ui->lineEdit_DeviceUSBName->setText(gEnv.pDeviceConfig->config.device_name);
+
     // usb exchange period
     ui->spinBox_USBExchangePeriod->setValue(gEnv.pDeviceConfig->config.exchange_period_ms);
 }
 
 void AdvancedSettings::writeToConfig()
 {
-    // VID
-    gEnv.pDeviceConfig->config.vid = uint16_t(ui->lineEdit_VID->text().toInt(nullptr, 16));
-    // PID
-    gEnv.pDeviceConfig->config.pid = uint16_t(ui->lineEdit_PID->text().toInt(nullptr, 16));
-    // device name
-    std::string tmp_string = ui->lineEdit_DeviceUSBName->text().toStdString();
-    for (uint i = 0; i < sizeof(gEnv.pDeviceConfig->config.device_name); i++) {
-        if (i < tmp_string.size()) {
-            gEnv.pDeviceConfig->config.device_name[i] = tmp_string[i];
-        } else {
-            gEnv.pDeviceConfig->config.device_name[i] = '\0';
-        }
-    }
+
     // usb exchange period
     gEnv.pDeviceConfig->config.exchange_period_ms = uint8_t(ui->spinBox_USBExchangePeriod->value());
 }

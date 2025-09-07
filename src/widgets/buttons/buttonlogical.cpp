@@ -171,7 +171,11 @@ bool ButtonLogical::eventFilter(QObject *obj, QEvent *event)
     Q_UNUSED(obj)
     if (m_autoPhysButEnabled) {
         if (event->type() == QEvent::FocusIn) {
-            ui->spinBox_PhysicalButtonNumber->setStyleSheet("background-color: rgba(0, 120, 215, 200); color: rgb(255, 255, 255)");
+            ui->spinBox_PhysicalButtonNumber->setStyleSheet(
+
+                "color: palette(highlighted-text);"
+                "border: 1px solid palette(highlight);"
+                );
             m_currentFocus = m_buttonIndex;
         } else if (event->type() == QEvent::FocusOut){
             ui->spinBox_PhysicalButtonNumber->setStyleSheet("");

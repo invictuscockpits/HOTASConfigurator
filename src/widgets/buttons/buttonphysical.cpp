@@ -7,7 +7,7 @@ const QString ButtonPhysical::m_whiteStyleOff = QStringLiteral(R"(
         border-radius: 13px;
         min-height: 26px;
         min-width: 26px;
-        background-color: rgb(90, 90, 90);
+        background-color: rgb(39, 39, 49);
         color: rgb(220, 221, 222);
     }
 )");

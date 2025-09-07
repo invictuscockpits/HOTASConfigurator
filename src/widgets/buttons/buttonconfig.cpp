@@ -3,6 +3,7 @@
 #include <QTimer>
 #include <QSettings>
 #include <QDebug>
+#include <QScrollArea>
 
 #ifdef DYNAMIC_CREATION
     #include <QScrollArea>

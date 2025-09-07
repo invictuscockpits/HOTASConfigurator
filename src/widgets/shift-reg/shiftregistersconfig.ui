@@ -46,6 +46,9 @@
         <height>591</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: transparent;</string>
+      </property>
       <layout class="QVBoxLayout" name="layoutV_ShiftRegisters">
        <property name="leftMargin">
         <number>0</number>

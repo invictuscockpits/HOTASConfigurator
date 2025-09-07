@@ -5,6 +5,7 @@
 #include <QPalette>
 #include <QIcon>
 #include <QDebug>
+#include <QScrollArea>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -40,8 +41,8 @@ void MainWindow::themeChanged(bool /*dark*/)
     QPalette pal;
 
     // Window / Base family
-    pal.setColor(QPalette::Window,           QColor(94, 97, 105));    // FS36321 base window gray
-    pal.setColor(QPalette::Button,           QColor(36, 39, 49, 80)); // semi over Window
+    pal.setColor(QPalette::Window,           QColor(157, 162, 168));    // FS36321 base window gray
+    pal.setColor(QPalette::Button,           QColor(36,39,49,80)); // semi over Window
     pal.setColor(QPalette::Disabled, QPalette::Button, QColor(36, 39, 49, 80));
 
     pal.setColor(QPalette::Base,             QColor(36, 39, 49));     // FLAT_BLACK as input backgrounds
@@ -75,14 +76,49 @@ void MainWindow::themeChanged(bool /*dark*/)
     QToolTip::setPalette(pal);
     qApp->setPalette(pal);
 
-    // No per-widget setStyleSheet calls.
-    // If anything in the UI still looks “immune”, it means that widget (or a parent)
-    // still has a local stylesheet set somewhere; clear it in Designer or in code.
+    /*qApp->setStyleSheet(qApp->styleSheet() + R"(
 
-    // Set the dark icon variant; no stylesheet needed
+        QGroupBox {
+            background-color: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            margin-top: 1.3em;
+
+        }
+
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            left: 8px;
+            padding: 0 4px;
+            background-color: transparent;
+            color: palette(window-text);
+        }
+)");*/
+    {
+        const char* kScrollBg = "background-color: transparent;";
+
+
+        for (QScrollArea* sa : this->findChildren<QScrollArea*>()) {
+
+            if (QWidget* contents = sa->widget()) {
+                contents->setAttribute(Qt::WA_StyledBackground, true);
+                contents->setAutoFillBackground(true);
+                contents->setStyleSheet(kScrollBg);
+            }
+
+            if (QWidget* vp = sa->viewport()) {
+                vp->setAttribute(Qt::WA_StyledBackground, true);
+                vp->setAutoFillBackground(true);
+                vp->setStyleSheet(kScrollBg);
+            }
+        }
+    }
+
+
+
+
+
     ui->pushButton_Wiki->setIcon(QIcon(":/Images/ST_wiki_dark.png"));
-
-    // Sync monochrome icons to current text color
     updateColor();
 
 #ifdef Q_OS_WIN

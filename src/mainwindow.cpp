@@ -12,6 +12,8 @@
 #include <QJsonArray>
 #include <QShowEvent>
 #include <QSignalBlocker>
+#include <QScrollArea>
+#include <QAbstractScrollArea>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -46,10 +48,49 @@
 #include "configmanager.h"
 #include <QDebug>
 
+static void forceTransparentScrolls(QWidget* root) {
+    // All QAbstractScrollArea-derived widgets under 'root'
+    const auto areas = root->findChildren<QAbstractScrollArea*>();
+    for (auto* a : areas) {
+        a->setFrameShape(QFrame::NoFrame);
+        a->setAutoFillBackground(false);
+        a->setAttribute(Qt::WA_NoSystemBackground, true);
+
+        QWidget* vp = a->viewport();
+        if (vp) {
+            vp->setAttribute(Qt::WA_StyledBackground, true);
+            vp->setAutoFillBackground(false);
+            vp->setAttribute(Qt::WA_NoSystemBackground, true);
+            vp->setAttribute(Qt::WA_OpaquePaintEvent, false);
+
+            // palette → fully transparent
+            QPalette p = vp->palette();
+            p.setBrush(QPalette::Base,   QBrush(QColor(0,0,0,0)));
+            p.setBrush(QPalette::Window, QBrush(QColor(0,0,0,0)));
+            vp->setPalette(p);
+
+            // stylesheet → transparent as a backstop
+            vp->setStyleSheet("background:transparent; background-color: rgba(0,0,0,0);");
+        }
+
+        // Only QScrollArea has a content widget; make that transparent too.
+        if (auto* sa = qobject_cast<QScrollArea*>(a)) {
+            if (QWidget* content = sa->widget()) {
+                content->setAttribute(Qt::WA_StyledBackground, true);
+                content->setAutoFillBackground(false);
+                content->setAttribute(Qt::WA_NoSystemBackground, true);
+                content->setAttribute(Qt::WA_OpaquePaintEvent, false);
+                content->setStyleSheet("background:transparent; background-color: rgba(0,0,0,0);");
+            }
+        }
+    }
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_deviceChanged(false)
+
 //    , m_thread(new QThread)
 //    , m_hidDeviceWorker(new HidDevice())
 //    , m_threadGetSendConfig(new QThread)
@@ -71,7 +112,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-
+    forceTransparentScrolls(this);
 
     qDebug() << "Qt version:" << qVersion();
     qDebug() << "SSL support:" << QSslSocket::supportsSsl();
@@ -573,6 +614,8 @@ MainWindow::MainWindow(QWidget *parent)
     }*/
 
     themeChanged(true); // Force dark mode
+
+
 
     m_thread->start();
 
@@ -2113,7 +2156,7 @@ QIcon MainWindow::pixmapToIcon(QPixmap pixmap, const QColor &color)
 void MainWindow::updateColor()
 {
     QColor col = QApplication::palette().color(QPalette::Text);
-    ui->toolButton_ConfigsDir->setIcon(pixmapToIcon(QPixmap(":/Images/setings.png"), col));
+    ui->toolButton_ConfigsDir->setIcon(pixmapToIcon(QPixmap(":/Images/settings.png"), col));
 }
 
 
