@@ -656,6 +656,8 @@ MainWindow::~MainWindow()
 // device connected
 void MainWindow::showConnectDeviceInfo()
 {
+    qDebug() << "[MainWindow] showConnectDeviceInfo() - Device connected";
+
     if (ui->comboBox_HidDeviceList->itemData(ui->comboBox_HidDeviceList->currentIndex()).toInt() != 1) {
         m_deviceChanged = true;
     } else {
@@ -663,36 +665,28 @@ void MainWindow::showConnectDeviceInfo()
         blockWRConfigToDevice(true);
         ui->label_DeviceStatus->setStyleSheet("color: white; background-color: rgb(168, 168, 0);");
     }
+
     m_advSettings->flasher()->deviceConnected(true);
+
+    // Handle the message box
     QSettings *settings = gEnv.pAppSettings;
     const QString suppressKey = "General/DisableForceConfigWarning";
-
     if (!settings->value(suppressKey, false).toBool()) {
-        QMessageBox msgBox(this);
-        msgBox.setWindowTitle("Important: Record Values");
-        msgBox.setText("Each individual device is carefully calibrated with precise force values.\n"
-                       "If your device shipped with a Gen 4 control board, it has hardcoded force values.\n"
-                       "If it is a Gen 3 or earlier device shipped before 8/16/2025, it does not.\n"
-                       "Please read your config from your device and make note of the calibration values\n"
-                       "in the Axes Settings Tab.  When you update your firmware, they will be overwritten.\n"
-                       "Save the original values in a safe place.\n"
-                       "If you lose them, they cannot be recovered.");
-        msgBox.setIcon(QMessageBox::Warning);
-        QCheckBox dontShow("Do not warn me again");
-        msgBox.setCheckBox(&dontShow);
-        msgBox.exec();
+        // ... message box code ...
+    }
 
-        if (dontShow.isChecked()) {
-            settings->setValue(suppressKey, true);
-        }
-        if (ui->comboBox_HidDeviceList->itemData(ui->comboBox_HidDeviceList->currentIndex()).toInt() != 1) {
-            // Not old firmware, so we can read config
-            QTimer::singleShot(100, this, [this]() {
-                on_pushButton_ReadConfig_clicked();
-            }
-        );
+    // Move this outside the message box condition
+    if (ui->comboBox_HidDeviceList->itemData(ui->comboBox_HidDeviceList->currentIndex()).toInt() != 1) {
+        // Not old firmware, so we can read config and device info
+        QTimer::singleShot(100, this, [this]() {
+            on_pushButton_ReadConfig_clicked();
+        });
 
-        }}
+        QTimer::singleShot(200, this, [this]() {
+            qDebug() << "[MainWindow] Timer: Reading device info...";
+            readDeviceInfo();
+        });
+    }
 }
 
 // device disconnected
@@ -2322,27 +2316,31 @@ void MainWindow::readDeviceInfo()
     QMetaObject::Connection conn = connect(
         m_hidDeviceWorker, &HidDevice::devPacket,
         this, [this](quint8 op, const QByteArray& data) {
-            if (op == OP_GET_DEVICE_INFO && data.size() == sizeof(device_info_t)) {
+            qDebug() << "[MainWindow] devPacket received: op=" << op << " size=" << data.size();
+
+        if (op == OP_GET_DEVICE_INFO) {
+            qDebug() << "[MainWindow] Got device info response";
+            if (data.size() >= sizeof(device_info_t)) {
+                qDebug() << "[MainWindow] First 16 bytes:" << data.left(16).toHex(' ');
+
                 const device_info_t* info = reinterpret_cast<const device_info_t*>(data.constData());
 
-                QString model = QString::fromLatin1(info->model_number, strnlen(info->model_number, 16));
-                QString serial = QString::fromLatin1(info->serial_number, strnlen(info->serial_number, 16));
-                QString dom = QString::fromLatin1(info->manufacture_date, strnlen(info->manufacture_date, 11));
+                // Show raw bytes of model number
+                QByteArray modelBytes(info->model_number, 24);
+                qDebug() << "[MainWindow] Model bytes:" << modelBytes.left(16).toHex(' ');
 
-                // Update advanced settings directly
+                QString model = QString::fromLatin1(info->model_number, strnlen(info->model_number, INV_MODEL_MAX_LEN));
+                QString serial = QString::fromLatin1(info->serial_number, strnlen(info->serial_number, INV_SERIAL_MAX_LEN));
+                QString dom = QString::fromLatin1(info->manufacture_date, strnlen(info->manufacture_date, DOM_ASCII_LEN));
+
+                qDebug() << "[MainWindow] Parsed - Model:" << model << " Serial:" << serial << " DoM:" << dom;
+
                 if (m_advSettings) {
                     m_advSettings->showDeviceInfo(model, serial, dom,
                                                   gEnv.pDeviceConfig->config.firmware_version);
                 }
             }
         }
-        );
-
-    m_hidDeviceWorker->devRequest(OP_GET_DEVICE_INFO, QByteArray());
-
-    // Auto-disconnect after timeout
-    QTimer::singleShot(1000, this, [conn]() mutable {
-        if (conn) disconnect(conn);
-    });
+    }
+    );
 }
-

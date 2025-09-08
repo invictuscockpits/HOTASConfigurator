@@ -397,16 +397,13 @@ typedef struct {
 } force_factory_anchors_t;
 /* Device identification info - stored separately from force anchors */
 typedef struct {
-    uint16_t magic;              /* 0xDEF0 - different magic */
-    uint8_t  version;            /* 1 */
-    uint8_t  locked;             /* 1 = locked against writes */
-
-    char serial_number[16];      /* Device serial number */
-    char model_number[16];       /* Model/part number */
-    char manufacture_date[11];   /* YYYY-MM-DD */
-
-    uint8_t  reserved[9];        /* Future expansion */
-    uint32_t crc32;              /* CRC of entire struct */
+    uint16_t magic;
+    uint8_t  version;
+    uint8_t  locked;
+    uint32_t crc32;
+    char     model_number[INV_MODEL_MAX_LEN];      // 16 bytes
+    char     serial_number[INV_SERIAL_MAX_LEN];    // 16 bytes
+    char     manufacture_date[DOM_ASCII_LEN + 1];  // 11 bytes
 } device_info_t;
 
 /******************** RUNTIME FORCE PROFILE (safe to reset) *******************

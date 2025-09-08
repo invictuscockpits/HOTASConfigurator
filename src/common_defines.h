@@ -25,26 +25,20 @@
 #define AXIS_CENTER_VALUE					(AXIS_MIN_VALUE + (AXIS_MAX_VALUE-AXIS_MIN_VALUE)/2)
 #define AXIS_FULLSCALE						(AXIS_MAX_VALUE - AXIS_MIN_VALUE + 1)
 
-#define CONFIG_ADDR							(0x0800FC00)
+#define CONFIG_ADDR													(0x0800FC00)
 #define FLASH_PAGE_SIZE                     0x400
 #define FACTORY_ADDR                        (CONFIG_ADDR - FLASH_PAGE_SIZE)  // protected page
 #define FACTORY_MAGIC                       0xF00C
-#define FACTORY_VERSION                     0x02
+#define FACTORY_VERSION                     0x02 //increase with major changes to protect older versions
+
+#define DEVICE_INFO_OFFSET                  128  // 128 bytes offset (leaving room for force anchors to grow to 128 bytes)
+#define DEVICE_INFO_ADDR                    (FACTORY_ADDR + DEVICE_INFO_OFFSET)
+#define DEVICE_INFO_MAGIC                   0xDEF0
 
 
-#define INVICTUS_GREEEN "rgb(5, 170, 61)"
-#define FLAT_BLACK "rgb(36, 39,49)"
-
-/* ---- Lock bits ---- */
-#ifndef LOCKBIT_SERIAL
-#define LOCKBIT_SERIAL      (1u << 0)
-#endif
-#ifndef LOCKBIT_MODEL
-#define LOCKBIT_MODEL       (1u << 1)
-#endif
-#ifndef LOCKBIT_DOM
-#define LOCKBIT_DOM         (1u << 2)   /* optional lock for DoM */
-#endif
+#define INV_SERIAL_MAX_LEN  24
+#define INV_MODEL_MAX_LEN   24
+#define DOM_ASCII_LEN       10
 
 /* ---- Dev opcodes ---- */
 #ifndef CMD_GET_DEVICE_ID
@@ -54,18 +48,7 @@
 #define CMD_SET_DEVICE_DOM  0xA7  /* payload: 10-byte ASCII "YYYY-MM-DD" (no NUL) */
 #endif
 
-/* ---- Identity lengths (already present) ---- */
-#ifndef INV_MODEL_MAX_LEN
-#define INV_MODEL_MAX_LEN   24
-#endif
-#ifndef INV_SERIAL_MAX_LEN
-#define INV_SERIAL_MAX_LEN  24
-#endif
 
-/* ---- Date format ---- */
-#ifndef DOM_ASCII_LEN
-#define DOM_ASCII_LEN       10     /* "YYYY-MM-DD" */
-#endif
 enum
 {
     REPORT_ID_JOY = 1,
@@ -80,7 +63,7 @@ enum {
     OP_GET_FACTORY_ANCHORS  = 1,
     OP_SET_FACTORY_ANCHORS  = 2,
     OP_LOCK_FACTORY_ANCHORS = 3,
-    OP_UNLOCK_FACTORY_ANCHORS = 4,
+    //OP_UNLOCK_FACTORY_ANCHORS = 4,
     // New device info operations
     OP_GET_DEVICE_INFO = 5,
     OP_SET_DEVICE_INFO = 6,

@@ -84,7 +84,6 @@ bool DeviceInfo::readFromDevice(hid_device *dev)
 bool DeviceInfo::writeToDevice(hid_device *dev, const QString &model, const QString &serial, const QString &dom)
 {
     if (!dev) return false;
-
     if (m_locked) {
         emit errorOccurred("Device info is locked and cannot be modified");
         return false;
@@ -94,10 +93,23 @@ bool DeviceInfo::writeToDevice(hid_device *dev, const QString &model, const QStr
     device_info_t info;
     memset(&info, 0, sizeof(info));
 
-    // Copy strings (ensure null termination)
-    strncpy(info.model_number, model.toLatin1().data(), INV_MODEL_MAX_LEN - 1);
-    strncpy(info.serial_number, serial.toLatin1().data(), INV_SERIAL_MAX_LEN - 1);
-    strncpy(info.manufacture_date, dom.toLatin1().data(), DOM_ASCII_LEN - 1);
+    // Set header fields
+    info.magic = 0xDEF0;
+    info.version = 1;
+    info.locked = 0;
+    info.crc32 = 0;
+
+    // Safe string copying
+    QByteArray modelBytes = model.toLatin1();
+    QByteArray serialBytes = serial.toLatin1();
+    QByteArray domBytes = dom.toLatin1();
+
+    memcpy(info.model_number, modelBytes.constData(),
+           qMin(modelBytes.size(), static_cast<int>(INV_MODEL_MAX_LEN - 1)));
+    memcpy(info.serial_number, serialBytes.constData(),
+           qMin(serialBytes.size(), static_cast<int>(INV_SERIAL_MAX_LEN - 1)));
+    memcpy(info.manufacture_date, domBytes.constData(),
+           qMin(domBytes.size(), static_cast<int>(DOM_ASCII_LEN)));
 
     // Send to device
     uint8_t response;

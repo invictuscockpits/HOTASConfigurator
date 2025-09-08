@@ -501,6 +501,13 @@ void Developer::onWriteDeviceInfo()
     qDebug() << "  - Serial:" << serial;
     qDebug() << "  - Model:" << model;
     qDebug() << "  - Date:" << date;
+    // Debug: show structure offsets
+    qDebug() << "  - magic offset:" << offsetof(device_info_t, magic);
+    qDebug() << "  - version offset:" << offsetof(device_info_t, version);
+    qDebug() << "  - locked offset:" << offsetof(device_info_t, locked);
+    qDebug() << "  - crc32 offset:" << offsetof(device_info_t, crc32);
+    qDebug() << "  - model offset:" << offsetof(device_info_t, model_number);
+    qDebug() << "  - serial offset:" << offsetof(device_info_t, serial_number);
 
     // Validate date format if provided
     if (!date.isEmpty() && !QRegExp("\\d{4}-\\d{2}-\\d{2}").exactMatch(date)) {
