@@ -42,7 +42,7 @@ void MainWindow::themeChanged(bool /*dark*/)
 
     // Window / Base family
     pal.setColor(QPalette::Window,           QColor(157, 162, 168));    // FS36321 base window gray
-    pal.setColor(QPalette::Button,           QColor(36,39,49,80)); // semi over Window
+    pal.setColor(QPalette::Button,           QColor(50,53,63,80)); // semi over Window
     pal.setColor(QPalette::Disabled, QPalette::Button, QColor(36, 39, 49, 80));
 
     pal.setColor(QPalette::Base,             QColor(36, 39, 49));     // FLAT_BLACK as input backgrounds
@@ -50,9 +50,10 @@ void MainWindow::themeChanged(bool /*dark*/)
     pal.setColor(QPalette::AlternateBase,    QColor(66, 66, 66));     // tables/alternating rows
 
     // Frames / bevels
-    pal.setColor(QPalette::Dark,             QColor(66, 66, 66));
-    pal.setColor(QPalette::Light,            QColor(66, 66, 66));
-    pal.setColor(QPalette::Shadow,           QColor(20, 20, 20));
+    pal.setColor(QPalette::Dark,             QColor(30, 30, 30));    // Much darker
+    pal.setColor(QPalette::Light,            QColor(40, 40, 40));    // Darker
+    pal.setColor(QPalette::Shadow,           QColor(10, 10, 10));    // Almost black
+    pal.setColor(QPalette::Mid,              QColor(35, 35, 35));    // Add mid tone
 
     // Text / links / selection
     pal.setColor(QPalette::Text,             QColor(255, 255, 255));
@@ -76,11 +77,12 @@ void MainWindow::themeChanged(bool /*dark*/)
     QToolTip::setPalette(pal);
     qApp->setPalette(pal);
 
-    /*qApp->setStyleSheet(qApp->styleSheet() + R"(
+    qApp->setStyleSheet(qApp->styleSheet() + R"(
+
 
         QGroupBox {
             background-color: transparent;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.30);
             margin-top: 1.3em;
 
         }
@@ -93,31 +95,78 @@ void MainWindow::themeChanged(bool /*dark*/)
             background-color: transparent;
             color: palette(window-text);
         }
-)");*/
-    {
-        const char* kScrollBg = "background-color: transparent;";
 
+        QGroupBox#groupBox_DeviceSettings {
+            background-color: rgb(57, 60, 70);
+            border: 1px solid rgba(255,255,255,0.25);
+            margin-top: -.5em;
+        }
+
+
+        QComboBox {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 4px;
+        }
+
+        QComboBox:hover {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        QComboBox:focus {
+            background-color: transparent;
+            border: 1px solid rgb(5, 170, 61);  /* INVICTUS GREEN */
+        }
+
+        QComboBox QAbstractItemView {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgb(57, 60, 70);  /* Dropdown list background */
+            selection-background-color: rgb(5, 170, 61);  /* INVICTUS GREEN selection */
+        }
+        QPushButton {
+            background-color: rgb(50,53,63);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 4px;
+        }
+
+        QPushButton:hover {
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        QPushButton:pressed, QPushButton:checked {
+            border: 1px solid rgb(5, 170, 61);  /* INVICTUS GREEN */
+        }
+
+        /* Remove borders from scroll areas */
+        QScrollArea {
+            border: none;
+        }
+
+
+)");
+    {
+        // Set scroll areas to match tab widget background color
+        const char* kScrollBg = "background-color: rgb(57, 60, 70);"; // Same as tab background
 
         for (QScrollArea* sa : this->findChildren<QScrollArea*>()) {
+            // Set the scroll area itself
+            sa->setStyleSheet("QScrollArea { background-color: rgb(57, 60, 70); border: none; }");
 
+            // Don't style the contents widget - let child widgets use their own styles
             if (QWidget* contents = sa->widget()) {
-                contents->setAttribute(Qt::WA_StyledBackground, true);
-                contents->setAutoFillBackground(true);
-                contents->setStyleSheet(kScrollBg);
+                contents->setAttribute(Qt::WA_StyledBackground, false);
+                contents->setAutoFillBackground(false);
+                contents->setStyleSheet(""); // Remove any stylesheet
             }
 
+            // Style only the viewport background
             if (QWidget* vp = sa->viewport()) {
-                vp->setAttribute(Qt::WA_StyledBackground, true);
                 vp->setAutoFillBackground(true);
                 vp->setStyleSheet(kScrollBg);
             }
         }
     }
-
-
-
-
-
     ui->pushButton_Wiki->setIcon(QIcon(":/Images/ST_wiki_dark.png"));
     updateColor();
 

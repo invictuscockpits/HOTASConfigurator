@@ -77,7 +77,11 @@ private:
     QString m_default_text;
     QString m_default_style;
     DeviceInfo *m_deviceInfo;
-
+    // Device info storage
+    QString m_deviceModel;
+    QString m_deviceSerial;
+    QString m_deviceDoM;
+    QString m_deviceFwVersion;
 
 public slots:
     void showDeviceInfo(const QString& model,

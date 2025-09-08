@@ -36,17 +36,10 @@
 #define DEVICE_INFO_MAGIC                   0xDEF0
 
 
-#define INV_SERIAL_MAX_LEN  24
-#define INV_MODEL_MAX_LEN   24
+#define INV_SERIAL_MAX_LEN  16
+#define INV_MODEL_MAX_LEN   16
 #define DOM_ASCII_LEN       10
 
-/* ---- Dev opcodes ---- */
-#ifndef CMD_GET_DEVICE_ID
-#define CMD_GET_DEVICE_ID   0xA4  /* reply: model[INV_MODEL_MAX_LEN], serial[INV_SERIAL_MAX_LEN], optional 10 bytes "YYYY-MM-DD" */
-#endif
-#ifndef CMD_SET_DEVICE_DOM
-#define CMD_SET_DEVICE_DOM  0xA7  /* payload: 10-byte ASCII "YYYY-MM-DD" (no NUL) */
-#endif
 
 
 enum
@@ -69,8 +62,5 @@ enum {
     OP_SET_DEVICE_INFO = 6,
 };
 
-#ifndef CMD_GET_DEVICE_ID
-#define CMD_GET_DEVICE_ID   0xA4  /* read model/serial/[optional DoM "YYYY-MM-DD"] */
-#endif
 
 #endif 	/* __COMMON_DEFINES_H__ */

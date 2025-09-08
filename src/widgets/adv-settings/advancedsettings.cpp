@@ -54,10 +54,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
 {
     ui->setupUi(this);
 
-    qDebug() << "Qt" << qVersion()
-             << "supportsSsl:" << QSslSocket::supportsSsl()
-             << "built:" << QSslSocket::sslLibraryBuildVersionString()
-             << "loaded:" << QSslSocket::sslLibraryVersionString();
+
 
     m_flasher = new Flasher(this);
     ui->layoutH_Flasher->addWidget(m_flasher);
@@ -77,6 +74,14 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     ui->line_DeviceModel->setReadOnly(true);
     ui->line_DeviceSerial->setReadOnly(true);
     ui->line_DeviceDoM->setReadOnly(true);
+
+    // Apply stored device info if any
+    if (!m_deviceModel.isEmpty() && ui->line_DeviceModel) {
+        ui->line_DeviceModel->setText(m_deviceModel);
+        ui->line_DeviceSerial->setText(m_deviceSerial);
+        ui->line_DeviceDoM->setText(m_deviceDoM);
+        ui->line_DeviceFwVersion->setText(m_deviceFwVersion);
+    }
 
 #ifndef Q_OS_WIN
     ui->text_removeName->setHidden(true);
@@ -723,7 +728,7 @@ void AdvancedSettings::applyDeviceIdentity(const params_report_t& r)
         const QString s = QString("%1").arg(v, 4, 16, QChar('0')).toUpper(); // "2121"
         ui->line_DeviceFwVersion->setText(
             (s.size() >= 4)
-                ? QStringLiteral("v%1.%2.b%3").arg(s[0]).arg(s[1]).arg(s[2]).arg(s[3])
+                ? QStringLiteral("v%1.%2.%3.b%4").arg(s[0]).arg(s[1]).arg(s[2]).arg(s[3])
                 : QString() /* unexpected */);
     }
 
@@ -732,18 +737,24 @@ void AdvancedSettings::applyDeviceIdentity(const params_report_t& r)
         ui->line_DeviceDoM->clear();
 }
 void AdvancedSettings::showDeviceInfo(const QString& model,
-                                      const QString& serial,
-                                      const QString& domISO,
-                                      quint16 fwRaw)
+                                     const QString& serial,
+                                     const QString& domISO,
+                                     quint16 fwRaw)
 {
-    if (ui->line_DeviceModel)  ui->line_DeviceModel->setText(model);
-    if (ui->line_DeviceSerial) ui->line_DeviceSerial->setText(serial);
-    if (ui->line_DeviceDoM)    ui->line_DeviceDoM->setText(domISO);
+    // Always store the values
+    m_deviceModel = model;
+    m_deviceSerial = serial;
+    m_deviceDoM = domISO;
 
-    if (ui->line_DeviceFwVersion) {
-        const QString s = QString("%1").arg(fwRaw, 4, 16, QChar('0')).toUpper(); // "2121"
-        ui->line_DeviceFwVersion->setText(
-            (s.size() >= 3) ? QStringLiteral("v%1.%2.%3").arg(s[0]).arg(s[1]).arg(s[2])
-                            : QString() );
+    const QString s = QString("%1").arg(fwRaw, 4, 16, QChar('0')).toUpper();
+    m_deviceFwVersion = (s.size() >= 4) ? QStringLiteral("v%1.%2.%3.b%4").arg(s[0]).arg(s[1]).arg(s[2]).arg(s[3])
+                                        : QString();
+
+    // Update UI if it exists
+    if (ui->line_DeviceModel) {
+        ui->line_DeviceModel->setText(m_deviceModel);
+        ui->line_DeviceSerial->setText(m_deviceSerial);
+        ui->line_DeviceDoM->setText(m_deviceDoM);
+        ui->line_DeviceFwVersion->setText(m_deviceFwVersion);
     }
 }

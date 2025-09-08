@@ -16,9 +16,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background: transparent</string>
-  </property>
   <layout class="QVBoxLayout" name="layoutV_Axes">
    <property name="spacing">
     <number>6</number>

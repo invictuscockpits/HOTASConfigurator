@@ -20,7 +20,7 @@
    <string notr="true">FreeJoy QtConfigurator</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="layoutG_MainLayout" rowstretch="10,1" columnstretch="1,5">
+   <layout class="QGridLayout" name="layoutG_MainLayout" rowstretch="10,0" columnstretch="1,0">
     <property name="leftMargin">
      <number>20</number>
     </property>
@@ -36,313 +36,21 @@
     <property name="spacing">
      <number>12</number>
     </property>
-    <item row="1" column="0" colspan="2">
-     <layout class="QVBoxLayout" name="layoutV_DebugWindow">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-     </layout>
-    </item>
-    <item row="0" column="1">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>87</height>
-       </size>
-      </property>
-      <property name="baseSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="currentIndex">
-       <number>4</number>
-      </property>
-      <widget class="QWidget" name="tab_PinConfig">
-       <attribute name="title">
-        <string> Pin Settings</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabPinConfig">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>6</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_ButtonConfig">
-       <attribute name="title">
-        <string> Button Settings</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabButtonConfig">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>6</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_AxesConfig">
-       <attribute name="title">
-        <string> Axes Settings</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabAxesConfig">
-        <property name="spacing">
-         <number>6</number>
-        </property>
-        <property name="leftMargin">
-         <number>6</number>
-        </property>
-        <property name="topMargin">
-         <number>6</number>
-        </property>
-        <property name="rightMargin">
-         <number>6</number>
-        </property>
-        <property name="bottomMargin">
-         <number>6</number>
-        </property>
-        <item>
-         <widget class="QFrame" name="frame_ForceValues">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>87</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>0</number>
-          </property>
-          <widget class="QGroupBox" name="groupBox_ForceAnchors">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>0</y>
-             <width>391</width>
-             <height>41</height>
-            </rect>
-           </property>
-           <property name="title">
-            <string>Proportional Force Scaling</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <property name="topMargin">
-             <number>2</number>
-            </property>
-            <property name="bottomMargin">
-             <number>2</number>
-            </property>
-            <item row="0" column="2">
-             <widget class="QRadioButton" name="radio_Anchor50">
-              <property name="text">
-               <string>50% FLCS</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="radio_Anchor100">
-              <property name="text">
-               <string>Full FLCS Force</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QRadioButton" name="radio_Anchor75">
-              <property name="text">
-               <string>75% FLCS</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QGroupBox" name="groupBox_FlcsMode">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>0</y>
-             <width>201</width>
-             <height>41</height>
-            </rect>
-           </property>
-           <property name="title">
-            <string>FLCS Mode</string>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <property name="topMargin">
-             <number>2</number>
-            </property>
-            <property name="bottomMargin">
-             <number>2</number>
-            </property>
-            <item>
-             <widget class="QRadioButton" name="radioButton_2">
-              <property name="text">
-               <string>Analog</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="radioButton">
-              <property name="text">
-               <string>Digital</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_AxesCurves">
-       <attribute name="title">
-        <string> Axes Curves </string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabAxesCurvesConfig">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>6</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_ShiftRegisters">
-       <attribute name="title">
-        <string> Shift Registers </string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabShiftRegistersConfig">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>6</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_Encoders">
-       <attribute name="title">
-        <string> Encoders</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabEncodersConfig">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>6</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_LED">
-       <attribute name="title">
-        <string> LED/PWM </string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabLedConfig">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>6</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_AdvancedSettings">
-       <attribute name="title">
-        <string> Advanced Settings </string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabAdvSettings">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>6</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_Developer">
-       <attribute name="title">
-        <string> Developer Settings</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="layoutV_tabDeveloper"/>
-      </widget>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_DeviceSettings">
       <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>555</height>
+       </size>
+      </property>
+      <property name="baseSize">
        <size>
         <width>0</width>
         <height>0</height>
@@ -425,7 +133,8 @@
             <bool>false</bool>
            </property>
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">background-color: none;
+border: none;</string>
            </property>
            <property name="text">
             <string/>
@@ -821,6 +530,377 @@
         </spacer>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <layout class="QVBoxLayout" name="layoutV_DebugWindow">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <widget class="QFrame" name="frame">
+      <property name="minimumSize">
+       <size>
+        <width>925</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>950</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame {
+    background-color: rgb(57, 60, 70);
+    border: none;
+}
+
+
+QFrame QTabBar::tab {
+            min-width: 120px;  /* Minimum width */
+            max-width: 120px;  /* Maximum width */
+  
+        }
+
+/* Selected tab */
+QFrame QTabBar::tab:selected {
+    background-color: rgb(70, 73, 83);  /* Slightly lighter */
+    border-bottom: 3px solid rgb(5, 170, 61);  /* INVICTUS GREEN underline */
+    padding-bottom: 5px;  /* Adjust for border */
+}
+
+/* Hover effect */
+QFrame QTabBar::tab:hover:!selected {
+    background-color: rgb(65, 68, 78);
+}
+
+
+
+
+/* Tab widget content area */
+QFrame QTabWidget &gt; QWidget {
+    background-color: rgb(57, 60, 70);
+}</string>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Plain</enum>
+      </property>
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>911</width>
+         <height>518</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>87</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>555</height>
+        </size>
+       </property>
+       <property name="currentIndex">
+        <number>4</number>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>16</height>
+        </size>
+       </property>
+       <widget class="QWidget" name="tab_PinConfig">
+        <attribute name="title">
+         <string> Pin Settings</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabPinConfig">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_ButtonConfig">
+        <attribute name="title">
+         <string> Button Settings</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabButtonConfig">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_AxesConfig">
+        <attribute name="title">
+         <string> Axes Settings</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabAxesConfig">
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <property name="leftMargin">
+          <number>6</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>6</number>
+         </property>
+         <property name="bottomMargin">
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QFrame" name="frame_ForceValues">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>87</height>
+            </size>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Shape::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Plain</enum>
+           </property>
+           <property name="lineWidth">
+            <number>0</number>
+           </property>
+           <widget class="QGroupBox" name="groupBox_ForceAnchors">
+            <property name="geometry">
+             <rect>
+              <x>240</x>
+              <y>0</y>
+              <width>391</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>Proportional Force Scaling</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <item row="0" column="2">
+              <widget class="QRadioButton" name="radio_Anchor50">
+               <property name="text">
+                <string>50% FLCS</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QRadioButton" name="radio_Anchor100">
+               <property name="text">
+                <string>Full FLCS Force</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="radio_Anchor75">
+               <property name="text">
+                <string>75% FLCS</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QGroupBox" name="groupBox_FlcsMode">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>201</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>FLCS Mode</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="radioButton_2">
+               <property name="text">
+                <string>Analog</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButton">
+               <property name="text">
+                <string>Digital</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_AxesCurves">
+        <attribute name="title">
+         <string> Axes Curves </string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabAxesCurvesConfig">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_ShiftRegisters">
+        <attribute name="title">
+         <string> Shift Registers </string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabShiftRegistersConfig">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_Encoders">
+        <attribute name="title">
+         <string> Encoders</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabEncodersConfig">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_LED">
+        <attribute name="title">
+         <string> LED/PWM </string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabLedConfig">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_AdvancedSettings">
+        <attribute name="title">
+         <string> Advanced Settings </string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabAdvSettings">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_Developer">
+        <attribute name="title">
+         <string> Developer Settings</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="layoutV_tabDeveloper"/>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>

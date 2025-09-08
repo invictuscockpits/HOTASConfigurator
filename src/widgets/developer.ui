@@ -16,9 +16,9 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>19</x>
+     <x>0</x>
      <y>9</y>
-     <width>571</width>
+     <width>621</width>
      <height>381</height>
     </rect>
    </property>
@@ -36,7 +36,7 @@
      <widget class="QGroupBox" name="groupBox_2">
       <property name="maximumSize">
        <size>
-        <width>275</width>
+        <width>300</width>
         <height>16777215</height>
        </size>
       </property>
@@ -207,9 +207,15 @@
         <rect>
          <x>210</x>
          <y>22</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -220,9 +226,15 @@
         <rect>
          <x>210</x>
          <y>47</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -233,9 +245,15 @@
         <rect>
          <x>210</x>
          <y>70</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -256,7 +274,7 @@
      <widget class="QGroupBox" name="groupBox_4">
       <property name="maximumSize">
        <size>
-        <width>275</width>
+        <width>300</width>
         <height>16777215</height>
        </size>
       </property>
@@ -427,9 +445,15 @@
         <rect>
          <x>210</x>
          <y>22</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -440,9 +464,15 @@
         <rect>
          <x>210</x>
          <y>47</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -453,9 +483,15 @@
         <rect>
          <x>210</x>
          <y>70</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -476,7 +512,7 @@
      <widget class="QGroupBox" name="groupBox_3">
       <property name="maximumSize">
        <size>
-        <width>275</width>
+        <width>300</width>
         <height>16777215</height>
        </size>
       </property>
@@ -647,9 +683,15 @@
         <rect>
          <x>210</x>
          <y>70</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -660,9 +702,15 @@
         <rect>
          <x>210</x>
          <y>22</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -673,9 +721,15 @@
         <rect>
          <x>210</x>
          <y>47</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -696,13 +750,13 @@
      <widget class="QGroupBox" name="groupBox_6">
       <property name="minimumSize">
        <size>
-        <width>275</width>
+        <width>300</width>
         <height>0</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>275</width>
+        <width>300</width>
         <height>16777215</height>
        </size>
       </property>
@@ -712,8 +766,8 @@
       <widget class="QSpinBox" name="spPUA_75">
        <property name="geometry">
         <rect>
-         <x>110</x>
-         <y>40</y>
+         <x>120</x>
+         <y>46</y>
          <width>75</width>
          <height>19</height>
         </rect>
@@ -734,7 +788,7 @@
       <widget class="QSpinBox" name="spPUA_100">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>120</x>
          <y>22</y>
          <width>75</width>
          <height>19</height>
@@ -849,7 +903,7 @@
       <widget class="QSpinBox" name="spPUA_50">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>120</x>
          <y>70</y>
          <width>75</width>
          <height>19</height>
@@ -871,11 +925,17 @@
       <widget class="QPushButton" name="btnSet_APU100">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>210</x>
          <y>22</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -884,11 +944,17 @@
       <widget class="QPushButton" name="btnSet_APU75">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>210</x>
          <y>47</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -897,11 +963,17 @@
       <widget class="QPushButton" name="btnSet_APU50">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>210</x>
          <y>70</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -922,7 +994,7 @@
      <widget class="QGroupBox" name="groupBox_5">
       <property name="maximumSize">
        <size>
-        <width>275</width>
+        <width>300</width>
         <height>16777215</height>
        </size>
       </property>
@@ -994,7 +1066,7 @@
       <widget class="QSpinBox" name="spPUD_75">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>120</x>
          <y>46</y>
          <width>75</width>
          <height>19</height>
@@ -1016,7 +1088,7 @@
       <widget class="QSpinBox" name="spPUD_100">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>120</x>
          <y>22</y>
          <width>75</width>
          <height>19</height>
@@ -1069,7 +1141,7 @@
       <widget class="QSpinBox" name="spPUD_50">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>120</x>
          <y>70</y>
          <width>75</width>
          <height>19</height>
@@ -1091,11 +1163,17 @@
       <widget class="QPushButton" name="btnSet_DPU50">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>210</x>
          <y>71</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -1104,11 +1182,17 @@
       <widget class="QPushButton" name="btnSet_DPU75">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>210</x>
          <y>48</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -1117,11 +1201,17 @@
       <widget class="QPushButton" name="btnSet_DPU100">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>210</x>
          <y>23</y>
-         <width>56</width>
+         <width>75</width>
          <height>18</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Set Anchor</string>
@@ -1142,7 +1232,7 @@
      <widget class="QGroupBox" name="groupBox_8">
       <property name="maximumSize">
        <size>
-        <width>275</width>
+        <width>300</width>
         <height>16777215</height>
        </size>
       </property>
@@ -1153,9 +1243,9 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>30</y>
-         <width>101</width>
-         <height>16</height>
+         <y>33</y>
+         <width>111</width>
+         <height>20</height>
         </rect>
        </property>
        <property name="text">
@@ -1167,8 +1257,8 @@
         <rect>
          <x>20</x>
          <y>60</y>
-         <width>101</width>
-         <height>16</height>
+         <width>111</width>
+         <height>20</height>
         </rect>
        </property>
        <property name="text">
@@ -1178,7 +1268,7 @@
       <widget class="QLineEdit" name="lineEdit_RawX">
        <property name="geometry">
         <rect>
-         <x>142</x>
+         <x>140</x>
          <y>30</y>
          <width>81</width>
          <height>20</height>
@@ -1194,7 +1284,7 @@
       <widget class="QLineEdit" name="lineEdit_RawY">
        <property name="geometry">
         <rect>
-         <x>142</x>
+         <x>140</x>
          <y>57</y>
          <width>81</width>
          <height>20</height>
@@ -1214,9 +1304,9 @@
   <widget class="QGroupBox" name="groupBox_7">
    <property name="geometry">
     <rect>
-     <x>600</x>
+     <x>630</x>
      <y>10</y>
-     <width>221</width>
+     <width>251</width>
      <height>171</height>
     </rect>
    </property>
@@ -1228,7 +1318,7 @@
      <rect>
       <x>10</x>
       <y>40</y>
-      <width>201</width>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
@@ -1241,7 +1331,7 @@
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>201</width>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
@@ -1254,7 +1344,7 @@
      <rect>
       <x>10</x>
       <y>120</y>
-      <width>201</width>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
@@ -1266,9 +1356,9 @@
   <widget class="QGroupBox" name="groupBox_DeviceIdentity">
    <property name="geometry">
     <rect>
-     <x>609</x>
-     <y>199</y>
-     <width>211</width>
+     <x>630</x>
+     <y>200</y>
+     <width>251</width>
      <height>191</height>
     </rect>
    </property>
@@ -1280,7 +1370,7 @@
      <rect>
       <x>9</x>
       <y>9</y>
-      <width>195</width>
+      <width>231</width>
       <height>171</height>
      </rect>
     </property>
@@ -1303,6 +1393,12 @@
      </item>
      <item row="3" column="1">
       <widget class="QLabel" name="label_Model_2">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="text">
         <string>Date of Manufacture:</string>
        </property>

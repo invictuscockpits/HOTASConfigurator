@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1037</width>
-    <height>98</height>
+    <height>92</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>100</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Debug</string>
@@ -35,7 +41,7 @@
       <string>Packets speed:</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
      </property>
     </widget>
    </item>
@@ -76,7 +82,7 @@
       <string>0</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
      </property>
     </widget>
    </item>
@@ -96,7 +102,7 @@
       <string>0 ms</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
      </property>
     </widget>
    </item>
@@ -106,7 +112,7 @@
       <string>Packets received:</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+      <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
      </property>
     </widget>
    </item>

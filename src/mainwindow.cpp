@@ -677,12 +677,9 @@ void MainWindow::showConnectDeviceInfo()
 
     // Move this outside the message box condition
     if (ui->comboBox_HidDeviceList->itemData(ui->comboBox_HidDeviceList->currentIndex()).toInt() != 1) {
-        // Not old firmware, so we can read config and device info
-        QTimer::singleShot(100, this, [this]() {
-            on_pushButton_ReadConfig_clicked();
-        });
 
-        QTimer::singleShot(200, this, [this]() {
+
+        QTimer::singleShot(1000, this, [this]() {
             qDebug() << "[MainWindow] Timer: Reading device info...";
             readDeviceInfo();
         });
@@ -763,7 +760,7 @@ void MainWindow::getParamsPacket(bool firmwareCompatible)
                 ui->label_DeviceStatus->setText(tr("Device firmware") + " v" + str[0] + "." + str[1] + "." + str[2]);
             }
         }
-        // NEW: push Model/Serial/FW to Advanced Settings once on connect
+       // NEW: push Model/Serial/FW to Advanced Settings once on connect
         if (m_advSettings) {
             const auto& r = gEnv.pDeviceConfig->paramsReport;
             m_advSettings->applyDeviceIdentity(r);
@@ -771,41 +768,19 @@ void MainWindow::getParamsPacket(bool firmwareCompatible)
 
         // Auto-pull Model / Serial / DoM via dev-op on first good connect
         if (firmwareCompatible && m_advSettings) {
-            const auto& r = gEnv.pDeviceConfig->paramsReport;
-            const quint16 fw = r.firmware_version;
-
             QByteArray id;
-            QString model, serial, domISO;
+            if (devRequestReply(OP_GET_DEVICE_INFO, QByteArray(), &id)) {
+                if (id.size() >= sizeof(device_info_t)) {
+                    const device_info_t* info = reinterpret_cast<const device_info_t*>(id.constData());
 
-        if (devRequestReply(CMD_GET_DEVICE_ID, QByteArray(), &id)) {
-            auto readCStr = [&](int off, int max)->QString {
-                if (off < 0 || off >= id.size()) return {};
-                const int len = qMin(max, id.size() - off);
-                const QByteArray slice = id.mid(off, len);
-                int nul = slice.indexOf('\0');
-                const QByteArray s = (nul >= 0 ? slice.left(nul) : slice);
-                return QString::fromLatin1(s).trimmed();
-            };
+                    QString model = QString::fromLatin1(info->model_number, strnlen(info->model_number, INV_MODEL_MAX_LEN));
+                    QString serial = QString::fromLatin1(info->serial_number, strnlen(info->serial_number, INV_SERIAL_MAX_LEN));
+                    QString domISO = QString::fromLatin1(info->manufacture_date, strnlen(info->manufacture_date, DOM_ASCII_LEN));
 
-            // Layout: model[INV_MODEL_MAX_LEN], serial[INV_SERIAL_MAX_LEN], optional dom "YYYY-MM-DD"
-            const int mdlOff = 0;
-            const int serOff = mdlOff + INV_MODEL_MAX_LEN;
-            model  = readCStr(mdlOff, INV_MODEL_MAX_LEN);
-            serial = readCStr(serOff, INV_SERIAL_MAX_LEN);
-
-            const int domOff = serOff + INV_SERIAL_MAX_LEN;
-            if (id.size() - domOff >= 10) {                    // optional
-                const QByteArray dom = id.mid(domOff, 10);     // "YYYY-MM-DD"
-                if (dom.size() == 10 && dom[4]=='-' && dom[7]=='-')
-                    domISO = QString::fromLatin1(dom);
+                    m_advSettings->showDeviceInfo(model, serial, domISO, gEnv.pDeviceConfig->paramsReport.firmware_version);
+                }
             }
-            }
-
-            // Push to the viewer (uses your QLineEdits: line_DeviceModel/Serial/DoM/FwVersion)
-            // If you don't already have this slot, add it exactly as we used earlier.
-            m_advSettings->showDeviceInfo(model, serial, domISO, fw);
         }
-
         m_deviceChanged = false;
     }
 
