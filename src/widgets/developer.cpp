@@ -1,6 +1,7 @@
 #include "developer.h"
 #include "ui_developer.h"
 #include "common_defines.h"
+#include "common_types.h"
 
 #include <QSpinBox>
 #include <QPushButton>
@@ -40,10 +41,11 @@ Developer::~Developer()
 
 void Developer::initConnections()
 {
-    // Wire the three buttons by their EXACT objectNames
+
     connect(ui->btnAnchorsRead,  &QPushButton::clicked, this, &Developer::onRead);
     connect(ui->btnAnchorsWrite, &QPushButton::clicked, this, &Developer::onWrite);
     connect(ui->btnAnchorsLock,  &QPushButton::clicked, this, &Developer::onLock);
+    connect(ui->btnDeviceInfoWrite, &QPushButton::clicked, this, &Developer::onWriteDeviceInfo);
 
 }
 
@@ -197,9 +199,7 @@ QByteArray Developer::pack(const Anchors& a) const
         }
     };
 
-    packString(a.serialNumber, 16);
-    packString(a.modelNumber, 16);
-    packString(a.manufactureDate, 11);
+
     return b;
 
     for (int i=0;i<8;i++) b.append(char(0));  // reserved bytes
@@ -212,7 +212,9 @@ bool Developer::unpack(const QByteArray& b, Anchors* out) const
     constexpr int kLen = 46;
     if (b.size() < kLen) return false;
 
-    const QByteArray view = b.left(kLen);  // ignore HID padding
+    // Use only the first 46 bytes, ignore HID padding
+    const QByteArray view = b.left(kLen);
+
     auto get16 = [&](int off){ return quint16(quint8(view[off])) | (quint16(quint8(view[off+1]))<<8); };
     auto get32 = [&](int off){ quint32 v=0; for (int i=0;i<4;++i) v |= (quint32(quint8(view[off+i]))<<(8*i)); return v; };
 
@@ -230,8 +232,8 @@ bool Developer::unpack(const QByteArray& b, Anchors* out) const
                              << QString::number(out->crc32,16)
                              << " calc=0x" << QString::number(calc,16)
                              << " len=" << b.size();
-        // Soft-accept if header looks right (optional):
-        if (out->magic != 0xF00C || out->version != 0x01)
+        // Soft-accept if header looks right:
+        if (out->magic != 0xF00C || (out->version != 0x01 && out->version != 0x02))
             return false;
     }
 
@@ -247,22 +249,9 @@ bool Developer::unpack(const QByteArray& b, Anchors* out) const
     getTrip(&out->pu25);
     getTrip(&out->pu40);
 
-    // Unpack device identification strings
-    auto getString = [&](int len) -> QString {
-        if (off + len > view.size()) return QString();
-        QByteArray bytes;
-        for (int i = 0; i < len; i++) {
-            char c = view[off + i];
-            if (c == '\0') break;  // Stop at null terminator
-            bytes.append(c);
-        }
-        off += len;  // Always advance by full length
-        return QString::fromUtf8(bytes);
-    };
+    // Skip the 8 reserved bytes (already consumed by getTrip calls)
+    // Total should be 46 bytes: 8 header + 30 triplets + 8 reserved
 
-    out->serialNumber = getString(16);
-    out->modelNumber = getString(16);
-    out->manufactureDate = getString(11);
     return true;
 }
 
@@ -297,7 +286,7 @@ void Developer::onRead()
             auto lerp = [](qint16 c, qint16 e, float f){ return qint16(c + (e - c) * f); };
 
             a.magic   = 0xF00C;  // FACTORY_MAGIC
-            a.version = 0x01;    // FACTORY_VERSION
+            a.version = 0x02;    // FACTORY_VERSION
             a.sealed  = 0;
 
             // Roll: left=min, right=max
@@ -373,9 +362,7 @@ void Developer::onWrite()
     qDebug() << "[Developer] Sending anchors:";
     qDebug() << "  - Blob size:" << blob.size();
     qDebug() << "  - First 16 bytes:" << blob.left(16).toHex(' ');
-    qDebug() << "  - Serial:" << a.serialNumber;
-    qDebug() << "  - Model:" << a.modelNumber;
-    qDebug() << "  - Date:" << a.manufactureDate;
+
     if (!m_send(OP_SET_FACTORY_ANCHORS, blob) || !m_recv(OP_SET_FACTORY_ANCHORS, &ack)) {
         QMessageBox::warning(this, "Anchors", "Write failed"); return;
     }
@@ -493,5 +480,103 @@ void Developer::onAnySetClicked()
         sb->setValue(value);
     } else if (auto* le = findChild<QLineEdit*>(spinName)) {
         le->setText(QString::number(value));
+    }
+}
+void Developer::onWriteDeviceInfo()
+{
+
+
+    if (!m_send || !m_recv) {
+        QMessageBox::warning(this, tr("Device Info"), tr("Transport not set"));
+        return;
+    }
+
+    // Get values from UI
+    QString serial = ui->lineEdit_SerialNumber->text();
+    QString model = ui->lineEdit_Model->text();
+    QString date = ui->lineEdit_ManufactureDate->text();
+
+    // Debug output
+    qDebug() << "[Developer] Writing device info:";
+    qDebug() << "  - Serial:" << serial;
+    qDebug() << "  - Model:" << model;
+    qDebug() << "  - Date:" << date;
+
+    // Validate date format if provided
+    if (!date.isEmpty() && !QRegExp("\\d{4}-\\d{2}-\\d{2}").exactMatch(date)) {
+        QMessageBox::warning(this, tr("Device Info"), tr("Date must be in YYYY-MM-DD format"));
+        return;
+    }
+
+    // Prepare device_info_t structure
+    // Prepare device_info_t structure
+    device_info_t info;
+    memset(&info, 0, sizeof(info));
+
+    // Set the required header fields - ADD THESE LINES
+    info.magic = 0xDEF0;  // DEVICE_INFO_MAGIC
+    info.version = 1;
+    info.locked = 0;
+    info.crc32 = 0;  // Will be calculated by firmware
+
+
+    // Use safer string copying
+    QByteArray modelBytes = model.toLatin1();
+    QByteArray serialBytes = serial.toLatin1();
+    QByteArray dateBytes = date.toLatin1();
+
+    memcpy(info.model_number, modelBytes.constData(),
+           qMin(modelBytes.size(), (int)(INV_MODEL_MAX_LEN - 1)));
+    memcpy(info.serial_number, serialBytes.constData(),
+           qMin(serialBytes.size(), (int)(INV_SERIAL_MAX_LEN - 1)));
+    memcpy(info.manufacture_date, dateBytes.constData(),
+           qMin(dateBytes.size(), (int)DOM_ASCII_LEN));
+
+    // Send to device
+    QByteArray payload((const char*)&info, sizeof(info));
+    QByteArray ack;
+
+    qDebug() << "  - Payload size:" << payload.size();
+    qDebug() << "  - Expected size:" << sizeof(device_info_t);
+    qDebug() << "  - First 16 bytes of payload:" << payload.left(16).toHex(' ');
+
+    if (!m_send(OP_SET_DEVICE_INFO, payload) || !m_recv(OP_SET_DEVICE_INFO, &ack)) {
+        QMessageBox::warning(this, tr("Device Info"), tr("Write failed"));
+        return;
+    }
+
+    // Check response
+    qDebug() << "  - Response size:" << ack.size();
+    if (!ack.isEmpty()) {
+        qDebug() << "  - Full response:" << ack.left(10).toHex(' ');
+    }
+
+    // Parse the echo response to see what firmware received
+    if (ack.size() >= 9 && ack.at(0) == (char)0xAA) {
+        qDebug() << "  - Echo: ReportID=" << (int)(uint8_t)ack.at(1)
+        << " OpCode=" << (int)(uint8_t)ack.at(2)
+        << " Payload starts:" << ack.mid(3, 4).toHex(' ');
+        return;  // Don't show error for echo test
+    }
+
+    // Handle normal responses
+    if (ack.isEmpty() || ack.at(0) == 0) {
+        QMessageBox::warning(this, tr("Device Info"), tr("Device refused write (unknown error)"));
+        return;
+    } else if (ack.at(0) == 1) {
+        QMessageBox::information(this, tr("Device Info"), tr("Device info written successfully"));
+        return;
+    } else if (ack.at(0) == 2) {
+        QMessageBox::warning(this, tr("Device Info"), tr("Device info is locked"));
+        return;
+    } else if (ack.at(0) == 3) {
+        QMessageBox::warning(this, tr("Device Info"), tr("Invalid payload size"));
+        return;
+    } else if (ack.at(0) == 4) {
+        QMessageBox::warning(this, tr("Device Info"), tr("Flash write failed"));
+        return;
+    } else {
+        QMessageBox::warning(this, tr("Device Info"), tr("Unknown error code: %1").arg((int)(uint8_t)ack.at(0)));
+        return;
     }
 }

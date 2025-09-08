@@ -31,6 +31,7 @@ public slots:
     void onLock();
     void setLiveRaw(int rawX, int rawY);
 
+
 private:
 
     Ui::Developer* ui{};
@@ -93,6 +94,7 @@ private:
 private slots:
     // Handles any Set button named "btnSet_*"
     void onAnySetClicked();
+    void onWriteDeviceInfo();
 
 
 };

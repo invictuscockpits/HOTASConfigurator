@@ -1280,11 +1280,34 @@
      <rect>
       <x>9</x>
       <y>9</y>
-      <width>191</width>
+      <width>195</width>
       <height>171</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
+     <property name="rightMargin">
+      <number>4</number>
+     </property>
+     <item row="3" column="2">
+      <widget class="QLineEdit" name="lineEdit_ManufactureDate">
+       <property name="inputMethodHints">
+        <set>Qt::InputMethodHint::ImhDate</set>
+       </property>
+       <property name="maxLength">
+        <number>15</number>
+       </property>
+       <property name="placeholderText">
+        <string>YYYY-MM-DD</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_Model_2">
+       <property name="text">
+        <string>Date of Manufacture:</string>
+       </property>
+      </widget>
+     </item>
      <item row="2" column="1">
       <widget class="QLabel" name="label_Model">
        <property name="text">
@@ -1306,30 +1329,17 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="label_Model_2">
-       <property name="text">
-        <string>Date of Manufacture:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="2">
-      <widget class="QLineEdit" name="lineEdit_ManufactureDate">
-       <property name="inputMethodHints">
-        <set>Qt::InputMethodHint::ImhDate</set>
-       </property>
-       <property name="maxLength">
-        <number>15</number>
-       </property>
-       <property name="placeholderText">
-        <string>YYYY-MM-DD</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="2">
       <widget class="QLineEdit" name="lineEdit_SerialNumber">
        <property name="maxLength">
         <number>15</number>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QPushButton" name="btnDeviceInfoWrite">
+       <property name="text">
+        <string>Write Device Identity</string>
        </property>
       </widget>
      </item>
