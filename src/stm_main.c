@@ -86,7 +86,7 @@ dev_config_t InitConfig (void)
         .pins[15] = SPI_MISO,							// PB4
         .pins[16] = SPI_MOSI,							// PB5
         .pins[17] = NOT_USED,							// PB6
-        .pins[18] = SHIFT_REG_LATCH,							// PB7
+        .pins[18] = NOT_USED,							// PB7
         .pins[19] = NOT_USED,							// PB8
         .pins[20] = NOT_USED,							// PB9
         .pins[21] = NOT_USED,							// PB10

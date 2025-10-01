@@ -100,11 +100,7 @@ void PinConfig::boardChanged(int index)
         return; // no change
     }
 
-    // Optional: ask before overwriting the current mapping
-    if (QMessageBox::question(this, tr("Apply board defaults?"),
-                              tr("Replace current pin mapping with %1 defaults?")
-                                  .arg(index==0 ? tr("VFT Controller Gen 3") : tr("VFT Controller Gen 4")))
-        != QMessageBox::Yes) return;
+
 
     const auto& preset = boardPins(index==0 ? BoardId::VftControllerGen3 : BoardId::VFTControllerGen4);
     for (int i = 0; i < USED_PINS_NUM; ++i)

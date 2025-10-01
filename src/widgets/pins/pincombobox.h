@@ -306,10 +306,10 @@ private:
         {},
         {}, {QColor(53, 153, 120)}},
 
-        {TLE5011_GEN,    tr("TLE5011 GEN"),
-        {PB_6},
+        /*{TLE5011_GEN,    tr("TLE5011 GEN"),
+        {PB_9},
         {},
-        {}, {QColor(53, 153, 120)}},
+        {}, {QColor(53, 153, 120)}},*/
 
         {I2C_SCL,        tr("I2C SCL"),
         {I2C1_SCL},

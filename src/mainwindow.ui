@@ -614,7 +614,7 @@ QFrame QTabWidget &gt; QWidget {
         </size>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>7</number>
        </property>
        <property name="iconSize">
         <size>

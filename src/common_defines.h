@@ -11,7 +11,7 @@
 
 //#define DEBUG
 
-#define FIRMWARE_VERSION					0x2121              // v2.1.2 (Fixed firmware flasher)
+#define FIRMWARE_VERSION					0x2132              // v2.1.3 (Fixed i2c implementaion for Gen 4 Boards)
 #define USED_PINS_NUM						30					// Contstant for HOTAS Control boards
 #define MAX_AXIS_NUM						8					// max 8
 #define MAX_BUTTONS_NUM						128					// power of 2, max 128
@@ -36,9 +36,9 @@
 #define DEVICE_INFO_MAGIC                   0xDEF0
 
 
-#define INV_SERIAL_MAX_LEN  16
-#define INV_MODEL_MAX_LEN   16
-#define DOM_ASCII_LEN       10
+#define INV_SERIAL_MAX_LEN                  16
+#define INV_MODEL_MAX_LEN                   16
+#define DOM_ASCII_LEN                       10
 
 
 
