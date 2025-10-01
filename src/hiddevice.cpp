@@ -223,12 +223,14 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                 if (m_currentWork == REPORT_ID_PARAM && !m_oldFirmwareSelected) {
                     // send params request periodically — unchanged (2 bytes as before)
                     if (!paramsTimer.isValid() || paramsTimer.hasExpired(5000)) {
+
                         hid_write(m_paramsRead, paramsRequest, 2);
                         paramsTimer.start();
                     }
                     // read report with debounce on real errors
                     res = hid_read_timeout(m_paramsRead, buffer, BUFFERSIZE, 1000);
                     if (res > 0) {
+
                         // good frame
                         s_consecutiveErrors = 0;
                         if (!s_lastGoodRx.isValid()) s_lastGoodRx.start(); else s_lastGoodRx.restart();
@@ -251,6 +253,7 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                     } else if (res == 0) {
                         // benign timeout — do nothing
                     } else { // res < 0: real read error
+
                         ++s_consecutiveErrors;
                         const bool graceElapsed = s_lastGoodRx.isValid() && (s_lastGoodRx.elapsed() >= kGraceMs);
                         if (s_consecutiveErrors >= kMaxConsecutiveErrors || graceElapsed) {

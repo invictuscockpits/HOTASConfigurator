@@ -31,23 +31,16 @@ PinConfig::PinConfig(QWidget *parent) :         // пины - первое, чт
         m_pinCBoxPtrList.append(pinComboBox);
     }
 
-    gEnv.pAppSettings->beginGroup("BoardSettings");
+   /* gEnv.pAppSettings->beginGroup("BoardSettings");
     m_lastBoard = gEnv.pAppSettings->value("SelectedBoard", 0).toInt();
     if (m_lastBoard < 0 || m_lastBoard > 1) {
         m_lastBoard = 0;
     }
-    gEnv.pAppSettings->endGroup();
+    gEnv.pAppSettings->endGroup();*/
 
-    if (m_lastBoard == 0) {
-        m_Controller->addPinComboBox(m_pinCBoxPtrList);
-        ui->layoutV_pins->addWidget(m_Controller);
-        m_Controller->show();
-
-    }
-    ui->comboBox_board->addItem("VFT Controller");
-    ui->comboBox_board->setCurrentIndex(m_lastBoard);
-    connect(ui->comboBox_board, qOverload<int>(&CenteredCBox::currentIndexChanged),
-            this, &PinConfig::boardChanged);
+    m_Controller->addPinComboBox(m_pinCBoxPtrList);
+    ui->layoutV_pins->addWidget(m_Controller);
+    m_Controller->show();
 
     for (int i = 0; i < m_pinCBoxPtrList.size(); ++i) {
             connect(m_pinCBoxPtrList[i], &PinComboBox::valueChangedForInteraction,       // valgrind сообщает о утечке, но почему?
@@ -66,10 +59,10 @@ PinConfig::PinConfig(QWidget *parent) :         // пины - первое, чт
 
 PinConfig::~PinConfig()
 {
-    gEnv.pAppSettings->beginGroup("BoardSettings");
+    /*gEnv.pAppSettings->beginGroup("BoardSettings");
     gEnv.pAppSettings->setValue("SelectedBoard", m_lastBoard);
     gEnv.pAppSettings->endGroup();
-    delete ui;
+    delete ui;*/
 }
 
 //modular profile building
@@ -89,7 +82,7 @@ void PinConfig::retranslateUi()
 
 void PinConfig::boardChanged(int index)
 {
-    // existing widget swap…
+   /* // existing widget swap…
     if (index == 0 && m_lastBoard == 1) {
         // ... your existing BluePill show code ...
         m_lastBoard = 0;
@@ -98,7 +91,7 @@ void PinConfig::boardChanged(int index)
         m_lastBoard = 1;
     } else {
         return; // no change
-    }
+    }*/
 
 
 

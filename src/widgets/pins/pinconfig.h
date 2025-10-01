@@ -58,7 +58,7 @@ private:
     Ui::PinConfig *ui;
 
     PinsController *m_Controller;
-    int m_lastBoard;
+    //int m_lastBoard;
 
     //! PinComboBox widget list
     QList<PinComboBox *> m_pinCBoxPtrList;

@@ -543,9 +543,7 @@ void Developer::onWriteDeviceInfo()
     QByteArray payload((const char*)&info, sizeof(info));
     QByteArray ack;
 
-    qDebug() << "  - Payload size:" << payload.size();
-    qDebug() << "  - Expected size:" << sizeof(device_info_t);
-    qDebug() << "  - First 16 bytes of payload:" << payload.left(16).toHex(' ');
+
 
     if (!m_send(OP_SET_DEVICE_INFO, payload) || !m_recv(OP_SET_DEVICE_INFO, &ack)) {
         QMessageBox::warning(this, tr("Device Info"), tr("Write failed"));

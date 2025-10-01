@@ -1,5 +1,5 @@
 #include "reportconverter.h"
-
+#include <QDebug>
 #include "deviceconfig.h"
 #include "global.h"
 
@@ -14,6 +14,7 @@ namespace ReportConverter
 
     int ReportConverter::paramReport(uint8_t *paramsBuf)
     {
+
         if (!paramsBuf) return 0;
 
         // Page 0: ALWAYS copy first 62 bytes so UI shows what's actually on the wire
@@ -25,7 +26,7 @@ namespace ReportConverter
             // Now decide compatibility from freshly copied bytes
             const uint16_t fw_on_wire = gEnv.pDeviceConfig->paramsReport.firmware_version;
             // keep your policy (was 0xFF00 while investigating)
-            firmwareCompatible = ((fw_on_wire & 0xFFF0) == (FIRMWARE_VERSION & 0xFFF0)) ? 1 : 0;
+            firmwareCompatible = ((fw_on_wire & 0xFF00) == (FIRMWARE_VERSION & 0xFF00)) ? 1 : 0;
 
             // Return 1 so the UI refreshes the displayed version immediately
             return 1;

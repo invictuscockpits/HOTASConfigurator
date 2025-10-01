@@ -1,6 +1,7 @@
 #include "pinscontroller.h"
 #include "ui_pinscontroller.h"
 #include <QComboBox>
+#include <QDebug>
 
 PinsController::PinsController(QWidget *parent) :
     QWidget(parent),
@@ -20,6 +21,7 @@ void PinsController::addPinComboBox(QList<PinComboBox *> pinList)
 {
     QElapsedTimer timer;
     timer.start();
+
     int tmp = 0;
     int labelColumn;
     int pinsColumn;
@@ -85,4 +87,5 @@ void PinsController::addPinComboBox(QList<PinComboBox *> pinList)
         }
     }
     Q_ASSERT(tmp == PINS_COUNT);
+     qDebug() << "Placed" << tmp << "pins out of" << PINS_COUNT;
 }
