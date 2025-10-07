@@ -869,8 +869,86 @@ void MainWindow::UiReadFromConfig()
     m_ledConfig->readFromConfig();
     // read adv.settings config
     m_advSettings->readFromConfig();
-    // read button config
+
+    // Read GUI settings from device config and apply them as if user selected them
+    const auto& fp = gEnv.pDeviceConfig->config.force_profile_rt;
+
+    // Set board type dropdown and apply board preset (without asking for confirmation)
+    if (fp.board_type <= 1) {
+        QSignalBlocker blocker(ui->comboBox_Board);
+        int guiIndex = fp.board_type + 1; // +1 because index 0 is placeholder
+        ui->comboBox_Board->setCurrentIndex(guiIndex);
+
+        // Apply board preset settings (axis sources, channels, etc.) without confirmation
+        // applyPinDefaults=false means we keep the pin config from the device, only update axis sources
+        BoardId boardId = (fp.board_type == 0) ? BoardId::VftControllerGen3 : BoardId::VFTControllerGen4;
+        applyBoardPreset(boardId, /*ask=*/false, /*applyPinDefaults=*/false);
+    }
+
+    // Set grip type dropdown and load the grip profile
+    if (fp.grip_type > 0 && fp.grip_type < ui->comboBox_GripSelection->count()) {
+        QSignalBlocker blocker(ui->comboBox_GripSelection);
+        ui->comboBox_GripSelection->setCurrentIndex(fp.grip_type);
+
+        // Manually trigger grip profile loading (this sets physical button mappings)
+        onGripSelectionChanged(fp.grip_type);
+    }
+
+    // NOW read button config AFTER grip profile has been applied
+    // This populates the logical buttons with the actual button data from device
     m_buttonConfig->readFromConfig();
+
+    // Set sim software dropdown
+    if (fp.sim_software < ui->comboBox_simSoftware->count()) {
+        QSignalBlocker blocker(ui->comboBox_simSoftware);
+        ui->comboBox_simSoftware->setCurrentIndex(fp.sim_software);
+
+        // Manually trigger sim software change if needed
+        if (fp.sim_software > 0) {
+            onSimSoftwareChanged(ui->comboBox_simSoftware->currentText());
+        }
+    }
+
+    // Set FLCS mode radio buttons (Digital vs Analog) - block signals to prevent device query
+    {
+        QSignalBlocker blocker1(ui->radioButton);
+        QSignalBlocker blocker2(ui->radioButton_2);
+        // pitch_up_mode: 0=digital, 1=analog
+        if (fp.pitch_up_mode == 0) {
+            if (ui->radioButton) ui->radioButton->setChecked(true);  // Digital
+        } else {
+            if (ui->radioButton_2) ui->radioButton_2->setChecked(true);  // Analog
+        }
+    }
+
+    // Set force percentage radio buttons - block signals to prevent device query
+    // The selected_level array has 5 elements for different directions, but the UI
+    // radio buttons appear to be a single setting. We'll use the first element as representative.
+    {
+        QSignalBlocker blocker1(ui->radio_Anchor100);
+        QSignalBlocker blocker2(ui->radio_Anchor75);
+        QSignalBlocker blocker3(ui->radio_Anchor50);
+
+        // Determine which percentage is stored (0=100%, 1=75%, 2=50%)
+        uint8_t level = (fp.selected_level[0] < 3) ? fp.selected_level[0] : 0;
+
+        if (level == 2) {  // 50%
+            if (ui->radio_Anchor50) ui->radio_Anchor50->setChecked(true);
+        } else if (level == 1) {  // 75%
+            if (ui->radio_Anchor75) ui->radio_Anchor75->setChecked(true);
+        } else {  // 100% (default)
+            if (ui->radio_Anchor100) ui->radio_Anchor100->setChecked(true);
+        }
+    }
+
+    // Auto-hide axes 3-8 for Invictus SSC devices (only X and Y axes are used)
+    QString deviceName = QString::fromUtf8(gEnv.pDeviceConfig->config.device_name);
+    if (deviceName.contains("SSC", Qt::CaseInsensitive)) {
+        // Hide axes 2-7 (indices 2-7 = axes 3-8, since axes are 0-indexed)
+        for (int i = 2; i < MAX_AXIS_NUM; i++) {
+            m_axesConfig->setAxisHidden(i, true);
+        }
+    }
 }
 
 void MainWindow::UiWriteToConfig()
@@ -891,6 +969,41 @@ void MainWindow::UiWriteToConfig()
     m_advSettings->writeToConfig();
     // write button config
     m_buttonConfig->writeToConfig();
+
+    // Write GUI settings to device config
+    auto& fp = gEnv.pDeviceConfig->config.force_profile_rt;
+
+    // Save grip type (index directly corresponds)
+    fp.grip_type = ui->comboBox_GripSelection->currentIndex();
+
+    // Save board type (subtract 1 because index 0 is placeholder)
+    int boardIdx = ui->comboBox_Board->currentIndex();
+    fp.board_type = (boardIdx > 0) ? (boardIdx - 1) : 0;
+
+    // Save sim software
+    fp.sim_software = ui->comboBox_simSoftware->currentIndex();
+
+    // Save FLCS mode (Digital vs Analog)
+    // 0=digital, 1=analog
+    if (ui->radioButton_2 && ui->radioButton_2->isChecked()) {
+        fp.pitch_up_mode = 1;  // Analog
+    } else {
+        fp.pitch_up_mode = 0;  // Digital (default)
+    }
+
+    // Save force percentage selection to all directions
+    // 0=100%, 1=75%, 2=50%
+    uint8_t forceLevel = 0;  // default 100%
+    if (ui->radio_Anchor50 && ui->radio_Anchor50->isChecked()) {
+        forceLevel = 2;  // 50%
+    } else if (ui->radio_Anchor75 && ui->radio_Anchor75->isChecked()) {
+        forceLevel = 1;  // 75%
+    }
+
+    // Apply the same level to all 5 directions
+    for (int i = 0; i < 5; i++) {
+        fp.selected_level[i] = forceLevel;
+    }
     // remove device name from registry. sometimes windows does not update the name in gaming devices and has to be deleted in the registry
 #ifdef Q_OS_WIN
     qDebug()<<"Remove device OEMName from registry";
@@ -962,6 +1075,14 @@ void MainWindow::configReceived(bool success)
     static QString button_default_text = ui->pushButton_ReadConfig->text();    //????????????????????????
     if (success == true)
     {
+
+        // === DEBUG: show what the GUI actually received from the device ===
+        auto &dev = gEnv.pDeviceConfig->config;
+        for (int i = 0; i < MAX_AXIS_NUM; ++i) {
+
+
+        }
+
         UiReadFromConfig();
         // curves pointer activated
         m_axesCurvesConfig->deviceStatus(true);
@@ -1729,7 +1850,7 @@ void MainWindow::onBoardPresetChanged(int index)
  * @sa boardPins(), PinConfig::readFromConfig(), AxesConfig::readFromConfig()
  */
 
-void MainWindow::applyBoardPreset(BoardId id, bool ask)
+void MainWindow::applyBoardPreset(BoardId id, bool ask, bool applyPinDefaults)
 {
     const QString name = (id == BoardId::VftControllerGen3)
     ? tr("VFT Controller Gen 1-3")
@@ -1739,7 +1860,7 @@ void MainWindow::applyBoardPreset(BoardId id, bool ask)
         QMessageBox box(this);
         box.setWindowTitle(tr("Apply board defaults?"));
         box.setText(tr("Replace current pin mapping with %1 defaults?").arg(name));
-        box.setIcon(QMessageBox::NoIcon); // avoid the style’s PNG
+        box.setIcon(QMessageBox::NoIcon); // avoid the style's PNG
         box.setIconPixmap(QIcon(":/Images/question_icon.svg").pixmap(64,64));
         box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         box.setDefaultButton(QMessageBox::Yes);
@@ -1748,14 +1869,16 @@ void MainWindow::applyBoardPreset(BoardId id, bool ask)
             return;
     }
 
-    // 1) Copy pins from presets into the live config
-    // (1) Copy pins from preset
-    const BoardPins& preset = boardPins(id);
-    for (int i = 0; i < PINS_COUNT; ++i)
-        gEnv.pDeviceConfig->config.pins[i] = preset.pins[i];
+    // 1) Copy pins from presets into the live config (only if applyPinDefaults is true)
+    if (applyPinDefaults) {
+        // (1) Copy pins from preset
+        const BoardPins& preset = boardPins(id);
+        for (int i = 0; i < PINS_COUNT; ++i)
+            gEnv.pDeviceConfig->config.pins[i] = preset.pins[i];
 
-    // (2) Rebuild the Pin tab so AxisSource list gets updated (A1 – MCP3202 is added)
-    if (m_pinConfig) m_pinConfig->readFromConfig();
+        // (2) Rebuild the Pin tab so AxisSource list gets updated (A1 – MCP3202 is added)
+        if (m_pinConfig) m_pinConfig->readFromConfig();
+    }
 
     // (3) Apply axis defaults required by legacy behavior
     auto& cfg = gEnv.pDeviceConfig->config;

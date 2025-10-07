@@ -187,7 +187,7 @@ private:
     quint32    crc32_le(const QByteArray& data) const;
 
 
-    void applyBoardPreset(BoardId id, bool ask = true); //Board preset application
+    void applyBoardPreset(BoardId id, bool ask = true, bool applyPinDefaults = true); //Board preset application
 
     //Popup when update available
 
