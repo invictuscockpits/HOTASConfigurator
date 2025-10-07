@@ -97,6 +97,14 @@ void AxesConfig::hideAxis(int index, bool hide)
     emit axisVisibilityChanged(index, !hide); // true = visible  (For hiding axis profile buttons in Axis Curves along with hidden axes)
 }
 
+void AxesConfig::setAxisHidden(int index, bool hidden)
+{
+    if (index < 0 || index >= m_hideChBoxes.size()) return;
+
+    // Set the checkbox which will trigger hideAxis via the connected signal
+    m_hideChBoxes[index]->setChecked(hidden);
+}
+
 
 
 void AxesConfig::readFromConfig()
