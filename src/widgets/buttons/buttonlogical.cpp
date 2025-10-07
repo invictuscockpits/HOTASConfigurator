@@ -18,6 +18,9 @@ ButtonLogical::ButtonLogical(int buttonIndex, QWidget *parent)
     m_debugState = false;
     ui->label_LogicalButtonNumber->setNum(m_buttonIndex + 1);
     ui->spinBox_PhysicalButtonNumber->installEventFilter(this);
+
+    // Add left margin to prevent clipping of highlight background
+    ui->layoutH_ButtonLogical->setContentsMargins(6, 1, 0, 1);
 }
 
 ButtonLogical::~ButtonLogical()
@@ -114,7 +117,7 @@ void ButtonLogical::setButtonState(bool state)
         } else {
             // sometimes state dont have time to render. e.g. encoder press time 10ms and monitor refresh time 17ms(60fps)
             if (m_lastAct.hasExpired(30)) {
-                setPalette(window()->palette());
+                setAutoFillBackground(false); // Return to transparent
                 m_currentState = state;
             }
         }
@@ -136,7 +139,7 @@ void ButtonLogical::setButtonState(bool state)
 
 void ButtonLogical::setPhysicButton(int buttonIndex)
 {
-    ui->spinBox_PhysicalButtonNumber->setValue(buttonIndex + 1); // +1 !!!!
+    ui->spinBox_PhysicalButtonNumber->setValue(buttonIndex + 1); // +1 to avoid a button 0.
 }
 
 int ButtonLogical::currentFocus() const
