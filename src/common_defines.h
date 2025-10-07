@@ -11,7 +11,7 @@
 
 //#define DEBUG
 
-#define FIRMWARE_VERSION					0x2132              // v2.1.3 (Fixed i2c implementaion for Gen 4 Boards)
+#define FIRMWARE_VERSION					0x2142              // v2.1.3 (Fixed i2c implementaion for Gen 4 Boards)
 #define USED_PINS_NUM						30					// Contstant for HOTAS Control boards
 #define MAX_AXIS_NUM						8					// max 8
 #define MAX_BUTTONS_NUM						128					// power of 2, max 128
@@ -25,9 +25,9 @@
 #define AXIS_CENTER_VALUE					(AXIS_MIN_VALUE + (AXIS_MAX_VALUE-AXIS_MIN_VALUE)/2)
 #define AXIS_FULLSCALE						(AXIS_MAX_VALUE - AXIS_MIN_VALUE + 1)
 
-#define CONFIG_ADDR													(0x0800FC00)
+#define CONFIG_ADDR							(0x0800F400)
 #define FLASH_PAGE_SIZE                     0x400
-#define FACTORY_ADDR                        (CONFIG_ADDR - FLASH_PAGE_SIZE)  // protected page
+#define FACTORY_ADDR                        (0x0800FC00)  // page 63 - protected from firmware flash
 #define FACTORY_MAGIC                       0xF00C
 #define FACTORY_VERSION                     0x02 //increase with major changes to protect older versions
 

@@ -143,6 +143,11 @@ void MainWindow::themeChanged(bool /*dark*/)
             border: none;
         }
 
+        /* QMessageBox and QDialog styling */
+        QMessageBox, QDialog {
+            background-color: rgb(36, 39, 49);  /* FLAT_BLACK */
+        }
+
 
 )");
     {

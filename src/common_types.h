@@ -378,6 +378,7 @@ typedef struct {
  *  - Pitch Up (DIG) : 25 lbf   (digital detent path)
  *  - Pitch Up (AN)  : 40 lbf   (analog path)
  */
+#pragma pack(push, 1)
 typedef struct {
     /* housekeeping / integrity */
     uint16_t magic;     /* 0xF00C */
@@ -395,6 +396,7 @@ typedef struct {
     /* future extension space */
     uint8_t  reserved[8];
 } force_factory_anchors_t;
+#pragma pack(pop)
 /* Device identification info - stored separately from force anchors */
 typedef struct {
     uint16_t magic;
@@ -424,12 +426,14 @@ typedef struct {
     /* For each direction pick: 100/75/50 */
     uint8_t selected_level[FORCE_DIR_COUNT];  /* values from force_level_t */
 
-    /* Which pitch-up path to use in the UI when “Pitch Up” is targeted by radio:
+    /* Which pitch-up path to use in the UI when "Pitch Up" is targeted by radio:
        0 = digital (25 lbf), 1 = analog (40 lbf). */
 
     uint8_t pitch_up_mode; /* 0=digital, 1=analog */
 
-    uint8_t reserved[3];   /* align to 4 bytes total */
+    uint8_t grip_type;     /* Selected grip profile index (0=none, 1=Invictus Viper, 2=Warthog, etc.) */
+    uint8_t board_type;    /* Board type: 0=Gen1-3, 1=Gen4 */
+    uint8_t sim_software;  /* Selected simulator: 0=none, 1=DCS, 2=Falcon BMS, 3=MSFS */
 } force_profile_runtime_t;
 
 

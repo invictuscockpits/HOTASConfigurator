@@ -6,6 +6,7 @@
 #include "global.h"
 #include <QSettings>
 #include <QMessageBox>
+#include <QDebug>
 
 PinConfig::PinConfig(QWidget *parent) :         // пины - первое, что я начал кодить в конфигураторе и спустя время
     QWidget(parent),                            // заявляю - это говнокод!1 который даже мне тяжело понять
@@ -337,6 +338,7 @@ void PinConfig::readFromConfig(){
     for (int i = 0; i < m_pinCBoxPtrList.size(); ++i) {
         m_pinCBoxPtrList[i]->readFromConfig(i);
     }
+
 }
 
 void PinConfig::writeToConfig(){

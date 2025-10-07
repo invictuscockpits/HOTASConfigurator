@@ -28,6 +28,8 @@ public:
 
     void axesValueChanged();
 
+    void setAxisHidden(int index, bool hidden);
+
 signals:
     void axisRawValueChanged(int);
     void axisOutValueChanged(int);
