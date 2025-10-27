@@ -6,6 +6,7 @@
 #include <QSpinBox>
 #include <QCheckBox>
 #include <QKeyEvent>
+#include <QResizeEvent>
 #include <QPainter>
 #include <QMessageBox>
 #include <QJsonObject>
@@ -14,6 +15,7 @@
 #include <QSignalBlocker>
 #include <QScrollArea>
 #include <QAbstractScrollArea>
+#include <QStandardItemModel>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -106,7 +108,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 {
-    qDebug()<<"main + member initialize time ="<< gEnv.pApp_start_time->elapsed() << "ms";
+    //qDebug()<<"main + member initialize time ="<< gEnv.pApp_start_time->elapsed() << "ms";
     QElapsedTimer timer;
     timer.start();
 
@@ -115,10 +117,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     forceTransparentScrolls(this);
 
-    qDebug() << "Qt version:" << qVersion();
-    qDebug() << "SSL support:" << QSslSocket::supportsSsl();
-    qDebug() << "Built against:" << QSslSocket::sslLibraryBuildVersionString();
-    qDebug() << "Loaded runtime:" << QSslSocket::sslLibraryVersionString();
+    //qDebug() << "Qt version:" << qVersion();
+    //qDebug() << "SSL support:" << QSslSocket::supportsSsl();
+    //qDebug() << "Built against:" << QSslSocket::sslLibraryBuildVersionString();
+    //qDebug() << "Loaded runtime:" << QSslSocket::sslLibraryVersionString();
 
     configManager = new ConfigManager(this);
     QMainWindow::setWindowIcon(QIcon(":/Images/icon-32.png"));
@@ -142,12 +144,12 @@ MainWindow::MainWindow(QWidget *parent)
     m_hidDeviceWorker = new HidDevice();
     m_threadGetSendConfig = new QThread;
 
-    qDebug()<<"before add widgets ="<< timer.restart() << "ms";
+    //qDebug()<<"before add widgets ="<< timer.restart() << "ms";
     //////////////// ADD WIDGETS ////////////////
     // add pin widget
     m_pinConfig = new PinConfig(this);
     ui->layoutV_tabPinConfig->addWidget(m_pinConfig);
-    qDebug()<<"pin config load time ="<< timer.restart() << "ms";
+    //qDebug()<<"pin config load time ="<< timer.restart() << "ms";
 
     // hide pin widget by default
     int pinTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabPinConfig->parentWidget());
@@ -159,19 +161,19 @@ MainWindow::MainWindow(QWidget *parent)
     // add button widget
     m_buttonConfig = new ButtonConfig(this);
     ui->layoutV_tabButtonConfig->addWidget(m_buttonConfig);
-    qDebug()<<"button config load time ="<< timer.restart() << "ms";
+    //qDebug()<<"button config load time ="<< timer.restart() << "ms";
 
     // add axes widget
     m_axesConfig = new AxesConfig(this);
     ui->layoutV_tabAxesConfig->addWidget(m_axesConfig);
-    qDebug()<<"axes config load time ="<< timer.restart() << "ms";
+    //qDebug()<<"axes config load time ="<< timer.restart() << "ms";
 
     wireForceButtons();
 
     // add axes curves widget
     m_axesCurvesConfig = new AxesCurvesConfig(m_axesConfig, this);
     ui->layoutV_tabAxesCurvesConfig->addWidget(m_axesCurvesConfig);
-    qDebug()<<"curves config load time ="<< timer.restart() << "ms";
+    //qDebug()<<"curves config load time ="<< timer.restart() << "ms";
     connect(m_axesConfig, &AxesConfig::axisVisibilityChanged,
             m_axesCurvesConfig, &AxesCurvesConfig::handleAxisVisibility);
 
@@ -181,7 +183,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_shiftRegsPtrList = m_shiftRegConfig->getShiftRegisterWidgets();
 
     ui->layoutV_tabShiftRegistersConfig->addWidget(m_shiftRegConfig);
-    qDebug()<<"shift config load time ="<< timer.restart() << "ms";
+    //qDebug()<<"shift config load time ="<< timer.restart() << "ms";
     // hide shift registers widget
     int shiftRegTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabShiftRegistersConfig->parentWidget());
     if (shiftRegTabIndex != -1) {
@@ -191,7 +193,7 @@ MainWindow::MainWindow(QWidget *parent)
     // add encoders widget
     m_encoderConfig = new EncodersConfig(this);
     ui->layoutV_tabEncodersConfig->addWidget(m_encoderConfig);
-    qDebug()<<"encoder config load time ="<< timer.restart() << "ms";
+    //qDebug()<<"encoder config load time ="<< timer.restart() << "ms";
 
     // hide encoders widget by default
     int encoderTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabEncodersConfig->parentWidget());
@@ -202,7 +204,7 @@ MainWindow::MainWindow(QWidget *parent)
     // add led widget
     m_ledConfig = new LedConfig(this);
     ui->layoutV_tabLedConfig->addWidget(m_ledConfig);
-    qDebug()<<"led config load time ="<< timer.restart() << "ms";
+    //qDebug()<<"led config load time ="<< timer.restart() << "ms";
     // hide LED widget
     int ledTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabLedConfig->parentWidget());
     if (ledTabIndex != -1) {
@@ -211,7 +213,7 @@ MainWindow::MainWindow(QWidget *parent)
     // add advanced settings widget
     m_advSettings = new AdvancedSettings(this);
     ui->layoutV_tabAdvSettings->addWidget(m_advSettings);
-    qDebug()<<"advanced settings load time ="<< timer.restart() << "ms";
+    //qDebug()<<"advanced settings load time ="<< timer.restart() << "ms";
 
     m_deviceInfo = new DeviceInfo(this);
     connect(m_deviceInfo, &DeviceInfo::infoUpdated, this, [this]() {
@@ -241,7 +243,9 @@ MainWindow::MainWindow(QWidget *parent)
                         box.setInformativeText(tr("Open the firmware release page?"));
                         box.setIcon(QMessageBox::NoIcon);
                         box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
-                        QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
+                                                                                                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                                                                                                             "QMessageBox QLabel { background-color: transparent; }");
+                                                                                                QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
                         box.addButton(QMessageBox::Cancel);
                         box.exec();
                         if (box.clickedButton() == open) QDesktopServices::openUrl(url);
@@ -256,7 +260,9 @@ MainWindow::MainWindow(QWidget *parent)
                 box.setInformativeText(tr("Open the firmware release page?"));
                 box.setIcon(QMessageBox::NoIcon);
                 box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
-                QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
+                                                                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                                                                             "QMessageBox QLabel { background-color: transparent; }");
+                                                                QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
                 box.addButton(QMessageBox::Cancel);
                 box.exec();
                 if (box.clickedButton() == open) QDesktopServices::openUrl(url);
@@ -447,12 +453,37 @@ MainWindow::MainWindow(QWidget *parent)
             QTimer::singleShot(1000, &loop, &QEventLoop::quit);
             loop.exec();
             disconnect(c);
-            if (!ok) { QMessageBox::warning(this, tr("Force Anchors"), tr("No reply from device.")); return; }
+            if (!ok) {
+                QMessageBox box(this);
+                box.setWindowTitle(tr("Force Anchors"));
+                box.setText(tr("No reply from device."));
+                box.setIcon(QMessageBox::NoIcon);
+
+                // Override palette to ensure all containers use dark background
+                QPalette boxPal = box.palette();
+                boxPal.setColor(QPalette::Window, QColor(36, 39, 49));
+                box.setPalette(boxPal);
+
+                box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                 "QMessageBox QLabel { background-color: transparent; }");
+                box.setStandardButtons(QMessageBox::Ok);
+                box.exec();
+                return;
+            }
 
             // 2) Unpack (you already added MainWindow::unpackAnchors earlier)
             ForceAnchorsGUI a{};
             if (!unpackAnchors(resp, &a)) {
-                QMessageBox::warning(this, tr("Force Anchors"), tr("CRC/format error reading anchors."));
+                QMessageBox box(this);
+                box.setWindowTitle(tr("Force Anchors"));
+                box.setText(tr("CRC/format error reading anchors."));
+                box.setIcon(QMessageBox::NoIcon);
+                box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                 "QMessageBox QLabel { background-color: transparent; }");
+                box.setStandardButtons(QMessageBox::Ok);
+                box.exec();
                 return;
             }
 
@@ -472,7 +503,15 @@ MainWindow::MainWindow(QWidget *parent)
             const int pitUp = pick(pu);
 
             if (!gEnv.pDeviceConfig) {
-                QMessageBox::warning(this, tr("Force Anchors"), tr("Device config not loaded."));
+                QMessageBox box(this);
+                box.setWindowTitle(tr("Force Anchors"));
+                box.setText(tr("Device config not loaded."));
+                box.setIcon(QMessageBox::NoIcon);
+                box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                 "QMessageBox QLabel { background-color: transparent; }");
+                box.setStandardButtons(QMessageBox::Ok);
+                box.exec();
                 return;
             }
 
@@ -631,12 +670,18 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_thread->start();
 
-    qDebug()<<"after widgets load time ="<< timer.elapsed() << "ms";
-    qDebug()<<"without style startup time ="<< gEnv.pApp_start_time->elapsed() << "ms";
+    //qDebug()<<"after widgets load time ="<< timer.elapsed() << "ms";
+    //qDebug()<<"without style startup time ="<< gEnv.pApp_start_time->elapsed() << "ms";
 }
 
 MainWindow::~MainWindow()
 {
+    // Restore default message handler to prevent errors during shutdown
+    qInstallMessageHandler(nullptr);
+
+    // Clear the debug window pointer to prevent dangling references
+    gEnv.pDebugWindow = nullptr;
+
     saveAppConfig();
     m_hidDeviceWorker->setIsFinish(true);
     m_hidDeviceWorker->deleteLater();
@@ -680,7 +725,7 @@ void MainWindow::showConnectDeviceInfo()
 
 
         QTimer::singleShot(1000, this, [this]() {
-            qDebug() << "[MainWindow] Timer: Reading device info...";
+            //qDebug() << "[MainWindow] Timer: Reading device info...";
             readDeviceInfo();
         });
     }
@@ -1006,7 +1051,7 @@ void MainWindow::UiWriteToConfig()
     }
     // remove device name from registry. sometimes windows does not update the name in gaming devices and has to be deleted in the registry
 #ifdef Q_OS_WIN
-    qDebug()<<"Remove device OEMName from registry";
+    //qDebug()<<"Remove device OEMName from registry";
     QString path("HKEY_CURRENT_USER\\System\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
     QString path2("HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
     QSettings(path.arg(QString::number(gEnv.pDeviceConfig->config.vid, 16), QString::number(gEnv.pDeviceConfig->config.pid, 16)),
@@ -1149,7 +1194,7 @@ void MainWindow::configSent(bool success)
 
     // remove device name from registry. sometimes windows does not update the name in gaming devices and has to be deleted in the registry
 #ifdef Q_OS_WIN
-    qDebug()<<"Remove device OEMName from registry";
+    //qDebug()<<"Remove device OEMName from registry";
     QString path("HKEY_CURRENT_USER\\System\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
     QString path2("HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
     QSettings(path.arg(QString::number(gEnv.pDeviceConfig->config.vid, 16), QString::number(gEnv.pDeviceConfig->config.pid, 16)),
@@ -1172,7 +1217,10 @@ void MainWindow::blockWRConfigToDevice(bool block)
 // slot language change
 void MainWindow::languageChanged(const QString &language)
 {
-    qDebug()<<"Retranslate UI";
+    //qDebug()<<"Retranslate UI";
+
+    // Save device status label style (color coding) before retranslation
+    QString savedStatusStyle = ui->label_DeviceStatus->styleSheet();
 
     auto trFunc = [&](const QString &file) {
         if (gEnv.pTranslator->load(file) == false) {
@@ -1180,7 +1228,40 @@ void MainWindow::languageChanged(const QString &language)
             return false;
         }
         qApp->installTranslator(gEnv.pTranslator);
+
+        // Save current selection before retranslation
+        int savedIndex = ui->comboBox_simSoftware->currentIndex();
+
         ui->retranslateUi(this);
+
+        {
+            // Block signals to prevent triggering currentTextChanged during manipulation
+            QSignalBlocker blocker(ui->comboBox_simSoftware);
+
+            // Completely rebuild the combo box from scratch to avoid cumulative flag issues
+            ui->comboBox_simSoftware->clear();
+
+            // Add placeholder first (will be at index 0)
+            ui->comboBox_simSoftware->addItem(tr("— Select sim software—"));
+
+            // Add the three sim software options (translated)
+            ui->comboBox_simSoftware->addItem(tr("DCS"));
+            ui->comboBox_simSoftware->addItem(tr("Falcon BMS"));
+            ui->comboBox_simSoftware->addItem(tr("MSFS"));
+
+            // Disable only the placeholder using the model
+            QStandardItemModel* model = qobject_cast<QStandardItemModel*>(ui->comboBox_simSoftware->model());
+            if (model) {
+                QStandardItem* placeholderItem = model->item(0);
+                if (placeholderItem) {
+                    placeholderItem->setFlags(placeholderItem->flags() & ~Qt::ItemIsEnabled);
+                }
+            }
+
+            // Restore the selection
+            ui->comboBox_simSoftware->setCurrentIndex(savedIndex);
+        }
+
         return true;
     };
 
@@ -1191,19 +1272,51 @@ void MainWindow::languageChanged(const QString &language)
             return;
         }
         qApp->installTranslator(gEnv.pTranslator);
+
+        // Save current selection before retranslation
+        int savedIndex = ui->comboBox_simSoftware->currentIndex();
+
         ui->retranslateUi(this);
+
+        {
+            // Block signals to prevent triggering currentTextChanged during manipulation
+            QSignalBlocker blocker(ui->comboBox_simSoftware);
+
+            // Completely rebuild the combo box from scratch to avoid cumulative flag issues
+            ui->comboBox_simSoftware->clear();
+
+            // Add placeholder first (will be at index 0)
+            ui->comboBox_simSoftware->addItem(tr("— Select sim software—"));
+
+            // Add the three sim software options (translated)
+            ui->comboBox_simSoftware->addItem(tr("DCS"));
+            ui->comboBox_simSoftware->addItem(tr("Falcon BMS"));
+            ui->comboBox_simSoftware->addItem(tr("MSFS"));
+
+            // Disable only the placeholder using the model
+            QStandardItemModel* model = qobject_cast<QStandardItemModel*>(ui->comboBox_simSoftware->model());
+            if (model) {
+                QStandardItem* placeholderItem = model->item(0);
+                if (placeholderItem) {
+                    placeholderItem->setFlags(placeholderItem->flags() & ~Qt::ItemIsEnabled);
+                }
+            }
+
+            // Restore the selection
+            ui->comboBox_simSoftware->setCurrentIndex(savedIndex);
+        }
     }
     else if (language == "russian")
     {
-        if (trFunc(":/FreeJoyQt_ru") == false) return;
+        if (trFunc(":/Russian") == false) return;
     }
     else if (language == "schinese")
     {
-        if (trFunc(":/FreeJoyQt_zh_CN") == false) return;
+        if (trFunc(":/Chinese") == false) return;
     }
     else if (language == "deutsch")
     {
-        if (trFunc(":/FreeJoyQt_de_DE") == false) return;
+        if (trFunc(":/German") == false) return;
     }
     else
     {
@@ -1222,7 +1335,39 @@ void MainWindow::languageChanged(const QString &language)
         m_debugWindow->retranslateUi();
         ui->pushButton_ShowDebug->setText(tr("Hide debug"));
     }
-    qDebug()<<"done";
+    if(m_developer){
+        m_developer->retranslateUi();
+    }
+
+    // Restore device status label with retranslated text based on connection state
+    ui->label_DeviceStatus->setStyleSheet(savedStatusStyle);
+
+    // Reconstruct firmware version text if device is connected
+    if (savedStatusStyle.contains("rgb(5, 170, 61)")) {
+        // Device connected with valid firmware
+        if (gEnv.pDeviceConfig && gEnv.pDeviceConfig->paramsReport.firmware_version > 0) {
+            QString str = QString::number(gEnv.pDeviceConfig->paramsReport.firmware_version, 16);
+            if (str.size() == 4) {
+                ui->label_DeviceStatus->setText(tr("Device firmware") + " v" + str[0] + "." + str[1] + "." + str[2]);
+            }
+        } else if (gEnv.pDeviceConfig && gEnv.pDeviceConfig->config.firmware_version > 0) {
+            QString str = QString::number(gEnv.pDeviceConfig->config.firmware_version, 16);
+            if (str.size() == 4) {
+                ui->label_DeviceStatus->setText(tr("Device firmware") + " v" + str[0] + "." + str[1] + "." + str[2] + "b" + str[3] + " ✔");
+            }
+        }
+    } else if (savedStatusStyle.contains("rgb(160, 0, 0)")) {
+        // Disconnected
+        ui->label_DeviceStatus->setText(tr("Disconnected"));
+    } else if (savedStatusStyle.contains("rgb(255, 135, 7)")) {
+        // Firmware update required
+        ui->label_DeviceStatus->setText(tr("Firmware Update Required"));
+    } else if (savedStatusStyle.contains("rgb(168, 168, 0)")) {
+        // Old firmware warning
+        ui->label_DeviceStatus->setText(tr("Connected"));
+    }
+
+    //qDebug()<<"done";
 }
 
 // set font
@@ -1239,7 +1384,7 @@ void MainWindow::setFont()
 void MainWindow::loadAppConfig()
 {
     QSettings *appS = gEnv.pAppSettings;
-    qDebug()<<"Loading application config";
+    //qDebug()<<"Loading application config";
     // load window settings
     appS->beginGroup("WindowSettings");
     this->restoreGeometry(appS->value("Geometry").toByteArray());
@@ -1268,14 +1413,14 @@ void MainWindow::loadAppConfig()
 #else
     ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tab_Developer));
 #endif
-    qDebug()<<"Finished loading application config";
+    //qDebug()<<"Finished loading application config";
 }
 
 // save app config
 void MainWindow::saveAppConfig()
 {
     QSettings *appS = gEnv.pAppSettings;
-    qDebug()<<"Saving application config";
+    //qDebug()<<"Saving application config";
     // save tab index
     appS->beginGroup("TabIndexSettings");
     appS->setValue("CurrentIndex",    ui->tabWidget->currentIndex());
@@ -1297,7 +1442,7 @@ void MainWindow::saveAppConfig()
     appS->setValue("Path", m_cfgDirPath);
     appS->setValue("LastCfg", ui->comboBox_Configs->currentText());
     appS->endGroup();
-    qDebug()<<"done";
+    //qDebug()<<"done";
 }
 
 
@@ -1311,13 +1456,13 @@ void MainWindow::hidDeviceListChanged(int index)
 // reset all pins
 void MainWindow::on_pushButton_ResetAllPins_clicked()
 {
-    qDebug()<<"Reset all started";
+    //qDebug()<<"Reset all started";
     gEnv.pDeviceConfig->resetConfig();
 
     UiReadFromConfig();
 
     m_pinConfig->resetAllPins();
-    qDebug()<<"done";
+    //qDebug()<<"done";
 }
 
 // read config from device
@@ -1342,19 +1487,19 @@ void MainWindow::on_pushButton_WriteConfig_clicked()
 // load from file
 void MainWindow::on_pushButton_LoadFromFile_clicked()
 {
-    qDebug()<<"Load from file started";
+    //qDebug()<<"Load from file started";
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Open Config"), m_cfgDirPath + "/", tr("Config Files (*.cfg)"));
 
     ConfigToFile::loadDeviceConfigFromFile(this, fileName, gEnv.pDeviceConfig->config);
     UiReadFromConfig();
-    qDebug()<<"done";
+    //qDebug()<<"done";
 }
 
 // save to file
 void MainWindow::on_pushButton_SaveToFile_clicked()
 {
-    qDebug()<<"Save to file started";
+    //qDebug()<<"Save to file started";
 
     QString tmpStr(ui->comboBox_Configs->currentText());
     if (tmpStr == "") {
@@ -1376,7 +1521,7 @@ void MainWindow::on_pushButton_SaveToFile_clicked()
         fileName.remove(fileName.size() - 4, 4); // 4 = ".cfg" characters count
         ui->comboBox_Configs->setCurrentText(fileName);
     });
-    qDebug()<<"done";
+    //qDebug()<<"done";
 }
 
 // select configs dir path
@@ -1442,6 +1587,9 @@ void MainWindow::setAdvancedMode(bool enabled)
         m_debugIsEnable = true;
         ui->pushButton_ShowDebug->setText(tr("Deactivate Advanced Mode"));
 
+        // Set window minimum height to 710px when debug mode is active
+        setMinimumHeight(710);
+
         // reveal hidden tabs useful in Advanced Mode
 
 
@@ -1449,12 +1597,15 @@ void MainWindow::setAdvancedMode(bool enabled)
         if (shiftRegIndex != -1) ui->tabWidget->setTabVisible(shiftRegIndex, true);
     }
     else {
+        // Restore window minimum height to 580px when debug mode is off
+        setMinimumHeight(580);
+
         if (m_debugWindow) {
             m_debugWindow->setVisible(false);
             m_debugWindow->setMinimumHeight(0);
         }
         if (!this->isMaximized()) {
-            resize(width(), height() - 120 - ui->layoutG_MainLayout->verticalSpacing());
+            resize(width(), 580); // Resize to 580px height when turning off debug
         }
         m_debugIsEnable = false;
         ui->pushButton_ShowDebug->setText(tr("Activate Advanced Mode"));
@@ -1490,8 +1641,10 @@ void MainWindow::on_toolButton2_clicked()
     box.setInformativeText(tr("Gen 1–2: Two 3-pin headers\n"
                               "Gen 3: One 4-pin header\n"
                               "Gen 4: One 6-pin header"));
-    box.setIcon(QMessageBox::NoIcon); // prevent style’s default PNG
-    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(64,64)); // crisp at any DPI
+    box.setIcon(QMessageBox::NoIcon); // prevent style's default PNG
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48)); // crisp at any DPI
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
     box.setStandardButtons(QMessageBox::Ok);
     box.exec();
 }
@@ -1501,6 +1654,12 @@ void MainWindow::on_toolButton2_clicked()
 void MainWindow::on_pushButton_Wiki_clicked()
 {
     QDesktopServices::openUrl(QUrl("https://invictuscockpits.com"));
+}
+
+// Help button - opens GitHub wiki for detailed help and instructions
+void MainWindow::on_pushButton_Help_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/invictuscockpits/HOTASConfigurator/wiki"));
 }
 
 
@@ -1606,8 +1765,15 @@ void MainWindow::onGripSelectionChanged(int index)
     qDebug() << "Grip profile path:" << path;
 
     if (!configManager->loadGripProfile(path)) {
-        QMessageBox::warning(this, tr("Error"),
-                             tr("Failed to load grip profile: %1").arg(filename));
+        QMessageBox box(this);
+        box.setWindowTitle(tr("Error"));
+        box.setText(tr("Failed to load grip profile: %1").arg(filename));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     }
     applyGripProfile(configManager->gripConfig());
@@ -1861,8 +2027,10 @@ void MainWindow::applyBoardPreset(BoardId id, bool ask, bool applyPinDefaults)
         box.setWindowTitle(tr("Apply board defaults?"));
         box.setText(tr("Replace current pin mapping with %1 defaults?").arg(name));
         box.setIcon(QMessageBox::NoIcon); // avoid the style's PNG
-        box.setIconPixmap(QIcon(":/Images/question_icon.svg").pixmap(64,64));
-        box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        box.setIconPixmap(QIcon(":/Images/question_icon.svg").pixmap(48,48));
+                                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                                             "QMessageBox QLabel { background-color: transparent; }");
+                                box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         box.setDefaultButton(QMessageBox::Yes);
 
         if (box.exec() != QMessageBox::Yes)
@@ -1907,8 +2075,8 @@ void MainWindow::applyBoardPreset(BoardId id, bool ask, bool applyPinDefaults)
         // if (m_axesConfig) m_axesConfig->addOrDeleteMainSource(SRC_I2C, QString(), false);
 
     } else { // Gen 4 (ADS1115 over I2C)
-        // Ensure “I2C” exists in the Axis Source dropdowns
-        if (m_axesConfig) m_axesConfig->addOrDeleteMainSource(SRC_I2C, tr("I2C"), true);
+        // I2C will be automatically added by pin detection when pins are loaded
+        // (removed manual add to avoid duplicate entries)
 
         cfg.axis_config[AXIS_X].source_main = SRC_I2C;
         cfg.axis_config[AXIS_Y].source_main = SRC_I2C;
@@ -1918,9 +2086,9 @@ void MainWindow::applyBoardPreset(BoardId id, bool ask, bool applyPinDefaults)
         cfg.axis_config[AXIS_Y].i2c_address = AxesExtended::ADS1115_00;  // change to _01/_10/_11 if strapped
 
 
-        // Channels X=0, Y=1
+        // Channels X=0, Y=2 (AIN0=X, AIN1=GND, AIN2=Y, AIN3=GND)
         cfg.axis_config[AXIS_X].channel = 0;
-        cfg.axis_config[AXIS_Y].channel = 1;
+        cfg.axis_config[AXIS_Y].channel = 2;
 
         // Resolution: 16-bit (stored as bits-1)
         cfg.axis_config[AXIS_X].resolution = 16 - 1;
@@ -1965,6 +2133,11 @@ void MainWindow::showEvent(QShowEvent* e)
     }
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    qDebug() << "Window size:" << size().width() << "x" << size().height();
+}
 
 
 
@@ -1986,8 +2159,10 @@ void MainWindow::showUpdatePopup(const QString& tag, const QUrl& url)
     box.setText(tr("A newer version is available: %1\nYou have: %2")
                     .arg(tag, QString::fromLatin1(APP_VERSION)));
     box.setInformativeText(tr("Open the release page to download?"));
-    box.setIcon(QMessageBox::NoIcon); // avoid style’s default PNG
+    box.setIcon(QMessageBox::NoIcon); // avoid style's default PNG
     box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48)); // themed SVG
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
     QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
     box.addButton(QMessageBox::Cancel);
     box.exec();
@@ -2362,50 +2537,6 @@ void MainWindow::updateColor()
 
 ////////////////////////////////////////////////// debug tab //////////////////////////////////////////////////
 // test buttons in debug tab
-#ifdef QT_DEBUG
-static dev_config_t testCfg;
-#endif
-void MainWindow::on_pushButton_TestButton_clicked()
-{
-#ifdef QT_DEBUG
-    on_pushButton_LoadFromFile_clicked();
-    testCfg = gEnv.pDeviceConfig->config;
-    on_pushButton_WriteConfig_clicked();
-#endif
-}
-
-
-void MainWindow::on_pushButton_TestButton_2_clicked()
-{
-#ifdef QT_DEBUG
-    on_pushButton_ReadConfig_clicked();
-    QElapsedTimer timer;
-    timer.start();
-    while (3000 > timer.elapsed()) {
-        if (gEnv.readFinished) {
-            qDebug()<<"compare before write to file";
-            int cmp = memcmp(&testCfg, &gEnv.pDeviceConfig->config, sizeof(dev_config_t));
-            if (cmp == 0) {
-                qDebug()<<"equal";
-            } else {
-                qDebug()<<"ERROR. NOT EQUAL! memcmp ="<< cmp;
-                return;
-            }
-            on_pushButton_SaveToFile_clicked();
-            on_pushButton_LoadFromFile_clicked();
-            qDebug()<<"final compare";
-            cmp = memcmp(&testCfg, &gEnv.pDeviceConfig->config, sizeof(dev_config_t));
-            if (cmp == 0) {
-                qDebug()<<"equal";
-            } else {
-                qDebug()<<"ERROR. NOT EQUAL! memcmp ="<< cmp;
-            }
-            break;
-        }
-        QThread::msleep(50);
-    }
-#endif
-}
 void MainWindow::readDeviceInfo()
 {
     if (!m_hidDeviceWorker) return;
@@ -2414,18 +2545,18 @@ void MainWindow::readDeviceInfo()
     QMetaObject::Connection conn = connect(
         m_hidDeviceWorker, &HidDevice::devPacket,
         this, [this](quint8 op, const QByteArray& data) {
-            qDebug() << "[MainWindow] devPacket received: op=" << op << " size=" << data.size();
+            //qDebug() << "[MainWindow] devPacket received: op=" << op << " size=" << data.size();
 
         if (op == OP_GET_DEVICE_INFO) {
             qDebug() << "[MainWindow] Got device info response";
             if (data.size() >= sizeof(device_info_t)) {
-                qDebug() << "[MainWindow] First 16 bytes:" << data.left(16).toHex(' ');
+                //qDebug() << "[MainWindow] First 16 bytes:" << data.left(16).toHex(' ');
 
                 const device_info_t* info = reinterpret_cast<const device_info_t*>(data.constData());
 
                 // Show raw bytes of model number
                 QByteArray modelBytes(info->model_number, 24);
-                qDebug() << "[MainWindow] Model bytes:" << modelBytes.left(16).toHex(' ');
+                //qDebug() << "[MainWindow] Model bytes:" << modelBytes.left(16).toHex(' ');
 
                 QString model = QString::fromLatin1(info->model_number, strnlen(info->model_number, INV_MODEL_MAX_LEN));
                 QString serial = QString::fromLatin1(info->serial_number, strnlen(info->serial_number, INV_SERIAL_MAX_LEN));

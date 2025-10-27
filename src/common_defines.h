@@ -11,7 +11,7 @@
 
 //#define DEBUG
 
-#define FIRMWARE_VERSION					0x2142              // v2.1.3 (Fixed i2c implementaion for Gen 4 Boards)
+#define FIRMWARE_VERSION					0x2154              // v2.1.5.3 (Fixed i2c implementaion for Gen 4 Boards)
 #define USED_PINS_NUM						30					// Contstant for HOTAS Control boards
 #define MAX_AXIS_NUM						8					// max 8
 #define MAX_BUTTONS_NUM						128					// power of 2, max 128
@@ -56,7 +56,7 @@ enum {
     OP_GET_FACTORY_ANCHORS  = 1,
     OP_SET_FACTORY_ANCHORS  = 2,
     OP_LOCK_FACTORY_ANCHORS = 3,
-    //OP_UNLOCK_FACTORY_ANCHORS = 4,
+    OP_UNLOCK_FACTORY_ANCHORS = 4,
     // New device info operations
     OP_GET_DEVICE_INFO = 5,
     OP_SET_DEVICE_INFO = 6,

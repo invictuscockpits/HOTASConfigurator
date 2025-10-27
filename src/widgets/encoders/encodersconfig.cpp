@@ -81,7 +81,7 @@ void EncodersConfig::setUiOnOff()
 }
 
 
-void EncodersConfig::encoderInputChanged(int encoder_A, int encoder_B)      // говнокод
+void EncodersConfig::encoderInputChanged(int encoder_A, int encoder_B)
 {
     int tmp_add = 0;
 

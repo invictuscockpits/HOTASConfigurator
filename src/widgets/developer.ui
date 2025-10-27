@@ -1307,7 +1307,7 @@
      <x>630</x>
      <y>10</y>
      <width>251</width>
-     <height>171</height>
+     <height>251</height>
     </rect>
    </property>
    <property name="title">
@@ -1352,12 +1352,38 @@
      <string>Lock Force Anchors</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnAnchorsImport">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Import Force Anchors from File</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAnchorsExport">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>200</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Export Force Anchors to File</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_DeviceIdentity">
    <property name="geometry">
     <rect>
      <x>630</x>
-     <y>200</y>
+     <y>270</y>
      <width>251</width>
      <height>191</height>
     </rect>

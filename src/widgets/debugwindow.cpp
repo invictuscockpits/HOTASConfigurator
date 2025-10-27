@@ -58,7 +58,7 @@ void DebugWindow::devicePacketReceived()
         ui->label_PacketsSpeed->setText(QString::number((double(m_timer.restart()) / double(count)), 'f', 3)
                                         + tr(" ms"));
         count = 0;
-    } else if (m_timer.isValid() == false) { // валид-инвалид для правильного отображения при подключении-отключении девайса
+    } else if (m_timer.isValid() == false) { // Initialize timer on device connect/disconnect
         m_timer.start();
     }
 
@@ -79,8 +79,8 @@ void DebugWindow::resetPacketsCount()
 void DebugWindow::printMsg(const QString &msg)
 {
     QString log(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + msg + '\n');
-    ui->textBrowser_DebugMsg->insertPlainText(log);         // append?
-    ui->textBrowser_DebugMsg->moveCursor(QTextCursor::End); // с plainTextEdit криво пашет
+    ui->textBrowser_DebugMsg->insertPlainText(log);
+    ui->textBrowser_DebugMsg->moveCursor(QTextCursor::End);
 
     if (m_writeToFile) {
         QString date(QDateTime::currentDateTime().toString("YYYY-MM-DDTHH:MM"));
@@ -124,4 +124,14 @@ void DebugWindow::on_checkBox_WriteLog_clicked(bool checked)
     gEnv.pAppSettings->endGroup();
 
     m_writeToFile = checked;
+}
+
+void DebugWindow::on_pushButton_ClearAppLog_clicked()
+{
+    ui->textBrowser_DebugMsg->clear();
+}
+
+void DebugWindow::on_pushButton_ClearButtonLog_clicked()
+{
+    buttonLogReset();
 }

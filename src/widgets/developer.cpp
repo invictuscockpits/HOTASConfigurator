@@ -8,6 +8,11 @@
 #include <QMessageBox>
 #include <Qdebug>
 #include <QLineEdit>
+#include <QFileDialog>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QFile>
 
 Developer::Developer(QWidget *parent)
     : QWidget(parent),
@@ -42,9 +47,11 @@ Developer::~Developer()
 void Developer::initConnections()
 {
 
-    connect(ui->btnAnchorsRead,  &QPushButton::clicked, this, &Developer::onRead);
-    connect(ui->btnAnchorsWrite, &QPushButton::clicked, this, &Developer::onWrite);
-    connect(ui->btnAnchorsLock,  &QPushButton::clicked, this, &Developer::onLock);
+    connect(ui->btnAnchorsRead,   &QPushButton::clicked, this, &Developer::onRead);
+    connect(ui->btnAnchorsWrite,  &QPushButton::clicked, this, &Developer::onWrite);
+    connect(ui->btnAnchorsLock,   &QPushButton::clicked, this, &Developer::onLock);
+    connect(ui->btnAnchorsImport, &QPushButton::clicked, this, &Developer::onImport);
+    connect(ui->btnAnchorsExport, &QPushButton::clicked, this, &Developer::onExport);
     connect(ui->btnDeviceInfoWrite, &QPushButton::clicked, this, &Developer::onWriteDeviceInfo);
 
 }
@@ -267,11 +274,11 @@ void Developer::onRead()
         if (m_send(OP_GET_FACTORY_ANCHORS, QByteArray()) && m_recv(OP_GET_FACTORY_ANCHORS, &resp)) {
             // Debug output
             qDebug() << "[Developer] Received anchors:";
-            qDebug() << "  - Response size:" << resp.size();
-            qDebug() << "  - First 16 bytes:" << resp.left(16).toHex(' ');
+            //qDebug() << "  - Response size:" << resp.size();
+            //qDebug() << "  - First 16 bytes:" << resp.left(16).toHex(' ');
 
             haveAnchors = unpack(resp, &a);
-            // consider anchors “missing” only if unpack failed OR all trips are zero
+            // consider anchors "missing" only if unpack failed OR all trips are zero
             if (haveAnchors &&
                 isEmptyTrip(a.rl_17) && isEmptyTrip(a.rr_17) &&
                 isEmptyTrip(a.pd_17)  && isEmptyTrip(a.pu25)  && isEmptyTrip(a.pu40)) {
@@ -300,24 +307,29 @@ void Developer::onRead()
 
             haveAnchors = true;
 
-            QMessageBox box(this);
+            QMessageBox box(window());  // Use main window as parent
             box.setWindowTitle(tr("Force Anchors"));
             box.setText(tr("Factory anchors missing; using calibration defaults."));
 
-            box.setIcon(QMessageBox::NoIcon); // prevent style’s default PNG
+            box.setIcon(QMessageBox::NoIcon); // prevent style's default PNG
             box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48)); // crisp at any DPI
+            box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                             "QMessageBox QLabel { background-color: transparent; }"
+                             "QMessageBox QFrame { background-color: transparent; }");
             box.setStandardButtons(QMessageBox::Ok);
             box.exec();
         }
     }
 
     if (!haveAnchors) {
-        QMessageBox box(this);
+        QMessageBox box(window());  // Use main window as parent
         box.setWindowTitle(tr("Force Anchors"));
         box.setText(tr("Unable to read anchors and no fallback available."));
 
-        box.setIcon(QMessageBox::NoIcon); // prevent style’s default PNG
+        box.setIcon(QMessageBox::NoIcon); // prevent style's default PNG
         box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48)); // crisp at any DPI
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
         box.setStandardButtons(QMessageBox::Ok);
         box.exec();
 
@@ -326,6 +338,19 @@ void Developer::onRead()
 
 
     uiSet(a);
+
+    // Update lock button text based on sealed state
+    if (ui->btnAnchorsLock) {
+        if (a.sealed == 1) {
+            ui->btnAnchorsLock->setText(tr("Unlock Force Anchors"));
+            ui->btnAnchorsLock->setEnabled(true);
+            if (ui->btnAnchorsWrite) ui->btnAnchorsWrite->setEnabled(false);
+        } else {
+            ui->btnAnchorsLock->setText(tr("Lock Force Anchors"));
+            ui->btnAnchorsLock->setEnabled(true);
+            if (ui->btnAnchorsWrite) ui->btnAnchorsWrite->setEnabled(true);
+        }
+    }
 }
 static QString hexDump(const QByteArray& ba, int headBytes = 16) {
     const int n = qMin(headBytes, ba.size());
@@ -342,7 +367,18 @@ static int firstDiff(const QByteArray& a, const QByteArray& b) {
 
 void Developer::onWrite()
 {
-    if (!m_send || !m_recv) { QMessageBox::warning(this, "Anchors", "Transport not set"); return; }
+    if (!m_send || !m_recv) {
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle("Anchors");
+        box.setText(tr("Transport not set"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
 
     // Pre-read: block if sealed
     QByteArray resp;
@@ -351,7 +387,15 @@ void Developer::onWrite()
         m_recv(OP_GET_FACTORY_ANCHORS, &resp) &&
         unpack(resp, &current) && current.sealed == 1)
     {
-        QMessageBox::warning(this, "Anchors", "Anchors are locked; writing is not allowed.");
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle("Anchors");
+        box.setText(tr("Anchors are locked; writing is not allowed."));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     }
 
@@ -360,60 +404,173 @@ void Developer::onWrite()
 
     // Debug output
     qDebug() << "[Developer] Sending anchors:";
-    qDebug() << "  - Blob size:" << blob.size();
-    qDebug() << "  - First 16 bytes:" << blob.left(16).toHex(' ');
+    //qDebug() << "  - Blob size:" << blob.size();
+    //qDebug() << "  - First 16 bytes:" << blob.left(16).toHex(' ');
 
     if (!m_send(OP_SET_FACTORY_ANCHORS, blob) || !m_recv(OP_SET_FACTORY_ANCHORS, &ack)) {
-        QMessageBox::warning(this, "Anchors", "Write failed"); return;
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle("Anchors");
+        box.setText(tr("Write failed"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
     }
-    QMessageBox::information(this, "Anchors", "Anchors written.");
+
+    QMessageBox box(window());  // Use main window as parent
+    box.setWindowTitle("Anchors");
+    box.setText(tr("Anchors written."));
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
 }
 void Developer::onLock()
 {
     if (!m_send || !m_recv) {
-        QMessageBox::warning(this, tr("Force Anchors"), tr("Transport not set."));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Force Anchors"));
+        box.setText(tr("Transport not set."));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     }
-    QByteArray ack;
-    const bool sent = m_send(OP_LOCK_FACTORY_ANCHORS, QByteArray());
-    qDebug() << "[Anchors] m_send(LOCK) returned" << sent;
 
-    const bool got = m_recv(OP_LOCK_FACTORY_ANCHORS, &ack);
-    qDebug().noquote() << "[Anchors] m_recv(LOCK) returned" << got
-                       << " ackLen=" << ack.size()
-                       << " ackHex=" << hexDump(ack, 8);
+    // First, read current state to determine if we should lock or unlock
+    QByteArray resp;
+    Anchors current{};
+    if (!m_send(OP_GET_FACTORY_ANCHORS, QByteArray()) ||
+        !m_recv(OP_GET_FACTORY_ANCHORS, &resp) ||
+        !unpack(resp, &current)) {
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Force Anchors"));
+        box.setText(tr("Unable to read current anchor state."));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    const bool isCurrentlyLocked = (current.sealed == 1);
+    const quint8 operation = isCurrentlyLocked ? OP_UNLOCK_FACTORY_ANCHORS : OP_LOCK_FACTORY_ANCHORS;
+    const QString actionName = isCurrentlyLocked ? tr("unlock") : tr("lock");
+
+    // qDebug() << "[Developer] Lock/Unlock operation:";
+    // qDebug() << "  - Current sealed state:" << current.sealed;
+    // qDebug() << "  - Operation:" << (isCurrentlyLocked ? "UNLOCK" : "LOCK");
+    // qDebug() << "  - OpCode:" << operation;
+
+    // Send lock or unlock command
+    QByteArray ack;
+    const bool sent = m_send(operation, QByteArray());
+    const bool got = m_recv(operation, &ack);
+
+    // qDebug() << "  - Send result:" << sent;
+    // qDebug() << "  - Recv result:" << got;
+    // qDebug() << "  - ACK size:" << ack.size();
+    // if (!ack.isEmpty()) {
+    //     qDebug() << "  - ACK data:" << ack.toHex(' ');
+    // }
 
     if (!sent || !got) {
-        QMessageBox::warning(this, tr("Force Anchors"), tr("Locking anchors failed (no reply)."));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Force Anchors"));
+        box.setText(tr("Failed to %1 anchors (no reply).").arg(actionName));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     }
 
     const quint8 status = ack.isEmpty() ? 1 : quint8(ack.at(0)); // 1=OK, 0=fail
+    // qDebug() << "  - Status byte:" << status;
+
     if (status != 1) {
-        QMessageBox::warning(this, tr("Force Anchors"), tr("Device refused lock."));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Force Anchors"));
+        box.setText(tr("Device refused %1.").arg(actionName));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     }
 
-    // Read back and verify the sealed bit
-    QByteArray resp;
+    // Read back and verify the sealed bit changed
     Anchors a{};
     if (m_send(OP_GET_FACTORY_ANCHORS, QByteArray()) && m_recv(OP_GET_FACTORY_ANCHORS, &resp) && unpack(resp, &a)) {
-        qDebug().noquote() << "[Anchors] GET after LOCK: len=" << resp.size()
-        << " head=" << hexDump(resp, 12);
         uiSet(a);
-        if (a.sealed == 1) {
-            // Optional: disable editing after lock
+
+        const bool nowLocked = (a.sealed == 1);
+
+        if (isCurrentlyLocked && !nowLocked) {
+            // Successfully unlocked
+            if (ui->btnAnchorsLock) ui->btnAnchorsLock->setText(tr("Lock Force Anchors"));
+            if (ui->btnAnchorsWrite) ui->btnAnchorsWrite->setEnabled(true);
+            QMessageBox box(window());  // Use main window as parent, not widget
+            box.setWindowTitle(tr("Force Anchors"));
+            box.setText(tr("Anchors unlocked."));
+            box.setIcon(QMessageBox::NoIcon);
+            box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+            box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                             "QMessageBox QLabel { background-color: transparent; }");
+            box.setStandardButtons(QMessageBox::Ok);
+            box.exec();
+            return;
+        } else if (!isCurrentlyLocked && nowLocked) {
+            // Successfully locked
+            if (ui->btnAnchorsLock) ui->btnAnchorsLock->setText(tr("Unlock Force Anchors"));
             if (ui->btnAnchorsWrite) ui->btnAnchorsWrite->setEnabled(false);
-            if (ui->btnAnchorsLock)  ui->btnAnchorsLock->setEnabled(false);
-            QMessageBox::information(this, tr("Force Anchors"), tr("Anchors locked."));
+            QMessageBox box(window());  // Use main window as parent, not widget
+            box.setWindowTitle(tr("Force Anchors"));
+            box.setText(tr("Anchors locked."));
+            box.setIcon(QMessageBox::NoIcon);
+            box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+            box.setStandardButtons(QMessageBox::Ok);
+            box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                             "QMessageBox QLabel { background-color: transparent; }");
+            box.exec();
             return;
         } else {
-            QMessageBox::warning(this, tr("Force Anchors"), tr("Lock ACK OK but sealed flag is still 0."));
+            QMessageBox box(window());  // Use main window as parent
+            box.setWindowTitle(tr("Force Anchors"));
+            box.setText(tr("Operation acknowledged but sealed flag did not change."));
+            box.setIcon(QMessageBox::NoIcon);
+            box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+            box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                             "QMessageBox QLabel { background-color: transparent; }");
+            box.setStandardButtons(QMessageBox::Ok);
+            box.exec();
             return;
         }
     }
 
-    QMessageBox::warning(this, tr("Force Anchors"), tr("Lock ACK OK but unable to read/parse anchors."));
+    QMessageBox box(window());  // Use main window as parent
+    box.setWindowTitle(tr("Force Anchors"));
+    box.setText(tr("Operation acknowledged but unable to read/parse anchors."));
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
 }
 
 
@@ -487,7 +644,15 @@ void Developer::onWriteDeviceInfo()
 
 
     if (!m_send || !m_recv) {
-        QMessageBox::warning(this, tr("Device Info"), tr("Transport not set"));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Transport not set"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     }
 
@@ -502,16 +667,24 @@ void Developer::onWriteDeviceInfo()
     qDebug() << "  - Model:" << model;
     qDebug() << "  - Date:" << date;
     // Debug: show structure offsets
-    qDebug() << "  - magic offset:" << offsetof(device_info_t, magic);
-    qDebug() << "  - version offset:" << offsetof(device_info_t, version);
-    qDebug() << "  - locked offset:" << offsetof(device_info_t, locked);
-    qDebug() << "  - crc32 offset:" << offsetof(device_info_t, crc32);
-    qDebug() << "  - model offset:" << offsetof(device_info_t, model_number);
-    qDebug() << "  - serial offset:" << offsetof(device_info_t, serial_number);
+    //qDebug() << "  - magic offset:" << offsetof(device_info_t, magic);
+    //qDebug() << "  - version offset:" << offsetof(device_info_t, version);
+    //qDebug() << "  - locked offset:" << offsetof(device_info_t, locked);
+    //qDebug() << "  - crc32 offset:" << offsetof(device_info_t, crc32);
+    //qDebug() << "  - model offset:" << offsetof(device_info_t, model_number);
+    //qDebug() << "  - serial offset:" << offsetof(device_info_t, serial_number);
 
     // Validate date format if provided
     if (!date.isEmpty() && !QRegExp("\\d{4}-\\d{2}-\\d{2}").exactMatch(date)) {
-        QMessageBox::warning(this, tr("Device Info"), tr("Date must be in YYYY-MM-DD format"));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Date must be in YYYY-MM-DD format"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     }
 
@@ -546,15 +719,23 @@ void Developer::onWriteDeviceInfo()
 
 
     if (!m_send(OP_SET_DEVICE_INFO, payload) || !m_recv(OP_SET_DEVICE_INFO, &ack)) {
-        QMessageBox::warning(this, tr("Device Info"), tr("Write failed"));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Write failed"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     }
 
     // Check response
-    qDebug() << "  - Response size:" << ack.size();
-    if (!ack.isEmpty()) {
-        qDebug() << "  - Full response:" << ack.left(10).toHex(' ');
-    }
+    //qDebug() << "  - Response size:" << ack.size();
+    //if (!ack.isEmpty()) {
+    //    qDebug() << "  - Full response:" << ack.left(10).toHex(' ');
+    //}
 
     // Parse the echo response to see what firmware received
     if (ack.size() >= 9 && ack.at(0) == (char)0xAA) {
@@ -566,22 +747,250 @@ void Developer::onWriteDeviceInfo()
 
     // Handle normal responses
     if (ack.isEmpty() || ack.at(0) == 0) {
-        QMessageBox::warning(this, tr("Device Info"), tr("Device refused write (unknown error)"));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Device refused write (unknown error)"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     } else if (ack.at(0) == 1) {
-        QMessageBox::information(this, tr("Device Info"), tr("Device info written successfully"));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Device info written successfully"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     } else if (ack.at(0) == 2) {
-        QMessageBox::warning(this, tr("Device Info"), tr("Device info is locked"));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Device info is locked"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     } else if (ack.at(0) == 3) {
-        QMessageBox::warning(this, tr("Device Info"), tr("Invalid payload size"));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Invalid payload size"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     } else if (ack.at(0) == 4) {
-        QMessageBox::warning(this, tr("Device Info"), tr("Flash write failed"));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Flash write failed"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
     } else {
-        QMessageBox::warning(this, tr("Device Info"), tr("Unknown error code: %1").arg((int)(uint8_t)ack.at(0)));
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Unknown error code: %1").arg((int)(uint8_t)ack.at(0)));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
         return;
+    }
+}
+
+void Developer::onExport()
+{
+    // Get current anchors from UI
+    Anchors a = uiGet();
+
+    // Open file dialog
+    QString fileName = QFileDialog::getSaveFileName(
+        this,
+        tr("Export Force Anchors"),
+        QString(),
+        tr("JSON Files (*.json);;All Files (*)")
+    );
+
+    if (fileName.isEmpty()) {
+        return;  // User cancelled
+    }
+
+    // Create JSON object
+    QJsonObject json;
+    json["version"] = 1;
+    json["magic"] = QString::number(a.magic, 16);
+    json["sealed"] = a.sealed;
+
+    // Helper to create triplet object
+    auto tripletToJson = [](const Triplet& t) -> QJsonObject {
+        QJsonObject obj;
+        obj["adc100"] = t.adc100;
+        obj["adc75"] = t.adc75;
+        obj["adc50"] = t.adc50;
+        return obj;
+    };
+
+    // Add all anchors
+    json["roll_left_17lbf"] = tripletToJson(a.rl_17);
+    json["roll_right_17lbf"] = tripletToJson(a.rr_17);
+    json["pitch_down_17lbf"] = tripletToJson(a.pd_17);
+    json["pitch_up_digital_25lbf"] = tripletToJson(a.pu25);
+    json["pitch_up_analog_40lbf"] = tripletToJson(a.pu40);
+
+    // Add device identification if present
+    if (!a.serialNumber.isEmpty()) json["serial_number"] = a.serialNumber;
+    if (!a.modelNumber.isEmpty()) json["model_number"] = a.modelNumber;
+    if (!a.manufactureDate.isEmpty()) json["manufacture_date"] = a.manufactureDate;
+
+    // Write to file
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly)) {
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Export Failed"));
+        box.setText(tr("Could not open file for writing: %1").arg(file.errorString()));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    QJsonDocument doc(json);
+    file.write(doc.toJson(QJsonDocument::Indented));
+    file.close();
+
+    QMessageBox box(window());  // Use main window as parent
+    box.setWindowTitle(tr("Export Successful"));
+    box.setText(tr("Force anchors exported successfully."));
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
+}
+
+void Developer::onImport()
+{
+    // Open file dialog
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("Import Force Anchors"),
+        QString(),
+        tr("JSON Files (*.json);;All Files (*)")
+    );
+
+    if (fileName.isEmpty()) {
+        return;  // User cancelled
+    }
+
+    // Read file
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) {
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Import Failed"));
+        box.setText(tr("Could not open file for reading: %1").arg(file.errorString()));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    // Parse JSON
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &parseError);
+    if (doc.isNull()) {
+        QMessageBox box(window());  // Use main window as parent
+        box.setWindowTitle(tr("Import Failed"));
+        box.setText(tr("Failed to parse JSON: %1").arg(parseError.errorString()));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    QJsonObject json = doc.object();
+
+    // Helper to extract triplet from JSON
+    auto jsonToTriplet = [](const QJsonObject& obj) -> Triplet {
+        Triplet t;
+        t.adc100 = (qint16)obj["adc100"].toInt();
+        t.adc75 = (qint16)obj["adc75"].toInt();
+        t.adc50 = (qint16)obj["adc50"].toInt();
+        return t;
+    };
+
+    // Create anchors structure from JSON
+    Anchors a;
+    a.magic = 0xF00C;  // Use correct magic regardless of file
+    a.version = 0x02;  // Use current version
+    a.sealed = json["sealed"].toInt();
+
+    // Load all triplets
+    if (json.contains("roll_left_17lbf"))
+        a.rl_17 = jsonToTriplet(json["roll_left_17lbf"].toObject());
+    if (json.contains("roll_right_17lbf"))
+        a.rr_17 = jsonToTriplet(json["roll_right_17lbf"].toObject());
+    if (json.contains("pitch_down_17lbf"))
+        a.pd_17 = jsonToTriplet(json["pitch_down_17lbf"].toObject());
+    if (json.contains("pitch_up_digital_25lbf"))
+        a.pu25 = jsonToTriplet(json["pitch_up_digital_25lbf"].toObject());
+    if (json.contains("pitch_up_analog_40lbf"))
+        a.pu40 = jsonToTriplet(json["pitch_up_analog_40lbf"].toObject());
+
+    // Load device identification
+    if (json.contains("serial_number"))
+        a.serialNumber = json["serial_number"].toString();
+    if (json.contains("model_number"))
+        a.modelNumber = json["model_number"].toString();
+    if (json.contains("manufacture_date"))
+        a.manufactureDate = json["manufacture_date"].toString();
+
+    // Set UI from imported data
+    uiSet(a);
+
+    QMessageBox box(window());  // Use main window as parent
+    box.setWindowTitle(tr("Import Successful"));
+    box.setText(tr("Force anchors imported successfully.\nRemember to write to device if you want to save these values."));
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
+}
+
+void Developer::retranslateUi()
+{
+    if (ui) {
+        ui->retranslateUi(this);
     }
 }

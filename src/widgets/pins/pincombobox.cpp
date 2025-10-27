@@ -2,9 +2,9 @@
 #include "ui_pincombobox.h"
 
 //! pinNumber cannot be less 1 and more than PINS_COUNT
-PinComboBox::PinComboBox(uint pinNumber, QWidget *parent) : // пины - первое, что я начал кодить в конфигураторе и спустя время
-    QWidget(parent),                                        // заявляю - это говнокод!1 который даже мне тяжело понять
-    ui(new Ui::PinComboBox)                                 // мои соболезнования тем кто будет разбираться)
+PinComboBox::PinComboBox(uint pinNumber, QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::PinComboBox)
 {
     ui->setupUi(this);
     // minimum pinNumber = enum PA_0 = 1
@@ -134,9 +134,9 @@ void PinComboBox::setIndex_iteraction(int index, int senderIndex)
 }
 
 //! Set pin items
-void PinComboBox::initializationPins(uint pin)      // pin_number_ - 1 так се
-{                                                   // это из-за того, что пустые значения структуры const cBox pin_types_[PIN_TYPE_COUNT]
-    m_pinNumber = pin;                              // инициализированы 0 и хер поймёшь код. возможно переделаю
+void PinComboBox::initializationPins(uint pin)
+{
+    m_pinNumber = pin;
 
     int typeExceptSize = sizeof(m_pinTypes->pinExcept) / sizeof(m_pinTypes->pinExcept[0]);
     int typeSize = sizeof(m_pinTypes->pinType) / sizeof(m_pinTypes->pinType[0]);

@@ -25,11 +25,14 @@ public:
 
 
 public slots:
-    // Hooked to the three buttons
+    // Hooked to the buttons
     void onRead();
     void onWrite();
     void onLock();
+    void onImport();
+    void onExport();
     void setLiveRaw(int rawX, int rawY);
+    void retranslateUi();
 
 
 private:

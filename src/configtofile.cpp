@@ -77,7 +77,7 @@ void ConfigToFile::loadDeviceConfigFromFile(QWidget *parent, const QString &file
     // load Timer config from file
     deviceSettings.beginGroup("TimersConfig");
 
-    devC.button_timer1_ms = uint16_t(deviceSettings.value("Timer1", devC.button_timer1_ms).toInt());   // вроде и без (int16_t) работает
+    devC.button_timer1_ms = uint16_t(deviceSettings.value("Timer1", devC.button_timer1_ms).toInt());
     devC.button_timer2_ms = uint16_t(deviceSettings.value("Timer2", devC.button_timer2_ms).toInt());
     devC.button_timer3_ms = uint16_t(deviceSettings.value("Timer3", devC.button_timer3_ms).toInt());
     devC.button_debounce_ms = uint16_t(deviceSettings.value("Debounce", devC.button_debounce_ms).toInt());

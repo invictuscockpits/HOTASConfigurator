@@ -23,11 +23,13 @@ public:
 
     void logicalButtonState(int buttonNumber, bool state);
 
-    Q_INVOKABLE // для мультипотока, хз правильно ли, но работает. CustomMessageHandler in main
-        void printMsg(const QString &msg); // не уверен насчёт ссылки, мб надо копию получать с мультипотоком
+    Q_INVOKABLE // Required for multithreaded message handler (see CustomMessageHandler in main.cpp)
+        void printMsg(const QString &msg);
 
 private slots:
     void on_checkBox_WriteLog_clicked(bool checked);
+    void on_pushButton_ClearAppLog_clicked();
+    void on_pushButton_ClearButtonLog_clicked();
 
 private:
     Ui::DebugWindow *ui;

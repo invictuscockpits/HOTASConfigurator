@@ -9,23 +9,15 @@
     </message>
     <message>
         <source>USB settings</source>
-        <translation>Настройки USB</translation>
+        <translation type="vanished">Настройки USB</translation>
     </message>
     <message>
         <source>Device USB name</source>
-        <translation>Название USB устройства</translation>
+        <translation type="vanished">Название USB устройства</translation>
     </message>
     <message>
         <source>USB exchange period</source>
         <translation>Период обмена USB</translation>
-    </message>
-    <message>
-        <source>PID</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>VID</source>
-        <translation></translation>
     </message>
     <message>
         <source>Dynamic HID config</source>
@@ -45,7 +37,7 @@
     </message>
     <message>
         <source>Application settings</source>
-        <translation>Настройки приложения</translation>
+        <translation type="vanished">Настройки приложения</translation>
     </message>
     <message>
         <source>Styles</source>
@@ -65,7 +57,7 @@
     </message>
     <message>
         <source>Languages</source>
-        <translation>Языки</translation>
+        <translation type="vanished">Языки</translation>
     </message>
     <message>
         <source>Font size</source>
@@ -105,15 +97,11 @@
     </message>
     <message>
         <source>Other settings</source>
-        <translation>Прочие настройки</translation>
+        <translation type="vanished">Прочие настройки</translation>
     </message>
     <message>
         <source>Load default config on startup</source>
         <translation type="vanished">Стандартный конфиг при запуске</translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation></translation>
     </message>
     <message>
         <source>Wiki</source>
@@ -129,7 +117,7 @@
     </message>
     <message>
         <source>About Invictus HOTAS Configurator</source>
-        <translation>О Invictus HOTAS Конфигуратор</translation>
+        <translation type="vanished">О Invictus HOTAS Конфигуратор</translation>
     </message>
     <message>
         <source>Sometimes Windows does not update the name in gaming devices and has to be deleted in the registry</source>
@@ -137,11 +125,11 @@
     </message>
     <message>
         <source>Remove name</source>
-        <translation>Удалить имя</translation>
+        <translation type="vanished">Удалить имя</translation>
     </message>
     <message>
         <source>Remove device name with selected VID/PID from registry</source>
-        <translation>Удалить имя устройства с выбранными VID/PID из реестра</translation>
+        <translation type="vanished">Удалить имя устройства с выбранными VID/PID из реестра</translation>
     </message>
     <message>
         <source>Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.</source>
@@ -149,23 +137,23 @@
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some values may not work on some operating systems(PID 5750 on Ubuntu, for example). After choosing the wrong value, the controller needs to be reflashed with ST-link/UART.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Некоторые значения могут не работать в вашей операционной системе(например PID 5750 не работает в  Ubuntu). После выбора неверного значения, контроллер потребуется перепрошить с помощью ST-link/UART.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Некоторые значения могут не работать в вашей операционной системе(например PID 5750 не работает в  Ubuntu). После выбора неверного значения, контроллер потребуется перепрошить с помощью ST-link/UART.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Иногда Windows не обновляет имя в игровых устройствах и его приходится удалять из реестра. Это делается автоматически во время записи конфигурации, но иногда требуется ручное удаление с отключённым устройством.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Иногда Windows не обновляет имя в игровых устройствах и его приходится удалять из реестра. Это делается автоматически во время записи конфигурации, но иногда требуется ручное удаление с отключённым устройством.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;Built with Qt %1 (%2)&lt;br&gt;Source code available under GPLv3 on &lt;a style=&quot;color: #03A9F4; text-decoration:none;
                                 href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
-        <translation>&lt;br&gt;Собрано с Qt %1 (%2)&lt;br&gt;Исходный код доступен по GPLv3 на &lt;a style=&quot;color: #03A9F4; text-decoration:none;
+        <translation type="vanished">&lt;br&gt;Собрано с Qt %1 (%2)&lt;br&gt;Исходный код доступен по GPLv3 на &lt;a style=&quot;color: #03A9F4; text-decoration:none;
                                 href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;Check &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot;
                             href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;our wiki &lt;/a&gt;
                             for detailed instructions.</source>
-        <translation>&lt;br&gt;Посетите &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot;
+        <translation type="vanished">&lt;br&gt;Посетите &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot;
                             href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;наше вики &lt;/a&gt;
                             для подробных инструкций.</translation>
     </message>
@@ -179,7 +167,166 @@
     </message>
     <message>
         <source>Restart</source>
-        <translation>Перезапуск</translation>
+        <translation type="vanished">Перезапуск</translation>
+    </message>
+    <message>
+        <source>Application Settings</source>
+        <translation>Настройки приложения</translation>
+    </message>
+    <message>
+        <source>Check for Software Updates</source>
+        <translation>Проверить обновления ПО</translation>
+    </message>
+    <message>
+        <source>Check for Firmware Update</source>
+        <translation>Проверить обновление прошивки</translation>
+    </message>
+    <message>
+        <source>Restart Application</source>
+        <translation>Перезапустить приложение</translation>
+    </message>
+    <message>
+        <source>About HOTAS Configurator</source>
+        <translation>О HOTAS Конфигураторе</translation>
+    </message>
+    <message>
+        <source>Device Information</source>
+        <translation>Информация об устройстве</translation>
+    </message>
+    <message>
+        <source>Model:</source>
+        <translation>Модель:</translation>
+    </message>
+    <message>
+        <source>Serial #:</source>
+        <translation>Серийный номер:</translation>
+    </message>
+    <message>
+        <source>Date of Manufacture:</source>
+        <translation>Дата изготовления:</translation>
+    </message>
+    <message>
+        <source>Firmware Version:</source>
+        <translation>Версия прошивки:</translation>
+    </message>
+    <message>
+        <source>Device Info Error</source>
+        <translation>Ошибка информации устройства</translation>
+    </message>
+    <message>
+        <source>Write Device Info</source>
+        <translation type="vanished">Записать информацию устройства</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to write device info to flash?</source>
+        <translation type="vanished">Вы уверены, что хотите записать информацию устройства во флэш-память?</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="obsolete">Ошибка</translation>
+    </message>
+    <message>
+        <source>Date must be in YYYY-MM-DD format</source>
+        <translation type="vanished">Дата должна быть в формате ГГГГ-ММ-ДД</translation>
+    </message>
+    <message>
+        <source>
+        &lt;p&gt;Source code available under GPLv3 on
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;This software and firmware are based on
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;.
+        We highly recommend starting there if you&apos;re building something similar.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Check</source>
+        <translation>Проверка обновлений</translation>
+    </message>
+    <message>
+        <source>Update check is only implemented for Windows in this build.</source>
+        <translation>Проверка обновлений реализована только для Windows в этой сборке.</translation>
+    </message>
+    <message>
+        <source>WinHTTP initialization failed (error %1).</source>
+        <translation>Инициализация WinHTTP не удалась (ошибка %1).</translation>
+    </message>
+    <message>
+        <source>Network connect failed (error %1).</source>
+        <translation>Не удалось подключиться к сети (ошибка %1).</translation>
+    </message>
+    <message>
+        <source>GitHub returned HTTP %1.</source>
+        <translation>GitHub вернул HTTP %1.</translation>
+    </message>
+    <message>
+        <source>No releases found.</source>
+        <translation>Релизы не найдены.</translation>
+    </message>
+    <message>
+        <source>Up to date</source>
+        <translation>Актуальная версия</translation>
+    </message>
+    <message>
+        <source>You’re on the latest version (%1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update available</source>
+        <translation>Доступно обновление</translation>
+    </message>
+    <message>
+        <source>A newer version is available: %1
+You have: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the release page to download?</source>
+        <translation>Открыть страницу релиза для загрузки?</translation>
+    </message>
+    <message>
+        <source>Open GitHub</source>
+        <translation>Открыть GitHub</translation>
+    </message>
+    <message>
+        <source>Firmware Update</source>
+        <translation>Обновление прошивки</translation>
+    </message>
+    <message>
+        <source>Connect failed (error %1).</source>
+        <translation>Подключение не удалось (ошибка %1).</translation>
+    </message>
+    <message>
+        <source>Your device firmware is up to date (%1).</source>
+        <translation>Прошивка вашего устройства актуальна (%1).</translation>
+    </message>
+    <message>
+        <source>Firmware update available</source>
+        <translation>Доступно обновление прошивки</translation>
+    </message>
+    <message>
+        <source>A newer firmware is available: %1
+Device has: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the firmware release page?</source>
+        <translation>Открыть страницу релиза прошивки?</translation>
+    </message>
+    <message>
+        <source>Firmware update check is only implemented for Windows in this build.</source>
+        <translation>Проверка обновлений прошивки реализована только для Windows в этой сборке.</translation>
+    </message>
+    <message>
+        <source>
+        &lt;p&gt;Visit our
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;wiki&lt;/a&gt;
+        for detailed instructions.&lt;/p&gt;
+        &lt;/div&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Don&apos;t remind me again for %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -524,7 +671,7 @@
     </message>
     <message>
         <source>Chanel/Encoder</source>
-        <translation>Канал/Энкодер</translation>
+        <translation type="vanished">Канал/Энкодер</translation>
     </message>
     <message>
         <source>Function axis</source>
@@ -580,7 +727,7 @@
     </message>
     <message>
         <source>Dynamic deadband</source>
-        <translation>Динам. мёртвая зона</translation>
+        <translation type="vanished">Динам. мёртвая зона</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -665,6 +812,14 @@
     <message>
         <source>Slider 2</source>
         <translation type="vanished">Слайдер 2</translation>
+    </message>
+    <message>
+        <source>Channel</source>
+        <translation>Канал</translation>
+    </message>
+    <message>
+        <source>Dynamic Jitter Reduction</source>
+        <translation>Динамическое уменьшение дрожания</translation>
     </message>
 </context>
 <context>
@@ -766,15 +921,15 @@
     </message>
     <message>
         <source>Debounce timer</source>
-        <translation>Таймер дребезга</translation>
+        <translation type="vanished">Таймер дребезга</translation>
     </message>
     <message>
         <source>Encoder press timer</source>
-        <translation>Время нажатия энкодера</translation>
+        <translation type="vanished">Время нажатия энкодера</translation>
     </message>
     <message>
         <source>Axes to buttons timer</source>
-        <translation>Оси в кнопки таймер</translation>
+        <translation type="vanished">Оси в кнопки таймер</translation>
     </message>
     <message>
         <source>Automatically set physical button</source>
@@ -791,6 +946,18 @@
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a physical button for assigning it to a logical one.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Нажмите физическую кнопку, чтобы назначить её логической кнопке.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Debounce Timer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Axes to buttons Timer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encoder press Timer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -861,67 +1028,67 @@
     </message>
     <message>
         <source>POV1 Up</source>
-        <translation>POV1 Вверх</translation>
+        <translation type="vanished">POV1 Вверх</translation>
     </message>
     <message>
         <source>POV1 Right</source>
-        <translation>POV1 Право</translation>
+        <translation type="vanished">POV1 Право</translation>
     </message>
     <message>
         <source>POV1 Down</source>
-        <translation>POV1 Вниз</translation>
+        <translation type="vanished">POV1 Вниз</translation>
     </message>
     <message>
         <source>POV1 Left</source>
-        <translation>POV1 Лево</translation>
+        <translation type="vanished">POV1 Лево</translation>
     </message>
     <message>
         <source>POV2 Up</source>
-        <translation>POV2 Вверх</translation>
+        <translation type="vanished">POV2 Вверх</translation>
     </message>
     <message>
         <source>POV2 Right</source>
-        <translation>POV2 Право</translation>
+        <translation type="vanished">POV2 Право</translation>
     </message>
     <message>
         <source>POV2 Down</source>
-        <translation>POV2 Вниз</translation>
+        <translation type="vanished">POV2 Вниз</translation>
     </message>
     <message>
         <source>POV2 Left</source>
-        <translation>POV2 Лево</translation>
+        <translation type="vanished">POV2 Лево</translation>
     </message>
     <message>
         <source>POV3 Up</source>
-        <translation>POV3 Вверх</translation>
+        <translation type="vanished">POV3 Вверх</translation>
     </message>
     <message>
         <source>POV3 Right</source>
-        <translation>POV3 Право</translation>
+        <translation type="vanished">POV3 Право</translation>
     </message>
     <message>
         <source>POV3 Down</source>
-        <translation>POV3 Вниз</translation>
+        <translation type="vanished">POV3 Вниз</translation>
     </message>
     <message>
         <source>POV3 Left</source>
-        <translation>POV3 Лево</translation>
+        <translation type="vanished">POV3 Лево</translation>
     </message>
     <message>
         <source>POV4 Up</source>
-        <translation>POV4 Вверх</translation>
+        <translation type="vanished">POV4 Вверх</translation>
     </message>
     <message>
         <source>POV4 Right</source>
-        <translation>POV4 Право</translation>
+        <translation type="vanished">POV4 Право</translation>
     </message>
     <message>
         <source>POV4 Down</source>
-        <translation>POV4 Вниз</translation>
+        <translation type="vanished">POV4 Вниз</translation>
     </message>
     <message>
         <source>POV4 Left</source>
-        <translation>POV3 Лево</translation>
+        <translation type="vanished">POV3 Лево</translation>
     </message>
     <message>
         <source>Encoder A</source>
@@ -957,11 +1124,11 @@
     </message>
     <message>
         <source>POV1 Center</source>
-        <translation>POV1 Центр</translation>
+        <translation type="vanished">POV1 Центр</translation>
     </message>
     <message>
         <source>POV2 Center</source>
-        <translation>POV2 Центр</translation>
+        <translation type="vanished">POV2 Центр</translation>
     </message>
     <message>
         <source>-</source>
@@ -970,6 +1137,78 @@
     <message>
         <source>Toggle switch OFF</source>
         <translation>Тумблер Выкл</translation>
+    </message>
+    <message>
+        <source>CMS Forward</source>
+        <translation>CMS Вперед</translation>
+    </message>
+    <message>
+        <source>CMS Right</source>
+        <translation>CMS Вправо</translation>
+    </message>
+    <message>
+        <source>CMS Aft</source>
+        <translation>CMS Назад</translation>
+    </message>
+    <message>
+        <source>CMS Left</source>
+        <translation>CMS Влево</translation>
+    </message>
+    <message>
+        <source>CMS Depress</source>
+        <translation>CMS Нажатие</translation>
+    </message>
+    <message>
+        <source>Nose Down</source>
+        <translation>Нос вниз</translation>
+    </message>
+    <message>
+        <source>R Wing Dwn</source>
+        <translation>Правое крыло вниз</translation>
+    </message>
+    <message>
+        <source>Nose Up</source>
+        <translation>Нос вверх</translation>
+    </message>
+    <message>
+        <source>L Wing Dwn</source>
+        <translation>Левое крыло вниз</translation>
+    </message>
+    <message>
+        <source>Trim Center Depress</source>
+        <translation>Триммер центр нажатие</translation>
+    </message>
+    <message>
+        <source>DMS Up</source>
+        <translation>DMS Вверх</translation>
+    </message>
+    <message>
+        <source>DMS Right</source>
+        <translation>DMS Вправо</translation>
+    </message>
+    <message>
+        <source>DMS Down</source>
+        <translation>DMS Вниз</translation>
+    </message>
+    <message>
+        <source>DMS Left</source>
+        <translation>DMS Влево</translation>
+    </message>
+    <message>
+        <source>TMS Up</source>
+        <translation>TMS Вверх</translation>
+    </message>
+    <message>
+        <source>TMS Right</source>
+        <translation>TMS Вправо</translation>
+    </message>
+    <message>
+        <source>TMS Down</source>
+        <translation>TMS Вниз</translation>
+    </message>
+    <message>
+        <source>TMS Left</source>
+        <translation>TMS Влево</translation>
     </message>
 </context>
 <context>
@@ -983,15 +1222,15 @@
     <name>ConfigToFile</name>
     <message>
         <source>Firmware version in config file doesnt match configurator version. Check settings before write config.</source>
-        <translation>Версия прошивки в файле конфигурации не совпадает с версией конфигуратора. Проверьте настройки перед записью конфига.</translation>
+        <translation type="vanished">Версия прошивки в файле конфигурации не совпадает с версией конфигуратора. Проверьте настройки перед записью конфига.</translation>
     </message>
     <message>
         <source>Pins B8, B9 reset! In this version I2C moved from pins B8, B9 to B10, B11. Check it!</source>
-        <translation>Пины B8, B9 сброшены! В этой версии I2C перенесён с пинов B8, B9 на пины B10, B11, проверьте их!</translation>
+        <translation type="vanished">Пины B8, B9 сброшены! В этой версии I2C перенесён с пинов B8, B9 на пины B10, B11, проверьте их!</translation>
     </message>
     <message>
         <source>Firmware version!</source>
-        <translation>Версия прошивки!</translation>
+        <translation type="vanished">Версия прошивки!</translation>
     </message>
 </context>
 <context>
@@ -1093,7 +1332,7 @@
     </message>
     <message>
         <source> unpressed</source>
-        <translation> отжата</translation>
+        <translation type="vanished"> отжата</translation>
     </message>
     <message>
         <source>Write log to file</source>
@@ -1102,6 +1341,323 @@
     <message>
         <source>Debug packets speed within 5 seconds</source>
         <translation>Отлидочные пакеты в течении 5 сек</translation>
+    </message>
+    <message>
+        <source>Clear Application Log</source>
+        <translation>Очистить журнал приложения</translation>
+    </message>
+    <message>
+        <source>Clear Buttons Log</source>
+        <translation>Очистить журнал кнопок</translation>
+    </message>
+    <message>
+        <source> released</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Developer</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Форма</translation>
+    </message>
+    <message>
+        <source>Persistent Force Anchors</source>
+        <translation>Постоянные якоря силы</translation>
+    </message>
+    <message>
+        <source>Roll Left</source>
+        <translation>Крен влево</translation>
+    </message>
+    <message>
+        <source>100% (17 lbf)</source>
+        <translation>100% (17 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>50% (8.5 lbf)</source>
+        <translation>50% (8,5 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>75% (12.75 lbf)</source>
+        <translation>75% (12,75 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>Set Anchor</source>
+        <translation>Установить якорь</translation>
+    </message>
+    <message>
+        <source>Pitch Down</source>
+        <translation>Тангаж вниз</translation>
+    </message>
+    <message>
+        <source> 75% (12.75 lbf)</source>
+        <translation> 75% (12,75 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>Roll Right</source>
+        <translation>Крен вправо</translation>
+    </message>
+    <message>
+        <source>Pitch Up Analog</source>
+        <translation>Тангаж вверх аналоговый</translation>
+    </message>
+    <message>
+        <source>50% (20 lbf)</source>
+        <translation>50% (20 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>100% (40 lbf)</source>
+        <translation>100% (40 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>75% (30 lbf)</source>
+        <translation>75% (30 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>Pitch Up Digital</source>
+        <translation>Тангаж вверх цифровой</translation>
+    </message>
+    <message>
+        <source>75% (18,75 lbf)</source>
+        <translation>75% (18,75 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>100% (25 lbf)</source>
+        <translation>100% (25 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>50% (12.5 lbf)</source>
+        <translation>50% (12,5 фунт-сила)</translation>
+    </message>
+    <message>
+        <source>Raw Values</source>
+        <translation>Необработанные значения</translation>
+    </message>
+    <message>
+        <source>Current Raw Value X:</source>
+        <translation>Текущее необработанное значение X:</translation>
+    </message>
+    <message>
+        <source>Current Raw Value Y:</source>
+        <translation>Текущее необработанное значение Y:</translation>
+    </message>
+    <message>
+        <source>Force Values Anchors</source>
+        <translation>Якоря значений силы</translation>
+    </message>
+    <message>
+        <source>Read Force Anchors from Device</source>
+        <translation>Считать якоря силы с устройства</translation>
+    </message>
+    <message>
+        <source>Write Force Anchors to Device</source>
+        <translation>Записать якоря силы на устройство</translation>
+    </message>
+    <message>
+        <source>Lock Force Anchors</source>
+        <translation>Заблокировать якоря силы</translation>
+    </message>
+    <message>
+        <source>Device Identity</source>
+        <translation>Идентификация устройства</translation>
+    </message>
+    <message>
+        <source>YYYY-MM-DD</source>
+        <translation>ГГГГ-ММ-ДД</translation>
+    </message>
+    <message>
+        <source>Date of Manufacture:</source>
+        <translation>Дата изготовления:</translation>
+    </message>
+    <message>
+        <source>Model:</source>
+        <translation>Модель:</translation>
+    </message>
+    <message>
+        <source>Serial #: </source>
+        <translation>Серийный номер: </translation>
+    </message>
+    <message>
+        <source>Write Device Identity</source>
+        <translation>Записать идентификацию устройства</translation>
+    </message>
+    <message>
+        <source>Force Anchors</source>
+        <translation>Якоря силы</translation>
+    </message>
+    <message>
+        <source>Factory anchors missing; using calibration defaults.</source>
+        <translation>Заводские якоря отсутствуют; используются стандартные значения калибровки.</translation>
+    </message>
+    <message>
+        <source>Unable to read anchors and no fallback available.</source>
+        <translation>Не удалось прочитать якоря, резервные значения недоступны.</translation>
+    </message>
+    <message>
+        <source>Transport not set.</source>
+        <translation>Транспорт не установлен.</translation>
+    </message>
+    <message>
+        <source>Locking anchors failed (no reply).</source>
+        <translation type="vanished">Блокировка якорей не удалась (нет ответа).</translation>
+    </message>
+    <message>
+        <source>Device refused lock.</source>
+        <translation type="vanished">Устройство отклонило блокировку.</translation>
+    </message>
+    <message>
+        <source>Anchors locked.</source>
+        <translation>Якоря заблокированы.</translation>
+    </message>
+    <message>
+        <source>Lock ACK OK but sealed flag is still 0.</source>
+        <translation type="vanished">Подтверждение блокировки получено, но флаг запечатывания все еще 0.</translation>
+    </message>
+    <message>
+        <source>Lock ACK OK but unable to read/parse anchors.</source>
+        <translation type="vanished">Подтверждение блокировки получено, но не удалось прочитать/разобрать якоря.</translation>
+    </message>
+    <message>
+        <source>Device Info</source>
+        <translation>Информация об устройстве</translation>
+    </message>
+    <message>
+        <source>Transport not set</source>
+        <translation>Транспорт не установлен</translation>
+    </message>
+    <message>
+        <source>Date must be in YYYY-MM-DD format</source>
+        <translation>Дата должна быть в формате ГГГГ-ММ-ДД</translation>
+    </message>
+    <message>
+        <source>Write failed</source>
+        <translation>Запись не удалась</translation>
+    </message>
+    <message>
+        <source>Device refused write (unknown error)</source>
+        <translation>Устройство отклонило запись (неизвестная ошибка)</translation>
+    </message>
+    <message>
+        <source>Device info written successfully</source>
+        <translation>Информация об устройстве успешно записана</translation>
+    </message>
+    <message>
+        <source>Device info is locked</source>
+        <translation>Информация об устройстве заблокирована</translation>
+    </message>
+    <message>
+        <source>Invalid payload size</source>
+        <translation>Недопустимый размер полезной нагрузки</translation>
+    </message>
+    <message>
+        <source>Flash write failed</source>
+        <translation>Запись во флэш-память не удалась</translation>
+    </message>
+    <message>
+        <source>Unknown error code: %1</source>
+        <translation>Неизвестный код ошибки: %1</translation>
+    </message>
+    <message>
+        <source>Unlock Force Anchors</source>
+        <translation>Разблокировать анкеры силы</translation>
+    </message>
+    <message>
+        <source>Unable to read current anchor state.</source>
+        <translation>Невозможно прочитать текущее состояние анкеров.</translation>
+    </message>
+    <message>
+        <source>unlock</source>
+        <translation>разблокировать</translation>
+    </message>
+    <message>
+        <source>lock</source>
+        <translation>заблокировать</translation>
+    </message>
+    <message>
+        <source>Failed to %1 anchors (no reply).</source>
+        <translation>Не удалось %1 анкеры (нет ответа).</translation>
+    </message>
+    <message>
+        <source>Device refused %1.</source>
+        <translation>Устройство отказалось %1.</translation>
+    </message>
+    <message>
+        <source>Anchors unlocked.</source>
+        <translation>Анкеры разблокированы.</translation>
+    </message>
+    <message>
+        <source>Operation acknowledged but sealed flag did not change.</source>
+        <translation>Операция подтверждена, но флаг блокировки не изменился.</translation>
+    </message>
+    <message>
+        <source>Operation acknowledged but unable to read/parse anchors.</source>
+        <translation>Операция подтверждена, но не удалось прочитать/разобрать анкеры.</translation>
+    </message>
+    <message>
+        <source>Import Force Anchors from File</source>
+        <translation>Импортировать анкеры силы из файла</translation>
+    </message>
+    <message>
+        <source>Export Force Anchors to File</source>
+        <translation>Экспортировать анкеры силы в файл</translation>
+    </message>
+    <message>
+        <source>Export Force Anchors</source>
+        <translation>Экспорт анкеров силы</translation>
+    </message>
+    <message>
+        <source>JSON Files (*.json);;All Files (*)</source>
+        <translation>JSON файлы (*.json);;Все файлы (*)</translation>
+    </message>
+    <message>
+        <source>Export Failed</source>
+        <translation>Экспорт не удался</translation>
+    </message>
+    <message>
+        <source>Could not open file for writing: %1</source>
+        <translation>Не удалось открыть файл для записи: %1</translation>
+    </message>
+    <message>
+        <source>Export Successful</source>
+        <translation>Экспорт выполнен успешно</translation>
+    </message>
+    <message>
+        <source>Force anchors exported successfully.</source>
+        <translation>Анкеры силы успешно экспортированы.</translation>
+    </message>
+    <message>
+        <source>Import Force Anchors</source>
+        <translation>Импорт анкеров силы</translation>
+    </message>
+    <message>
+        <source>Import Failed</source>
+        <translation>Импорт не удался</translation>
+    </message>
+    <message>
+        <source>Could not open file for reading: %1</source>
+        <translation>Не удалось открыть файл для чтения: %1</translation>
+    </message>
+    <message>
+        <source>Failed to parse JSON: %1</source>
+        <translation>Не удалось разобрать JSON: %1</translation>
+    </message>
+    <message>
+        <source>Import Successful</source>
+        <translation>Импорт выполнен успешно</translation>
+    </message>
+    <message>
+        <source>Force anchors imported successfully.
+Remember to write to device if you want to save these values.</source>
+        <translation>Анкеры силы успешно импортированы.
+Не забудьте записать на устройство, если хотите сохранить эти значения.</translation>
+    </message>
+    <message>
+        <source>Anchors are locked; writing is not allowed.</source>
+        <translation>Анкеры заблокированы; запись не разрешена.</translation>
+    </message>
+    <message>
+        <source>Anchors written.</source>
+        <translation>Анкеры записаны.</translation>
     </message>
 </context>
 <context>
@@ -1331,15 +1887,15 @@
     </message>
     <message>
         <source> Pin Config </source>
-        <translation> Пины </translation>
+        <translation type="vanished"> Пины </translation>
     </message>
     <message>
         <source> Button Config </source>
-        <translation> Кнопки </translation>
+        <translation type="vanished"> Кнопки </translation>
     </message>
     <message>
         <source> Axes Config </source>
-        <translation> Оси </translation>
+        <translation type="vanished"> Оси </translation>
     </message>
     <message>
         <source> Axes Curves </source>
@@ -1363,15 +1919,15 @@
     </message>
     <message>
         <source> Debug </source>
-        <translation> Дебаг </translation>
+        <translation type="vanished"> Дебаг </translation>
     </message>
     <message>
         <source>Write config to Device</source>
-        <translation>Запись конфига</translation>
+        <translation type="vanished">Запись конфига</translation>
     </message>
     <message>
         <source>Read config from Device</source>
-        <translation>Чтение конфига</translation>
+        <translation type="vanished">Чтение конфига</translation>
     </message>
     <message>
         <source>Reset All</source>
@@ -1427,7 +1983,7 @@
     </message>
     <message>
         <source>Device</source>
-        <translation>Устройство</translation>
+        <translation type="vanished">Устройство</translation>
     </message>
     <message>
         <source> Encoders</source>
@@ -1449,7 +2005,7 @@ g</source>
     </message>
     <message>
         <source>Show debug</source>
-        <translation>Показать отладку</translation>
+        <translation type="vanished">Показать отладку</translation>
     </message>
     <message>
         <source>Hide debug</source>
@@ -1492,10 +2048,6 @@ g</source>
         <translation type="vanished">Версия прошивки!</translation>
     </message>
     <message>
-        <source>2</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Slider 1</source>
         <translation type="vanished">Слайдер 1</translation>
     </message>
@@ -1505,7 +2057,7 @@ g</source>
     </message>
     <message>
         <source>Incompatible Firmware</source>
-        <translation>Несовмест. прошивка</translation>
+        <translation type="vanished">Несовмест. прошивка</translation>
     </message>
     <message>
         <source>Confirmation</source>
@@ -1514,6 +2066,201 @@ g</source>
     <message>
         <source>Are you sure you want to write the config?</source>
         <translation type="vanished">Вы действительно хотите записать конфиг?</translation>
+    </message>
+    <message>
+        <source>Read Device Settings</source>
+        <translation>Считать настройки устройства</translation>
+    </message>
+    <message>
+        <source>DCS</source>
+        <translation>DCS</translation>
+    </message>
+    <message>
+        <source>Falcon BMS</source>
+        <translation>Falcon BMS</translation>
+    </message>
+    <message>
+        <source>MSFS</source>
+        <translation>MSFS</translation>
+    </message>
+    <message>
+        <source>Active Sim Software Profile</source>
+        <translation>Активный профиль симулятора</translation>
+    </message>
+    <message>
+        <source>Device Control Board Version</source>
+        <translation>Версия платы управления устройства</translation>
+    </message>
+    <message>
+        <source>Activate Advanced Mode</source>
+        <translation>Активировать расширенный режим</translation>
+    </message>
+    <message>
+        <source>Choose Your Grip</source>
+        <translation>Выберите ручку управления</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Write Current Settings to Device</source>
+        <translation>Записать текущие настройки на устройство</translation>
+    </message>
+    <message>
+        <source>Active Grip Profile</source>
+        <translation>Активный профиль ручки</translation>
+    </message>
+    <message>
+        <source> Pin Settings</source>
+        <translation> Настройки контактов</translation>
+    </message>
+    <message>
+        <source> Button Settings</source>
+        <translation> Настройки кнопок</translation>
+    </message>
+    <message>
+        <source> Axes Settings</source>
+        <translation> Настройки осей</translation>
+    </message>
+    <message>
+        <source>Proportional Force Scaling</source>
+        <translation>Пропорциональное масштабирование силы</translation>
+    </message>
+    <message>
+        <source>50% FLCS</source>
+        <translation>50% FLCS</translation>
+    </message>
+    <message>
+        <source>Full FLCS Force</source>
+        <translation>Полная сила FLCS</translation>
+    </message>
+    <message>
+        <source>75% FLCS</source>
+        <translation>75% FLCS</translation>
+    </message>
+    <message>
+        <source>FLCS Mode</source>
+        <translation>Режим FLCS</translation>
+    </message>
+    <message>
+        <source>Analog</source>
+        <translation>Аналоговый</translation>
+    </message>
+    <message>
+        <source>Digital</source>
+        <translation>Цифровой</translation>
+    </message>
+    <message>
+        <source> Developer Settings</source>
+        <translation> Настройки разработчика</translation>
+    </message>
+    <message>
+        <source>Firmware update available</source>
+        <translation>Доступно обновление прошивки</translation>
+    </message>
+    <message>
+        <source>A newer firmware is available: %1</source>
+        <translation>Доступна более новая прошивка: %1</translation>
+    </message>
+    <message>
+        <source>Open the firmware release page?</source>
+        <translation>Открыть страницу релиза прошивки?</translation>
+    </message>
+    <message>
+        <source>Open GitHub</source>
+        <translation>Открыть GitHub</translation>
+    </message>
+    <message>
+        <source>— Select board —</source>
+        <translation>— Выберите плату —</translation>
+    </message>
+    <message>
+        <source>VFT Controller Gen 1-3</source>
+        <translation>VFT Контроллер Gen 1-3</translation>
+    </message>
+    <message>
+        <source>VFT Controller Gen 4</source>
+        <translation>VFT Контроллер Gen 4</translation>
+    </message>
+    <message>
+        <source>Force Anchors</source>
+        <translation>Якоря силы</translation>
+    </message>
+    <message>
+        <source>No reply from device.</source>
+        <translation>Нет ответа от устройства.</translation>
+    </message>
+    <message>
+        <source>CRC/format error reading anchors.</source>
+        <translation>Ошибка CRC/формата при чтении якорей.</translation>
+    </message>
+    <message>
+        <source>Device config not loaded.</source>
+        <translation>Конфигурация устройства не загружена.</translation>
+    </message>
+    <message>
+        <source>— Select grip —</source>
+        <translation>— Выберите ручку —</translation>
+    </message>
+    <message>
+        <source>— Select sim software—</source>
+        <translation>— Выберите симулятор—</translation>
+    </message>
+    <message>
+        <source>Firmware Update Required</source>
+        <translation>Требуется обновление прошивки</translation>
+    </message>
+    <message>
+        <source>Deactivate Advanced Mode</source>
+        <translation>Деактивировать расширенный режим</translation>
+    </message>
+    <message>
+        <source>What Board Do I Have?</source>
+        <translation>Какая у меня плата?</translation>
+    </message>
+    <message>
+        <source>Identify your board by connector count on the left side.</source>
+        <translation>Определите вашу плату по количеству разъемов с левой стороны.</translation>
+    </message>
+    <message>
+        <source>Gen 1–2: Two 3-pin headers
+Gen 3: One 4-pin header
+Gen 4: One 6-pin header</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load grip profile: %1</source>
+        <translation>Не удалось загрузить профиль ручки: %1</translation>
+    </message>
+    <message>
+        <source>Developer</source>
+        <translation>Разработчик</translation>
+    </message>
+    <message>
+        <source>Apply board defaults?</source>
+        <translation>Применить настройки платы по умолчанию?</translation>
+    </message>
+    <message>
+        <source>Replace current pin mapping with %1 defaults?</source>
+        <translation>Заменить текущую раскладку контактов на стандартную %1?</translation>
+    </message>
+    <message>
+        <source>Update available</source>
+        <translation>Доступно обновление</translation>
+    </message>
+    <message>
+        <source>A newer version is available: %1
+You have: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the release page to download?</source>
+        <translation>Открыть страницу релиза для загрузки?</translation>
+    </message>
+    <message>
+        <source>Visit Wiki</source>
+        <translation>Посетить Wiki</translation>
     </message>
 </context>
 <context>
@@ -1731,10 +2478,6 @@ g</source>
         <translation></translation>
     </message>
     <message>
-        <source>TLE5011 GEN</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>I2C SCL</source>
         <translation></translation>
     </message>
@@ -1803,7 +2546,7 @@ g</source>
     </message>
     <message>
         <source>Select board</source>
-        <translation>Выбор платы</translation>
+        <translation type="vanished">Выбор платы</translation>
     </message>
 </context>
 <context>
@@ -1908,6 +2651,10 @@ g</source>
     <message>
         <source>CD4021 Pull Up</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>CLK pin</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

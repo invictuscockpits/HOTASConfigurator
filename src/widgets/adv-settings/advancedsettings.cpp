@@ -39,12 +39,15 @@
 
 static inline void showInfoBox(QWidget* parent, const QString& title, const QString& text)
 {
-    QMessageBox box(parent);
+    QWidget* mainWin = parent ? parent->window() : nullptr;  // Get main window from parent
+    QMessageBox box(mainWin);
     box.setWindowTitle(title);
     box.setText(text);
     box.setIcon(QMessageBox::NoIcon);
     box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
-    box.setStandardButtons(QMessageBox::Ok);
+                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                             "QMessageBox QLabel { background-color: transparent; }");
+                box.setStandardButtons(QMessageBox::Ok);
     box.exec();
 }
 
@@ -109,43 +112,16 @@ void AdvancedSettings::onDeviceInfoUpdated()
 
 void AdvancedSettings::onDeviceInfoError(const QString &error)
 {
-    QMessageBox::warning(this, tr("Device Info Error"), error);
+    QMessageBox box(window());  // Use main window as parent
+    box.setWindowTitle(tr("Device Info Error"));
+    box.setText(error);
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
 }
-
-void AdvancedSettings::on_pushButton_ReadDeviceInfo_clicked()
-{
-
-}
-
-void AdvancedSettings::on_pushButton_WriteDeviceInfo_clicked()
-{
-
-
-    // Confirm before writing
-    QMessageBox::StandardButton reply = QMessageBox::question(this,
-                                                              tr("Write Device Info"),
-                                                              tr("Are you sure you want to write device info to flash?"),
-                                                              QMessageBox::Yes | QMessageBox::No);
-
-    if (reply != QMessageBox::Yes) {
-        return;
-    }
-
-    QString model = ui->line_DeviceModel->text();
-    QString serial = ui->line_DeviceSerial->text();
-    QString dom = ui->line_DeviceDoM->text();
-
-    // Validate date format if provided
-    if (!dom.isEmpty() && !QRegExp("\\d{4}-\\d{2}-\\d{2}").exactMatch(dom)) {
-        QMessageBox::warning(this, tr("Error"), tr("Date must be in YYYY-MM-DD format"));
-        return;
-    }
-
-
-}
-
-
-
 
 
 void AdvancedSettings::checkForUpdatesSilent()
@@ -237,7 +213,7 @@ void AdvancedSettings::on_spinBox_FontSize_valueChanged(int fontSize)
 // about
 void AdvancedSettings::on_pushButton_About_clicked()
 {
-    QDialog *aboutDialog = new QDialog(this);
+    QDialog *aboutDialog = new QDialog(window());  // Use main window as parent
     aboutDialog->setWindowTitle("About Invictus HOTAS Configurator");
     aboutDialog->setModal(true);
     aboutDialog->setAttribute(Qt::WA_DeleteOnClose);
@@ -266,8 +242,8 @@ void AdvancedSettings::on_pushButton_About_clicked()
         We highly recommend starting there if you're building something similar.</p>)");
 
     const QString wiki = tr(R"(
-        <p>Visit
-        <a style="color: #14B307; text-decoration:none;" href="https://invictuscockpits.com">Invictus Cockpit Systems</a>
+        <p>Visit our
+        <a style="color: #14B307; text-decoration:none;" href="https://github.com/invictuscockpits/HOTASConfigurator/wiki">wiki</a>
         for detailed instructions.</p>
         </div>)");
 
@@ -289,28 +265,20 @@ void AdvancedSettings::on_pushButton_About_clicked()
     aboutDialog->exec();
 }
 
-
-// remove name from registry
-void AdvancedSettings::on_pushButton_removeName_clicked()
-{
-#ifdef Q_OS_WIN
-    qDebug()<<"Remove device OEMName from registry";
-    QString path("HKEY_CURRENT_USER\\System\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
-    QString path2("HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_%1&PID_%2");
-    QSettings(path.arg(QString::number(gEnv.pDeviceConfig->config.vid, 16), QString::number(gEnv.pDeviceConfig->config.pid, 16)),
-              QSettings::NativeFormat).remove("OEMName");
-    QSettings(path2.arg(QString::number(gEnv.pDeviceConfig->config.vid, 16), QString::number(gEnv.pDeviceConfig->config.pid, 16)),
-              QSettings::NativeFormat).remove("OEMName");
-#endif
-}
-
 void AdvancedSettings::on_pushButton_CheckUpdates_clicked()
 {
 #ifdef Q_OS_WIN
     checkForUpdatesWinHTTP(false);
 #else
-    QMessageBox::information(this, tr("Update Check"),
-                             tr("Update check is only implemented for Windows in this build."));
+    QMessageBox box(window());  // Use main window as parent
+    box.setWindowTitle(tr("Update Check"));
+    box.setText(tr("Update check is only implemented for Windows in this build."));
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
 #endif
 }
 
@@ -493,14 +461,16 @@ void AdvancedSettings::checkForUpdatesWinHTTP(bool silent)
     }
 
     // Manual check (not silent) -> show dialog now
-    QMessageBox box(this);
+    QMessageBox box(window());  // Use main window as parent
     box.setWindowTitle(tr("Update available"));
     box.setText(tr("A newer version is available: %1\nYou have: %2")
                     .arg(latestTag, QString::fromLatin1(APP_VERSION)));
     box.setInformativeText(tr("Open the release page to download?"));
     box.setIcon(QMessageBox::NoIcon);
     box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
-    QCheckBox dontShow(tr("Don’t remind me again for %1").arg(latestTag));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                 "QMessageBox QLabel { background-color: transparent; }");
+    QCheckBox dontShow(tr("Don't remind me again for %1").arg(latestTag));
     box.setCheckBox(&dontShow);
     QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
     box.addButton(QMessageBox::Cancel);
@@ -677,13 +647,15 @@ void AdvancedSettings::checkForFirmwareUpdatesWinHTTP(bool silent)
         return;
     }
 
-    QMessageBox box(this);
+    QMessageBox box(window());  // Use main window as parent
     box.setWindowTitle(tr("Firmware update available"));
     box.setText(tr("A newer firmware is available: %1\nDevice has: %2").arg(latestTag, devStr));
     box.setInformativeText(tr("Open the firmware release page?"));
     box.setIcon(QMessageBox::NoIcon);
     box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
-    QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
+                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                                             "QMessageBox QLabel { background-color: transparent; }");
+                QPushButton* open = box.addButton(tr("Open GitHub"), QMessageBox::AcceptRole);
     box.addButton(QMessageBox::Cancel);
     box.exec();
     if (box.clickedButton() == open) QDesktopServices::openUrl(QUrl(releaseUrl));
@@ -695,8 +667,15 @@ void AdvancedSettings::on_pushButton_CheckFirmware_clicked()
     // Call your firmware checker (see temp stub below).
     checkForFirmwareUpdatesWinHTTP(false);
 #else
-    QMessageBox::information(this, tr("Firmware Update"),
-                             tr("Firmware update check is only implemented for Windows in this build."));
+    QMessageBox box(window());  // Use main window as parent
+    box.setWindowTitle(tr("Firmware Update"));
+    box.setText(tr("Firmware update check is only implemented for Windows in this build."));
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
 #endif
 }
 

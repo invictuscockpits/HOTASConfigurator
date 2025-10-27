@@ -2,7 +2,7 @@
 
 #include <QDebug>
 FirmwareUpdater::FirmwareUpdater() {}
-// хз зачем мне статик постоянно висящий в памяти
+// CRC lookup table
 uint16_t FirmwareUpdater::table[256]{};
 unsigned short FirmwareUpdater::computeChecksum(const QByteArray *fileBytes)
 {

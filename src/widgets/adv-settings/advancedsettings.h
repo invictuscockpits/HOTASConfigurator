@@ -54,8 +54,6 @@ private slots:
     void on_spinBox_FontSize_valueChanged(int fontSize);
     void on_pushButton_About_clicked();
 
-    void on_pushButton_removeName_clicked();
-
     void on_pushButton_RestartApp_clicked();
 
     void on_pushButton_LangDeutsch_clicked();
@@ -65,8 +63,6 @@ private slots:
 
     void onDeviceInfoUpdated();
     void onDeviceInfoError(const QString &error);
-    void on_pushButton_ReadDeviceInfo_clicked();
-    void on_pushButton_WriteDeviceInfo_clicked();
 
 
 private:

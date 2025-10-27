@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>1180</width>
-    <height>609</height>
+    <height>580</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1150</width>
-    <height>575</height>
+    <width>1200</width>
+    <height>580</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -41,14 +41,20 @@
       <property name="minimumSize">
        <size>
         <width>200</width>
-        <height>0</height>
+        <height>520</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
         <width>200</width>
-        <height>555</height>
+        <height>16777215</height>
        </size>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="baseSize">
        <size>
@@ -62,7 +68,7 @@
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
       </property>
-      <layout class="QGridLayout" name="gridLayout_7" rowstretch="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" columnstretch="0">
+      <layout class="QGridLayout" name="gridLayout_7" rowstretch="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" columnstretch="0">
        <property name="leftMargin">
         <number>6</number>
        </property>
@@ -86,10 +92,13 @@
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::Fixed</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>5</height>
           </size>
          </property>
         </spacer>
@@ -108,7 +117,7 @@
             <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
+            <enum>QSizePolicy::Policy::Expanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -120,11 +129,23 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_Wiki">
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
              <width>160</width>
              <height>50</height>
             </size>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
@@ -166,7 +187,7 @@ border: none;</string>
             <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
+            <enum>QSizePolicy::Policy::Expanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -184,7 +205,7 @@ border: none;</string>
           <bool>false</bool>
          </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -195,8 +216,14 @@ border: none;</string>
            <height>37</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>37</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Read Device Settings</string>
@@ -242,7 +269,7 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="20" column="0">
+       <item row="19" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
          <property name="spacing">
           <number>6</number>
@@ -288,10 +315,10 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="27" column="0">
+       <item row="23" column="0">
         <widget class="QPushButton" name="pushButton_ShowDebug">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -302,31 +329,24 @@ border: none;</string>
            <height>37</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>37</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Activate Advanced Mode</string>
          </property>
         </widget>
        </item>
-       <item row="18" column="0">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="23" column="0">
+       <item row="21" column="0">
         <widget class="QPushButton" name="pushButton_SaveToFile">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -337,8 +357,14 @@ border: none;</string>
            <height>37</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>37</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Save config to file</string>
@@ -392,26 +418,10 @@ border: none;</string>
          </item>
         </layout>
        </item>
-       <item row="24" column="0" rowspan="2">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="8" column="0">
-        <widget class="QPushButton" name="pushButton_WriteConfig">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+       <item row="18" column="0">
+        <widget class="QPushButton" name="pushButton_Help">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -422,8 +432,59 @@ border: none;</string>
            <height>37</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
          <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
+          <string notr="true">QPushButton {
+    background-color: rgb(50,53,63);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 4px;
+    color: rgb(5, 170, 61);
+}
+QPushButton:hover {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+QPushButton:pressed {
+    border: 1px solid rgb(5, 170, 61);
+}</string>
+         </property>
+         <property name="text">
+          <string>Visit Wiki</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QPushButton" name="pushButton_WriteConfig">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>165</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>37</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Write Current Settings to Device</string>
@@ -435,10 +496,13 @@ border: none;</string>
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::Fixed</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>5</height>
           </size>
          </property>
         </spacer>
@@ -450,10 +514,10 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="21" column="0">
+       <item row="20" column="0">
         <widget class="QPushButton" name="pushButton_LoadFromFile">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -464,18 +528,24 @@ border: none;</string>
            <height>37</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>37</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Load config from file</string>
          </property>
         </widget>
        </item>
-       <item row="26" column="0">
+       <item row="22" column="0">
         <widget class="QPushButton" name="pushButton_ResetAllPins">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -486,8 +556,14 @@ border: none;</string>
            <height>37</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>37</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">height: 30px;</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Reset All</string>
@@ -521,10 +597,13 @@ border: none;</string>
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::Fixed</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>5</height>
           </size>
          </property>
         </spacer>
@@ -544,7 +623,7 @@ border: none;</string>
       <property name="minimumSize">
        <size>
         <width>925</width>
-        <height>0</height>
+        <height>520</height>
        </size>
       </property>
       <property name="maximumSize">

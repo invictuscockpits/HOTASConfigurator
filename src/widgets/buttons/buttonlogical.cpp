@@ -19,6 +19,10 @@ ButtonLogical::ButtonLogical(int buttonIndex, QWidget *parent)
     ui->label_LogicalButtonNumber->setNum(m_buttonIndex + 1);
     ui->spinBox_PhysicalButtonNumber->installEventFilter(this);
 
+    // Make labels transparent so row highlight shows through
+    ui->label_LogicalButtonNumber->setStyleSheet("background-color: transparent;");
+    if (ui->label) ui->label->setStyleSheet("background-color: transparent;");
+
     // Add left margin to prevent clipping of highlight background
     ui->layoutH_ButtonLogical->setContentsMargins(6, 1, 0, 1);
 }

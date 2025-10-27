@@ -96,11 +96,10 @@ private slots:
 
     void on_pushButton_ShowDebug_clicked();
 
-    void on_pushButton_TestButton_clicked();
-    void on_pushButton_TestButton_2_clicked();
     void on_toolButton2_clicked();
 
     void on_pushButton_Wiki_clicked();
+    void on_pushButton_Help_clicked();
 
     void themeChanged(bool dark);
 
@@ -121,6 +120,7 @@ protected:
     void keyReleaseEvent(QKeyEvent *event) override;
     bool eventFilter(QObject *obj, QEvent *event) override; //preventskeypressevent from being blocked by adding grip profile
     void showEvent(QShowEvent* e) override; //Show popup when update is available after building GUI
+    void resizeEvent(QResizeEvent *event) override; //Debug: show window size
 
 private:
     Ui::MainWindow *ui;

@@ -11,7 +11,9 @@ InfoLabel::InfoLabel(QWidget *parent)
 void InfoLabel::setPixmap(const QPixmap &p)
 {
     pix = p;
-    QLabel::setPixmap(scaledPixmap());
+    if (!pix.isNull()) {
+        QLabel::setPixmap(scaledPixmap());
+    }
 }
 
 int InfoLabel::heightForWidth(int width) const

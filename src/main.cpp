@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 #endif
 
     // Optional: see exactly why plugins load/fail
-    qputenv("QT_DEBUG_PLUGINS", "1");
+    // qputenv("QT_DEBUG_PLUGINS", "1");  // Disabled - too verbose
 
     QElapsedTimer time;
     time.start();
@@ -58,11 +58,11 @@ int main(int argc, char *argv[])
     QCoreApplication::addLibraryPath(QCoreApplication::applicationDirPath() + "/tls");
 
     // TLS diagnostics (should say supportsSsl: true; loaded: Schannel if qschannelbackend.dll is found)
-    qDebug() << "Qt" << qVersion()
-             << "supportsSsl:" << QSslSocket::supportsSsl()
-             << "built:" << QSslSocket::sslLibraryBuildVersionString()
-             << "loaded:" << QSslSocket::sslLibraryVersionString();
-    qDebug() << "LIB PATHS:" << QCoreApplication::libraryPaths();
+    // qDebug() << "Qt" << qVersion()
+    //          << "supportsSsl:" << QSslSocket::supportsSsl()
+    //          << "built:" << QSslSocket::sslLibraryBuildVersionString()
+    //          << "loaded:" << QSslSocket::sslLibraryVersionString();
+    // qDebug() << "LIB PATHS:" << QCoreApplication::libraryPaths();
 
     // Styles (do this AFTER QApplication exists; avoid using qApp before)
     QApplication::setStyle(QStyleFactory::create("Fusion"));

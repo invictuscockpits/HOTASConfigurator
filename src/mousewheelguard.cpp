@@ -7,9 +7,8 @@ MouseWheelGuard::MouseWheelGuard(QObject *parent)
     : QObject(parent)
 {}
 
-// protection against the mouse wheel if the widget is not setFocusPolicy(Qt::WheelFocus)
-// без протекта можно при прокручивании страницы случайно навести на комбобокс и изменить его колесом мыши
-// при установке setFocusPolicy(Qt::StrongFocus) и протекта на комбобокс придётся нажать, для прокручивания колесом
+// Prevents accidental mouse wheel changes to widgets without focus
+// Requires setFocusPolicy(Qt::StrongFocus) to make widget click-to-scroll
 bool MouseWheelGuard::eventFilter(QObject *o, QEvent *e)
 {
     const QWidget *widget = static_cast<QWidget *>(o);

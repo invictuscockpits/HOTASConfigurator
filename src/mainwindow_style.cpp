@@ -148,6 +148,11 @@ void MainWindow::themeChanged(bool /*dark*/)
             background-color: rgb(36, 39, 49);  /* FLAT_BLACK */
         }
 
+        /* Make icon and text labels transparent in message boxes */
+        QMessageBox QLabel {
+            background-color: transparent;
+        }
+
 
 )");
     {

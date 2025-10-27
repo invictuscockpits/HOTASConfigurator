@@ -52,13 +52,13 @@ static const BoardPins kControllerGen4 = { std::array<pin_t, USED_PINS_NUM>{
     SPI_SCK,         // PB3
     SPI_MISO,        // PB4
     SPI_MOSI,        // PB5
-    I2C_SCL,         // PB6
-    I2C_SDA,         // PB7
+    NOT_USED,        // PB6
+    SHIFT_REG_LATCH, // PB7
     NOT_USED,        // PB8
     NOT_USED,        // PB9
-    NOT_USED,        // PB10
-    NOT_USED,        // PB11
-    SHIFT_REG_LATCH, // PB12
+    I2C_SCL,         // PB10
+    I2C_SDA,         // PB11
+    NOT_USED,        // PB12
     SHIFT_REG_CLK,   // PB13
     SHIFT_REG_DATA,  // PB14
     NOT_USED,        // PB15

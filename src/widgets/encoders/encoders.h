@@ -39,7 +39,8 @@ private:
     int m_input_B;
     QString m_notDefined;
 
-    const deviceEnum_guiName_t m_encoderTypeList[ENCODER_TYPE_COUNT] = // порядов обязан быть как в common_types.h!!!!!!!!!!!
+    // Order must match enum definitions in common_types.h
+    const deviceEnum_guiName_t m_encoderTypeList[ENCODER_TYPE_COUNT] =
     {
         {ENCODER_CONF_1x, tr("Encoder 1x")},
         {ENCODER_CONF_2x, tr("Encoder 2x")},

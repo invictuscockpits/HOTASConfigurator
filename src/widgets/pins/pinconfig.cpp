@@ -8,9 +8,9 @@
 #include <QMessageBox>
 #include <QDebug>
 
-PinConfig::PinConfig(QWidget *parent) :         // пины - первое, что я начал кодить в конфигураторе и спустя время
-    QWidget(parent),                            // заявляю - это говнокод!1 который даже мне тяжело понять
-    ui(new Ui::PinConfig),                      // мои соболезнования тем кто будет разбираться)
+PinConfig::PinConfig(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::PinConfig),
     m_Controller{new PinsController(this)}
 
 {
@@ -21,11 +21,8 @@ PinConfig::PinConfig(QWidget *parent) :         // пины - первое, чт
     m_maxButtonsWarning = false;
     m_shiftLatchCount = m_shiftDataCount = m_shiftClkCount = 0;
 
-    // create pin combo box. i+1! start from 1
-    // возможно использовать одни и те же комбобоксы пинов в разных виджетах плат - изврат,
-    // но каждый виджет плат со своими комбобоксами тоже не лучший вариант.
-    // 99% польователей будут использовать Blue Pill и им постоянно придётся
-    // таскать комбобоксы с Controller Lite, которые, как минимум, увеличат время запуска приложения
+    // Create pin combo boxes (index i+1, starting from 1)
+    // Shared combo boxes across board widgets to reduce startup time
     for (int i = 0; i < PINS_COUNT; ++i) {
         PinComboBox *pinComboBox = new PinComboBox(i+1, this);
         pinComboBox->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -44,7 +41,7 @@ PinConfig::PinConfig(QWidget *parent) :         // пины - первое, чт
     m_Controller->show();
 
     for (int i = 0; i < m_pinCBoxPtrList.size(); ++i) {
-            connect(m_pinCBoxPtrList[i], &PinComboBox::valueChangedForInteraction,       // valgrind сообщает о утечке, но почему?
+            connect(m_pinCBoxPtrList[i], &PinComboBox::valueChangedForInteraction,
                         this, &PinConfig::pinInteraction);
             connect(m_pinCBoxPtrList[i], &PinComboBox::currentIndexChanged,
                         this, &PinConfig::pinIndexChanged);
@@ -146,7 +143,7 @@ void PinConfig::pinIndexChanged(int currentDeviceEnum, int previousDeviceEnum, i
     // signals for another widgets
     signalsForWidgets(currentDeviceEnum, previousDeviceEnum, pinNumber, pinName);
 
-    // pin type limit  // переизбыток функционала(изи менять в структуре), не думаю, что понадобится в будущем, можно было и захардкодить
+    // Apply pin type limits based on device configuration
     pinTypeLimit(currentDeviceEnum, previousDeviceEnum);
 
     // set current config and generate signals for another widgets
@@ -159,7 +156,7 @@ void PinConfig::pinIndexChanged(int currentDeviceEnum, int previousDeviceEnum, i
 
 void PinConfig::signalsForWidgets(int currentDeviceEnum, int previousDeviceEnum, int pinNumber, QString pinName)
 {
-    // здесь такой пиздец. индекс хуиндекс 1 = 0 намбер хуямбер. нахуевертил
+    // Convert pin number to zero-based index
     int pinIndex = pinNumber - PA_0;
     //fast encoder selected
     if (currentDeviceEnum == FAST_ENCODER){
@@ -193,9 +190,9 @@ void PinConfig::signalsForWidgets(int currentDeviceEnum, int previousDeviceEnum,
     }
     // I2C selected
     if (currentDeviceEnum == I2C_SCL){// || current_device_enum == I2C_SDA){
-        emit axesSourceChanged(-2, pinName, true);                                            // -2 enum I2C in axes.h
+        emit axesSourceChanged(-2, "I2C", true);                                            // -2 enum I2C in axes.h
     } else if (previousDeviceEnum == I2C_SCL){// || previous_device_enum == I2C_SDA){
-        emit axesSourceChanged(-2, pinName, false);
+        emit axesSourceChanged(-2, "I2C", false);
     }
 }
 

@@ -87,5 +87,5 @@ void PinsController::addPinComboBox(QList<PinComboBox *> pinList)
         }
     }
     Q_ASSERT(tmp == PINS_COUNT);
-     qDebug() << "Placed" << tmp << "pins out of" << PINS_COUNT;
+     // qDebug() << "Placed" << tmp << "pins out of" << PINS_COUNT;
 }

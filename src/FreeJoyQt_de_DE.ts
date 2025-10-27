@@ -104,20 +104,23 @@
     <message>
         <location filename="widgets/adv-settings/advancedsettings.cpp" line="125"/>
         <source>&lt;br&gt;Built with Qt %1 (%2)&lt;br&gt;Source code available under GPLv3 on &lt;a style=&quot;color: #03A9F4; text-decoration:none;
-                                href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
-        <translation></translation>
+                                href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
+        <translation>&lt;br&gt;Erstellt mit Qt %1 (%2)&lt;br&gt;Quellcode verfügbar unter GPLv3 auf &lt;a style=&quot;color: #03A9F4; text-decoration:none;
+                                href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="widgets/adv-settings/advancedsettings.cpp" line="130"/>
         <source>&lt;br&gt;Check &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot;
-                            href=&quot;https://github.com/FreeJoy-Team/FreeJoyWiki&quot;&gt;our wiki &lt;/a&gt;
+                            href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;our wiki &lt;/a&gt;
                             for detailed instructions.</source>
-        <translation></translation>
+        <translation>&lt;br&gt;Besuchen Sie unser &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot;
+                            href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;Wiki &lt;/a&gt;
+                            für detaillierte Anleitungen.</translation>
     </message>
     <message>
         <location filename="widgets/adv-settings/advancedsettings.cpp" line="133"/>
-        <source>About FreeJoyQt</source>
-        <translation>Über FreeJoyQt</translation>
+        <source>About Invictus HOTAS Configurator</source>
+        <translation>Über Invictus HOTAS Konfigurator</translation>
     </message>
 </context>
 <context>
@@ -1420,8 +1423,8 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="49"/>
-        <source>FreeJoy Configurator</source>
-        <translation>FreeJoy-Konfigurator</translation>
+        <source>Invictus HOTAS Configurator</source>
+        <translation>Invictus HOTAS Konfigurator</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="241"/>

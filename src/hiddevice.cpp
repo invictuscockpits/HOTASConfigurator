@@ -235,7 +235,7 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                         s_consecutiveErrors = 0;
                         if (!s_lastGoodRx.isValid()) s_lastGoodRx.start(); else s_lastGoodRx.restart();
 
-                        if (buffer[0] == REPORT_ID_PARAM) {   // перестраховка
+                        if (buffer[0] == REPORT_ID_PARAM) {   // Safety check
                             memset(deviceBuffer, 0, BUFFERSIZE);
                             memcpy(deviceBuffer, buffer, BUFFERSIZE);
                             if (deviceBuffer[0] == REPORT_ID_PARAM && deviceBuffer[1] == 0) {
@@ -278,7 +278,7 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
 #endif
                 }
                 // write config to device
-                else if (m_currentWork == REPORT_ID_CONFIG_OUT) { ////////////// ХУЁВО ПАШЕТ. редко
+                else if (m_currentWork == REPORT_ID_CONFIG_OUT) {
                     writeConfigToDevice(buffer);
                     // disconnect all devices (unchanged)
                     std::lock_guard<std::mutex> lock(m_mutex);
@@ -387,7 +387,7 @@ void HidDevice::readConfigFromDevice(uint8_t *buffer)
 
     while (timer.elapsed() < start_time + 5000)
     {
-        if (m_paramsRead)    // перестаховка
+        if (m_paramsRead)    // Safety check
         {
             res=hid_read_timeout(m_paramsRead, buffer, BUFFERSIZE,100);
             if (res < 0) {
@@ -468,7 +468,7 @@ void HidDevice::writeConfigToDevice(uint8_t *buffer)
 
     while (timer.elapsed() < startTime + 5000)
     {
-        if (m_paramsRead)    // перестаховка
+        if (m_paramsRead)    // Safety check
         {
             res = hid_read_timeout(m_paramsRead, buffer, BUFFERSIZE,100);
             if (res < 0) {

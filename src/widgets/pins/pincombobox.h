@@ -8,7 +8,7 @@
 
 #define PINS_COUNT 30
 #define PIN_TYPE_COUNT 29
-enum // разделить и вынести отдельно?                 // все структуры в global.h?
+enum
 {
   PA_0 = 1,
   PA_1,
@@ -139,8 +139,8 @@ private:
     uint m_interactCount;
     int m_call_interaction;
 
-    ////////////////////////////// СЛИШКОМ ЖИРНО СДЕЛАТЬ static!!///////////////////////
-    const pins m_pinList[PINS_COUNT] = // каждый пин хранит по структуре. а жирно не будет?
+    // Pin configuration list (each pin stores its own structure)
+    const pins m_pinList[PINS_COUNT] =
     {
         {PA_0,  {"A0"},    {tr("Pin A0")},     {ANALOG_IN}}, // pin device enum // GUI name // pin type
         {PA_1,  {"A1"},    {tr("Pin A1")},     {ANALOG_IN}}, // todo: add SERIAL, PWM...
@@ -159,8 +159,8 @@ private:
         {PB_3,  {"B3"},    {tr("Pin B3")},     {SPI1_SCK}},
         {PB_4,  {"B4"},    {tr("Pin B4")},     {SPI1_MISO}},
         {PB_5,  {"B5"},    {tr("Pin B5")},     {SPI1_MOSI}},
-        {PB_6,  {"B6"},    {tr("Pin B6")},     {I2C1_SCL}},
-        {PB_7,  {"B7"},    {tr("Pin B7")},     {I2C1_SDA}},
+        {PB_6,  {"B6"},    {tr("Pin B6")},     {}},
+        {PB_7,  {"B7"},    {tr("Pin B7")},     {}},
         {PB_8,  {"B8"},    {tr("Pin B8")},     {}},
         {PB_9,  {"B9"},    {tr("Pin B9")},     {}},
         {PB_10, {"B10"},   {tr("Pin B10")},    {I2C2_SCL}},
@@ -312,12 +312,12 @@ private:
         {}, {QColor(53, 153, 120)}},*/
 
         {I2C_SCL,        tr("I2C SCL"),
-        {I2C1_SCL},
+        {I2C2_SCL},
         {},
         {I2C_SDA}, {QColor(90, 155, 140)}},
 
         {I2C_SDA,        tr("I2C SDA"),
-        {I2C1_SDA},
+        {I2C2_SDA},
         {},
         {I2C_SCL}, {QColor(90, 155, 140)}},
     };
