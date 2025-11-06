@@ -31,8 +31,6 @@ INCLUDEPATH +="widgets" \
     "widgets/axes" \
     "widgets/axes-curves" \
     "widgets/buttons" \
-    "widgets/encoders" \
-    "widgets/led" \
     "widgets/pins" \
     "widgets/shift-reg"\
 
@@ -73,11 +71,7 @@ SOURCES += \
     widgets/buttons/buttonphysical.cpp \
     widgets/pins/currentconfig.cpp \
     widgets/debugwindow.cpp \
-    widgets/encoders/encoders.cpp \
-    widgets/encoders/encodersconfig.cpp \
     widgets/adv-settings/flasher.cpp \
-    widgets/led/led.cpp \
-    widgets/led/ledconfig.cpp \
     widgets/pins/pincombobox.cpp \
     widgets/pins/pinconfig.cpp \
     widgets/shift-reg/shiftregisters.cpp \
@@ -123,11 +117,7 @@ HEADERS += \
     widgets/buttons/buttonphysical.h \
     widgets/pins/currentconfig.h \
     widgets/debugwindow.h \
-    widgets/encoders/encoders.h \
-    widgets/encoders/encodersconfig.h \
     widgets/adv-settings/flasher.h \
-    widgets/led/led.h \
-    widgets/led/ledconfig.h \
     widgets/pins/pincombobox.h \
     widgets/pins/pinconfig.h \
     widgets/shift-reg/shiftregisters.h \
@@ -149,11 +139,7 @@ FORMS += \
     widgets/developer.ui \
     widgets/pins/currentconfig.ui \
     widgets/debugwindow.ui \
-    widgets/encoders/encoders.ui \
-    widgets/encoders/encodersconfig.ui \
     widgets/adv-settings/flasher.ui \
-    widgets/led/led.ui \
-    widgets/led/ledconfig.ui \
     widgets/pins/pincombobox.ui \
     widgets/pins/pinconfig.ui \
     widgets/pins/pinscontroller.ui \

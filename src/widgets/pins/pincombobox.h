@@ -7,7 +7,7 @@
 #include "global.h"
 
 #define PINS_COUNT 30
-#define PIN_TYPE_COUNT 29
+#define PIN_TYPE_COUNT 15
 enum
 {
   PA_0 = 1,
@@ -44,8 +44,6 @@ enum
   PC_15,
 
   ANALOG_IN,
-  FAST_ENCODER_PIN,
-  LED_PWM_PIN,
 
   I2C1_SDA,
   I2C1_SCL,
@@ -216,80 +214,15 @@ private:
         {},
         {}, {QColor(105, 180, 55)}},
 
-        {TLE5011_CS,     tr("TLE5011 CS"),
-        {ALL},
-        {SPI1_SCK, SPI1_MOSI},  // check  PB_6 - not work //////////// NEED FIX !!!!!!!!!!!!!!!!!!!
-        {SPI_SCK, SPI_MOSI, TLE5011_GEN}, {QColor(53, 153, 120)}},
-
-        {TLE5012_CS,     tr("TLE5012B CS"),
-        {ALL},
-        {SPI1_SCK, SPI1_MOSI},
-        {SPI_SCK, SPI_MOSI, TLE5011_GEN}, {QColor(53, 153, 120)}},
-
-        {MCP3201_CS,     tr("MCP3201 CS"),
-        {ALL},
-        {SPI1_SCK, SPI1_MOSI, SPI1_MISO},
-        {SPI_SCK, SPI_MOSI, SPI_MISO}, {QColor(53, 153, 120)}},
-
         {MCP3202_CS,     tr("MCP3202 CS"),
         {ALL},
         {SPI1_SCK, SPI1_MOSI, SPI1_MISO},
         {SPI_SCK, SPI_MOSI, SPI_MISO}, {QColor(53, 153, 120)}},
 
-        {MCP3204_CS,     tr("MCP3204 CS"),
-        {ALL},
-        {SPI1_SCK, SPI1_MOSI, SPI1_MISO},
-        {SPI_SCK, SPI_MOSI, SPI_MISO}, {QColor(53, 153, 120)}},
-
-        {MCP3208_CS,     tr("MCP3208 CS"),
-        {ALL},
-        {SPI1_SCK, SPI1_MOSI, SPI1_MISO},
-        {SPI_SCK, SPI_MOSI, SPI_MISO}, {QColor(53, 153, 120)}},
-
-        {MLX90393_CS,    tr("MLX90393 CS"),
-        {ALL},
-        {SPI1_SCK, SPI1_MOSI, SPI1_MISO},
-        {SPI_SCK, SPI_MOSI, SPI_MISO}, {QColor(53, 153, 120)}},
-
-        {MLX90363_CS,    tr("MLX90363 CS"),
-        {ALL},
-        {SPI1_SCK, SPI1_MOSI, SPI1_MISO},
-        {SPI_SCK, SPI_MOSI, SPI_MISO}, {QColor(53, 153, 120)}},
-
-        {AS5048A_CS,    tr("AS5048A CS"),
-        {ALL},
-        {SPI1_SCK, SPI1_MOSI, SPI1_MISO},
-        {SPI_SCK, SPI_MOSI, SPI_MISO}, {QColor(53, 153, 120)}},
-
-        {LED_SINGLE,     tr("LED Single"),
-        {ALL},
-        {},
-        {}, {QColor(200, 150, 70)}},
-
-        {LED_ROW,        tr("LED Row"),
-        {ALL},
-        {},
-        {}, {QColor(200, 130, 70)}},
-
-        {LED_COLUMN,     tr("LED Column"),
-        {ALL},
-        {},
-        {}, {QColor(200, 130, 70)}},
-
-        {LED_PWM,        tr("LED PWM"),
-        {PA_8, PB_0, PB_1, PB_4},
-        {},
-        {}, {QColor(200, 90, 70)}},
-
         {AXIS_ANALOG,    tr("Axis Analog"),
         {ANALOG_IN},
         {},
         {}, {QColor(0, 160, 0)}},
-
-        {FAST_ENCODER,   tr("Fast Encoder"),
-        {PA_8, PA_9},
-        {},
-        {}, {QColor(55, 150, 25)}},
 
         {SPI_SCK,        tr("SPI SCK"),
         {SPI1_SCK},

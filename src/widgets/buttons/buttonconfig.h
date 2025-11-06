@@ -89,12 +89,8 @@ private:
         int maxCount;
     };
 
-    static const int m_typeLimCount = 2;
-    const pinTypeLimit_t m_ButtonsTypeLimit[m_typeLimCount] =
-    {
-        {ENCODER_INPUT_A,        15},
-        {ENCODER_INPUT_B,        15},
-    };
+    static const int m_typeLimCount = 0;
+    const pinTypeLimit_t m_ButtonsTypeLimit[1] = {};
 };
 
 #endif // BUTTONCONFIG_H

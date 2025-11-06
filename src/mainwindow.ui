@@ -907,50 +907,6 @@ QFrame QTabWidget &gt; QWidget {
          </property>
         </layout>
        </widget>
-       <widget class="QWidget" name="tab_Encoders">
-        <attribute name="title">
-         <string> Encoders</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="layoutV_tabEncodersConfig">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>6</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tab_LED">
-        <attribute name="title">
-         <string> LED/PWM </string>
-        </attribute>
-        <layout class="QVBoxLayout" name="layoutV_tabLedConfig">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>6</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-        </layout>
-       </widget>
        <widget class="QWidget" name="tab_AdvancedSettings">
         <attribute name="title">
          <string> Advanced Settings </string>

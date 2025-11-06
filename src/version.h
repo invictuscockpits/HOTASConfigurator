@@ -4,7 +4,7 @@
 #define MAJOR_VERSION 2
 #define MINOR_VERSION 1
 #define PATCH_VERSION 3
-#define BUILD_VERSION 3
+#define BUILD_VERSION 1
 
 #ifdef INNO_SETUP
     #define APP_VERSION Str(MAJOR_VERSION) + "." + Str(MINOR_VERSION) + "." + Str(PATCH_VERSION)

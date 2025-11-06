@@ -13,8 +13,6 @@
 #include "axescurvesconfig.h"
 #include "buttonconfig.h"
 #include "debugwindow.h"
-#include "encodersconfig.h"
-#include "ledconfig.h"
 #include "pinconfig.h"
 #include "shiftregistersconfig.h"
 #include "switchbutton.h"
@@ -132,8 +130,6 @@ private:
 
     PinConfig *m_pinConfig;
     ButtonConfig *m_buttonConfig;
-    LedConfig *m_ledConfig;
-    EncodersConfig *m_encoderConfig;
     ShiftRegistersConfig *m_shiftRegConfig;
     AxesConfig *m_axesConfig;
     AxesCurvesConfig *m_axesCurvesConfig;

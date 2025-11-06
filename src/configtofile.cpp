@@ -81,7 +81,6 @@ void ConfigToFile::loadDeviceConfigFromFile(QWidget *parent, const QString &file
     devC.button_timer2_ms = uint16_t(deviceSettings.value("Timer2", devC.button_timer2_ms).toInt());
     devC.button_timer3_ms = uint16_t(deviceSettings.value("Timer3", devC.button_timer3_ms).toInt());
     devC.button_debounce_ms = uint16_t(deviceSettings.value("Debounce", devC.button_debounce_ms).toInt());
-    devC.encoder_press_time_ms = uint8_t(deviceSettings.value("EncoderPress", devC.encoder_press_time_ms).toInt());
     deviceSettings.endGroup();
 
     // load Buttons config from file
@@ -157,40 +156,6 @@ void ConfigToFile::loadDeviceConfigFromFile(QWidget *parent, const QString &file
 
         devC.shift_registers[i].type = uint8_t(deviceSettings.value("ShiftType", devC.shift_registers[i].type).toInt());
         devC.shift_registers[i].button_cnt = uint8_t(deviceSettings.value("ButtonCnt", devC.shift_registers[i].button_cnt).toInt());
-        deviceSettings.endGroup();
-    }
-
-    // load Encoders config from file
-    for (int i = 0; i < MAX_ENCODERS_NUM; ++i) {
-        deviceSettings.beginGroup("EncodersConfig_" + QString::number(i));
-
-        devC.encoders[i] = uint8_t(deviceSettings.value("EncType", devC.encoders[i]).toInt());
-        deviceSettings.endGroup();
-    }
-
-    // load LEDs config from file
-    deviceSettings.beginGroup("LedsPWMConfig");
-    devC.led_pwm_config[0].duty_cycle = uint8_t(deviceSettings.value("PinPA8", devC.led_pwm_config[0].duty_cycle).toInt());
-    devC.led_pwm_config[1].duty_cycle = uint8_t(deviceSettings.value("PinPB0", devC.led_pwm_config[1].duty_cycle).toInt());
-    devC.led_pwm_config[2].duty_cycle = uint8_t(deviceSettings.value("PinPB1", devC.led_pwm_config[2].duty_cycle).toInt());
-    devC.led_pwm_config[3].duty_cycle = uint8_t(deviceSettings.value("PinPB4", devC.led_pwm_config[3].duty_cycle).toInt());
-
-    devC.led_pwm_config[0].is_axis = deviceSettings.value("PinPA8_AxisEnabled", devC.led_pwm_config[0].is_axis).toBool();
-    devC.led_pwm_config[1].is_axis = deviceSettings.value("PinPB0_AxisEnabled", devC.led_pwm_config[1].is_axis).toBool();
-    devC.led_pwm_config[2].is_axis = deviceSettings.value("PinPB1_AxisEnabled", devC.led_pwm_config[2].is_axis).toBool();
-    devC.led_pwm_config[3].is_axis = deviceSettings.value("PinPB4_AxisEnabled", devC.led_pwm_config[3].is_axis).toBool();
-
-    devC.led_pwm_config[0].axis_num = uint8_t(deviceSettings.value("PinPA8_AxisNum", devC.led_pwm_config[0].axis_num).toInt());
-    devC.led_pwm_config[1].axis_num = uint8_t(deviceSettings.value("PinPB0_AxisNum", devC.led_pwm_config[1].axis_num).toInt());
-    devC.led_pwm_config[2].axis_num = uint8_t(deviceSettings.value("PinPB1_AxisNum", devC.led_pwm_config[2].axis_num).toInt());
-    devC.led_pwm_config[3].axis_num = uint8_t(deviceSettings.value("PinPB4_AxisNum", devC.led_pwm_config[3].axis_num).toInt());
-    deviceSettings.endGroup();
-
-    for (int i = 0; i < MAX_LEDS_NUM; ++i) {
-        deviceSettings.beginGroup("LedsConfig_" + QString::number(i));
-
-        devC.leds[i].input_num = int8_t(deviceSettings.value("InputNum", devC.leds[i].input_num).toInt());
-        devC.leds[i].type = uint8_t(deviceSettings.value("LedType", devC.leds[i].type).toInt());
         deviceSettings.endGroup();
     }
 
@@ -288,7 +253,6 @@ void ConfigToFile::saveDeviceConfigToFile(const QString &fileName, dev_config_t 
     deviceSettings.setValue("Timer2", devC.button_timer2_ms);
     deviceSettings.setValue("Timer3", devC.button_timer3_ms);
     deviceSettings.setValue("Debounce", devC.button_debounce_ms);
-    deviceSettings.setValue("EncoderPress", devC.encoder_press_time_ms);
     deviceSettings.endGroup();
 
     // save Buttons config to file
@@ -367,38 +331,5 @@ void ConfigToFile::saveDeviceConfigToFile(const QString &fileName, dev_config_t 
         deviceSettings.endGroup();
     }
 
-    // save Encoders config to file
-    for (int i = 0; i < MAX_ENCODERS_NUM; ++i) {
-        deviceSettings.beginGroup("EncodersConfig_" + QString::number(i));
-
-        deviceSettings.setValue("EncType", devC.encoders[i]);
-        deviceSettings.endGroup();
-    }
-
-    // save LEDs config to file
-    deviceSettings.beginGroup("LedsPWMConfig");
-    deviceSettings.setValue("PinPA8", devC.led_pwm_config[0].duty_cycle);
-    deviceSettings.setValue("PinPB0", devC.led_pwm_config[1].duty_cycle);
-    deviceSettings.setValue("PinPB1", devC.led_pwm_config[2].duty_cycle);
-    deviceSettings.setValue("PinPB4", devC.led_pwm_config[3].duty_cycle);
-
-    deviceSettings.setValue("PinPA8_AxisEnabled", devC.led_pwm_config[0].is_axis);
-    deviceSettings.setValue("PinPB0_AxisEnabled", devC.led_pwm_config[1].is_axis);
-    deviceSettings.setValue("PinPB1_AxisEnabled", devC.led_pwm_config[2].is_axis);
-    deviceSettings.setValue("PinPB4_AxisEnabled", devC.led_pwm_config[3].is_axis);
-
-    deviceSettings.setValue("PinPA8_AxisNum", devC.led_pwm_config[0].axis_num);
-    deviceSettings.setValue("PinPB0_AxisNum", devC.led_pwm_config[1].axis_num);
-    deviceSettings.setValue("PinPB1_AxisNum", devC.led_pwm_config[2].axis_num);
-    deviceSettings.setValue("PinPB4_AxisNum", devC.led_pwm_config[3].axis_num);
-    deviceSettings.endGroup();
-
-    for (int i = 0; i < MAX_LEDS_NUM; ++i) {
-        deviceSettings.beginGroup("LedsConfig_" + QString::number(i));
-
-        deviceSettings.setValue("InputNum", devC.leds[i].input_num);
-        deviceSettings.setValue("LedType", devC.leds[i].type);
-        deviceSettings.endGroup();
-    }
     qDebug()<<"SaveDeviceConfigToFile() finished";
 }

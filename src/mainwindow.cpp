@@ -190,26 +190,6 @@ MainWindow::MainWindow(QWidget *parent)
         ui->tabWidget->setTabVisible(shiftRegTabIndex, false);
     }
 
-    // add encoders widget
-    m_encoderConfig = new EncodersConfig(this);
-    ui->layoutV_tabEncodersConfig->addWidget(m_encoderConfig);
-    //qDebug()<<"encoder config load time ="<< timer.restart() << "ms";
-
-    // hide encoders widget by default
-    int encoderTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabEncodersConfig->parentWidget());
-
-    if (encoderTabIndex != -1) {
-        ui->tabWidget->setTabVisible(encoderTabIndex, false);
-    }
-    // add led widget
-    m_ledConfig = new LedConfig(this);
-    ui->layoutV_tabLedConfig->addWidget(m_ledConfig);
-    //qDebug()<<"led config load time ="<< timer.restart() << "ms";
-    // hide LED widget
-    int ledTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabLedConfig->parentWidget());
-    if (ledTabIndex != -1) {
-        ui->tabWidget->setTabVisible(ledTabIndex, false);
-    }
     // add advanced settings widget
     m_advSettings = new AdvancedSettings(this);
     ui->layoutV_tabAdvSettings->addWidget(m_advSettings);
@@ -385,10 +365,6 @@ MainWindow::MainWindow(QWidget *parent)
     {
         comBox->setFocusPolicy(Qt::WheelFocus);
     }
-    for (auto &&comBox: m_ledConfig->findChildren<QComboBox *>())
-    {
-        comBox->setFocusPolicy(Qt::WheelFocus);
-    }
 
     //////////////// SIGNAL-SLOTS ////////////////
     // get/send config
@@ -398,12 +374,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // buttons pin changed
     connect(m_pinConfig, &PinConfig::totalButtonsValueChanged, m_buttonConfig, &ButtonConfig::setUiOnOff);
-    // LEDs changed
-    connect(m_pinConfig, &PinConfig::totalLEDsValueChanged, m_ledConfig, &LedConfig::spawnLeds);
-    // encoder changed
-    connect(m_buttonConfig, &ButtonConfig::encoderInputChanged, m_encoderConfig, &EncodersConfig::encoderInputChanged);
-    // fast encoder
-    connect(m_pinConfig, &PinConfig::fastEncoderSelected, m_encoderConfig, &EncodersConfig::fastEncoderSelected);
     // shift registers
     connect(m_pinConfig, &PinConfig::shiftRegSelected, m_shiftRegConfig, &ShiftRegistersConfig::shiftRegSelected);
     // a2b count
@@ -849,9 +819,6 @@ void MainWindow::getParamsPacket(bool firmwareCompatible)
             // Axis 0 = Roll (X), Axis 1 = Pitch (Y)
             m_developer->setLiveRaw(r.raw_axis_data[0], r.raw_axis_data[1]);
         }
-        if(ui->tab_LED->isVisible() == true) {
-            m_ledConfig->setLedsState();
-        }
         if(ui->tab_AxesConfig->isVisible() == true) {
             m_axesConfig->axesValueChanged();
         }
@@ -908,10 +875,6 @@ void MainWindow::UiReadFromConfig()
     m_axesCurvesConfig->readFromConfig();
     // read shift registers config
     m_shiftRegConfig->readFromConfig();
-    // read encoder config
-    m_encoderConfig->readFromConfig();
-    // read LED config
-    m_ledConfig->readFromConfig();
     // read adv.settings config
     m_advSettings->readFromConfig();
 
@@ -1006,10 +969,6 @@ void MainWindow::UiWriteToConfig()
     m_axesCurvesConfig->writeToConfig();
     // write shift registers config
     m_shiftRegConfig->writeToConfig();
-    // write encoder config
-    m_encoderConfig->writeToConfig();
-    // write LED config
-    m_ledConfig->writeToConfig();
     // write adv.settings config
     m_advSettings->writeToConfig();
     // write button config
@@ -1325,8 +1284,6 @@ void MainWindow::languageChanged(const QString &language)
 
     m_pinConfig->retranslateUi();
     m_buttonConfig->retranslateUi();
-    m_ledConfig->retranslateUi();
-    m_encoderConfig->retranslateUi();
     m_shiftRegConfig->retranslateUi();
     m_axesConfig->retranslateUi();
     m_axesCurvesConfig->retranslateUi();

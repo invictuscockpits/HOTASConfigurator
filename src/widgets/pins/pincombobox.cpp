@@ -110,10 +110,7 @@ void PinComboBox::setIndex_iteraction(int index, int senderIndex)
 {
     if(m_isInteracts == false && m_isCall_Interaction == false)     // ui->comboBox_PinsType->isEnabled()
     {
-        if(m_pinTypes[m_pinTypesIndex[index]].deviceEnumIndex != TLE5011_GEN)
-        {
-            ui->comboBox_PinsType->setEnabled(false);
-        }
+        ui->comboBox_PinsType->setEnabled(false);
         // change text color
         QPalette pal = ui->comboBox_PinsType->palette();
         pal.setColor(QPalette::ButtonText, m_pinTypes[senderIndex].color);

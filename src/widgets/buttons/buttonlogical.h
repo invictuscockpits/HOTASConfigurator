@@ -117,8 +117,6 @@ private:
         {POV4_RIGHT,           tr("TMS Right")},
         {POV4_DOWN,            tr("TMS Down")},
         {POV4_LEFT,            tr("TMS Left")},
-        {ENCODER_INPUT_A,      tr("Encoder A")},
-        {ENCODER_INPUT_B,      tr("Encoder B")},
         {RADIO_BUTTON1,        tr("Radio button 1")},
         {RADIO_BUTTON2,        tr("Radio button 2")},
         {RADIO_BUTTON3,        tr("Radio button 3")},

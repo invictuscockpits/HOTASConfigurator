@@ -74,7 +74,6 @@ private:
 
     enum
     {
-        Encoder = -3,
         I2C = -2,
         None = -1,
         A0 = 0,
@@ -113,7 +112,6 @@ private:
     const QVector <deviceEnum_guiName_t> m_axesPinList =      // любая последовательность, но первые 2 добавляются в конструкторе
     {{
         {None,     tr("None")},
-        {Encoder,  tr("Encoder")},
         {I2C,      "I2C"},
         {A0,       "A0"},
         {A1,       "A1"},
@@ -150,7 +148,7 @@ private:
     const QVector <deviceEnum_guiName_t> m_axisSourceMain =      // порядов обязан быть как в common_types.h!!!!!!!!!!!
     {{
         {None,          tr("None")},
-        {Encoder,       tr("Encoder")},
+        {I2C,           "I2C"},
     }};
 };
 
