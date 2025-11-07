@@ -208,6 +208,13 @@ void ButtonConfig::typeLimit(button_type_t current, button_type_t previous)
 
 void ButtonConfig::setUiOnOff(int value)
 {
+    // Ensure logical buttons are initialized first
+    if (m_logicButtonPtrList.isEmpty()) {
+        qWarning() << "Logical buttons not ready, deferring physical button creation";
+        QTimer::singleShot(100, this, [this, value]() { setUiOnOff(value); });
+        return;
+    }
+
     if (value > 0) {
         ui->spinBox_Shift1->setEnabled(true);
         ui->spinBox_Shift2->setEnabled(true);

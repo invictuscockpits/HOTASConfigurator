@@ -318,27 +318,16 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    // read last chosen board (shared with PinConfig)
-    gEnv.pAppSettings->beginGroup("BoardSettings");
-    int saved = gEnv.pAppSettings->value("SelectedBoard", 0).toInt();  // 0=Gen3, 1=Gen4
-    gEnv.pAppSettings->endGroup();
-
-    ui->comboBox_Board->setCurrentIndex(saved);
-    connect(ui->comboBox_Board, qOverload<int>(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onBoardPresetChanged);
-
-    //Building Board Preset Selector
+    // Building Board Preset Selector
     ui->comboBox_Board->clear();
     ui->comboBox_Board->addItem(tr("— Select board —"), QVariant());
     ui->comboBox_Board->setItemData(0, 0, Qt::UserRole - 1);
     ui->comboBox_Board->addItem(tr("VFT Controller Gen 1-3"), int(BoardId::VftControllerGen3));
     ui->comboBox_Board->addItem(tr("VFT Controller Gen 4"), int(BoardId::VFTControllerGen4));
-    ui->comboBox_Board->setCurrentIndex(0);
 
-    const QVariant data = ui->comboBox_Board->currentData();
-    if (data.isValid()) {
-        applyBoardPreset(static_cast<BoardId>(data.toInt()), /*ask=*/false);
-    }
+    // Connect signal handler (will be triggered later when board is selected in finalInitialization)
+    connect(ui->comboBox_Board, qOverload<int>(&QComboBox::currentIndexChanged),
+            this, &MainWindow::onBoardPresetChanged);
 
     // strong focus for mouse wheel
     // without protection, when scrolling the page you can accidentally hover over a combo box and change it with the mouse wheel
@@ -867,6 +856,13 @@ void MainWindow::deviceFlasherController(bool isStartFlash)
 /////////////////////    CONFIG SLOTS    /////////////////////
 void MainWindow::UiReadFromConfig()
 {
+    // Ensure logical buttons are created before applying config
+    if (m_buttonConfig->logicButtons().isEmpty()) {
+        qWarning() << "Buttons not ready, deferring UiReadFromConfig()";
+        QTimer::singleShot(100, this, &MainWindow::UiReadFromConfig);
+        return;
+    }
+
     // read pin config
     m_pinConfig->readFromConfig();
     // read axes config
@@ -890,7 +886,7 @@ void MainWindow::UiReadFromConfig()
         // Apply board preset settings (axis sources, channels, etc.) without confirmation
         // applyPinDefaults=false means we keep the pin config from the device, only update axis sources
         BoardId boardId = (fp.board_type == 0) ? BoardId::VftControllerGen3 : BoardId::VFTControllerGen4;
-        applyBoardPreset(boardId, /*ask=*/false, /*applyPinDefaults=*/false);
+        applyBoardPreset(boardId, /*applyPinDefaults=*/false);
     }
 
     // Set grip type dropdown and load the grip profile
@@ -1024,6 +1020,17 @@ void MainWindow::UiWriteToConfig()
 // load default config
 void MainWindow::finalInitialization()
 {
+    // Restore saved board selection now that buttons are ready
+    gEnv.pAppSettings->beginGroup("BoardSettings");
+    int savedBoard = gEnv.pAppSettings->value("SelectedBoard", 0).toInt();
+    gEnv.pAppSettings->endGroup();
+
+    // Set the dropdown to the saved board (+1 because index 0 is placeholder)
+    // This will trigger onBoardPresetChanged() which applies the board preset
+    if (savedBoard >= 0 && savedBoard <= 1) {
+        ui->comboBox_Board->setCurrentIndex(savedBoard + 1);
+    }
+
     // load config files
     QStringList filesList = cfgFilesList(m_cfgDirPath);
     if (filesList.isEmpty() == false) {
@@ -1945,7 +1952,7 @@ void MainWindow::onBoardPresetChanged(int index)
     const QVariant v = ui->comboBox_Board->itemData(index);
     if (!v.isValid()) return; // placeholder -> do nothing
 
-    applyBoardPreset(static_cast<BoardId>(v.toInt()), /*ask=*/true);
+    applyBoardPreset(static_cast<BoardId>(v.toInt()));
     // persist if you want:
     QSettings s; s.setValue("BoardSettings/SelectedBoard", v);
 }
@@ -1973,27 +1980,8 @@ void MainWindow::onBoardPresetChanged(int index)
  * @sa boardPins(), PinConfig::readFromConfig(), AxesConfig::readFromConfig()
  */
 
-void MainWindow::applyBoardPreset(BoardId id, bool ask, bool applyPinDefaults)
+void MainWindow::applyBoardPreset(BoardId id, bool applyPinDefaults)
 {
-    const QString name = (id == BoardId::VftControllerGen3)
-    ? tr("VFT Controller Gen 1-3")
-    : tr("VFT Controller Gen 4");
-
-    if (ask) {
-        QMessageBox box(this);
-        box.setWindowTitle(tr("Apply board defaults?"));
-        box.setText(tr("Replace current pin mapping with %1 defaults?").arg(name));
-        box.setIcon(QMessageBox::NoIcon); // avoid the style's PNG
-        box.setIconPixmap(QIcon(":/Images/question_icon.svg").pixmap(48,48));
-                                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
-                                                             "QMessageBox QLabel { background-color: transparent; }");
-                                box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-        box.setDefaultButton(QMessageBox::Yes);
-
-        if (box.exec() != QMessageBox::Yes)
-            return;
-    }
-
     // 1) Copy pins from presets into the live config (only if applyPinDefaults is true)
     if (applyPinDefaults) {
         // (1) Copy pins from preset
