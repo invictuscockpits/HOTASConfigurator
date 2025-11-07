@@ -158,12 +158,6 @@ void PinConfig::signalsForWidgets(int currentDeviceEnum, int previousDeviceEnum,
 {
     // Convert pin number to zero-based index
     int pinIndex = pinNumber - PA_0;
-    //fast encoder selected
-    if (currentDeviceEnum == FAST_ENCODER){
-        emit fastEncoderSelected(m_pinCBoxPtrList[0]->pinList()[pinIndex].guiName, true);    // hz
-    } else if (previousDeviceEnum == FAST_ENCODER){
-        emit fastEncoderSelected(m_pinCBoxPtrList[0]->pinList()[pinIndex].guiName, false);    // hz
-    }
     // shift register latch selected
     if (currentDeviceEnum == SHIFT_REG_LATCH){
         m_shiftLatchCount++;
@@ -275,35 +269,7 @@ void PinConfig::setCurrentConfig(int currentDeviceEnum, int previousDeviceEnum, 
 // PA8 should only works if SPI is not selected
 void PinConfig::blockPA8PWM(int currentDeviceEnum, int previousDeviceEnum)
 {
-    static int spiCount = 0;
-    int PA8Index = PA_8 - PA_0;
-
-    if (currentDeviceEnum == SPI_SCK || currentDeviceEnum == SPI_MOSI || currentDeviceEnum == SPI_MISO) {
-        spiCount++;
-    } else if (previousDeviceEnum == SPI_SCK || previousDeviceEnum == SPI_MOSI || previousDeviceEnum == SPI_MISO) {
-        spiCount--;
-    }
-
-    if (spiCount > 0) {
-        if (m_pinCBoxPtrList[PA8Index]->currentDevEnum() == LED_PWM) {
-            m_pinCBoxPtrList[PA8Index]->resetPin();
-        }
-        for (int i = 0; i < m_pinCBoxPtrList[PA8Index]->enumIndex().size(); ++i) {
-            if (m_pinCBoxPtrList[PA8Index]->enumIndex()[i] == LED_PWM)
-            {
-                m_pinCBoxPtrList[PA8Index]->setIndexStatus(i, false);
-                break;
-            }
-        }
-    } else {
-        for (int i = 0; i < m_pinCBoxPtrList[PA8Index]->enumIndex().size(); ++i) {
-            if (m_pinCBoxPtrList[PA8Index]->enumIndex()[i] == LED_PWM)
-            {
-                m_pinCBoxPtrList[PA8Index]->setIndexStatus(i, true);
-                break;
-            }
-        }
-    }
+    // LED PWM support removed
 }
 
 

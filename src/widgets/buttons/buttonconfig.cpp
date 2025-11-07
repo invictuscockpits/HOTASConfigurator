@@ -198,61 +198,23 @@ void ButtonConfig::physButtonsCreator(int count)
 
 void ButtonConfig::functionTypeChanged(button_type_t current, button_type_t previous, int buttonIndex)
 {
-    if (current == ENCODER_INPUT_A) {
-        emit encoderInputChanged(buttonIndex + 1, 0);
-    } else if (current == ENCODER_INPUT_B) {
-        emit encoderInputChanged(0, buttonIndex + 1);
-    }
-
-    if (previous == ENCODER_INPUT_A) {
-        emit encoderInputChanged((buttonIndex + 1) * -1, 0); // send negative number
-    } else if (previous == ENCODER_INPUT_B) {
-        emit encoderInputChanged(0, (buttonIndex + 1) * -1);
-    }
     typeLimit(current, previous);
 }
 
 void ButtonConfig::typeLimit(button_type_t current, button_type_t previous)
 {
-    static int limitCountArray[m_typeLimCount]{};
-    static bool limitIsEnable[m_typeLimCount]{};
-
-    for (int i = 0; i < m_typeLimCount; ++i)
-    {
-        if (current == m_ButtonsTypeLimit[i].type)
-        {
-            limitCountArray[i]++;
-        }
-        if (previous == m_ButtonsTypeLimit[i].type)
-        {
-            limitCountArray[i]--;
-        }
-
-        if (limitCountArray[i] >= m_ButtonsTypeLimit[i].maxCount && limitIsEnable[i] == false)
-        {
-            limitIsEnable[i] = true;
-            for (int j = 0; j < m_logicButtonPtrList.size(); ++j)
-            {
-                if (m_logicButtonPtrList[j]->currentButtonType() != current)
-                {
-                    m_logicButtonPtrList[j]->disableButtonType(current, true);
-                }
-            }
-        }
-
-        if (limitIsEnable[i] == true && limitCountArray[i] < m_ButtonsTypeLimit[i].maxCount)
-        {
-            limitIsEnable[i] = false;
-            for (int j = 0; j < m_logicButtonPtrList.size(); ++j)
-            {
-                m_logicButtonPtrList[j]->disableButtonType(previous, false);
-            }
-        }
-    }
+    // Button type limits removed (encoder support removed)
 }
 
 void ButtonConfig::setUiOnOff(int value)
 {
+    // Ensure logical buttons are initialized first
+    if (m_logicButtonPtrList.isEmpty()) {
+        qWarning() << "Logical buttons not ready, deferring physical button creation";
+        QTimer::singleShot(100, this, [this, value]() { setUiOnOff(value); });
+        return;
+    }
+
     if (value > 0) {
         ui->spinBox_Shift1->setEnabled(true);
         ui->spinBox_Shift2->setEnabled(true);
@@ -408,8 +370,6 @@ void ButtonConfig::readFromConfig()
 
     ui->spinBox_DebounceTimer->setValue(devc->button_debounce_ms);
     ui->spinBox_A2bDebounce->setValue(devc->a2b_debounce_ms);
-
-    ui->spinBox_EncoderPressTimer->setValue(devc->encoder_press_time_ms);
 }
 
 void ButtonConfig::writeToConfig()
@@ -427,8 +387,6 @@ void ButtonConfig::writeToConfig()
 
     devc->button_debounce_ms = ui->spinBox_DebounceTimer->value();
     devc->a2b_debounce_ms = ui->spinBox_A2bDebounce->value();
-
-    devc->encoder_press_time_ms = ui->spinBox_EncoderPressTimer->value();
 
     // logical buttons
     for (int i = 0; i < m_logicButtonPtrList.size(); ++i) {

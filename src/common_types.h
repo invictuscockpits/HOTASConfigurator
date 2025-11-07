@@ -75,7 +75,6 @@ typedef struct
 
 enum
 {
-    SOURCE_ENCODER = -3,
     SOURCE_I2C     = -2,
     SOURCE_NO      = -1,
 };
@@ -84,18 +83,8 @@ typedef int8_t axis_source_t;
 enum
 {
     ANALOG = 0,
-    TLE5011,
-    MCP3201,
     MCP3202,
-    MCP3204,
-    MCP3208,
-    MLX90393_SPI,
-    MLX90393_I2C,
     ADS1115,
-    AS5600,
-    AS5048A_SPI,
-    TLE5012,
-    MLX90363,
 };
 
 typedef struct
@@ -126,37 +115,19 @@ enum
     BUTTON_COLUMN,
 
     AXIS_ANALOG,
-    FAST_ENCODER,
 
     SPI_SCK,
     SPI_MOSI,
     SPI_MISO,
 
-    TLE5011_GEN,
-    TLE5011_CS,
-    TLE5012_CS,
-
-    MCP3201_CS,
     MCP3202_CS,
-    MCP3204_CS,
-    MCP3208_CS,
-
-    MLX90393_CS,
-
-    AS5048A_CS,
 
     SHIFT_REG_LATCH,
     SHIFT_REG_DATA,
 
-    LED_PWM,
-    LED_SINGLE,
-    LED_ROW,
-    LED_COLUMN,
-
     I2C_SCL,
     I2C_SDA,
 
-    MLX90363_CS,
     SHIFT_REG_CLK,
 };
 typedef int8_t pin_t;
@@ -191,9 +162,6 @@ enum
     POV4_RIGHT,
     POV4_DOWN,
     POV4_LEFT,
-
-    ENCODER_INPUT_A,
-    ENCODER_INPUT_B,
 
     RADIO_BUTTON1,
     RADIO_BUTTON2,
@@ -258,28 +226,6 @@ typedef struct logical_buttons_state_t
 
 } logical_buttons_state_t;
 
-/******************** ENCODERS **********************/
-enum
-{
-    ENCODER_CONF_1x = 0,
-    ENCODER_CONF_2x,
-    ENCODER_CONF_4x,
-
-};
-typedef uint8_t encoder_t;
-
-typedef struct
-{
-    uint32_t time_last;
-    int32_t  cnt;
-    uint8_t  state;
-    int8_t   pin_a;
-    int8_t   pin_b;
-    int8_t   dir      : 4;
-    int8_t   last_dir : 4;
-
-} encoder_state_t;
-
 /******************** AXIS TO BUTTONS **********************/
 typedef struct
 {
@@ -322,30 +268,6 @@ typedef struct
     int8_t button;
 
 } shift_modificator_t;
-
-/******************** LEDS **********************/
-enum
-{
-    LED_NORMAL = 0,
-    LED_INVERTED,
-};
-
-typedef struct
-{
-    uint8_t duty_cycle;
-    uint8_t axis_num : 3;
-    uint8_t is_axis  : 1;
-    uint8_t          : 0;
-
-} led_pwm_config_t;
-
-typedef struct
-{
-    int8_t  input_num;
-    uint8_t type : 3;
-    uint8_t      : 0;
-
-} led_config_t;
 
 /******************** FORCE PROFILES & FACTORY ANCHORS ********************/
 /* NOTE: The factory anchors block is stored OUTSIDE dev_config_t
@@ -445,7 +367,6 @@ typedef struct
     uint16_t        firmware_version;
     char            device_name[26];
     uint16_t        button_debounce_ms;
-    uint8_t         encoder_press_time_ms;
     uint8_t         exchange_period_ms;
     pin_t           pins[USED_PINS_NUM];
 
@@ -469,13 +390,6 @@ typedef struct
     uint16_t        pid;
 
     // config 15
-    led_pwm_config_t  led_pwm_config[4];
-    led_config_t      leds[MAX_LEDS_NUM];
-
-    // config 16
-    encoder_t         encoders[MAX_ENCODERS_NUM];
-
-    // config 17
     force_profile_runtime_t force_profile_rt;
 
 } dev_config_t;

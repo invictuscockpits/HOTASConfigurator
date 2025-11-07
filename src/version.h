@@ -2,9 +2,9 @@
 #define VERSION_H
 
 #define MAJOR_VERSION 2
-#define MINOR_VERSION 1
-#define PATCH_VERSION 3
-#define BUILD_VERSION 3
+#define MINOR_VERSION 2
+#define PATCH_VERSION 0
+#define BUILD_VERSION 1
 
 #ifdef INNO_SETUP
     #define APP_VERSION Str(MAJOR_VERSION) + "." + Str(MINOR_VERSION) + "." + Str(PATCH_VERSION)
@@ -19,11 +19,11 @@
 	#endif
 #endif
 
-// GUI repo (already used by your GUI checker)
+// GUI repo
 #define APP_REPO_OWNER   "invictuscockpits"
 #define APP_REPO_NAME    "HOTASConfigurator"
 
-// FIRMWARE repo (adjust to your real repo)
+// FIRMWARE repo
 #define FW_REPO_OWNER    "invictuscockpits"
 #define FW_REPO_NAME     "invictus-ssc-firmware"
 

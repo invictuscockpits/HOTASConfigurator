@@ -190,26 +190,6 @@ MainWindow::MainWindow(QWidget *parent)
         ui->tabWidget->setTabVisible(shiftRegTabIndex, false);
     }
 
-    // add encoders widget
-    m_encoderConfig = new EncodersConfig(this);
-    ui->layoutV_tabEncodersConfig->addWidget(m_encoderConfig);
-    //qDebug()<<"encoder config load time ="<< timer.restart() << "ms";
-
-    // hide encoders widget by default
-    int encoderTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabEncodersConfig->parentWidget());
-
-    if (encoderTabIndex != -1) {
-        ui->tabWidget->setTabVisible(encoderTabIndex, false);
-    }
-    // add led widget
-    m_ledConfig = new LedConfig(this);
-    ui->layoutV_tabLedConfig->addWidget(m_ledConfig);
-    //qDebug()<<"led config load time ="<< timer.restart() << "ms";
-    // hide LED widget
-    int ledTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabLedConfig->parentWidget());
-    if (ledTabIndex != -1) {
-        ui->tabWidget->setTabVisible(ledTabIndex, false);
-    }
     // add advanced settings widget
     m_advSettings = new AdvancedSettings(this);
     ui->layoutV_tabAdvSettings->addWidget(m_advSettings);
@@ -338,27 +318,16 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    // read last chosen board (shared with PinConfig)
-    gEnv.pAppSettings->beginGroup("BoardSettings");
-    int saved = gEnv.pAppSettings->value("SelectedBoard", 0).toInt();  // 0=Gen3, 1=Gen4
-    gEnv.pAppSettings->endGroup();
-
-    ui->comboBox_Board->setCurrentIndex(saved);
-    connect(ui->comboBox_Board, qOverload<int>(&QComboBox::currentIndexChanged),
-            this, &MainWindow::onBoardPresetChanged);
-
-    //Building Board Preset Selector
+    // Building Board Preset Selector
     ui->comboBox_Board->clear();
     ui->comboBox_Board->addItem(tr("— Select board —"), QVariant());
     ui->comboBox_Board->setItemData(0, 0, Qt::UserRole - 1);
     ui->comboBox_Board->addItem(tr("VFT Controller Gen 1-3"), int(BoardId::VftControllerGen3));
     ui->comboBox_Board->addItem(tr("VFT Controller Gen 4"), int(BoardId::VFTControllerGen4));
-    ui->comboBox_Board->setCurrentIndex(0);
 
-    const QVariant data = ui->comboBox_Board->currentData();
-    if (data.isValid()) {
-        applyBoardPreset(static_cast<BoardId>(data.toInt()), /*ask=*/false);
-    }
+    // Connect signal handler (will be triggered later when board is selected in finalInitialization)
+    connect(ui->comboBox_Board, qOverload<int>(&QComboBox::currentIndexChanged),
+            this, &MainWindow::onBoardPresetChanged);
 
     // strong focus for mouse wheel
     // without protection, when scrolling the page you can accidentally hover over a combo box and change it with the mouse wheel
@@ -385,10 +354,6 @@ MainWindow::MainWindow(QWidget *parent)
     {
         comBox->setFocusPolicy(Qt::WheelFocus);
     }
-    for (auto &&comBox: m_ledConfig->findChildren<QComboBox *>())
-    {
-        comBox->setFocusPolicy(Qt::WheelFocus);
-    }
 
     //////////////// SIGNAL-SLOTS ////////////////
     // get/send config
@@ -398,12 +363,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // buttons pin changed
     connect(m_pinConfig, &PinConfig::totalButtonsValueChanged, m_buttonConfig, &ButtonConfig::setUiOnOff);
-    // LEDs changed
-    connect(m_pinConfig, &PinConfig::totalLEDsValueChanged, m_ledConfig, &LedConfig::spawnLeds);
-    // encoder changed
-    connect(m_buttonConfig, &ButtonConfig::encoderInputChanged, m_encoderConfig, &EncodersConfig::encoderInputChanged);
-    // fast encoder
-    connect(m_pinConfig, &PinConfig::fastEncoderSelected, m_encoderConfig, &EncodersConfig::fastEncoderSelected);
     // shift registers
     connect(m_pinConfig, &PinConfig::shiftRegSelected, m_shiftRegConfig, &ShiftRegistersConfig::shiftRegSelected);
     // a2b count
@@ -849,9 +808,6 @@ void MainWindow::getParamsPacket(bool firmwareCompatible)
             // Axis 0 = Roll (X), Axis 1 = Pitch (Y)
             m_developer->setLiveRaw(r.raw_axis_data[0], r.raw_axis_data[1]);
         }
-        if(ui->tab_LED->isVisible() == true) {
-            m_ledConfig->setLedsState();
-        }
         if(ui->tab_AxesConfig->isVisible() == true) {
             m_axesConfig->axesValueChanged();
         }
@@ -900,6 +856,13 @@ void MainWindow::deviceFlasherController(bool isStartFlash)
 /////////////////////    CONFIG SLOTS    /////////////////////
 void MainWindow::UiReadFromConfig()
 {
+    // Ensure logical buttons are created before applying config
+    if (m_buttonConfig->logicButtons().isEmpty()) {
+        qWarning() << "Buttons not ready, deferring UiReadFromConfig()";
+        QTimer::singleShot(100, this, &MainWindow::UiReadFromConfig);
+        return;
+    }
+
     // read pin config
     m_pinConfig->readFromConfig();
     // read axes config
@@ -908,10 +871,6 @@ void MainWindow::UiReadFromConfig()
     m_axesCurvesConfig->readFromConfig();
     // read shift registers config
     m_shiftRegConfig->readFromConfig();
-    // read encoder config
-    m_encoderConfig->readFromConfig();
-    // read LED config
-    m_ledConfig->readFromConfig();
     // read adv.settings config
     m_advSettings->readFromConfig();
 
@@ -927,7 +886,7 @@ void MainWindow::UiReadFromConfig()
         // Apply board preset settings (axis sources, channels, etc.) without confirmation
         // applyPinDefaults=false means we keep the pin config from the device, only update axis sources
         BoardId boardId = (fp.board_type == 0) ? BoardId::VftControllerGen3 : BoardId::VFTControllerGen4;
-        applyBoardPreset(boardId, /*ask=*/false, /*applyPinDefaults=*/false);
+        applyBoardPreset(boardId, /*applyPinDefaults=*/false);
     }
 
     // Set grip type dropdown and load the grip profile
@@ -1006,10 +965,6 @@ void MainWindow::UiWriteToConfig()
     m_axesCurvesConfig->writeToConfig();
     // write shift registers config
     m_shiftRegConfig->writeToConfig();
-    // write encoder config
-    m_encoderConfig->writeToConfig();
-    // write LED config
-    m_ledConfig->writeToConfig();
     // write adv.settings config
     m_advSettings->writeToConfig();
     // write button config
@@ -1065,6 +1020,17 @@ void MainWindow::UiWriteToConfig()
 // load default config
 void MainWindow::finalInitialization()
 {
+    // Restore saved board selection now that buttons are ready
+    gEnv.pAppSettings->beginGroup("BoardSettings");
+    int savedBoard = gEnv.pAppSettings->value("SelectedBoard", 0).toInt();
+    gEnv.pAppSettings->endGroup();
+
+    // Set the dropdown to the saved board (+1 because index 0 is placeholder)
+    // This will trigger onBoardPresetChanged() which applies the board preset
+    if (savedBoard >= 0 && savedBoard <= 1) {
+        ui->comboBox_Board->setCurrentIndex(savedBoard + 1);
+    }
+
     // load config files
     QStringList filesList = cfgFilesList(m_cfgDirPath);
     if (filesList.isEmpty() == false) {
@@ -1325,8 +1291,6 @@ void MainWindow::languageChanged(const QString &language)
 
     m_pinConfig->retranslateUi();
     m_buttonConfig->retranslateUi();
-    m_ledConfig->retranslateUi();
-    m_encoderConfig->retranslateUi();
     m_shiftRegConfig->retranslateUi();
     m_axesConfig->retranslateUi();
     m_axesCurvesConfig->retranslateUi();
@@ -1988,7 +1952,7 @@ void MainWindow::onBoardPresetChanged(int index)
     const QVariant v = ui->comboBox_Board->itemData(index);
     if (!v.isValid()) return; // placeholder -> do nothing
 
-    applyBoardPreset(static_cast<BoardId>(v.toInt()), /*ask=*/true);
+    applyBoardPreset(static_cast<BoardId>(v.toInt()));
     // persist if you want:
     QSettings s; s.setValue("BoardSettings/SelectedBoard", v);
 }
@@ -2016,27 +1980,8 @@ void MainWindow::onBoardPresetChanged(int index)
  * @sa boardPins(), PinConfig::readFromConfig(), AxesConfig::readFromConfig()
  */
 
-void MainWindow::applyBoardPreset(BoardId id, bool ask, bool applyPinDefaults)
+void MainWindow::applyBoardPreset(BoardId id, bool applyPinDefaults)
 {
-    const QString name = (id == BoardId::VftControllerGen3)
-    ? tr("VFT Controller Gen 1-3")
-    : tr("VFT Controller Gen 4");
-
-    if (ask) {
-        QMessageBox box(this);
-        box.setWindowTitle(tr("Apply board defaults?"));
-        box.setText(tr("Replace current pin mapping with %1 defaults?").arg(name));
-        box.setIcon(QMessageBox::NoIcon); // avoid the style's PNG
-        box.setIconPixmap(QIcon(":/Images/question_icon.svg").pixmap(48,48));
-                                box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
-                                                             "QMessageBox QLabel { background-color: transparent; }");
-                                box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-        box.setDefaultButton(QMessageBox::Yes);
-
-        if (box.exec() != QMessageBox::Yes)
-            return;
-    }
-
     // 1) Copy pins from presets into the live config (only if applyPinDefaults is true)
     if (applyPinDefaults) {
         // (1) Copy pins from preset

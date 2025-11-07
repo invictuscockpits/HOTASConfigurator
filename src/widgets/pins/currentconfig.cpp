@@ -119,22 +119,7 @@ void CurrentConfig::totalButtonsChanged(int count)
 
 void CurrentConfig::totalLEDsChanged(int count)
 {
-    if (count > MAX_LEDS_NUM){
-        m_defaultLabelStyle = ui->label_TotalLEDs->styleSheet();
-        ui->label_TotalLEDs->setStyleSheet(m_defaultLabelStyle + QStringLiteral("background-color: rgb(200, 0, 0);"));
-        ui->text_TotalLEDs->setStyleSheet(m_defaultLabelStyle + QStringLiteral("background-color: rgb(200, 0, 0);"));
-        if (m_limit == false) {
-            m_limit = true;
-            emit limitReached(true);
-        }
-    } else {
-        ui->text_TotalLEDs->setStyleSheet(m_defaultLabelStyle);
-        if (m_limit) {
-            m_limit = false;
-            emit limitReached(false);
-        }
-    }
-    emit totalLEDsValueChanged(count);
+    // LED support removed
 }
 
 bool CurrentConfig::limitIsReached()

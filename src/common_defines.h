@@ -11,14 +11,12 @@
 
 //#define DEBUG
 
-#define FIRMWARE_VERSION					0x2156              // v2.1.5.6
+#define FIRMWARE_VERSION					0x2200              // v2.2.0.0 (Removed LED, Encoder, unused ADC/sensor support)
 #define USED_PINS_NUM						30					// Contstant for HOTAS Control boards
 #define MAX_AXIS_NUM						8					// max 8
 #define MAX_BUTTONS_NUM						128					// power of 2, max 128
 #define MAX_POVS_NUM						4					// max 4
-#define MAX_ENCODERS_NUM					16					// max 64
 #define MAX_SHIFT_REG_NUM					4					// max 4
-#define MAX_LEDS_NUM						24
 
 #define AXIS_MIN_VALUE						(-32767)
 #define AXIS_MAX_VALUE						(32767)

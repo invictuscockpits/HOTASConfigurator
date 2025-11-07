@@ -10,7 +10,7 @@ QT_BEGIN_NAMESPACE
 class QGridLayout;
 QT_END_NAMESPACE
 
-#define SOURCE_COUNT 8
+#define SOURCE_COUNT 5
 #define PIN_TYPE_LIMIT_COUNT 3
 
 namespace Ui {
@@ -89,17 +89,13 @@ private:
 
     const source_t m_source[SOURCE_COUNT] =
     {
-        {AXIS_SOURCE,        {AXIS_ANALOG, TLE5011_CS, MCP3201_CS, MCP3202_CS, MCP3204_CS, MCP3208_CS, MLX90393_CS, MLX90363_CS, AS5048A_CS, TLE5012_CS}},
+        {AXIS_SOURCE,        {AXIS_ANALOG, MCP3202_CS}},
 
         {BUTTON_FROM_AXES,   {678}},        // 678 в DeviceConfig
 
         {SINGLE_BUTTON,      {BUTTON_VCC, BUTTON_GND}},
         {ROW_OF_BUTTONS,     {BUTTON_ROW}},
         {COLUMN_OF_BUTTONS,  {BUTTON_COLUMN}},
-
-        {SINGLE_LED,         {LED_SINGLE}},
-        {ROW_OF_LED,         {LED_ROW}},
-        {COLUMN_OF_LED,      {LED_COLUMN}},
     };
 
     const pinTypeLimit_t m_pinTypeLimit[PIN_TYPE_LIMIT_COUNT] =       // static ?
