@@ -19,11 +19,11 @@
 	#endif
 #endif
 
-// GUI repo (already used by your GUI checker)
+// GUI repo
 #define APP_REPO_OWNER   "invictuscockpits"
 #define APP_REPO_NAME    "HOTASConfigurator"
 
-// FIRMWARE repo (adjust to your real repo)
+// FIRMWARE repo
 #define FW_REPO_OWNER    "invictuscockpits"
 #define FW_REPO_NAME     "invictus-ssc-firmware"
 
