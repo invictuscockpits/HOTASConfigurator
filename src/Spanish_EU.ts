@@ -1,233 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU" sourcelanguage="en">
+<TS version="2.1" language="es_ES" sourcelanguage="en">
 <context>
     <name>AdvancedSettings</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>USB settings</source>
-        <translation type="vanished">Настройки USB</translation>
+        <translation type="vanished">Configuración USB</translation>
     </message>
     <message>
         <source>Device USB name</source>
-        <translation type="vanished">Название USB устройства</translation>
+        <translation type="vanished">Nombre USB del dispositivo</translation>
     </message>
     <message>
         <source>USB exchange period</source>
-        <translation>Период обмена USB</translation>
+        <translation>Período de intercambio USB</translation>
     </message>
     <message>
         <source>Dynamic HID config</source>
-        <translation type="vanished">Динамический HID</translation>
+        <translation type="vanished">Configuración HID dinámica</translation>
     </message>
     <message>
         <source>Firmware flasher</source>
-        <translation>Прошивка</translation>
+        <translation>Flasheador de firmware</translation>
     </message>
     <message>
         <source>Flash Firmware</source>
-        <translation type="vanished">Прошить</translation>
+        <translation type="vanished">Flashear firmware</translation>
     </message>
     <message>
         <source>Enter Flasher Mode</source>
-        <translation type="vanished">Войти в режим прошивки</translation>
+        <translation type="vanished">Entrar en modo flasheador</translation>
     </message>
     <message>
         <source>Application settings</source>
-        <translation type="vanished">Настройки приложения</translation>
+        <translation type="vanished">Configuración de la aplicación</translation>
     </message>
     <message>
         <source>Styles</source>
-        <translation type="vanished">Стили</translation>
+        <translation type="vanished">Estilos</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="vanished">Тёмный</translation>
+        <translation type="vanished">Oscuro</translation>
     </message>
     <message>
         <source>White</source>
-        <translation type="vanished">Белый</translation>
+        <translation type="vanished">Claro</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="vanished">Стандартный</translation>
+        <translation type="vanished">Predeterminado</translation>
     </message>
     <message>
         <source>Languages</source>
-        <translation type="vanished">Языки</translation>
+        <translation type="vanished">Idiomas</translation>
     </message>
     <message>
         <source>Font size</source>
-        <translation>Размер шрифта</translation>
+        <translation>Tamaño de fuente</translation>
     </message>
     <message>
         <source>Ready to flash</source>
-        <translation type="vanished">Готов к прошивке</translation>
+        <translation type="vanished">Listo para flashear</translation>
     </message>
     <message>
         <source>Open Config</source>
-        <translation type="vanished">Открыть конфиг</translation>
+        <translation type="vanished">Abrir configuración</translation>
     </message>
     <message>
         <source>Binary files (.bin) (*.bin)</source>
-        <translation type="vanished">Бинарный файл  (.bin) (*.bin)</translation>
+        <translation type="vanished">Archivos binarios (.bin) (*.bin)</translation>
     </message>
     <message>
         <source>Firmware flashing..</source>
-        <translation type="vanished">Идёт прошивка..</translation>
+        <translation type="vanished">Flasheando firmware..</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation type="vanished">Готово</translation>
+        <translation type="vanished">Terminado</translation>
     </message>
     <message>
         <source>Loading... Please wait</source>
-        <translation type="vanished">Загрузка... Подождите</translation>
+        <translation type="vanished">Cargando... Por favor espera</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> мс</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Restart app for full changes</source>
-        <translation type="vanished">Требуется перезапуск</translation>
+        <translation type="vanished">Reinicia la aplicación para aplicar todos los cambios</translation>
     </message>
     <message>
         <source>Other settings</source>
-        <translation type="vanished">Прочие настройки</translation>
+        <translation type="vanished">Otros ajustes</translation>
     </message>
     <message>
         <source>Load default config on startup</source>
-        <translation type="vanished">Стандартный конфиг при запуске</translation>
+        <translation type="vanished">Cargar configuración predeterminada al iniciar</translation>
     </message>
     <message>
         <source>Wiki</source>
-        <translation type="vanished">Вики</translation>
+        <translation type="vanished">Wiki</translation>
     </message>
     <message>
         <source>&lt;br&gt;Built with Qt %1 (%2)&lt;br&gt;Source code available under GPLv3 on &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
-        <translation type="vanished">&lt;br&gt;Собрано с Qt %1 (%2)&lt;br&gt;Исходный код доступен по GPLv3 на &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</translation>
+        <translation type="vanished">&lt;br&gt;Construido con Qt %1 (%2)&lt;br&gt;Código fuente disponible bajo GPLv3 en &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;Check &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyWiki&quot;&gt;our wiki &lt;/a&gt;for detailed instructions.</source>
-        <translation type="vanished">&lt;br&gt;Посетите &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyWiki&quot;&gt;наше вики &lt;/a&gt;для подробных инструкций.</translation>
+        <translation type="vanished">&lt;br&gt;Consulta &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyWiki&quot;&gt;nuestra wiki &lt;/a&gt;para instrucciones detalladas.</translation>
     </message>
     <message>
         <source>About Invictus HOTAS Configurator</source>
-        <translation type="vanished">О Invictus HOTAS Конфигуратор</translation>
+        <translation type="vanished">Acerca de Invictus HOTAS Configurator</translation>
     </message>
     <message>
         <source>Sometimes Windows does not update the name in gaming devices and has to be deleted in the registry</source>
-        <translation type="vanished">Иногда Windows не обновляет имя в игровых устройствах и его необходимо удалить в реестре</translation>
+        <translation type="vanished">A veces Windows no actualiza el nombre en los dispositivos de juego y debe ser eliminado del registro</translation>
     </message>
     <message>
         <source>Remove name</source>
-        <translation type="vanished">Удалить имя</translation>
+        <translation type="vanished">Eliminar nombre</translation>
     </message>
     <message>
         <source>Remove device name with selected VID/PID from registry</source>
-        <translation type="vanished">Удалить имя устройства с выбранными VID/PID из реестра</translation>
+        <translation type="vanished">Eliminar nombre de dispositivo con VID/PID seleccionado del registro</translation>
     </message>
     <message>
         <source>Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.</source>
-        <translation type="vanished">Иногда Windows не обновляет имя в игровых устройствах, и его необходимо удалить в реестре. Это происходит автоматически при записи конфига, но может потребоваться ручное удаление при отклоючённом устройстве.</translation>
+        <translation type="vanished">A veces Windows no actualiza el nombre en los dispositivos de juego y necesita ser eliminado del registro. Esto sucede automáticamente cuando se escribe la configuración, pero puede ser necesaria la eliminación manual cuando el dispositivo está desconectado.</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some values may not work on some operating systems(PID 5750 on Ubuntu, for example). After choosing the wrong value, the controller needs to be reflashed with ST-link/UART.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Некоторые значения могут не работать в вашей операционной системе(например PID 5750 не работает в  Ubuntu). После выбора неверного значения, контроллер потребуется перепрошить с помощью ST-link/UART.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Algunos valores pueden no funcionar en algunos sistemas operativos (PID 5750 en Ubuntu, por ejemplo). Después de elegir el valor incorrecto, el controlador necesita ser reflasheado con ST-link/UART.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sometimes Windows does not update the name in gaming devices and needs to be removed from the registry. This happens automatically when the config is written, but manual deletion may be required when the device is disconnected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Иногда Windows не обновляет имя в игровых устройствах и его приходится удалять из реестра. Это делается автоматически во время записи конфигурации, но иногда требуется ручное удаление с отключённым устройством.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A veces Windows no actualiza el nombre en los dispositivos de juego y necesita ser eliminado del registro. Esto sucede automáticamente cuando se escribe la configuración, pero puede ser necesaria la eliminación manual cuando el dispositivo está desconectado.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;Built with Qt %1 (%2)&lt;br&gt;Source code available under GPLv3 on &lt;a style=&quot;color: #03A9F4; text-decoration:none;
                                 href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</source>
-        <translation type="vanished">&lt;br&gt;Собрано с Qt %1 (%2)&lt;br&gt;Исходный код доступен по GPLv3 на &lt;a style=&quot;color: #03A9F4; text-decoration:none;
+        <translation type="vanished">&lt;br&gt;Construido con Qt %1 (%2)&lt;br&gt;Código fuente disponible bajo GPLv3 en &lt;a style=&quot;color: #03A9F4; text-decoration:none;
                                 href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;Github&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;Check &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot;
                             href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;our wiki &lt;/a&gt;
                             for detailed instructions.</source>
-        <translation type="vanished">&lt;br&gt;Посетите &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot;
-                            href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;наше вики &lt;/a&gt;
-                            для подробных инструкций.</translation>
+        <translation type="vanished">&lt;br&gt;Consulta &lt;a style=&quot;color: #03A9F4; text-decoration:none;&quot;
+                            href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;nuestra wiki &lt;/a&gt;
+                            para instrucciones detalladas.</translation>
     </message>
     <message>
         <source>Additional confirmation when &quot;Write config to Device&quot; button pressed</source>
-        <translation type="vanished">Дополнительное подтверждение при нажатии кнопки &quot;Запись конфига&quot;</translation>
+        <translation type="vanished">Confirmación adicional al presionar el botón &quot;Escribir configuración en dispositivo&quot;</translation>
     </message>
     <message>
         <source>Restart for full changes</source>
-        <translation>Требуется перезапуск</translation>
+        <translation>Reiniciar para todos los cambios</translation>
     </message>
     <message>
         <source>Restart</source>
-        <translation type="vanished">Перезапуск</translation>
+        <translation type="vanished">Reiniciar</translation>
     </message>
     <message>
         <source>Application Settings</source>
-        <translation>Настройки приложения</translation>
+        <translation>Configuración de la Aplicación</translation>
     </message>
     <message>
         <source>Check for Software Updates</source>
-        <translation>Проверить обновления ПО</translation>
+        <translation>Buscar actualizaciones de software</translation>
     </message>
     <message>
         <source>Check for Firmware Update</source>
-        <translation>Проверить обновление прошивки</translation>
+        <translation>Buscar actualizaciones de firmware</translation>
     </message>
     <message>
         <source>Restart Application</source>
-        <translation>Перезапустить приложение</translation>
+        <translation>Reiniciar aplicación</translation>
     </message>
     <message>
         <source>About HOTAS Configurator</source>
-        <translation>О HOTAS Конфигураторе</translation>
+        <translation>Acerca de HOTAS Configurator</translation>
     </message>
     <message>
         <source>Device Information</source>
-        <translation>Информация об устройстве</translation>
+        <translation>Información del dispositivo</translation>
     </message>
     <message>
         <source>Model:</source>
-        <translation>Модель:</translation>
+        <translation>Modelo:</translation>
     </message>
     <message>
         <source>Serial #:</source>
-        <translation>Серийный номер:</translation>
+        <translation>Serie #:</translation>
     </message>
     <message>
         <source>Date of Manufacture:</source>
-        <translation>Дата изготовления:</translation>
+        <translation>Fecha de fabricación:</translation>
     </message>
     <message>
         <source>Firmware Version:</source>
-        <translation>Версия прошивки:</translation>
+        <translation>Versión de firmware:</translation>
     </message>
     <message>
         <source>Device Info Error</source>
-        <translation>Ошибка информации устройства</translation>
+        <translation>Error de info del dispositivo</translation>
     </message>
     <message>
         <source>Write Device Info</source>
-        <translation type="vanished">Записать информацию устройства</translation>
+        <translation type="vanished">Escribir información del dispositivo</translation>
     </message>
     <message>
         <source>Are you sure you want to write device info to flash?</source>
-        <translation type="vanished">Вы уверены, что хотите записать информацию устройства во флэш-память?</translation>
+        <translation type="vanished">¿Estás seguro de que quieres escribir la información del dispositivo en la flash?</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="obsolete">Ошибка</translation>
+        <translation type="vanished">Error</translation>
     </message>
     <message>
         <source>Date must be in YYYY-MM-DD format</source>
-        <translation type="vanished">Дата должна быть в формате ГГГГ-ММ-ДД</translation>
+        <translation type="vanished">La fecha debe estar en formato AAAA-MM-DD</translation>
     </message>
     <message>
         <source>
@@ -236,85 +236,92 @@
         &lt;p&gt;This software and firmware are based on
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;.
         We highly recommend starting there if you&apos;re building something similar.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>
+        &lt;p&gt;Código fuente disponible bajo GPLv3 en
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;Este software y firmware están basados en
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;.
+        Recomendamos encarecidamente comenzar por ahí si estás construyendo algo similar.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Update Check</source>
-        <translation>Проверка обновлений</translation>
+        <translation>Verificación de actualizaciones</translation>
     </message>
     <message>
         <source>Update check is only implemented for Windows in this build.</source>
-        <translation>Проверка обновлений реализована только для Windows в этой сборке.</translation>
+        <translation>La verificación de actualizaciones solo está implementada para Windows en esta versión.</translation>
     </message>
     <message>
         <source>WinHTTP initialization failed (error %1).</source>
-        <translation>Инициализация WinHTTP не удалась (ошибка %1).</translation>
+        <translation>Falló la inicialización de WinHTTP (error %1).</translation>
     </message>
     <message>
         <source>Network connect failed (error %1).</source>
-        <translation>Не удалось подключиться к сети (ошибка %1).</translation>
+        <translation>Falló la conexión de red (error %1).</translation>
     </message>
     <message>
         <source>GitHub returned HTTP %1.</source>
-        <translation>GitHub вернул HTTP %1.</translation>
+        <translation>GitHub devolvió HTTP %1.</translation>
     </message>
     <message>
         <source>No releases found.</source>
-        <translation>Релизы не найдены.</translation>
+        <translation>No se encontraron lanzamientos.</translation>
     </message>
     <message>
         <source>Up to date</source>
-        <translation>Актуальная версия</translation>
+        <translation>Actualizado</translation>
     </message>
     <message>
-        <source>You’re on the latest version (%1).</source>
-        <translation type="unfinished"></translation>
+        <source>You&apos;re on the latest version (%1).</source>
+        <translation type="vanished">Estás en la última versión (%1).</translation>
     </message>
     <message>
         <source>Update available</source>
-        <translation>Доступно обновление</translation>
+        <translation>Actualización disponible</translation>
     </message>
     <message>
         <source>A newer version is available: %1
 You have: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Hay una versión más reciente disponible: %1
+Tienes: %2</translation>
     </message>
     <message>
         <source>Open the release page to download?</source>
-        <translation>Открыть страницу релиза для загрузки?</translation>
+        <translation>¿Abrir la página de lanzamiento para descargar?</translation>
     </message>
     <message>
         <source>Open GitHub</source>
-        <translation>Открыть GitHub</translation>
+        <translation>Abrir GitHub</translation>
     </message>
     <message>
         <source>Firmware Update</source>
-        <translation>Обновление прошивки</translation>
+        <translation>Actualización de firmware</translation>
     </message>
     <message>
         <source>Connect failed (error %1).</source>
-        <translation>Подключение не удалось (ошибка %1).</translation>
+        <translation>Falló la conexión (error %1).</translation>
     </message>
     <message>
         <source>Your device firmware is up to date (%1).</source>
-        <translation>Прошивка вашего устройства актуальна (%1).</translation>
+        <translation>El firmware de tu dispositivo está actualizado (%1).</translation>
     </message>
     <message>
         <source>Firmware update available</source>
-        <translation>Доступно обновление прошивки</translation>
+        <translation>Actualización de firmware disponible</translation>
     </message>
     <message>
         <source>A newer firmware is available: %1
 Device has: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Hay un firmware más reciente disponible: %1
+El dispositivo tiene: %2</translation>
     </message>
     <message>
         <source>Open the firmware release page?</source>
-        <translation>Открыть страницу релиза прошивки?</translation>
+        <translation>¿Abrir la página de lanzamiento del firmware?</translation>
     </message>
     <message>
         <source>Firmware update check is only implemented for Windows in this build.</source>
-        <translation>Проверка обновлений прошивки реализована только для Windows в этой сборке.</translation>
+        <translation>La verificación de actualizaciones de firmware solo está implementada para Windows en esta versión.</translation>
     </message>
     <message>
         <source>
@@ -322,10 +329,26 @@ Device has: %2</source>
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;wiki&lt;/a&gt;
         for detailed instructions.&lt;/p&gt;
         &lt;/div&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>
+        &lt;p&gt;Visita nuestra
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;wiki&lt;/a&gt;
+        para instrucciones detalladas.&lt;/p&gt;
+        &lt;/div&gt;</translation>
     </message>
     <message>
         <source>Don&apos;t remind me again for %1</source>
+        <translation>No recordarme de nuevo para %1</translation>
+    </message>
+    <message>
+        <source>Translations were AI-generated. Please report issues on GitHub.</source>
+        <translation>Las traducciones fueron generadas por IA. Por favor, reporte problemas en GitHub.</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You’re on the latest version (%1).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -333,1665 +356,1677 @@ Device has: %2</source>
     <name>Axes</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>GroupBox</source>
-        <translation>Груп бокс</translation>
+        <translation>Grupo</translation>
     </message>
     <message>
         <source>Output</source>
-        <translation>Вывод</translation>
+        <translation>Salida</translation>
     </message>
     <message>
         <source>Inverted</source>
-        <translation>Инвертировать</translation>
+        <translation>Invertido</translation>
     </message>
     <message>
         <source>Minimum</source>
-        <translation>Минимум</translation>
+        <translation>Mínimo</translation>
     </message>
     <message>
         <source>Center</source>
-        <translation>Центр</translation>
+        <translation>Centro</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation>Максимум</translation>
+        <translation>Máximo</translation>
     </message>
     <message>
         <source>Out</source>
-        <translation></translation>
+        <translation>Salida</translation>
     </message>
     <message>
         <source>Raw</source>
-        <translation></translation>
+        <translation>Crudo</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Нет</translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>Encoder</source>
-        <translation>Энкодер</translation>
+        <translation type="vanished">Codificador</translation>
     </message>
     <message>
         <source>X</source>
-        <translation type="vanished">Х</translation>
+        <translation type="vanished">X</translation>
     </message>
     <message>
         <source>Slider 1</source>
-        <translation>Слайдер 1</translation>
+        <translation>Deslizador 1</translation>
     </message>
     <message>
         <source>Slider 2</source>
-        <translation>Слайдер 2</translation>
+        <translation>Deslizador 2</translation>
     </message>
     <message>
         <source>Set Center</source>
-        <translation>Уст. центр</translation>
+        <translation>Establecer centro</translation>
     </message>
     <message>
         <source>Calibrate</source>
-        <translation>Калибр.</translation>
+        <translation>Calibrar</translation>
     </message>
     <message>
         <source>Reset calibration</source>
-        <translation>Сброс калибровки</translation>
+        <translation>Restablecer calibración</translation>
     </message>
     <message>
         <source>Show extended settings</source>
-        <translation>Показать расширенные настройки</translation>
+        <translation>Mostrar configuración extendida</translation>
     </message>
     <message>
         <source>Axis source</source>
-        <translation>Источник оси</translation>
+        <translation>Fuente del eje</translation>
     </message>
     <message>
         <source>Stop &amp;&amp; Save</source>
-        <translation>Стоп и сохр</translation>
+        <translation>Detener y guardar</translation>
     </message>
     <message>
         <source>Buttons from axes</source>
-        <translation>Кнопки из осей</translation>
+        <translation>Botones desde ejes</translation>
     </message>
 </context>
 <context>
     <name>AxesConfig</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Hidden axes:</source>
-        <translation>Скрытые оси:</translation>
+        <translation>Ejes ocultos:</translation>
     </message>
 </context>
 <context>
     <name>AxesCurves</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>GroupBox</source>
-        <translation type="vanished">Груп бокс</translation>
+        <translation type="vanished">Grupo</translation>
     </message>
     <message>
         <source>X</source>
-        <translation>Х</translation>
+        <translation>X</translation>
     </message>
     <message>
         <source>Slider 1</source>
-        <translation>Слайдер 1</translation>
+        <translation>Deslizador 1</translation>
     </message>
     <message>
         <source>Slider 2</source>
-        <translation>Слайдер 2</translation>
+        <translation>Deslizador 2</translation>
     </message>
     <message>
         <source>Linear</source>
-        <translation type="vanished">Линейно</translation>
+        <translation type="vanished">Lineal</translation>
     </message>
     <message>
         <source>Linear inverted</source>
-        <translation type="vanished">Линейно перевёрнуто</translation>
+        <translation type="vanished">Lineal invertido</translation>
     </message>
     <message>
         <source>Exponent</source>
-        <translation type="vanished">Экспонента</translation>
+        <translation type="vanished">Exponencial</translation>
     </message>
     <message>
         <source>Exponent inverted</source>
-        <translation type="vanished">Экспонента перевёрнутая</translation>
+        <translation type="vanished">Exponencial invertido</translation>
     </message>
     <message>
         <source>Shape</source>
-        <translation type="vanished">Пьяный водила</translation>
+        <translation type="vanished">Forma</translation>
     </message>
     <message>
         <source>Reset curves profiles</source>
-        <translation type="vanished">Сброс профилей</translation>
+        <translation type="vanished">Restablecer perfiles de curvas</translation>
     </message>
     <message>
         <source>Curves Profiles</source>
-        <translation type="vanished">Профили кривых</translation>
+        <translation type="vanished">Perfiles de Curvas</translation>
     </message>
     <message>
         <source>Not used</source>
-        <translation type="vanished">Не используется</translation>
+        <translation type="vanished">No usado</translation>
     </message>
     <message>
         <source>Curve 1</source>
-        <translation type="vanished">Кривая 1</translation>
+        <translation type="vanished">Curva 1</translation>
     </message>
     <message>
         <source>Curve 2</source>
-        <translation type="vanished">Кривая 2</translation>
+        <translation type="vanished">Curva 2</translation>
     </message>
     <message>
         <source>Curve 3</source>
-        <translation type="vanished">Кривая 3</translation>
+        <translation type="vanished">Curva 3</translation>
     </message>
     <message>
         <source>Curve 4</source>
-        <translation type="vanished">Кривая 4</translation>
+        <translation type="vanished">Curva 4</translation>
     </message>
     <message>
         <source>Curve 5</source>
-        <translation type="vanished">Кривая 5</translation>
+        <translation type="vanished">Curva 5</translation>
     </message>
     <message>
         <source>Curve 6</source>
-        <translation type="vanished">Кривая 6</translation>
+        <translation type="vanished">Curva 6</translation>
     </message>
     <message>
         <source>Curve 7</source>
-        <translation type="vanished">Кривая 7</translation>
+        <translation type="vanished">Curva 7</translation>
     </message>
     <message>
         <source>Curve 8</source>
-        <translation type="vanished">Кривая 8</translation>
+        <translation type="vanished">Curva 8</translation>
     </message>
     <message>
         <source>Curve</source>
-        <translation type="vanished">Кривая</translation>
+        <translation type="vanished">Curva</translation>
     </message>
     <message>
         <source>Rx</source>
-        <translation></translation>
+        <translation>Rx</translation>
     </message>
     <message>
         <source>Y</source>
-        <translation></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <source>Ry</source>
-        <translation></translation>
+        <translation>Ry</translation>
     </message>
     <message>
         <source>Z</source>
-        <translation></translation>
+        <translation>Z</translation>
     </message>
     <message>
         <source>Rz</source>
-        <translation></translation>
+        <translation>Rz</translation>
     </message>
 </context>
 <context>
     <name>AxesCurvesConfig</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Curves profiles</source>
-        <translation type="vanished">Профили кривых</translation>
+        <translation type="vanished">Perfiles de curvas</translation>
     </message>
     <message>
         <source>X</source>
-        <translation type="vanished">Х</translation>
+        <translation type="vanished">X</translation>
     </message>
     <message>
         <source>Slider 1</source>
-        <translation type="vanished">Слайдер 1</translation>
+        <translation type="vanished">Deslizador 1</translation>
     </message>
     <message>
         <source>Slider 2</source>
-        <translation type="vanished">Слайдер 2</translation>
+        <translation type="vanished">Deslizador 2</translation>
     </message>
     <message>
         <source>Reset profiles</source>
-        <translation type="vanished">Сброс профилей</translation>
+        <translation type="vanished">Restablecer perfiles</translation>
     </message>
     <message>
         <source>Not used</source>
-        <translation type="vanished">Не используется</translation>
+        <translation type="vanished">No usado</translation>
     </message>
     <message>
         <source>Curve 1</source>
-        <translation type="vanished">Кривая 1</translation>
+        <translation type="vanished">Curva 1</translation>
     </message>
     <message>
         <source>Curve 2</source>
-        <translation type="vanished">Кривая 2</translation>
+        <translation type="vanished">Curva 2</translation>
     </message>
     <message>
         <source>Curve 3</source>
-        <translation type="vanished">Кривая 3</translation>
+        <translation type="vanished">Curva 3</translation>
     </message>
     <message>
         <source>Curve 4</source>
-        <translation type="vanished">Кривая 4</translation>
+        <translation type="vanished">Curva 4</translation>
     </message>
     <message>
         <source>Curve 5</source>
-        <translation type="vanished">Кривая 5</translation>
+        <translation type="vanished">Curva 5</translation>
     </message>
     <message>
         <source>Curve 6</source>
-        <translation type="vanished">Кривая 6</translation>
+        <translation type="vanished">Curva 6</translation>
     </message>
     <message>
         <source>Curve 7</source>
-        <translation type="vanished">Кривая 7</translation>
+        <translation type="vanished">Curva 7</translation>
     </message>
     <message>
         <source>Curve 8</source>
-        <translation type="vanished">Кривая 8</translation>
+        <translation type="vanished">Curva 8</translation>
     </message>
     <message>
         <source>Curve profiles</source>
-        <translation>Профиль кривых</translation>
+        <translation>Perfiles de curva</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Curve profiles are saves in the application configuration.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; sets profile to the current value of the curve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - resets profile value.&lt;/p&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; for multiple selection.&lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;drag&lt;/span&gt; curves with the &lt;span style=&quot; font-weight:600;&quot;&gt;mouse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Профили кривых сорхраняются в настройках приложения.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; установить текущее значение кривой в профиль.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - вернуть стандартный профиль.&lt;/p&gt;&lt;p&gt;используйте &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; для множественного выбора.&lt;/p&gt;&lt;p&gt;Вы можете &lt;span style=&quot; font-weight:600;&quot;&gt;перетаскивать&lt;/span&gt; профили кривых с помощью &lt;span style=&quot; font-weight:600;&quot;&gt;мыши.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Los perfiles de curva se guardan en la configuración de la aplicación.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; establece el perfil al valor actual de la curva.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - restablece el valor del perfil.&lt;/p&gt;&lt;p&gt;Usa &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; para selección múltiple.&lt;/p&gt;&lt;p&gt;Puedes &lt;span style=&quot; font-weight:600;&quot;&gt;arrastrar&lt;/span&gt; curvas con el &lt;span style=&quot; font-weight:600;&quot;&gt;ratón.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>AxesCurvesPlot</name>
     <message>
         <source>Form</source>
-        <translation type="vanished">Форма</translation>
+        <translation type="vanished">Formulario</translation>
     </message>
 </context>
 <context>
     <name>AxesCurvesProfiles</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Set</source>
-        <translation></translation>
+        <translation>Establecer</translation>
     </message>
     <message>
         <source>Set current axis curve to this preset</source>
-        <translation>Установить текущую кривую в этот пресет</translation>
+        <translation>Establecer curva de eje actual a este ajuste</translation>
     </message>
     <message>
         <source>Reset to Linear</source>
-        <translation>Сбросить до линейной</translation>
+        <translation>Restablecer a lineal</translation>
     </message>
     <message>
         <source>Reset to Linear Invert</source>
-        <translation>Сбросить до линейной инвертированной</translation>
+        <translation>Restablecer a lineal invertido</translation>
     </message>
     <message>
         <source>Reset to Exponent</source>
-        <translation>Сбросить до экспоненты</translation>
+        <translation>Restablecer a exponencial</translation>
     </message>
     <message>
         <source>Reset to Exponent Invert</source>
-        <translation>Сбросить до инвертированной экспоненты</translation>
+        <translation>Restablecer a exponencial invertido</translation>
     </message>
     <message>
         <source>Reset to Shape</source>
-        <translation>Сбросить до Shape</translation>
+        <translation>Restablecer a forma</translation>
     </message>
     <message>
         <source>Reset to Shape2</source>
-        <translation>Сбросить до Shape2</translation>
+        <translation>Restablecer a forma2</translation>
     </message>
     <message>
         <source>Reset to Pulse</source>
-        <translation>Сбросить до пулься</translation>
+        <translation>Restablecer a pulso</translation>
     </message>
     <message>
         <source>Reset to no Pulse</source>
-        <translation>Сбросить до нет пульса</translation>
+        <translation>Restablecer a sin pulso</translation>
     </message>
 </context>
 <context>
     <name>AxesExtended</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Chanel/Encoder</source>
-        <translation type="vanished">Канал/Энкодер</translation>
+        <translation type="vanished">Canal/Codificador</translation>
     </message>
     <message>
         <source>Function axis</source>
-        <translation>Ось для функции</translation>
+        <translation>Eje de función</translation>
     </message>
     <message>
         <source>Prescaler %</source>
-        <translation>Предделитель %</translation>
+        <translation>Predivisor %</translation>
     </message>
     <message>
         <source>Resolution</source>
-        <translation>Разрешение</translation>
+        <translation>Resolución</translation>
     </message>
     <message>
         <source>Button 3</source>
-        <translation>Кнопка 3</translation>
+        <translation>Botón 3</translation>
     </message>
     <message>
         <source>Button 2</source>
-        <translation>Кнопка 2</translation>
+        <translation>Botón 2</translation>
     </message>
     <message>
         <source>Button 1</source>
-        <translation>Кнопка 1</translation>
+        <translation>Botón 1</translation>
     </message>
     <message>
         <source>Filter off</source>
-        <translation>Фильтр выкл.</translation>
+        <translation>Filtro desactivado</translation>
     </message>
     <message>
         <source>Function</source>
-        <translation>Функция</translation>
+        <translation>Función</translation>
     </message>
     <message>
         <source>Step div</source>
-        <translation>Шаг делителя</translation>
+        <translation>Divisor de paso</translation>
     </message>
     <message>
         <source>I2C address</source>
-        <translation>I2C аддресс</translation>
+        <translation>Dirección I2C</translation>
     </message>
     <message>
         <source> bits</source>
-        <translation> бит</translation>
+        <translation> bits</translation>
     </message>
     <message>
         <source>Offset</source>
-        <translation>Смещение</translation>
+        <translation>Desplazamiento</translation>
     </message>
     <message>
         <source>Deadband</source>
-        <translation>Мёртвая зона</translation>
+        <translation>Zona muerta</translation>
     </message>
     <message>
         <source>Dynamic deadband</source>
-        <translation type="vanished">Динам. мёртвая зона</translation>
+        <translation type="vanished">Zona muerta dinámica</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation>Фильтр</translation>
+        <translation>Filtro</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Нет</translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>Plus</source>
-        <translation>Плюс</translation>
+        <translation>Más</translation>
     </message>
     <message>
         <source>Minus</source>
-        <translation>Минус</translation>
+        <translation>Menos</translation>
     </message>
     <message>
         <source>Equal</source>
-        <translation>Равно</translation>
+        <translation>Igual</translation>
     </message>
     <message>
         <source>Function enable</source>
-        <translation>Функция включена</translation>
+        <translation>Habilitar función</translation>
     </message>
     <message>
         <source>Prescale enable</source>
-        <translation>Масштабирование вкл</translation>
+        <translation>Habilitar predivisor</translation>
     </message>
     <message>
         <source>Center</source>
-        <translation>Центр</translation>
+        <translation>Centro</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation>Сброс</translation>
+        <translation>Restablecer</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation>Вниз</translation>
+        <translation>Abajo</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation>Вверх</translation>
+        <translation>Arriba</translation>
     </message>
     <message>
         <source>off</source>
-        <translation>выкл</translation>
+        <translation>apagado</translation>
     </message>
     <message>
         <source>level 1</source>
-        <translation>ур. 1</translation>
+        <translation>nivel 1</translation>
     </message>
     <message>
         <source>level 2</source>
-        <translation>ур. 2</translation>
+        <translation>nivel 2</translation>
     </message>
     <message>
         <source>level 3</source>
-        <translation>ур. 3</translation>
+        <translation>nivel 3</translation>
     </message>
     <message>
         <source>level 4</source>
-        <translation>ур. 4</translation>
+        <translation>nivel 4</translation>
     </message>
     <message>
         <source>level 5</source>
-        <translation>ур. 5</translation>
+        <translation>nivel 5</translation>
     </message>
     <message>
         <source>level 6</source>
-        <translation>ур. 6</translation>
+        <translation>nivel 6</translation>
     </message>
     <message>
         <source>level 7</source>
-        <translation>ур. 7</translation>
+        <translation>nivel 7</translation>
     </message>
     <message>
         <source>Slider 1</source>
-        <translation type="vanished">Слайдер 1</translation>
+        <translation type="vanished">Deslizador 1</translation>
     </message>
     <message>
         <source>Slider 2</source>
-        <translation type="vanished">Слайдер 2</translation>
+        <translation type="vanished">Deslizador 2</translation>
     </message>
     <message>
         <source>Channel</source>
-        <translation>Канал</translation>
+        <translation>Canal</translation>
     </message>
     <message>
         <source>Dynamic Jitter Reduction</source>
-        <translation>Динамическое уменьшение дрожания</translation>
+        <translation>Reducción de temblor dinámico</translation>
     </message>
 </context>
 <context>
     <name>AxesToButtonsSlider</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation>Текст</translation>
+        <translation>Etiqueta</translation>
     </message>
 </context>
 <context>
     <name>ButtonConfig</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Shift 1</source>
-        <translation>Шифт 1</translation>
+        <translation>Shift 1</translation>
     </message>
     <message>
         <source>Logical button</source>
-        <translation>Логическая кнопка</translation>
+        <translation>Botón lógico</translation>
     </message>
     <message>
         <source>Shift 2</source>
-        <translation>Шифт 2</translation>
+        <translation>Shift 2</translation>
     </message>
     <message>
         <source>Shift 3</source>
-        <translation>Шифт 3</translation>
+        <translation>Shift 3</translation>
     </message>
     <message>
         <source>Shift 4</source>
-        <translation>Шифт 4</translation>
+        <translation>Shift 4</translation>
     </message>
     <message>
         <source>Shift 5</source>
-        <translation>Шифт 5</translation>
+        <translation>Shift 5</translation>
     </message>
     <message>
         <source>Logical buttons</source>
-        <translation>Логические кнопки</translation>
+        <translation>Botones lógicos</translation>
     </message>
     <message>
         <source>Delay timer</source>
-        <translation>Таймер задержки</translation>
+        <translation>Temporizador de retardo</translation>
     </message>
     <message>
         <source>Invert</source>
-        <translation>Инверт</translation>
+        <translation>Invertir</translation>
     </message>
     <message>
         <source>Function</source>
-        <translation>Функция</translation>
+        <translation>Función</translation>
     </message>
     <message>
         <source>Press timer</source>
-        <translation>Время нажатия</translation>
+        <translation>Temporizador de presión</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation>Выкл</translation>
+        <translation>Deshabilitar</translation>
     </message>
     <message>
         <source>Shift</source>
-        <translation>Шифт</translation>
+        <translation>Shift</translation>
     </message>
     <message>
         <source>Physical</source>
-        <translation>Физич</translation>
+        <translation>Físico</translation>
     </message>
     <message>
         <source>Physical buttons</source>
-        <translation>Физические кнопки</translation>
+        <translation>Botones físicos</translation>
     </message>
     <message>
         <source>Timer settings</source>
-        <translation>Настройки таймеров</translation>
+        <translation>Configuración de temporizador</translation>
     </message>
     <message>
         <source>Timer 1</source>
-        <translation>Таймер 1</translation>
+        <translation>Temporizador 1</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation>мс</translation>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Timer 2</source>
-        <translation>Таймер 2</translation>
+        <translation>Temporizador 2</translation>
     </message>
     <message>
         <source>Timer 3</source>
-        <translation>Таймер 3</translation>
+        <translation>Temporizador 3</translation>
     </message>
     <message>
         <source>Debounce timer</source>
-        <translation type="vanished">Таймер дребезга</translation>
+        <translation type="vanished">Temporizador antirebote</translation>
     </message>
     <message>
         <source>Encoder press timer</source>
-        <translation type="vanished">Время нажатия энкодера</translation>
+        <translation type="vanished">Temporizador de presión de codificador</translation>
     </message>
     <message>
         <source>Axes to buttons timer</source>
-        <translation type="vanished">Оси в кнопки таймер</translation>
+        <translation type="vanished">Temporizador de ejes a botones</translation>
     </message>
     <message>
         <source>Automatically set physical button</source>
-        <translation type="vanished">Автоматически устанавливать физическую кнопку</translation>
+        <translation type="vanished">Establecer automáticamente botón físico</translation>
     </message>
     <message>
         <source>Press a physical button for assigning it to a logical one.</source>
-        <translation type="vanished">Нажмите физическую кнопку, чтобы назначить её логической кнопке.</translation>
+        <translation type="vanished">Presiona un botón físico para asignarlo a uno lógico.</translation>
     </message>
     <message>
         <source>Automatically set physical button when pressed</source>
-        <translation>Автоматически устанавливать физическую кнопку при нажатии</translation>
+        <translation>Establecer automáticamente botón físico al presionarse</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press a physical button for assigning it to a logical one.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Нажмите физическую кнопку, чтобы назначить её логической кнопке.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Presiona un botón físico para asignarlo a uno lógico.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Debounce Timer</source>
-        <translation type="unfinished"></translation>
+        <translation>Temporizador antirebote</translation>
     </message>
     <message>
         <source>Axes to buttons Timer</source>
-        <translation type="unfinished"></translation>
+        <translation>Temporizador de ejes a botones</translation>
     </message>
     <message>
         <source>Encoder press Timer</source>
-        <translation type="unfinished"></translation>
+        <translation>Temporizador de presión de codificador</translation>
     </message>
 </context>
 <context>
     <name>ButtonLogical</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="vanished">Нет</translation>
+        <translation type="vanished">No</translation>
     </message>
     <message>
         <source>Timer 1</source>
-        <translation>Таймер 1</translation>
+        <translation>Temporizador 1</translation>
     </message>
     <message>
         <source>Timer 2</source>
-        <translation>Таймер 2</translation>
+        <translation>Temporizador 2</translation>
     </message>
     <message>
         <source>Timer 3</source>
-        <translation>Таймер 3</translation>
+        <translation>Temporizador 3</translation>
     </message>
     <message>
         <source>No shift</source>
-        <translation type="vanished">Нет шифта</translation>
+        <translation type="vanished">Sin shift</translation>
     </message>
     <message>
         <source>Shift 1</source>
-        <translation>Шифт 1</translation>
+        <translation>Shift 1</translation>
     </message>
     <message>
         <source>Shift 2</source>
-        <translation>Шифт 2</translation>
+        <translation>Shift 2</translation>
     </message>
     <message>
         <source>Shift 3</source>
-        <translation>Шифт 3</translation>
+        <translation>Shift 3</translation>
     </message>
     <message>
         <source>Shift 4</source>
-        <translation>Шифт 4</translation>
+        <translation>Shift 4</translation>
     </message>
     <message>
         <source>Shift 5</source>
-        <translation>Шифт 5</translation>
+        <translation>Shift 5</translation>
     </message>
     <message>
         <source>Button normal</source>
-        <translation>Обычная кнопка</translation>
+        <translation>Botón normal</translation>
     </message>
     <message>
         <source>Button toggle</source>
-        <translation>Кнопка переключатель</translation>
+        <translation>Botón de alternar</translation>
     </message>
     <message>
         <source>Toggle switch</source>
-        <translation type="vanished">Тумблер</translation>
+        <translation type="vanished">Interruptor de alternar</translation>
     </message>
     <message>
         <source>Toggle switch ON</source>
-        <translation>Тумблер Вкл</translation>
+        <translation>Interruptor de alternar ON</translation>
     </message>
     <message>
         <source>Toggle switch ON/OFF</source>
-        <translation>Тумблер Вкл/Выкл</translation>
+        <translation>Interruptor de alternar ON/OFF</translation>
     </message>
     <message>
         <source>POV1 Up</source>
-        <translation type="vanished">POV1 Вверх</translation>
+        <translation type="vanished">POV1 Arriba</translation>
     </message>
     <message>
         <source>POV1 Right</source>
-        <translation type="vanished">POV1 Право</translation>
+        <translation type="vanished">POV1 Derecha</translation>
     </message>
     <message>
         <source>POV1 Down</source>
-        <translation type="vanished">POV1 Вниз</translation>
+        <translation type="vanished">POV1 Abajo</translation>
     </message>
     <message>
         <source>POV1 Left</source>
-        <translation type="vanished">POV1 Лево</translation>
+        <translation type="vanished">POV1 Izquierda</translation>
     </message>
     <message>
         <source>POV2 Up</source>
-        <translation type="vanished">POV2 Вверх</translation>
+        <translation type="vanished">POV2 Arriba</translation>
     </message>
     <message>
         <source>POV2 Right</source>
-        <translation type="vanished">POV2 Право</translation>
+        <translation type="vanished">POV2 Derecha</translation>
     </message>
     <message>
         <source>POV2 Down</source>
-        <translation type="vanished">POV2 Вниз</translation>
+        <translation type="vanished">POV2 Abajo</translation>
     </message>
     <message>
         <source>POV2 Left</source>
-        <translation type="vanished">POV2 Лево</translation>
+        <translation type="vanished">POV2 Izquierda</translation>
     </message>
     <message>
         <source>POV3 Up</source>
-        <translation type="vanished">POV3 Вверх</translation>
+        <translation type="vanished">POV3 Arriba</translation>
     </message>
     <message>
         <source>POV3 Right</source>
-        <translation type="vanished">POV3 Право</translation>
+        <translation type="vanished">POV3 Derecha</translation>
     </message>
     <message>
         <source>POV3 Down</source>
-        <translation type="vanished">POV3 Вниз</translation>
+        <translation type="vanished">POV3 Abajo</translation>
     </message>
     <message>
         <source>POV3 Left</source>
-        <translation type="vanished">POV3 Лево</translation>
+        <translation type="vanished">POV3 Izquierda</translation>
     </message>
     <message>
         <source>POV4 Up</source>
-        <translation type="vanished">POV4 Вверх</translation>
+        <translation type="vanished">POV4 Arriba</translation>
     </message>
     <message>
         <source>POV4 Right</source>
-        <translation type="vanished">POV4 Право</translation>
+        <translation type="vanished">POV4 Derecha</translation>
     </message>
     <message>
         <source>POV4 Down</source>
-        <translation type="vanished">POV4 Вниз</translation>
+        <translation type="vanished">POV4 Abajo</translation>
     </message>
     <message>
         <source>POV4 Left</source>
-        <translation type="vanished">POV3 Лево</translation>
+        <translation type="vanished">POV4 Izquierda</translation>
     </message>
     <message>
         <source>Encoder A</source>
-        <translation>Энкодер А</translation>
+        <translation type="vanished">Codificador A</translation>
     </message>
     <message>
         <source>Encoder B</source>
-        <translation>Энкодер Б</translation>
+        <translation type="vanished">Codificador B</translation>
     </message>
     <message>
         <source>Radio button 1</source>
-        <translation>Радио кнопка 1</translation>
+        <translation>Botón de radio 1</translation>
     </message>
     <message>
         <source>Radio button 2</source>
-        <translation>Радио кнопка 2</translation>
+        <translation>Botón de radio 2</translation>
     </message>
     <message>
         <source>Radio button 3</source>
-        <translation>Радио кнопка 3</translation>
+        <translation>Botón de radio 3</translation>
     </message>
     <message>
         <source>Radio button 4</source>
-        <translation>Радио кнопка 4</translation>
+        <translation>Botón de radio 4</translation>
     </message>
     <message>
         <source>Sequential toggle</source>
-        <translation>Секвент. переключатель</translation>
+        <translation>Alternar secuencial</translation>
     </message>
     <message>
         <source>Sequential button</source>
-        <translation>Секвент. кнопка</translation>
+        <translation>Botón secuencial</translation>
     </message>
     <message>
         <source>POV1 Center</source>
-        <translation type="vanished">POV1 Центр</translation>
+        <translation type="vanished">POV1 Centro</translation>
     </message>
     <message>
         <source>POV2 Center</source>
-        <translation type="vanished">POV2 Центр</translation>
+        <translation type="vanished">POV2 Centro</translation>
     </message>
     <message>
         <source>-</source>
-        <translation></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>Toggle switch OFF</source>
-        <translation>Тумблер Выкл</translation>
+        <translation>Interruptor de alternar OFF</translation>
     </message>
     <message>
         <source>CMS Forward</source>
-        <translation>CMS Вперед</translation>
+        <translation>CMS Adelante</translation>
     </message>
     <message>
         <source>CMS Right</source>
-        <translation>CMS Вправо</translation>
+        <translation>CMS Derecha</translation>
     </message>
     <message>
         <source>CMS Aft</source>
-        <translation>CMS Назад</translation>
+        <translation>CMS Atrás</translation>
     </message>
     <message>
         <source>CMS Left</source>
-        <translation>CMS Влево</translation>
+        <translation>CMS Izquierda</translation>
     </message>
     <message>
         <source>CMS Depress</source>
-        <translation>CMS Нажатие</translation>
+        <translation>CMS Presionar</translation>
     </message>
     <message>
         <source>Nose Down</source>
-        <translation>Нос вниз</translation>
+        <translation>Morro Abajo</translation>
     </message>
     <message>
         <source>R Wing Dwn</source>
-        <translation>Правое крыло вниз</translation>
+        <translation>Ala D Abajo</translation>
     </message>
     <message>
         <source>Nose Up</source>
-        <translation>Нос вверх</translation>
+        <translation>Morro Arriba</translation>
     </message>
     <message>
         <source>L Wing Dwn</source>
-        <translation>Левое крыло вниз</translation>
+        <translation>Ala I Abajo</translation>
     </message>
     <message>
         <source>Trim Center Depress</source>
-        <translation>Триммер центр нажатие</translation>
+        <translation>Trim Centro Presionar</translation>
     </message>
     <message>
         <source>DMS Up</source>
-        <translation>DMS Вверх</translation>
+        <translation>DMS Arriba</translation>
     </message>
     <message>
         <source>DMS Right</source>
-        <translation>DMS Вправо</translation>
+        <translation>DMS Derecha</translation>
     </message>
     <message>
         <source>DMS Down</source>
-        <translation>DMS Вниз</translation>
+        <translation>DMS Abajo</translation>
     </message>
     <message>
         <source>DMS Left</source>
-        <translation>DMS Влево</translation>
+        <translation>DMS Izquierda</translation>
     </message>
     <message>
         <source>TMS Up</source>
-        <translation>TMS Вверх</translation>
+        <translation>TMS Arriba</translation>
     </message>
     <message>
         <source>TMS Right</source>
-        <translation>TMS Вправо</translation>
+        <translation>TMS Derecha</translation>
     </message>
     <message>
         <source>TMS Down</source>
-        <translation>TMS Вниз</translation>
+        <translation>TMS Abajo</translation>
     </message>
     <message>
         <source>TMS Left</source>
-        <translation>TMS Влево</translation>
+        <translation>TMS Izquierda</translation>
     </message>
 </context>
 <context>
     <name>ButtonPhysical</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
 </context>
 <context>
     <name>ConfigToFile</name>
     <message>
         <source>Firmware version in config file doesnt match configurator version. Check settings before write config.</source>
-        <translation type="vanished">Версия прошивки в файле конфигурации не совпадает с версией конфигуратора. Проверьте настройки перед записью конфига.</translation>
+        <translation type="vanished">La versión del firmware en el archivo de configuración no coincide con la versión del configurador. Verifica la configuración antes de escribir.</translation>
     </message>
     <message>
         <source>Pins B8, B9 reset! In this version I2C moved from pins B8, B9 to B10, B11. Check it!</source>
-        <translation type="vanished">Пины B8, B9 сброшены! В этой версии I2C перенесён с пинов B8, B9 на пины B10, B11, проверьте их!</translation>
+        <translation type="vanished">¡Pines B8, B9 restablecidos! En esta versión I2C se movió de los pines B8, B9 a B10, B11. ¡Verifica!</translation>
     </message>
     <message>
         <source>Firmware version!</source>
-        <translation type="vanished">Версия прошивки!</translation>
+        <translation type="vanished">¡Versión de firmware!</translation>
     </message>
 </context>
 <context>
     <name>CurrentConfig</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Форма</translation>
+        <translation type="vanished">Formulario</translation>
     </message>
     <message>
         <source>Current Config</source>
-        <translation>Текущий конфиг</translation>
+        <translation>Configuración actual</translation>
     </message>
     <message>
         <source>Axis sources:</source>
-        <translation>Источников осей:</translation>
+        <translation>Fuentes de ejes:</translation>
     </message>
     <message>
         <source>Total LEDs:</source>
-        <translation>Всего светодиодов:</translation>
+        <translation>Total de LED:</translation>
     </message>
     <message>
         <source>Buttons from axes:</source>
-        <translation>Кнопок из осей:</translation>
+        <translation>Botones desde ejes:</translation>
     </message>
     <message>
         <source>Single buttons:</source>
-        <translation>Одиночных кнопок:</translation>
+        <translation>Botones simples:</translation>
     </message>
     <message>
         <source>Columns of buttons:</source>
-        <translation>Колонн кнопок:</translation>
+        <translation>Columnas de botones:</translation>
     </message>
     <message>
         <source>Rows of buttons:</source>
-        <translation>Рядов кнопок:</translation>
+        <translation>Filas de botones:</translation>
     </message>
     <message>
         <source>Total buttons:</source>
-        <translation>Всего кнопок:</translation>
+        <translation>Total de botones:</translation>
     </message>
     <message>
         <source>Buttons from shift regs:</source>
-        <translation>Кнопок у регистров:</translation>
+        <translation>Botones desde registros de desplazamiento:</translation>
     </message>
     <message>
         <source>Buttons from matrix:</source>
-        <translation>Кнопок из матрицы:</translation>
+        <translation>Botones desde matriz:</translation>
     </message>
     <message>
         <source>0</source>
-        <translation></translation>
+        <translation>0</translation>
     </message>
 </context>
 <context>
     <name>DebugWindow</name>
     <message>
         <source>Debug</source>
-        <translation>Отладка</translation>
+        <translation>Depuración</translation>
     </message>
     <message>
         <source>Buttons log</source>
-        <translation>Лог кнопок</translation>
+        <translation>Registro de botones</translation>
     </message>
     <message>
         <source>within 5 seconds</source>
-        <translation>В течении 5 секунд</translation>
+        <translation>en 5 segundos</translation>
     </message>
     <message>
         <source>0 ms</source>
-        <translation>0 мс</translation>
+        <translation>0 ms</translation>
     </message>
     <message>
         <source>0</source>
-        <translation></translation>
+        <translation>0</translation>
     </message>
     <message>
         <source>Packets received:</source>
-        <translation>Пакетов получено:</translation>
+        <translation>Paquetes recibidos:</translation>
     </message>
     <message>
         <source>Packets speed:</source>
-        <translation>Скорость пакетов:</translation>
+        <translation>Velocidad de paquetes:</translation>
     </message>
     <message>
         <source>Application log</source>
-        <translation>Лог приложения</translation>
+        <translation>Registro de la aplicación</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> мс</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Logical button </source>
-        <translation>Логическая кнопка </translation>
+        <translation>Botón lógico </translation>
     </message>
     <message>
         <source> pressed</source>
-        <translation> нажата</translation>
+        <translation> presionado</translation>
     </message>
     <message>
         <source> unpressed</source>
-        <translation type="vanished"> отжата</translation>
+        <translation type="vanished"> sin presionar</translation>
     </message>
     <message>
         <source>Write log to file</source>
-        <translation>Запись лога в файл</translation>
+        <translation>Escribir registro en archivo</translation>
     </message>
     <message>
         <source>Debug packets speed within 5 seconds</source>
-        <translation>Отлидочные пакеты в течении 5 сек</translation>
+        <translation>Velocidad de paquetes de depuración en 5 segundos</translation>
     </message>
     <message>
         <source>Clear Application Log</source>
-        <translation>Очистить журнал приложения</translation>
+        <translation>Limpiar registro de aplicación</translation>
     </message>
     <message>
         <source>Clear Buttons Log</source>
-        <translation>Очистить журнал кнопок</translation>
+        <translation>Limpiar registro de botones</translation>
     </message>
     <message>
         <source> released</source>
-        <translation type="unfinished"></translation>
+        <translation> liberado</translation>
     </message>
 </context>
 <context>
     <name>Developer</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Persistent Force Anchors</source>
-        <translation>Постоянные якоря силы</translation>
+        <translation>Anclajes de fuerza persistentes</translation>
     </message>
     <message>
         <source>Roll Left</source>
-        <translation>Крен влево</translation>
+        <translation>Alabeo Izquierda</translation>
     </message>
     <message>
         <source>100% (17 lbf)</source>
-        <translation>100% (17 фунт-сила)</translation>
+        <translation>100% (17 lbf)</translation>
     </message>
     <message>
         <source>50% (8.5 lbf)</source>
-        <translation>50% (8,5 фунт-сила)</translation>
+        <translation>50% (8,5 lbf)</translation>
     </message>
     <message>
         <source>75% (12.75 lbf)</source>
-        <translation>75% (12,75 фунт-сила)</translation>
+        <translation>75% (12,75 lbf)</translation>
     </message>
     <message>
         <source>Set Anchor</source>
-        <translation>Установить якорь</translation>
+        <translation type="vanished">Establecer anclaje</translation>
     </message>
     <message>
         <source>Pitch Down</source>
-        <translation>Тангаж вниз</translation>
+        <translation>Cabeceo Abajo</translation>
     </message>
     <message>
         <source> 75% (12.75 lbf)</source>
-        <translation> 75% (12,75 фунт-сила)</translation>
+        <translation> 75% (12,75 lbf)</translation>
     </message>
     <message>
         <source>Roll Right</source>
-        <translation>Крен вправо</translation>
+        <translation>Alabeo Derecha</translation>
     </message>
     <message>
         <source>Pitch Up Analog</source>
-        <translation>Тангаж вверх аналоговый</translation>
+        <translation>Cabeceo Arriba analógico</translation>
     </message>
     <message>
         <source>50% (20 lbf)</source>
-        <translation>50% (20 фунт-сила)</translation>
+        <translation>50% (20 lbf)</translation>
     </message>
     <message>
         <source>100% (40 lbf)</source>
-        <translation>100% (40 фунт-сила)</translation>
+        <translation>100% (40 lbf)</translation>
     </message>
     <message>
         <source>75% (30 lbf)</source>
-        <translation>75% (30 фунт-сила)</translation>
+        <translation>75% (30 lbf)</translation>
     </message>
     <message>
         <source>Pitch Up Digital</source>
-        <translation>Тангаж вверх цифровой</translation>
+        <translation>Cabeceo Arriba digital</translation>
     </message>
     <message>
         <source>75% (18,75 lbf)</source>
-        <translation>75% (18,75 фунт-сила)</translation>
+        <translation>75% (18,75 lbf)</translation>
     </message>
     <message>
         <source>100% (25 lbf)</source>
-        <translation>100% (25 фунт-сила)</translation>
+        <translation>100% (25 lbf)</translation>
     </message>
     <message>
         <source>50% (12.5 lbf)</source>
-        <translation>50% (12,5 фунт-сила)</translation>
+        <translation>50% (12,5 lbf)</translation>
     </message>
     <message>
         <source>Raw Values</source>
-        <translation>Необработанные значения</translation>
+        <translation>Valores crudos</translation>
     </message>
     <message>
         <source>Current Raw Value X:</source>
-        <translation>Текущее необработанное значение X:</translation>
+        <translation>Valor crudo X actual:</translation>
     </message>
     <message>
         <source>Current Raw Value Y:</source>
-        <translation>Текущее необработанное значение Y:</translation>
+        <translation>Valor crudo Y actual:</translation>
     </message>
     <message>
         <source>Force Values Anchors</source>
-        <translation>Якоря значений силы</translation>
+        <translation>Anclajes de valores de fuerza</translation>
     </message>
     <message>
         <source>Read Force Anchors from Device</source>
-        <translation>Считать якоря силы с устройства</translation>
+        <translation type="vanished">Leer anclajes de fuerza desde dispositivo</translation>
     </message>
     <message>
         <source>Write Force Anchors to Device</source>
-        <translation>Записать якоря силы на устройство</translation>
+        <translation type="vanished">Escribir anclajes de fuerza en dispositivo</translation>
     </message>
     <message>
         <source>Lock Force Anchors</source>
-        <translation>Заблокировать якоря силы</translation>
+        <translation>Bloquear anclajes de fuerza</translation>
     </message>
     <message>
         <source>Device Identity</source>
-        <translation>Идентификация устройства</translation>
+        <translation>Identidad del dispositivo</translation>
     </message>
     <message>
         <source>YYYY-MM-DD</source>
-        <translation>ГГГГ-ММ-ДД</translation>
+        <translation>AAAA-MM-DD</translation>
     </message>
     <message>
         <source>Date of Manufacture:</source>
-        <translation>Дата изготовления:</translation>
+        <translation>Fecha de fabricación:</translation>
     </message>
     <message>
         <source>Model:</source>
-        <translation>Модель:</translation>
+        <translation>Modelo:</translation>
     </message>
     <message>
         <source>Serial #: </source>
-        <translation>Серийный номер: </translation>
+        <translation>Serie #: </translation>
     </message>
     <message>
         <source>Device USB name:</source>
-        <translation>USB-имя устройства:</translation>
+        <translation>Nombre USB del dispositivo:</translation>
     </message>
     <message>
         <source>Write Device Identity</source>
-        <translation>Записать идентификацию устройства</translation>
+        <translation>Escribir identidad del dispositivo</translation>
     </message>
     <message>
         <source>Force Anchors</source>
-        <translation>Якоря силы</translation>
+        <translation>Anclajes de fuerza</translation>
     </message>
     <message>
         <source>Factory anchors missing; using calibration defaults.</source>
-        <translation>Заводские якоря отсутствуют; используются стандартные значения калибровки.</translation>
+        <translation>Anclajes de fábrica faltantes; usando valores predeterminados de calibración.</translation>
     </message>
     <message>
         <source>Unable to read anchors and no fallback available.</source>
-        <translation>Не удалось прочитать якоря, резервные значения недоступны.</translation>
+        <translation>No se pueden leer anclajes y no hay alternativa disponible.</translation>
     </message>
     <message>
         <source>Transport not set.</source>
-        <translation>Транспорт не установлен.</translation>
+        <translation>Transporte no establecido.</translation>
     </message>
     <message>
         <source>Locking anchors failed (no reply).</source>
-        <translation type="vanished">Блокировка якорей не удалась (нет ответа).</translation>
+        <translation type="vanished">Falló el bloqueo de anclajes (sin respuesta).</translation>
     </message>
     <message>
         <source>Device refused lock.</source>
-        <translation type="vanished">Устройство отклонило блокировку.</translation>
+        <translation type="vanished">El dispositivo rechazó el bloqueo.</translation>
     </message>
     <message>
         <source>Anchors locked.</source>
-        <translation>Якоря заблокированы.</translation>
+        <translation>Anclajes bloqueados.</translation>
     </message>
     <message>
         <source>Lock ACK OK but sealed flag is still 0.</source>
-        <translation type="vanished">Подтверждение блокировки получено, но флаг запечатывания все еще 0.</translation>
+        <translation type="vanished">ACK de bloqueo OK pero la bandera sellada sigue en 0.</translation>
     </message>
     <message>
         <source>Lock ACK OK but unable to read/parse anchors.</source>
-        <translation type="vanished">Подтверждение блокировки получено, но не удалось прочитать/разобрать якоря.</translation>
+        <translation type="vanished">ACK de bloqueo OK pero no se pueden leer/analizar anclajes.</translation>
     </message>
     <message>
         <source>Device Info</source>
-        <translation>Информация об устройстве</translation>
+        <translation>Info del dispositivo</translation>
     </message>
     <message>
         <source>Transport not set</source>
-        <translation>Транспорт не установлен</translation>
+        <translation>Transporte no establecido</translation>
     </message>
     <message>
         <source>Date must be in YYYY-MM-DD format</source>
-        <translation>Дата должна быть в формате ГГГГ-ММ-ДД</translation>
+        <translation>La fecha debe estar en formato AAAA-MM-DD</translation>
     </message>
     <message>
         <source>Write failed</source>
-        <translation>Запись не удалась</translation>
+        <translation>Falló la escritura</translation>
     </message>
     <message>
         <source>Device refused write (unknown error)</source>
-        <translation>Устройство отклонило запись (неизвестная ошибка)</translation>
+        <translation>El dispositivo rechazó la escritura (error desconocido)</translation>
     </message>
     <message>
         <source>Device info written successfully</source>
-        <translation>Информация об устройстве успешно записана</translation>
+        <translation>Información del dispositivo escrita exitosamente</translation>
     </message>
     <message>
         <source>Device info is locked</source>
-        <translation>Информация об устройстве заблокирована</translation>
+        <translation>La información del dispositivo está bloqueada</translation>
     </message>
     <message>
         <source>Invalid payload size</source>
-        <translation>Недопустимый размер полезной нагрузки</translation>
+        <translation>Tamaño de carga útil inválido</translation>
     </message>
     <message>
         <source>Flash write failed</source>
-        <translation>Запись во флэш-память не удалась</translation>
+        <translation>Falló la escritura flash</translation>
     </message>
     <message>
         <source>Unknown error code: %1</source>
-        <translation>Неизвестный код ошибки: %1</translation>
+        <translation>Código de error desconocido: %1</translation>
     </message>
     <message>
         <source>Unlock Force Anchors</source>
-        <translation>Разблокировать анкеры силы</translation>
+        <translation>Desbloquear anclajes de fuerza</translation>
     </message>
     <message>
         <source>Unable to read current anchor state.</source>
-        <translation>Невозможно прочитать текущее состояние анкеров.</translation>
+        <translation>No se puede leer el estado actual del anclaje.</translation>
     </message>
     <message>
         <source>unlock</source>
-        <translation>разблокировать</translation>
+        <translation>desbloquear</translation>
     </message>
     <message>
         <source>lock</source>
-        <translation>заблокировать</translation>
+        <translation>bloquear</translation>
     </message>
     <message>
         <source>Failed to %1 anchors (no reply).</source>
-        <translation>Не удалось %1 анкеры (нет ответа).</translation>
+        <translation>Falló %1 anclajes (sin respuesta).</translation>
     </message>
     <message>
         <source>Device refused %1.</source>
-        <translation>Устройство отказалось %1.</translation>
+        <translation>El dispositivo rechazó %1.</translation>
     </message>
     <message>
         <source>Anchors unlocked.</source>
-        <translation>Анкеры разблокированы.</translation>
+        <translation>Anclajes desbloqueados.</translation>
     </message>
     <message>
         <source>Operation acknowledged but sealed flag did not change.</source>
-        <translation>Операция подтверждена, но флаг блокировки не изменился.</translation>
+        <translation>Operación reconocida pero la bandera sellada no cambió.</translation>
     </message>
     <message>
         <source>Operation acknowledged but unable to read/parse anchors.</source>
-        <translation>Операция подтверждена, но не удалось прочитать/разобрать анкеры.</translation>
+        <translation>Operación reconocida pero no se pueden leer/analizar anclajes.</translation>
     </message>
     <message>
         <source>Import Force Anchors from File</source>
-        <translation>Импортировать анкеры силы из файла</translation>
+        <translation type="vanished">Importar anclajes de fuerza desde archivo</translation>
     </message>
     <message>
         <source>Export Force Anchors to File</source>
-        <translation>Экспортировать анкеры силы в файл</translation>
+        <translation type="vanished">Exportar anclajes de fuerza a archivo</translation>
     </message>
     <message>
         <source>Export Force Anchors</source>
-        <translation>Экспорт анкеров силы</translation>
+        <translation>Exportar anclajes de fuerza</translation>
     </message>
     <message>
         <source>JSON Files (*.json);;All Files (*)</source>
-        <translation>JSON файлы (*.json);;Все файлы (*)</translation>
+        <translation>Archivos JSON (*.json);;Todos los archivos (*)</translation>
     </message>
     <message>
         <source>Export Failed</source>
-        <translation>Экспорт не удался</translation>
+        <translation>Falló la exportación</translation>
     </message>
     <message>
         <source>Could not open file for writing: %1</source>
-        <translation>Не удалось открыть файл для записи: %1</translation>
+        <translation>No se pudo abrir el archivo para escritura: %1</translation>
     </message>
     <message>
         <source>Export Successful</source>
-        <translation>Экспорт выполнен успешно</translation>
+        <translation>Exportación exitosa</translation>
     </message>
     <message>
         <source>Force anchors exported successfully.</source>
-        <translation>Анкеры силы успешно экспортированы.</translation>
+        <translation>Anclajes de fuerza exportados exitosamente.</translation>
     </message>
     <message>
         <source>Import Force Anchors</source>
-        <translation>Импорт анкеров силы</translation>
+        <translation>Importar anclajes de fuerza</translation>
     </message>
     <message>
         <source>Import Failed</source>
-        <translation>Импорт не удался</translation>
+        <translation>Falló la importación</translation>
     </message>
     <message>
         <source>Could not open file for reading: %1</source>
-        <translation>Не удалось открыть файл для чтения: %1</translation>
+        <translation>No se pudo abrir el archivo para lectura: %1</translation>
     </message>
     <message>
         <source>Failed to parse JSON: %1</source>
-        <translation>Не удалось разобрать JSON: %1</translation>
+        <translation>Falló el análisis de JSON: %1</translation>
     </message>
     <message>
         <source>Import Successful</source>
-        <translation>Импорт выполнен успешно</translation>
+        <translation>Importación exitosa</translation>
     </message>
     <message>
         <source>Force anchors imported successfully.
 Remember to write to device if you want to save these values.</source>
-        <translation>Анкеры силы успешно импортированы.
-Не забудьте записать на устройство, если хотите сохранить эти значения.</translation>
+        <translation>Anclajes de fuerza importados exitosamente.
+Recuerda escribir en el dispositivo si quieres guardar estos valores.</translation>
     </message>
     <message>
         <source>Anchors are locked; writing is not allowed.</source>
-        <translation>Анкеры заблокированы; запись не разрешена.</translation>
+        <translation>Los anclajes están bloqueados; no se permite la escritura.</translation>
     </message>
     <message>
         <source>Anchors written.</source>
-        <translation>Анкеры записаны.</translation>
+        <translation>Anclajes escritos.</translation>
+    </message>
+    <message>
+        <source>Set</source>
+        <translation>Establecer</translation>
+    </message>
+    <message>
+        <source>Read Force Anchors</source>
+        <translation>Leer anclajes de fuerza</translation>
+    </message>
+    <message>
+        <source>Write Force Anchors</source>
+        <translation>Escribir anclajes de fuerza</translation>
     </message>
 </context>
 <context>
     <name>Encoders</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="vanished">Formulario</translation>
     </message>
     <message>
         <source>Not defined</source>
-        <translation>Не выбран</translation>
+        <translation type="vanished">No definido</translation>
     </message>
     <message>
         <source>Encoder type</source>
-        <translation>Тип энкодера</translation>
+        <translation type="vanished">Tipo de codificador</translation>
     </message>
     <message>
         <source>Input A</source>
-        <translation>Вход А</translation>
+        <translation type="vanished">Entrada A</translation>
     </message>
     <message>
         <source>Input B</source>
-        <translation>Вход Б</translation>
+        <translation type="vanished">Entrada B</translation>
     </message>
     <message>
         <source>Encoder 1x</source>
-        <translation>Энкодер 1x</translation>
+        <translation type="vanished">Codificador 1x</translation>
     </message>
     <message>
         <source>Encoder 2x</source>
-        <translation>Энкодер 2x</translation>
+        <translation type="vanished">Codificador 2x</translation>
     </message>
     <message>
         <source>Encoder 4x</source>
-        <translation>Энкодер 4x</translation>
+        <translation type="vanished">Codificador 4x</translation>
     </message>
     <message>
         <source>Button № %1</source>
-        <translation>Кнопка № %1</translation>
+        <translation type="vanished">Botón № %1</translation>
     </message>
 </context>
 <context>
     <name>EncodersConfig</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="vanished">Formulario</translation>
     </message>
     <message>
         <source>Fast encoder</source>
-        <translation>Быстрый энкодер</translation>
+        <translation type="vanished">Codificador rápido</translation>
     </message>
     <message>
         <source>Fast encioder input A</source>
-        <translation type="vanished">Быстрый энкодер вход А</translation>
+        <translation type="vanished">Entrada A de codificador rápido</translation>
     </message>
     <message>
         <source>Fast encioder input B</source>
-        <translation type="vanished">Быстрый энкодер вход Б</translation>
+        <translation type="vanished">Entrada B de codificador rápido</translation>
     </message>
     <message>
         <source>Encoder type</source>
-        <translation>Тип энкодера</translation>
+        <translation type="vanished">Tipo de codificador</translation>
     </message>
     <message>
         <source>Not defined</source>
-        <translation>Не выбран</translation>
+        <translation type="vanished">No definido</translation>
     </message>
     <message>
         <source>Slow encoders</source>
-        <translation>Медленный энкодер</translation>
+        <translation type="vanished">Codificadores lentos</translation>
     </message>
     <message>
         <source>Encoder 1x</source>
-        <translation>Энкодер 1x</translation>
+        <translation type="vanished">Codificador 1x</translation>
     </message>
     <message>
         <source>Encoder 2x</source>
-        <translation>Энкодер 2x</translation>
+        <translation type="vanished">Codificador 2x</translation>
     </message>
     <message>
         <source>Encoder 4x</source>
-        <translation>Энкодер 4x</translation>
+        <translation type="vanished">Codificador 4x</translation>
     </message>
     <message>
         <source>Fast encoder input A</source>
-        <translation>Быстрый энкодер вход А</translation>
+        <translation type="vanished">Entrada A de codificador rápido</translation>
     </message>
     <message>
         <source>Fast encoder input B</source>
-        <translation>Быстрый энкодер вход Б</translation>
+        <translation type="vanished">Entrada B de codificador rápido</translation>
     </message>
 </context>
 <context>
     <name>Flasher</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Enter Flasher Mode</source>
-        <translation>Войти в режим прошивки</translation>
+        <translation>Entrar en modo flasheador</translation>
     </message>
     <message>
         <source>Flash Firmware</source>
-        <translation>Прошить</translation>
+        <translation>Flashear firmware</translation>
     </message>
     <message>
         <source>Ready to flash</source>
-        <translation>Готов к прошивке</translation>
+        <translation>Listo para flashear</translation>
     </message>
     <message>
         <source>Open Config</source>
-        <translation>Открыть конфиг</translation>
+        <translation>Abrir configuración</translation>
     </message>
     <message>
         <source>Binary files (.bin) (*.bin)</source>
-        <translation>Бинарный файл  (.bin) (*.bin)</translation>
+        <translation>Archivos binarios (.bin) (*.bin)</translation>
     </message>
     <message>
         <source>Firmware flashing..</source>
-        <translation>Идёт прошивка..</translation>
+        <translation>Flasheando firmware..</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation>Готово</translation>
+        <translation>Terminado</translation>
     </message>
     <message>
         <source>SIZE ERROR</source>
-        <translation></translation>
+        <translation>ERROR DE TAMAÑO</translation>
     </message>
     <message>
         <source>CRC ERROR</source>
-        <translation></translation>
+        <translation>ERROR CRC</translation>
     </message>
     <message>
         <source>ERASE ERROR</source>
-        <translation></translation>
+        <translation>ERROR DE BORRADO</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation>ОШИБКА</translation>
+        <translation>ERROR</translation>
     </message>
 </context>
 <context>
     <name>LED</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="vanished">Formulario</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Нормальный</translation>
+        <translation type="vanished">Normal</translation>
     </message>
     <message>
         <source>Inverted</source>
-        <translation>Инвертированный</translation>
+        <translation type="vanished">Invertido</translation>
     </message>
 </context>
 <context>
     <name>LedConfig</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="vanished">Formulario</translation>
     </message>
     <message>
         <source>PWM</source>
-        <translation></translation>
+        <translation type="vanished">PWM</translation>
     </message>
     <message>
         <source>Pin PB0</source>
-        <translation>Пин PB0</translation>
+        <translation type="vanished">Pin PB0</translation>
     </message>
     <message>
         <source>Pin PB1</source>
-        <translation>Пин PB1</translation>
+        <translation type="vanished">Pin PB1</translation>
     </message>
     <message>
         <source>Pin PB4</source>
-        <translation>Пин PB4</translation>
+        <translation type="vanished">Pin PB4</translation>
     </message>
     <message>
         <source>LED</source>
-        <translation></translation>
+        <translation type="vanished">LED</translation>
     </message>
     <message>
         <source>Input №</source>
-        <translation>Вход №</translation>
+        <translation type="vanished">Entrada №</translation>
     </message>
     <message>
         <source>Function</source>
-        <translation>Функция</translation>
+        <translation type="vanished">Función</translation>
     </message>
     <message>
         <source>№</source>
-        <translation></translation>
+        <translation type="vanished">№</translation>
     </message>
     <message>
         <source>Pin PA8</source>
-        <translation>Пин PA8</translation>
+        <translation type="vanished">Pin PA8</translation>
     </message>
     <message>
         <source>Connected to axis</source>
-        <translation>Соединить с осью</translation>
+        <translation type="vanished">Conectado al eje</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>TextLabel</source>
-        <translation type="vanished">Текст</translation>
+        <translation type="vanished">Etiqueta</translation>
     </message>
     <message>
         <source>REPORT_ID_JOY count</source>
-        <translation type="vanished">REPORT_ID_JOY количество</translation>
+        <translation type="vanished">Número REPORT_ID_JOY</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation>Подключён</translation>
+        <translation>Conectado</translation>
     </message>
     <message>
         <source>Device name:</source>
-        <translation type="vanished">Название девайса:</translation>
+        <translation type="vanished">Nombre del dispositivo:</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>Отключён</translation>
+        <translation>Desconectado</translation>
     </message>
     <message>
         <source> Pin Config </source>
-        <translation type="vanished"> Пины </translation>
+        <translation type="vanished"> Config Pines </translation>
     </message>
     <message>
         <source> Button Config </source>
-        <translation type="vanished"> Кнопки </translation>
+        <translation type="vanished"> Config Botones </translation>
     </message>
     <message>
         <source> Axes Config </source>
-        <translation type="vanished"> Оси </translation>
+        <translation type="vanished"> Config Ejes </translation>
     </message>
     <message>
         <source> Axes Curves </source>
-        <translation> Кривые осей </translation>
+        <translation> Curvas de Ejes </translation>
     </message>
     <message>
         <source> Shift Registers </source>
-        <translation> Регистры </translation>
+        <translation> Registros de Desplazamiento </translation>
     </message>
     <message>
         <source>Encoders</source>
-        <translation type="vanished">Энкодеры</translation>
+        <translation type="vanished">Codificadores</translation>
     </message>
     <message>
         <source> LED </source>
-        <translation type="vanished"> Светодиоды </translation>
+        <translation type="vanished"> LED </translation>
     </message>
     <message>
         <source> Advanced Settings </source>
-        <translation> Доп. настройки </translation>
+        <translation> Configuración Avanzada </translation>
     </message>
     <message>
         <source> Debug </source>
-        <translation type="vanished"> Дебаг </translation>
+        <translation type="vanished"> Depuración </translation>
     </message>
     <message>
         <source>Write config to Device</source>
-        <translation type="vanished">Запись конфига</translation>
+        <translation type="vanished">Escribir configuración en dispositivo</translation>
     </message>
     <message>
         <source>Read config from Device</source>
-        <translation type="vanished">Чтение конфига</translation>
+        <translation type="vanished">Leer configuración desde dispositivo</translation>
     </message>
     <message>
         <source>Reset All</source>
-        <translation>Сбросить всё</translation>
+        <translation>Restablecer todo</translation>
     </message>
     <message>
         <source>Load config from file</source>
-        <translation>Загрузить конфиг из файла</translation>
+        <translation>Cargar configuración desde archivo</translation>
     </message>
     <message>
         <source>Save config to file</source>
-        <translation>Сохранить конфиг в файл</translation>
+        <translation>Guardar configuración en archivo</translation>
     </message>
     <message>
         <source>Load default config</source>
-        <translation type="vanished">Стандартный конфиг</translation>
+        <translation type="vanished">Cargar configuración predeterminada</translation>
     </message>
     <message>
         <source>Set file to default config</source>
-        <translation type="vanished">Файл стандартного конфига</translation>
+        <translation type="vanished">Establecer archivo como configuración predeterminada</translation>
     </message>
     <message>
         <source>Invictus HOTAS Configurator</source>
-        <translation>Invictus HOTAS Конфигуратор</translation>
+        <translation>Invictus HOTAS Configurator</translation>
     </message>
     <message>
         <source>Device firmware</source>
-        <translation>Версия прошивки</translation>
+        <translation>Firmware del dispositivo</translation>
     </message>
     <message>
         <source>Received</source>
-        <translation>Полученно</translation>
+        <translation>Recibido</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Ошибка</translation>
+        <translation>Error</translation>
     </message>
     <message>
         <source>Sent</source>
-        <translation>Отправлено</translation>
+        <translation>Enviado</translation>
     </message>
     <message>
         <source>Open Config</source>
-        <translation>Открыть конфиг</translation>
+        <translation>Abrir configuración</translation>
     </message>
     <message>
         <source>Config Files (*.cfg)</source>
-        <translation>Файл конфига (*.cfg)</translation>
+        <translation>Archivos de configuración (*.cfg)</translation>
     </message>
     <message>
         <source>Save Config</source>
-        <translation>Сохранить конфиг</translation>
+        <translation>Guardar configuración</translation>
     </message>
     <message>
         <source>Device</source>
-        <translation type="vanished">Устройство</translation>
+        <translation type="vanished">Dispositivo</translation>
     </message>
     <message>
         <source> Encoders</source>
-        <translation> Энкодеры</translation>
+        <translation type="vanished"> Codificadores</translation>
     </message>
     <message>
         <source>D
@@ -1999,81 +2034,79 @@ e
 b
 u
 g</source>
-        <translation type="vanished">О
-т
-л
-а
-д
-к
-а</translation>
+        <translation type="vanished">D
+e
+p
+u
+r</translation>
     </message>
     <message>
         <source>Show debug</source>
-        <translation type="vanished">Показать отладку</translation>
+        <translation type="vanished">Mostrar depuración</translation>
     </message>
     <message>
         <source>Hide debug</source>
-        <translation>Скрыть отладку</translation>
+        <translation>Ocultar depuración</translation>
     </message>
     <message>
         <source>devices connected</source>
-        <translation type="vanished">устр. подключено</translation>
+        <translation type="vanished">dispositivos conectados</translation>
     </message>
     <message>
         <source>device connected</source>
-        <translation type="vanished">устр. подключено</translation>
+        <translation type="vanished">dispositivo conectado</translation>
     </message>
     <message>
         <source> Axis Config </source>
-        <translation type="vanished"> Оси </translation>
+        <translation type="vanished"> Config Eje </translation>
     </message>
     <message>
         <source> Axis Curves </source>
-        <translation type="vanished"> Кривые осей </translation>
+        <translation type="vanished"> Curvas de Eje </translation>
     </message>
     <message>
         <source> LED/PWM </source>
-        <translation> Светодиоды/ШИМ </translation>
+        <translation type="vanished"> LED/PWM </translation>
     </message>
     <message>
         <source>X</source>
-        <translation type="vanished">Х</translation>
+        <translation type="vanished">X</translation>
     </message>
     <message>
         <source>Firmware version in config file doesnt match configurator version. Check settings before write config.</source>
-        <translation type="vanished">Версия прошивки в файле конфигурации не совпадает с версией конфигуратора. Проверьте настройки перед записью конфига.</translation>
+        <translation type="vanished">La versión del firmware en el archivo de configuración no coincide con la versión del configurador. Verifica la configuración antes de escribir.</translation>
     </message>
     <message>
         <source>Pins B8, B9 reset! In this version I2C moved from pins B8, B9 to B10, B11. Check it!</source>
-        <translation type="vanished">Пины B8, B9 сброшены! В этой версии I2C перенесён с пинов B8, B9 на пины B10, B11, проверьте их!</translation>
+        <translation type="vanished">¡Pines B8, B9 restablecidos! En esta versión I2C se movió de los pines B8, B9 a B10, B11. ¡Verifica!</translation>
     </message>
     <message>
         <source>Firmware version!</source>
-        <translation type="vanished">Версия прошивки!</translation>
+        <translation type="vanished">¡Versión de firmware!</translation>
     </message>
     <message>
         <source>Slider 1</source>
-        <translation type="vanished">Слайдер 1</translation>
+        <translation type="vanished">Deslizador 1</translation>
     </message>
     <message>
         <source>Slider 2</source>
-        <translation type="vanished">Слайдер 2</translation>
+        <translation type="vanished">Deslizador 2</translation>
     </message>
     <message>
         <source>Incompatible Firmware</source>
-        <translation type="vanished">Несовмест. прошивка</translation>
+        <translation type="vanished">Firmware incompatible</translation>
     </message>
     <message>
         <source>Confirmation</source>
-        <translation type="vanished">Подтверждение</translation>
+        <translation type="vanished">Confirmación</translation>
     </message>
     <message>
         <source>Are you sure you want to write the config?</source>
-        <translation type="vanished">Вы действительно хотите записать конфиг?</translation>
+        <translation type="vanished">¿Estás seguro de que quieres escribir la configuración?</translation>
     </message>
     <message>
         <source>Read Device Settings</source>
-        <translation>Считать настройки устройства</translation>
+        <translation>Leer configuración del dispositivo</translation>
     </message>
     <message>
         <source>DCS</source>
@@ -2089,19 +2122,19 @@ g</source>
     </message>
     <message>
         <source>Active Sim Software Profile</source>
-        <translation>Активный профиль симулятора</translation>
+        <translation type="vanished">Perfil de software de simulación activo</translation>
     </message>
     <message>
         <source>Device Control Board Version</source>
-        <translation>Версия платы управления устройства</translation>
+        <translation type="vanished">Versión de la placa de control del dispositivo</translation>
     </message>
     <message>
         <source>Activate Advanced Mode</source>
-        <translation>Активировать расширенный режим</translation>
+        <translation>Activar modo avanzado</translation>
     </message>
     <message>
         <source>Choose Your Grip</source>
-        <translation>Выберите ручку управления</translation>
+        <translation>Elige tu empuñadura</translation>
     </message>
     <message>
         <source>...</source>
@@ -2109,27 +2142,27 @@ g</source>
     </message>
     <message>
         <source>Write Current Settings to Device</source>
-        <translation>Записать текущие настройки на устройство</translation>
+        <translation type="vanished">Escribir configuración actual en dispositivo</translation>
     </message>
     <message>
         <source>Active Grip Profile</source>
-        <translation>Активный профиль ручки</translation>
+        <translation>Perfil de empuñadura activo</translation>
     </message>
     <message>
         <source> Pin Settings</source>
-        <translation> Настройки контактов</translation>
+        <translation> Configuración de Pines</translation>
     </message>
     <message>
         <source> Button Settings</source>
-        <translation> Настройки кнопок</translation>
+        <translation> Configuración de Botones</translation>
     </message>
     <message>
         <source> Axes Settings</source>
-        <translation> Настройки осей</translation>
+        <translation> Configuración de Ejes</translation>
     </message>
     <message>
         <source>Proportional Force Scaling</source>
-        <translation>Пропорциональное масштабирование силы</translation>
+        <translation>Escalado proporcional de fuerza</translation>
     </message>
     <message>
         <source>50% FLCS</source>
@@ -2137,7 +2170,7 @@ g</source>
     </message>
     <message>
         <source>Full FLCS Force</source>
-        <translation>Полная сила FLCS</translation>
+        <translation>Fuerza FLCS completa</translation>
     </message>
     <message>
         <source>75% FLCS</source>
@@ -2145,527 +2178,542 @@ g</source>
     </message>
     <message>
         <source>FLCS Mode</source>
-        <translation>Режим FLCS</translation>
+        <translation>Modo FLCS</translation>
     </message>
     <message>
         <source>Analog</source>
-        <translation>Аналоговый</translation>
+        <translation>Analógico</translation>
     </message>
     <message>
         <source>Digital</source>
-        <translation>Цифровой</translation>
+        <translation>Digital</translation>
     </message>
     <message>
         <source> Developer Settings</source>
-        <translation> Настройки разработчика</translation>
+        <translation> Configuración de Desarrollador</translation>
     </message>
     <message>
         <source>Firmware update available</source>
-        <translation>Доступно обновление прошивки</translation>
+        <translation>Actualización de firmware disponible</translation>
     </message>
     <message>
         <source>A newer firmware is available: %1</source>
-        <translation>Доступна более новая прошивка: %1</translation>
+        <translation>Hay un firmware más reciente disponible: %1</translation>
     </message>
     <message>
         <source>Open the firmware release page?</source>
-        <translation>Открыть страницу релиза прошивки?</translation>
+        <translation>¿Abrir la página de lanzamiento del firmware?</translation>
     </message>
     <message>
         <source>Open GitHub</source>
-        <translation>Открыть GitHub</translation>
+        <translation>Abrir GitHub</translation>
     </message>
     <message>
         <source>— Select board —</source>
-        <translation>— Выберите плату —</translation>
+        <translation>— Seleccionar placa —</translation>
     </message>
     <message>
         <source>VFT Controller Gen 1-3</source>
-        <translation>VFT Контроллер Gen 1-3</translation>
+        <translation>VFT Controller Gen 1-3</translation>
     </message>
     <message>
         <source>VFT Controller Gen 4</source>
-        <translation>VFT Контроллер Gen 4</translation>
+        <translation>VFT Controller Gen 4</translation>
     </message>
     <message>
         <source>Force Anchors</source>
-        <translation>Якоря силы</translation>
+        <translation>Anclajes de fuerza</translation>
     </message>
     <message>
         <source>No reply from device.</source>
-        <translation>Нет ответа от устройства.</translation>
+        <translation>Sin respuesta del dispositivo.</translation>
     </message>
     <message>
         <source>CRC/format error reading anchors.</source>
-        <translation>Ошибка CRC/формата при чтении якорей.</translation>
+        <translation>Error de CRC/formato al leer anclajes.</translation>
     </message>
     <message>
         <source>Device config not loaded.</source>
-        <translation>Конфигурация устройства не загружена.</translation>
+        <translation>Configuración del dispositivo no cargada.</translation>
     </message>
     <message>
         <source>— Select grip —</source>
-        <translation>— Выберите ручку —</translation>
+        <translation>— Seleccionar empuñadura —</translation>
     </message>
     <message>
         <source>— Select sim software—</source>
-        <translation>— Выберите симулятор—</translation>
+        <translation>— Seleccionar software de simulación—</translation>
     </message>
     <message>
         <source>Firmware Update Required</source>
-        <translation>Требуется обновление прошивки</translation>
+        <translation>Actualización de firmware requerida</translation>
     </message>
     <message>
         <source>Deactivate Advanced Mode</source>
-        <translation>Деактивировать расширенный режим</translation>
+        <translation>Desactivar modo avanzado</translation>
     </message>
     <message>
         <source>What Board Do I Have?</source>
-        <translation>Какая у меня плата?</translation>
+        <translation>¿Qué placa tengo?</translation>
     </message>
     <message>
         <source>Identify your board by connector count on the left side.</source>
-        <translation>Определите вашу плату по количеству разъемов с левой стороны.</translation>
+        <translation>Identifica tu placa por el número de conectores en el lado izquierdo.</translation>
     </message>
     <message>
         <source>Gen 1–2: Two 3-pin headers
 Gen 3: One 4-pin header
 Gen 4: One 6-pin header</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen 1–2: Dos cabezales de 3 pines
+Gen 3: Un cabezal de 4 pines
+Gen 4: Un cabezal de 6 pines</translation>
     </message>
     <message>
         <source>Failed to load grip profile: %1</source>
-        <translation>Не удалось загрузить профиль ручки: %1</translation>
+        <translation>Falló la carga del perfil de empuñadura: %1</translation>
     </message>
     <message>
         <source>Developer</source>
-        <translation>Разработчик</translation>
+        <translation>Desarrollador</translation>
     </message>
     <message>
         <source>Apply board defaults?</source>
-        <translation>Применить настройки платы по умолчанию?</translation>
+        <translation type="vanished">¿Aplicar valores predeterminados de la placa?</translation>
     </message>
     <message>
         <source>Replace current pin mapping with %1 defaults?</source>
-        <translation>Заменить текущую раскладку контактов на стандартную %1?</translation>
+        <translation type="vanished">¿Reemplazar el mapeo de pines actual con los valores predeterminados de %1?</translation>
     </message>
     <message>
         <source>Update available</source>
-        <translation>Доступно обновление</translation>
+        <translation>Actualización disponible</translation>
     </message>
     <message>
         <source>A newer version is available: %1
 You have: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Una versión más nueva está disponible: %1
+Tienes: %2</translation>
     </message>
     <message>
         <source>Open the release page to download?</source>
-        <translation>Открыть страницу релиза для загрузки?</translation>
+        <translation>¿Abrir la página de lanzamiento para descargar?</translation>
     </message>
     <message>
         <source>Visit Wiki</source>
-        <translation>Посетить Wiki</translation>
+        <translation>Visitar Wiki</translation>
+    </message>
+    <message>
+        <source>Sim Software</source>
+        <translation>Software sim</translation>
+    </message>
+    <message>
+        <source>Control Board</source>
+        <translation>Placa de control</translation>
+    </message>
+    <message>
+        <source>Write Settings to Device</source>
+        <translation>Escribir ajustes al dispositivo</translation>
     </message>
 </context>
 <context>
     <name>PinComboBox</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Pin A0</source>
-        <translation>Пин A0</translation>
+        <translation>Pin A0</translation>
     </message>
     <message>
         <source>Pin A1</source>
-        <translation>Пин A1</translation>
+        <translation>Pin A1</translation>
     </message>
     <message>
         <source>Pin A2</source>
-        <translation>Пин A2</translation>
+        <translation>Pin A2</translation>
     </message>
     <message>
         <source>Pin A3</source>
-        <translation>Пин A3</translation>
+        <translation>Pin A3</translation>
     </message>
     <message>
         <source>Pin A4</source>
-        <translation>Пин A4</translation>
+        <translation>Pin A4</translation>
     </message>
     <message>
         <source>Pin A5</source>
-        <translation>Пин A5</translation>
+        <translation>Pin A5</translation>
     </message>
     <message>
         <source>Pin A6</source>
-        <translation>Пин A6</translation>
+        <translation>Pin A6</translation>
     </message>
     <message>
         <source>Pin A7</source>
-        <translation>Пин A7</translation>
+        <translation>Pin A7</translation>
     </message>
     <message>
         <source>Pin A8</source>
-        <translation>Пин A8</translation>
+        <translation>Pin A8</translation>
     </message>
     <message>
         <source>Pin A9</source>
-        <translation>Пин A9</translation>
+        <translation>Pin A9</translation>
     </message>
     <message>
         <source>Pin A10</source>
-        <translation>Пин A10</translation>
+        <translation>Pin A10</translation>
     </message>
     <message>
         <source>Pin A15</source>
-        <translation>Пин A15</translation>
+        <translation>Pin A15</translation>
     </message>
     <message>
         <source>Pin B0</source>
-        <translation>Пин B0</translation>
+        <translation>Pin B0</translation>
     </message>
     <message>
         <source>Pin B1</source>
-        <translation>Пин B1</translation>
+        <translation>Pin B1</translation>
     </message>
     <message>
         <source>Pin B3</source>
-        <translation>Пин B3</translation>
+        <translation>Pin B3</translation>
     </message>
     <message>
         <source>Pin B4</source>
-        <translation>Пин B4</translation>
+        <translation>Pin B4</translation>
     </message>
     <message>
         <source>Pin B5</source>
-        <translation>Пин B5</translation>
+        <translation>Pin B5</translation>
     </message>
     <message>
         <source>Pin B6</source>
-        <translation>Пин B6</translation>
+        <translation>Pin B6</translation>
     </message>
     <message>
         <source>Pin B7</source>
-        <translation>Пин B7</translation>
+        <translation>Pin B7</translation>
     </message>
     <message>
         <source>Pin B8</source>
-        <translation>Пин B8</translation>
+        <translation>Pin B8</translation>
     </message>
     <message>
         <source>Pin B9</source>
-        <translation>Пин B9</translation>
+        <translation>Pin B9</translation>
     </message>
     <message>
         <source>Pin B10</source>
-        <translation>Пин B10</translation>
+        <translation>Pin B10</translation>
     </message>
     <message>
         <source>Pin B11</source>
-        <translation>Пин B11</translation>
+        <translation>Pin B11</translation>
     </message>
     <message>
         <source>Pin B12</source>
-        <translation>Пин B12</translation>
+        <translation>Pin B12</translation>
     </message>
     <message>
         <source>Pin B13</source>
-        <translation>Пин B13</translation>
+        <translation>Pin B13</translation>
     </message>
     <message>
         <source>Pin B14</source>
-        <translation>Пин B14</translation>
+        <translation>Pin B14</translation>
     </message>
     <message>
         <source>Pin B15</source>
-        <translation>Пин B15</translation>
+        <translation>Pin B15</translation>
     </message>
     <message>
         <source>Pin C13</source>
-        <translation>Пин C13</translation>
+        <translation>Pin C13</translation>
     </message>
     <message>
         <source>Pin C14</source>
-        <translation>Пин C14</translation>
+        <translation>Pin C14</translation>
     </message>
     <message>
         <source>Pin C15</source>
-        <translation>Пин C15</translation>
+        <translation>Pin C15</translation>
     </message>
     <message>
         <source>Not Used</source>
-        <translation>Не используется</translation>
+        <translation>No usado</translation>
     </message>
     <message>
         <source>Button Gnd</source>
-        <translation>Кнопка минус</translation>
+        <translation>Botón Gnd</translation>
     </message>
     <message>
         <source>Button Vcc</source>
-        <translation>Кнопка плюс</translation>
+        <translation>Botón Vcc</translation>
     </message>
     <message>
         <source>Button Row</source>
-        <translation>Строка кнопок</translation>
+        <translation>Fila de botones</translation>
     </message>
     <message>
         <source>Button Column</source>
-        <translation>Колонна кнопок</translation>
+        <translation>Columna de botones</translation>
     </message>
     <message>
         <source>ShiftReg LATCH</source>
-        <translation>Регистр LATCH</translation>
+        <translation>ShiftReg LATCH</translation>
     </message>
     <message>
         <source>ShiftReg DATA</source>
-        <translation>Регистр DATA</translation>
+        <translation>ShiftReg DATA</translation>
     </message>
     <message>
         <source>TLE5011 CS</source>
-        <translation></translation>
+        <translation type="vanished">TLE5011 CS</translation>
     </message>
     <message>
         <source>MCP3201 CS</source>
-        <translation></translation>
+        <translation type="vanished">MCP3201 CS</translation>
     </message>
     <message>
         <source>MCP3202 CS</source>
-        <translation></translation>
+        <translation>MCP3202 CS</translation>
     </message>
     <message>
         <source>MCP3204 CS</source>
-        <translation></translation>
+        <translation type="vanished">MCP3204 CS</translation>
     </message>
     <message>
         <source>MCP3208 CS</source>
-        <translation></translation>
+        <translation type="vanished">MCP3208 CS</translation>
     </message>
     <message>
         <source>MLX90393 CS</source>
-        <translation></translation>
+        <translation type="vanished">MLX90393 CS</translation>
     </message>
     <message>
         <source>LED Single</source>
-        <translation>Светодиод одиночный</translation>
+        <translation type="vanished">LED simple</translation>
     </message>
     <message>
         <source>LED Row</source>
-        <translation>Светодиодная строка</translation>
+        <translation type="vanished">Fila LED</translation>
     </message>
     <message>
         <source>LED Column</source>
-        <translation>Светодиодная колонна</translation>
+        <translation type="vanished">Columna LED</translation>
     </message>
     <message>
         <source>LED PWM</source>
-        <translation>Светодиод PWM</translation>
+        <translation type="vanished">LED PWM</translation>
     </message>
     <message>
         <source>Axis Analog</source>
-        <translation>Аналоговая ось</translation>
+        <translation>Eje analógico</translation>
     </message>
     <message>
         <source>Fast Encoder</source>
-        <translation>Быстрый энкодер</translation>
+        <translation type="vanished">Codificador rápido</translation>
     </message>
     <message>
         <source>SPI SCK</source>
-        <translation></translation>
+        <translation>SPI SCK</translation>
     </message>
     <message>
         <source>SPI MOSI</source>
-        <translation></translation>
+        <translation>SPI MOSI</translation>
     </message>
     <message>
         <source>SPI MISO</source>
-        <translation></translation>
+        <translation>SPI MISO</translation>
     </message>
     <message>
         <source>I2C SCL</source>
-        <translation></translation>
+        <translation>I2C SCL</translation>
     </message>
     <message>
         <source>I2C SDA</source>
-        <translation></translation>
+        <translation>I2C SDA</translation>
     </message>
     <message>
         <source>TLE5012B CS</source>
-        <translation></translation>
+        <translation type="vanished">TLE5012B CS</translation>
     </message>
     <message>
         <source>AS5048A CS</source>
-        <translation></translation>
+        <translation type="vanished">AS5048A CS</translation>
     </message>
     <message>
         <source>ShiftReg CLK</source>
-        <translation></translation>
+        <translation>ShiftReg CLK</translation>
     </message>
     <message>
         <source>MLX90363 CS</source>
-        <translation></translation>
+        <translation type="vanished">MLX90363 CS</translation>
     </message>
 </context>
 <context>
     <name>PinConfig</name>
     <message>
         <source>Form</source>
-        <translation type="vanished">Форма</translation>
+        <translation type="vanished">Formulario</translation>
     </message>
     <message>
         <source>Current Config</source>
-        <translation type="vanished">Текущий конфиг</translation>
+        <translation type="vanished">Configuración actual</translation>
     </message>
     <message>
         <source>Axis sources:</source>
-        <translation type="vanished">Источников осей:</translation>
+        <translation type="vanished">Fuentes de ejes:</translation>
     </message>
     <message>
         <source>Total LEDs:</source>
-        <translation type="vanished">Всего светодиодов:</translation>
+        <translation type="vanished">Total de LED:</translation>
     </message>
     <message>
         <source>Buttons from axes:</source>
-        <translation type="vanished">Кнопок из осей:</translation>
+        <translation type="vanished">Botones desde ejes:</translation>
     </message>
     <message>
         <source>Single buttons:</source>
-        <translation type="vanished">Одиночных кнопок:</translation>
+        <translation type="vanished">Botones simples:</translation>
     </message>
     <message>
         <source>Columns of buttons:</source>
-        <translation type="vanished">Колонн кнопок:</translation>
+        <translation type="vanished">Columnas de botones:</translation>
     </message>
     <message>
         <source>Rows of buttons:</source>
-        <translation type="vanished">Рядов кнопок:</translation>
+        <translation type="vanished">Filas de botones:</translation>
     </message>
     <message>
         <source>Total buttons:</source>
-        <translation type="vanished">Всего кнопок:</translation>
+        <translation type="vanished">Total de botones:</translation>
     </message>
     <message>
         <source>Buttons from shift regs:</source>
-        <translation type="vanished">Кнопок у регистров:</translation>
+        <translation type="vanished">Botones desde registros de desplazamiento:</translation>
     </message>
     <message>
         <source>Select board</source>
-        <translation type="vanished">Выбор платы</translation>
+        <translation type="vanished">Seleccionar placa</translation>
     </message>
 </context>
 <context>
     <name>PinsBluePill</name>
     <message>
         <source>Form</source>
-        <translation type="obsolete">Форма</translation>
+        <translation type="vanished">Formulario</translation>
     </message>
 </context>
 <context>
     <name>SelectDefCfg</name>
     <message>
         <source>Current file:</source>
-        <translation type="vanished">Текущий файл:</translation>
+        <translation type="vanished">Archivo actual:</translation>
     </message>
     <message>
         <source>Loading selected config file on startup application.</source>
-        <translation type="vanished">Загружать выбранный конфиг при запуске приложения.</translation>
+        <translation type="vanished">Cargando archivo de configuración seleccionado al iniciar la aplicación.</translation>
     </message>
     <message>
         <source>Default config file path</source>
-        <translation type="vanished">Пусть стандартного конфига</translation>
+        <translation type="vanished">Ruta de archivo de configuración predeterminado</translation>
     </message>
     <message>
         <source>Open Config</source>
-        <translation type="vanished">Открыть конфиг</translation>
+        <translation type="vanished">Abrir configuración</translation>
     </message>
     <message>
         <source>Config Files (*.cfg)</source>
-        <translation type="vanished">Файл конфига (*.cfg)</translation>
+        <translation type="vanished">Archivos de configuración (*.cfg)</translation>
     </message>
 </context>
 <context>
     <name>SelectFolder</name>
     <message>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation>Ок</translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Current folder:</source>
-        <translation>Текущая папка:</translation>
+        <translation>Carpeta actual:</translation>
     </message>
     <message>
         <source>Configs folder path</source>
-        <translation>Путь к папке конфигов</translation>
+        <translation>Ruta de carpeta de configuraciones</translation>
     </message>
     <message>
         <source>Select configs folder</source>
-        <translation>Выберите папку с конфигами</translation>
+        <translation>Seleccionar carpeta de configuraciones</translation>
     </message>
 </context>
 <context>
     <name>ShiftRegisters</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <source>Latch pin</source>
-        <translation>Latch пин</translation>
+        <translation>Pin de enganche</translation>
     </message>
     <message>
         <source>Data pin</source>
-        <translation>Data пин</translation>
+        <translation>Pin de datos</translation>
     </message>
     <message>
         <source>Shift register type</source>
-        <translation>Тип регистра</translation>
+        <translation>Tipo de registro de desplazamiento</translation>
     </message>
     <message>
         <source>Registers count</source>
-        <translation>Количество регистров</translation>
+        <translation>Número de registros</translation>
     </message>
     <message>
         <source>Button count</source>
-        <translation>Количество кнопок</translation>
+        <translation>Número de botones</translation>
     </message>
     <message>
         <source>NotDefined</source>
-        <translation>Не выбран</translation>
+        <translation>NoDefinido</translation>
     </message>
     <message>
         <source>Not defined</source>
-        <translation>Не выбран</translation>
+        <translation>No definido</translation>
     </message>
     <message>
         <source>HC165 Pull Down</source>
-        <translation></translation>
+        <translation>HC165 Pull Down</translation>
     </message>
     <message>
         <source>CD4021 Pull Down</source>
-        <translation></translation>
+        <translation>CD4021 Pull Down</translation>
     </message>
     <message>
         <source>HC165 Pull Up</source>
-        <translation></translation>
+        <translation>HC165 Pull Up</translation>
     </message>
     <message>
         <source>CD4021 Pull Up</source>
-        <translation></translation>
+        <translation>CD4021 Pull Up</translation>
     </message>
     <message>
         <source>CLK pin</source>
-        <translation type="unfinished"></translation>
+        <translation>Pin CLK</translation>
     </message>
 </context>
 <context>
     <name>ShiftRegistersConfig</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>Formulario</translation>
     </message>
 </context>
 </TS>

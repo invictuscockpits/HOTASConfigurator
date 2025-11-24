@@ -98,7 +98,8 @@ private slots:
     // Handles any Set button named "btnSet_*"
     void onAnySetClicked();
     void onWriteDeviceInfo();
-
+    void onReadPGA();
+    void onWritePGA();
 
 };
 

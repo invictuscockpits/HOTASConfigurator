@@ -156,6 +156,7 @@ void PinConfig::pinIndexChanged(int currentDeviceEnum, int previousDeviceEnum, i
 
 void PinConfig::signalsForWidgets(int currentDeviceEnum, int previousDeviceEnum, int pinNumber, QString pinName)
 {
+    Q_UNUSED(pinName);
     // Convert pin number to zero-based index
     int pinIndex = pinNumber - PA_0;
     // shift register latch selected
@@ -269,6 +270,8 @@ void PinConfig::setCurrentConfig(int currentDeviceEnum, int previousDeviceEnum, 
 // PA8 should only works if SPI is not selected
 void PinConfig::blockPA8PWM(int currentDeviceEnum, int previousDeviceEnum)
 {
+    Q_UNUSED(currentDeviceEnum);
+    Q_UNUSED(previousDeviceEnum);
     // LED PWM support removed
 }
 

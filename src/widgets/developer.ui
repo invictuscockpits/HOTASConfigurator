@@ -17,15 +17,15 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>9</y>
+     <y>0</y>
      <width>621</width>
-     <height>381</height>
+     <height>375</height>
     </rect>
    </property>
    <property name="maximumSize">
     <size>
      <width>16777215</width>
-     <height>400</height>
+     <height>375</height>
     </size>
    </property>
    <property name="title">
@@ -1305,7 +1305,7 @@
    <property name="geometry">
     <rect>
      <x>630</x>
-     <y>10</y>
+     <y>0</y>
      <width>251</width>
      <height>251</height>
     </rect>
@@ -1383,9 +1383,9 @@
    <property name="geometry">
     <rect>
      <x>630</x>
-     <y>270</y>
+     <y>256</y>
      <width>251</width>
-     <height>191</height>
+     <height>225</height>
     </rect>
    </property>
    <property name="title">
@@ -1395,9 +1395,9 @@
     <property name="geometry">
      <rect>
       <x>9</x>
-      <y>9</y>
+      <y>14</y>
       <width>231</width>
-      <height>171</height>
+      <height>200</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
@@ -1458,10 +1458,413 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="label_DeviceName">
+       <property name="text">
+        <string>Device USB name:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QComboBox" name="comboBox_DeviceName">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="maxCount">
+        <number>26</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Invictus SSC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Invictus VFT Sensor</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Invictus Viper Throttle</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Invictus Rudder Pedals</string>
+        </property>
+       </item>
+      </widget>
+     </item>
      <item row="4" column="2">
       <widget class="QPushButton" name="btnDeviceInfoWrite">
        <property name="text">
         <string>Write Device Identity</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_ADC_PGA">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>380</y>
+     <width>621</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>ADC PGA Settings (ADS1115)</string>
+   </property>
+   <widget class="QLabel" name="label_PGA_Reference">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>120</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PGA Reference:
+1  = ±4.096V
+2  = ±2.048V
+4  = ±1.024V
+8  = ±0.512V
+16 = ±0.256V</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: Consolas, monospace;</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_PGA">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>20</y>
+      <width>470</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_PGA">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>5</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>2</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_PGA_Ch0">
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Ch 0:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboBox_PGA_Ch0">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>55</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 9pt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_PGA_Ch1">
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Ch 1:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBox_PGA_Ch1">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>55</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 9pt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_PGA_Ch2">
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Ch 2:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QComboBox" name="comboBox_PGA_Ch2">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>55</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 9pt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="label_PGA_Ch3">
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Ch 3:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QComboBox" name="comboBox_PGA_Ch3">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>55</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 9pt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="label_ADCMode">
+       <property name="text">
+        <string>ADC Mode:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QComboBox" name="comboBox_ADCMode">
+       <property name="minimumSize">
+        <size>
+         <width>110</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 9pt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>Single-Ended</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Differential</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QPushButton" name="btnPGARead">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Read</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <widget class="QPushButton" name="btnPGAWrite">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Write</string>
        </property>
       </widget>
      </item>

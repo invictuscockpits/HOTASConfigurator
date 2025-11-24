@@ -119,6 +119,7 @@ void CurrentConfig::totalButtonsChanged(int count)
 
 void CurrentConfig::totalLEDsChanged(int count)
 {
+    Q_UNUSED(count);
     // LED support removed
 }
 

@@ -11,7 +11,7 @@
 
 //#define DEBUG
 
-#define FIRMWARE_VERSION					0x2200              // v2.2.0.0 (Removed LED, Encoder, unused ADC/sensor support)
+#define FIRMWARE_VERSION					0x2300              // v2.3.0.0 (Removed ADC debug opcode)
 #define USED_PINS_NUM						30					// Contstant for HOTAS Control boards
 #define MAX_AXIS_NUM						8					// max 8
 #define MAX_BUTTONS_NUM						128					// power of 2, max 128
@@ -55,9 +55,11 @@ enum {
     OP_SET_FACTORY_ANCHORS  = 2,
     OP_LOCK_FACTORY_ANCHORS = 3,
     OP_UNLOCK_FACTORY_ANCHORS = 4,
-    // New device info operations
+    // Device info operations (multi-packet: 81 bytes > 62 byte payload limit)
     OP_GET_DEVICE_INFO = 5,
     OP_SET_DEVICE_INFO = 6,
+    OP_GET_DEVICE_INFO_PART2 = 7,
+    OP_SET_DEVICE_INFO_PART2 = 8,
 };
 
 

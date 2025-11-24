@@ -238,10 +238,6 @@ void HidDevice::processData()                   /////// bad code, I'll try to re
                         if (buffer[0] == REPORT_ID_PARAM) {   // Safety check
                             memset(deviceBuffer, 0, BUFFERSIZE);
                             memcpy(deviceBuffer, buffer, BUFFERSIZE);
-                            if (deviceBuffer[0] == REPORT_ID_PARAM && deviceBuffer[1] == 0) {
-                                quint16 fw = quint16(deviceBuffer[2]) | (quint16(deviceBuffer[3]) << 8);
-
-                            }
                             if (ReportConverter::paramReport(deviceBuffer) == -1) continue;
                             if (ReportConverter::paramReport(deviceBuffer)) { // datarace?
                                 emit paramsPacketReceived(true);
