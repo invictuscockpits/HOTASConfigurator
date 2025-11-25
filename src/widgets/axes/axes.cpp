@@ -36,6 +36,9 @@ Axes::Axes(int axisNumber, QWidget *parent)
     m_axisNumber = axisNumber;
     ui->groupBox_AxixName->setTitle(axesList()[m_axisNumber].guiName);
     ui->checkBox_ShowExtend->setVisible(false);
+
+    // Hide raw output by default (shown only in developer mode)
+    setRawVisible(false);
     // add main source
     for (int i = 0; i < 2; ++i) {
         ui->comboBox_AxisSource1->addItem(m_axesPinList[i].guiName);
@@ -158,6 +161,12 @@ void Axes::updateAxisOut()
 
     // a2b  axis_number_
     ui->widget_A2bSlider->setAxisOutputValue(gEnv.pDeviceConfig->paramsReport.axis_data[m_axisNumber], m_outputEnabled);
+}
+
+void Axes::setRawVisible(bool visible)
+{
+    ui->progressBar_Raw->setVisible(visible);
+    ui->label_2->setVisible(visible);
 }
 
 void Axes::outputValueChanged(bool isChecked)

@@ -1936,6 +1936,10 @@ void MainWindow::setDeveloperMode(bool on)
         ui->tabWidget->setTabVisible(pinTabIndex, on);
     }
 
+    // Show/hide raw output bars in axes based on developer mode
+    if (m_axesConfig) {
+        m_axesConfig->setAllAxesRawVisible(on);
+    }
 
     setAdvancedMode(on);
 }

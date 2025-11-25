@@ -29,6 +29,7 @@ public:
 
     void updateAxisRaw();
     void updateAxisOut();
+    void setRawVisible(bool visible);
 
     void addOrDeleteMainSource(int sourceEnum, QString sourceName, bool isAdd);
     AxesExtended* getAxesExtended() const { return m_axesExtend; }

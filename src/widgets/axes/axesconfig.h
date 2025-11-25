@@ -29,6 +29,7 @@ public:
     void axesValueChanged();
 
     void setAxisHidden(int index, bool hidden);
+    void setAllAxesRawVisible(bool visible);
 
 signals:
     void axisRawValueChanged(int);
