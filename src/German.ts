@@ -1546,6 +1546,10 @@ Device has: %2</source>
         <translation>Seriennummer: </translation>
     </message>
     <message>
+        <source>Device USB name:</source>
+        <translation>USB-Gerätename:</translation>
+    </message>
+    <message>
         <location filename="widgets/developer.ui" line="1464"/>
         <source>Write Device Identity</source>
         <translation>Geräteidentität schreiben</translation>

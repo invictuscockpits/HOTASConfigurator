@@ -165,6 +165,7 @@ void ConfigToFile::loadDeviceConfigFromFile(QWidget *parent, const QString &file
 
 void ConfigToFile::oldConfigHandler(QWidget *parent, dev_config_t &devC)
 {
+    Q_UNUSED(parent);
     if (devC.firmware_version != FIRMWARE_VERSION) {
         qDebug()<<"Firmware warning";
         if ((devC.firmware_version & 0xFFF0) == 0x1620)

@@ -320,6 +320,7 @@ typedef struct {
 } force_factory_anchors_t;
 #pragma pack(pop)
 /* Device identification info - stored separately from force anchors */
+#pragma pack(push, 1)
 typedef struct {
     uint16_t magic;
     uint8_t  version;
@@ -328,7 +329,11 @@ typedef struct {
     char     model_number[INV_MODEL_MAX_LEN];      // 16 bytes
     char     serial_number[INV_SERIAL_MAX_LEN];    // 16 bytes
     char     manufacture_date[DOM_ASCII_LEN + 1];  // 11 bytes
+    char     device_name[26];                       // 26 bytes (USB device name)
+    uint8_t  adc_pga[4];                            // 4 bytes - PGA gain for ADS1115 channels 0-3
+    uint8_t  adc_mode[4];                           // 4 bytes - 0=single-ended, 1=differential (pairs: 0-1, 2-3)
 } device_info_t;
+#pragma pack(pop)
 
 /******************** RUNTIME FORCE PROFILE (safe to reset) *******************
  * Lives in dev_config_t. If the user overwrites config without reading first,

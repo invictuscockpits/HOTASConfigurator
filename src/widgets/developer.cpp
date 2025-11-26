@@ -24,6 +24,16 @@ Developer::Developer(QWidget *parent)
     // Bind every Set button named "btnSet_*"
     bindSetButtons();
 
+    // Set default PGA values to match firmware defaults
+    // ComboBox indices: 0=PGA1, 1=PGA2, 2=PGA4, 3=PGA8, 4=PGA16
+    ui->comboBox_PGA_Ch0->setCurrentIndex(3);  // PGA 8 (±0.512V) for Ch0 (Roll)
+    ui->comboBox_PGA_Ch1->setCurrentIndex(2);  // PGA 4 (±1.024V) for Ch1
+    ui->comboBox_PGA_Ch2->setCurrentIndex(2);  // PGA 4 (±1.024V) for Ch2 (Pitch)
+    ui->comboBox_PGA_Ch3->setCurrentIndex(2);  // PGA 4 (±1.024V) for Ch3
+
+    // Set default Mode to match firmware default
+    // ComboBox indices: 0=Single-Ended, 1=Differential
+    ui->comboBox_ADCMode->setCurrentIndex(0);  // Single-Ended
 
     auto prepLine = [](QLineEdit* le){
         if (!le) return;
@@ -53,6 +63,8 @@ void Developer::initConnections()
     connect(ui->btnAnchorsImport, &QPushButton::clicked, this, &Developer::onImport);
     connect(ui->btnAnchorsExport, &QPushButton::clicked, this, &Developer::onExport);
     connect(ui->btnDeviceInfoWrite, &QPushButton::clicked, this, &Developer::onWriteDeviceInfo);
+    connect(ui->btnPGARead, &QPushButton::clicked, this, &Developer::onReadPGA);
+    connect(ui->btnPGAWrite, &QPushButton::clicked, this, &Developer::onWritePGA);
 
 }
 
@@ -660,12 +672,14 @@ void Developer::onWriteDeviceInfo()
     QString serial = ui->lineEdit_SerialNumber->text();
     QString model = ui->lineEdit_Model->text();
     QString date = ui->lineEdit_ManufactureDate->text();
+    QString deviceName = ui->comboBox_DeviceName->currentText();
 
     // Debug output
     qDebug() << "[Developer] Writing device info:";
     qDebug() << "  - Serial:" << serial;
     qDebug() << "  - Model:" << model;
     qDebug() << "  - Date:" << date;
+    qDebug() << "  - Device Name:" << deviceName;
     // Debug: show structure offsets
     //qDebug() << "  - magic offset:" << offsetof(device_info_t, magic);
     //qDebug() << "  - version offset:" << offsetof(device_info_t, version);
@@ -704,6 +718,7 @@ void Developer::onWriteDeviceInfo()
     QByteArray modelBytes = model.toLatin1();
     QByteArray serialBytes = serial.toLatin1();
     QByteArray dateBytes = date.toLatin1();
+    QByteArray deviceNameBytes = deviceName.toLatin1();
 
     memcpy(info.model_number, modelBytes.constData(),
            qMin(modelBytes.size(), (int)(INV_MODEL_MAX_LEN - 1)));
@@ -711,6 +726,21 @@ void Developer::onWriteDeviceInfo()
            qMin(serialBytes.size(), (int)(INV_SERIAL_MAX_LEN - 1)));
     memcpy(info.manufacture_date, dateBytes.constData(),
            qMin(dateBytes.size(), (int)DOM_ASCII_LEN));
+    memcpy(info.device_name, deviceNameBytes.constData(),
+           qMin(deviceNameBytes.size(), (int)(sizeof(info.device_name) - 1)));
+
+    // Get PGA values from combo boxes and convert to numeric gain values
+    // ComboBox indices: 0=PGA1, 1=PGA2, 2=PGA4, 3=PGA8, 4=PGA16
+    const uint8_t pgaValues[] = {1, 2, 4, 8, 16};
+    info.adc_pga[0] = pgaValues[ui->comboBox_PGA_Ch0->currentIndex()];
+    info.adc_pga[1] = pgaValues[ui->comboBox_PGA_Ch1->currentIndex()];
+    info.adc_pga[2] = pgaValues[ui->comboBox_PGA_Ch2->currentIndex()];
+    info.adc_pga[3] = pgaValues[ui->comboBox_PGA_Ch3->currentIndex()];
+
+    qDebug() << "  - PGA Ch0:" << info.adc_pga[0];
+    qDebug() << "  - PGA Ch1:" << info.adc_pga[1];
+    qDebug() << "  - PGA Ch2:" << info.adc_pga[2];
+    qDebug() << "  - PGA Ch3:" << info.adc_pga[3];
 
     // Send to device
     QByteArray payload((const char*)&info, sizeof(info));
@@ -805,6 +835,298 @@ void Developer::onWriteDeviceInfo()
         QMessageBox box(window());  // Use main window as parent
         box.setWindowTitle(tr("Device Info"));
         box.setText(tr("Unknown error code: %1").arg((int)(uint8_t)ack.at(0)));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+}
+
+void Developer::onReadPGA()
+{
+    if (!m_send || !m_recv) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Transport not set"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    // Read device info using 2-packet protocol
+    // Part 1: Read first 62 bytes
+    QByteArray readAck1;
+    if (!m_send(OP_GET_DEVICE_INFO, QByteArray()) || !m_recv(OP_GET_DEVICE_INFO, &readAck1)) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Failed to read device info"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    // Part 2: Read remaining 23 bytes
+    QByteArray readAck2;
+    if (!m_send(OP_GET_DEVICE_INFO_PART2, QByteArray()) || !m_recv(OP_GET_DEVICE_INFO_PART2, &readAck2)) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Failed to read device info part 2"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    if (readAck2.size() < 23) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Invalid device info part 2\nReceived: %1 bytes\nExpected: 23 bytes").arg(readAck2.size()));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    // Combine both parts into complete device_info_t (85 bytes total)
+    device_info_t info;
+    memset(&info, 0, sizeof(info));
+    memcpy((uint8_t*)&info, readAck1.constData(), 62);
+    memcpy((uint8_t*)&info + 62, readAck2.constData(), 23);
+
+    // Update UI with PGA values from device
+    // Map PGA values to combo box indices: 0=PGA1, 1=PGA2, 2=PGA4, 3=PGA8, 4=PGA16
+    auto pgaToIndex = [](uint8_t pga) -> int {
+        switch(pga) {
+            case 1: return 0;
+            case 2: return 1;
+            case 4: return 2;
+            case 8: return 3;
+            case 16: return 4;
+            default: return 2; // Default to PGA 4
+        }
+    };
+
+    ui->comboBox_PGA_Ch0->setCurrentIndex(pgaToIndex(info.adc_pga[0]));
+    ui->comboBox_PGA_Ch1->setCurrentIndex(pgaToIndex(info.adc_pga[1]));
+    ui->comboBox_PGA_Ch2->setCurrentIndex(pgaToIndex(info.adc_pga[2]));
+    ui->comboBox_PGA_Ch3->setCurrentIndex(pgaToIndex(info.adc_pga[3]));
+
+    // Update mode - assume all channels have same mode (we only check channel 0)
+    ui->comboBox_ADCMode->setCurrentIndex(info.adc_mode[0]);
+
+    qDebug() << "[Developer] Read PGA settings:";
+    qDebug() << "  - PGA Ch0:" << info.adc_pga[0];
+    qDebug() << "  - PGA Ch1:" << info.adc_pga[1];
+    qDebug() << "  - PGA Ch2:" << info.adc_pga[2];
+    qDebug() << "  - PGA Ch3:" << info.adc_pga[3];
+    qDebug() << "  - Mode:" << (info.adc_mode[0] == 0 ? "Single-Ended" : "Differential");
+
+    QMessageBox box(window());
+    box.setWindowTitle(tr("PGA Settings"));
+    box.setText(tr("PGA settings read successfully"));
+    box.setIcon(QMessageBox::NoIcon);
+    box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+    box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                     "QMessageBox QLabel { background-color: transparent; }");
+    box.setStandardButtons(QMessageBox::Ok);
+    box.exec();
+}
+
+void Developer::onWritePGA()
+{
+    if (!m_send || !m_recv) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Transport not set"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    // Read current device info from device using 2-packet protocol
+    // Part 1: Get first 62 bytes
+    QByteArray readAck1;
+    if (!m_send(OP_GET_DEVICE_INFO, QByteArray()) || !m_recv(OP_GET_DEVICE_INFO, &readAck1)) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Failed to read device info part 1"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    qDebug() << "[Developer] Device info part 1 size:" << readAck1.size() << "expected: 62";
+
+    if (readAck1.size() < 62) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Invalid device info part 1\nReceived: %1 bytes\nExpected: 62 bytes").arg(readAck1.size()));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    // Part 2: Get remaining 23 bytes
+    QByteArray readAck2;
+    if (!m_send(OP_GET_DEVICE_INFO_PART2, QByteArray()) || !m_recv(OP_GET_DEVICE_INFO_PART2, &readAck2)) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Failed to read device info part 2"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    qDebug() << "[Developer] Device info part 2 size:" << readAck2.size() << "expected: 23";
+
+    if (readAck2.size() < 23) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Invalid device info part 2\nReceived: %1 bytes\nExpected: 23 bytes").arg(readAck2.size()));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    // Combine both parts into complete device_info_t (85 bytes total)
+    device_info_t info;
+    memset(&info, 0, sizeof(info));
+    memcpy((uint8_t*)&info, readAck1.constData(), 62);
+    memcpy((uint8_t*)&info + 62, readAck2.constData(), 23);
+
+    // Update only PGA and Mode values from combo boxes
+    const uint8_t pgaValues[] = {1, 2, 4, 8, 16};
+    info.adc_pga[0] = pgaValues[ui->comboBox_PGA_Ch0->currentIndex()];
+    info.adc_pga[1] = pgaValues[ui->comboBox_PGA_Ch1->currentIndex()];
+    info.adc_pga[2] = pgaValues[ui->comboBox_PGA_Ch2->currentIndex()];
+    info.adc_pga[3] = pgaValues[ui->comboBox_PGA_Ch3->currentIndex()];
+
+    // Set all channels to same mode: 0=Single-Ended, 1=Differential
+    uint8_t mode = ui->comboBox_ADCMode->currentIndex();
+    info.adc_mode[0] = mode;
+    info.adc_mode[1] = mode;
+    info.adc_mode[2] = mode;
+    info.adc_mode[3] = mode;
+
+    qDebug() << "[Developer] Writing PGA settings:";
+    qDebug() << "  - PGA Ch0:" << info.adc_pga[0];
+    qDebug() << "  - PGA Ch1:" << info.adc_pga[1];
+    qDebug() << "  - PGA Ch2:" << info.adc_pga[2];
+    qDebug() << "  - PGA Ch3:" << info.adc_pga[3];
+    qDebug() << "  - Mode:" << (mode == 0 ? "Single-Ended" : "Differential");
+
+    // Send to device using 2-packet protocol
+    // Part 1: Send first 62 bytes
+    QByteArray payload1((const char*)&info, 62);
+    QByteArray ack1;
+
+    if (!m_send(OP_SET_DEVICE_INFO, payload1) || !m_recv(OP_SET_DEVICE_INFO, &ack1)) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Write part 1 failed"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    if (ack1.isEmpty() || ack1.at(0) != 1) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Device refused write part 1"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    // Part 2: Send remaining 23 bytes
+    QByteArray payload2((const char*)&info + 62, 23);
+    QByteArray ack2;
+
+    if (!m_send(OP_SET_DEVICE_INFO_PART2, payload2) || !m_recv(OP_SET_DEVICE_INFO_PART2, &ack2)) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Write part 2 failed"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
+
+    // Check final response
+    if (ack2.isEmpty() || ack2.at(0) == 0) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Device refused write (flash write failed or locked)"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    } else if (ack2.at(0) == 1) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("PGA settings written successfully.\nPower cycle device to apply changes."));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    } else {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("PGA Settings"));
+        box.setText(tr("Error code: %1").arg((int)(uint8_t)ack2.at(0)));
         box.setIcon(QMessageBox::NoIcon);
         box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
         box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"

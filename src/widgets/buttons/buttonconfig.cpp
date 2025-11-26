@@ -198,11 +198,14 @@ void ButtonConfig::physButtonsCreator(int count)
 
 void ButtonConfig::functionTypeChanged(button_type_t current, button_type_t previous, int buttonIndex)
 {
+    Q_UNUSED(buttonIndex);
     typeLimit(current, previous);
 }
 
 void ButtonConfig::typeLimit(button_type_t current, button_type_t previous)
 {
+    Q_UNUSED(current);
+    Q_UNUSED(previous);
     // Button type limits removed (encoder support removed)
 }
 

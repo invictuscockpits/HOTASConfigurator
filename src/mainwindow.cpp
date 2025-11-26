@@ -1086,14 +1086,6 @@ void MainWindow::configReceived(bool success)
     static QString button_default_text = ui->pushButton_ReadConfig->text();    //????????????????????????
     if (success == true)
     {
-
-        // === DEBUG: show what the GUI actually received from the device ===
-        auto &dev = gEnv.pDeviceConfig->config;
-        for (int i = 0; i < MAX_AXIS_NUM; ++i) {
-
-
-        }
-
         UiReadFromConfig();
         // curves pointer activated
         m_axesCurvesConfig->deviceStatus(true);
@@ -1944,6 +1936,10 @@ void MainWindow::setDeveloperMode(bool on)
         ui->tabWidget->setTabVisible(pinTabIndex, on);
     }
 
+    // Show/hide raw output bars in axes based on developer mode
+    if (m_axesConfig) {
+        m_axesConfig->setAllAxesRawVisible(on);
+    }
 
     setAdvancedMode(on);
 }
@@ -2000,10 +1996,10 @@ void MainWindow::applyBoardPreset(BoardId id, bool applyPinDefaults)
     constexpr int AXIS_Y = 1;
 
     // Axes:: enum values (private there), mirrored here:
-    constexpr int SRC_ENCODER = -3;
-    constexpr int SRC_I2C     = -2;
-    constexpr int SRC_NONE    = -1;
-    constexpr int SRC_A1      = 1;   // None=-1, Encoder=-3, I2C=-2, A0=0, A1=1, ...
+    constexpr int SRC_I2C  = -2;
+    constexpr int SRC_NONE = -1;
+    constexpr int SRC_A1   = 1;   // None=-1, I2C=-2, A0=0, A1=1, ...
+    Q_UNUSED(SRC_NONE);  // Kept for reference/documentation
 
     if (id == BoardId::VftControllerGen3) {
         // Must explicitly select "A1 – MCP3202" for both X and Y

@@ -105,7 +105,12 @@ void AxesConfig::setAxisHidden(int index, bool hidden)
     m_hideChBoxes[index]->setChecked(hidden);
 }
 
-
+void AxesConfig::setAllAxesRawVisible(bool visible)
+{
+    for (int i = 0; i < m_axesPtrList.size(); i++) {
+        m_axesPtrList[i]->setRawVisible(visible);
+    }
+}
 
 void AxesConfig::readFromConfig()
 {
