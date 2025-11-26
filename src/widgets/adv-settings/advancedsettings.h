@@ -47,16 +47,12 @@ signals:
 
 
 private slots:
-    void on_pushButton_LangEnglish_clicked();
-    void on_pushButton_LangRussian_clicked();
-    void on_pushButton_LangSChinese_clicked();
+    void on_comboBox_Language_currentIndexChanged(int index);
 
     void on_spinBox_FontSize_valueChanged(int fontSize);
     void on_pushButton_About_clicked();
 
     void on_pushButton_RestartApp_clicked();
-
-    void on_pushButton_LangDeutsch_clicked();
 
     void on_pushButton_CheckUpdates_clicked();
     void on_pushButton_CheckFirmware_clicked();

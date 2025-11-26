@@ -11,6 +11,7 @@
 #include "global.h"
 #include <QDebug>
 #include <QStandardPaths>
+#include "adv-settings/text_fit_helpers.h"
 DebugWindow::DebugWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::DebugWindow)
@@ -39,6 +40,7 @@ DebugWindow::~DebugWindow()
 void DebugWindow::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
 }
 
 void DebugWindow::devicePacketReceived()

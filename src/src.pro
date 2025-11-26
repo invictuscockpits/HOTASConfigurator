@@ -150,7 +150,17 @@ FORMS += \
 TRANSLATIONS += \
     Russian.ts \
     Chinese.ts \
-    German.ts
+    German.ts \
+    Dutch.ts \
+    Korean.ts \
+    French.ts \
+    Spanish_LA.ts \
+    Spanish_EU.ts \
+    Italian.ts \
+    Polish.ts \
+    Portuguese_BR.ts \
+    Japanese.ts \
+    Turkish.ts
 
 
 # Default rules for deployment.

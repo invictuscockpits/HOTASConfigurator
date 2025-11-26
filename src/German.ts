@@ -14,52 +14,57 @@
         <translation>Anwendungseinstellungen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="62"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="50"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="75"/>
         <source>Check for Software Updates</source>
         <translation>Nach Software-Updates suchen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="81"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="94"/>
         <source>Check for Firmware Update</source>
         <translation>Nach Firmware-Update suchen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="174"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="187"/>
         <source>Restart Application</source>
         <translation>Anwendung neu starten</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="193"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="206"/>
         <source>About HOTAS Configurator</source>
         <translation>Über HOTAS Konfigurator</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="361"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="314"/>
         <source>Firmware flasher</source>
         <translation>Firmware-Flasher</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="382"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="335"/>
         <source>Device Information</source>
         <translation>Geräteinformationen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="434"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="387"/>
         <source>Model:</source>
         <translation>Modell:</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="447"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="400"/>
         <source>Serial #:</source>
         <translation>Seriennummer:</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="460"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="413"/>
         <source>Date of Manufacture:</source>
         <translation>Herstellungsdatum:</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="473"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="426"/>
         <source>Firmware Version:</source>
         <translation>Firmware-Version:</translation>
     </message>
@@ -68,7 +73,7 @@
         <translation type="vanished">USB Einstellungen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="143"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="156"/>
         <source> ms</source>
         <translation>ms</translation>
     </message>
@@ -85,7 +90,7 @@
         <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Einige Werte funktionieren möglicherweise nicht auf einigen Betriebssystemen (z. B. PID 5750 auf Ubuntu). Nach Auswahl des falschen Werts muss der Controller mit ST-Link/UART neu geflasht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="100"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="113"/>
         <source>USB exchange period</source>
         <translation>USB-Austauschperiode</translation>
     </message>
@@ -114,7 +119,7 @@
         <translation type="vanished">Sprachen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="171"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="184"/>
         <source>Restart for full changes</source>
         <translation>Neustart für vollständige Änderungen</translation>
     </message>
@@ -131,7 +136,7 @@
         <translation type="vanished">Über </translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="212"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="225"/>
         <source>Font size</source>
         <translation>Schriftgröße</translation>
     </message>
@@ -154,7 +159,7 @@
         <translation type="vanished">Über Invictus HOTAS Konfigurator</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="116"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="160"/>
         <source>Device Info Error</source>
         <translation>Geräteinformationsfehler</translation>
     </message>
@@ -175,138 +180,158 @@
         <translation type="vanished">Datum muss im Format JJJJ-MM-TT sein</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="237"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="293"/>
         <source>
         &lt;p&gt;Source code available under GPLv3 on
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
         &lt;p&gt;This software and firmware are based on
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;.
         We highly recommend starting there if you&apos;re building something similar.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>
+        &lt;p&gt;Quellcode verfügbar unter GPLv3 auf
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;Diese Software und Firmware basieren auf
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;.
+        Wir empfehlen dringend, dort zu beginnen, wenn Sie etwas Ähnliches entwickeln.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="244"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="300"/>
         <source>
         &lt;p&gt;Visit our
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;wiki&lt;/a&gt;
         for detailed instructions.&lt;/p&gt;
         &lt;/div&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>
+        &lt;p&gt;Besuchen Sie unser
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;Wiki&lt;/a&gt;
+        für detaillierte Anweisungen.&lt;/p&gt;
+        &lt;/div&gt;</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="274"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="315"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="326"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="400"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="432"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="330"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="371"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="382"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="456"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="488"/>
         <source>Update Check</source>
         <translation>Update-Prüfung</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="275"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="331"/>
         <source>Update check is only implemented for Windows in this build.</source>
         <translation>Update-Prüfung ist in diesem Build nur für Windows implementiert.</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="316"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="514"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="372"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="570"/>
         <source>WinHTTP initialization failed (error %1).</source>
         <translation>WinHTTP-Initialisierung fehlgeschlagen (Fehler %1).</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="327"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="383"/>
         <source>Network connect failed (error %1).</source>
         <translation>Netzwerkverbindung fehlgeschlagen (Fehler %1).</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="401"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="556"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="457"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="612"/>
         <source>GitHub returned HTTP %1.</source>
         <translation>GitHub hat HTTP %1 zurückgegeben.</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="432"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="586"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="488"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="642"/>
         <source>No releases found.</source>
         <translation>Keine Releases gefunden.</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="451"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="507"/>
         <source>Up to date</source>
         <translation>Aktuell</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="452"/>
-        <source>You’re on the latest version (%1).</source>
-        <translation type="unfinished"></translation>
+        <source>You&apos;re on the latest version (%1).</source>
+        <translation type="vanished">Sie haben die neueste Version (%1).</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="465"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="508"/>
+        <source>You're on the latest version (%1).</source>
+        <translation>Sie haben die neueste Version (%1).</translation>
+    </message>
+    <message>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="521"/>
         <source>Update available</source>
         <translation>Update verfügbar</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="466"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="522"/>
         <source>A newer version is available: %1
 You have: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine neuere Version ist verfügbar: %1
+Sie haben: %2</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="468"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="524"/>
         <source>Open the release page to download?</source>
         <translation>Release-Seite zum Herunterladen öffnen?</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="473"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="529"/>
         <source>Don&apos;t remind me again for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht erneut an %1 erinnern</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="475"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="658"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="531"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="714"/>
         <source>Open GitHub</source>
         <translation>GitHub öffnen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="514"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="518"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="556"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="586"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="640"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="671"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="570"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="574"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="612"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="642"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="696"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="727"/>
         <source>Firmware Update</source>
         <translation>Firmware-Update</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="518"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="574"/>
         <source>Connect failed (error %1).</source>
         <translation>Verbindung fehlgeschlagen (Fehler %1).</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="640"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="696"/>
         <source>Your device firmware is up to date (%1).</source>
         <translation>Ihre Geräte-Firmware ist aktuell (%1).</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="651"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="707"/>
         <source>Firmware update available</source>
         <translation>Firmware-Update verfügbar</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="652"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="708"/>
         <source>A newer firmware is available: %1
 Device has: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine neuere Firmware ist verfügbar: %1
+Gerät hat: %2</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="653"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="709"/>
         <source>Open the firmware release page?</source>
         <translation>Firmware-Release-Seite öffnen?</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="672"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="728"/>
         <source>Firmware update check is only implemented for Windows in this build.</source>
         <translation>Firmware-Update-Prüfung ist in diesem Build nur für Windows implementiert.</translation>
+    </message>
+    <message>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="297"/>
+        <source>Translations were AI-generated. Please report issues on GitHub.</source>
+        <translation>Übersetzungen wurden KI-generiert. Bitte melden Sie Probleme auf GitHub.</translation>
     </message>
 </context>
 <context>
@@ -388,12 +413,12 @@ Device has: %2</source>
         <translation>Quelle der Achsen</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axes.cpp" line="18"/>
+        <location filename="widgets/axes/axes.cpp" line="19"/>
         <source>Slider 1</source>
         <translation>Schieberegler 1</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axes.cpp" line="19"/>
+        <location filename="widgets/axes/axes.cpp" line="20"/>
         <source>Slider 2</source>
         <translation>Schieberegler 2</translation>
     </message>
@@ -403,16 +428,14 @@ Device has: %2</source>
         <translation>Anhalten &amp;&amp; Speichern</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axes.h" line="115"/>
-        <location filename="widgets/axes/axes.h" line="152"/>
+        <location filename="widgets/axes/axes.h" line="114"/>
+        <location filename="widgets/axes/axes.h" line="150"/>
         <source>None</source>
         <translation>Keine</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axes.h" line="116"/>
-        <location filename="widgets/axes/axes.h" line="153"/>
         <source>Encoder</source>
-        <translation>Drehgeber</translation>
+        <translation type="vanished">Drehgeber</translation>
     </message>
 </context>
 <context>
@@ -491,7 +514,6 @@ Device has: %2</source>
     <message>
         <location filename="widgets/axes-curves/axescurvesconfig.ui" line="79"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Curve profiles are saves in the application configuration.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; sets profile to the current value of the curve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - resets profile value.&lt;/p&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; for multiple selection.&lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;drag&lt;/span&gt; curves with the &lt;span style=&quot; font-weight:600;&quot;&gt;mouse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Curve profiles are saved in the application configuration.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; sets the profile to the current value of the curve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - resets the profile value.&lt;/p&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; for multiple selection.&lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;drag&lt;/span&gt; curves with the &lt;span style=&quot; font-weight:600;&quot;&gt;mouse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kurvenprofile werden in der Anwendungskonfiguration gespeichert.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt;Setzt das Profil auf den aktuellen Wert der Kurve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - Setzt den Profilwert zurück.&lt;/p&gt;&lt;p&gt;Nutze &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; für Mehrfachauswahl.&lt;/p&gt;&lt;p&gt;Sie können &lt;span style=&quot; font-weight:600;&quot;&gt;ziehen&lt;/span&gt; Kurven mit der &lt;span style=&quot; font-weight:600;&quot;&gt;Maus.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
@@ -508,47 +530,47 @@ Device has: %2</source>
         <translation>Setzen</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="28"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="29"/>
         <source>Set current axis curve to this preset</source>
         <translation>Aktuelle Achsenkurve auf diese Voreinstellung setzen</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="92"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="94"/>
         <source>Reset to Linear</source>
         <translation>Zurücksetzen auf Linear</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="110"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="112"/>
         <source>Reset to Linear Invert</source>
         <translation>Zurücksetzen auf Linear Invertieren</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="139"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="141"/>
         <source>Reset to Exponent</source>
         <translation>Auf Exponent zurücksetzen</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="168"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="170"/>
         <source>Reset to Exponent Invert</source>
         <translation>Zurücksetzen auf Exponent Invertieren</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="176"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="178"/>
         <source>Reset to Shape</source>
         <translation>Auf Form zurücksetzen</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="184"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="186"/>
         <source>Reset to Shape2</source>
         <translation>Auf Form zurücksetzen2</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="192"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="194"/>
         <source>Reset to Pulse</source>
         <translation>Zurücksetzen auf Impuls</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="200"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="202"/>
         <source>Reset to no Pulse</source>
         <translation>Zurücksetzen auf keinen Impuls</translation>
     </message>
@@ -644,8 +666,8 @@ Device has: %2</source>
         <translation type="vanished">Dynamische Totzone</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axesextended.cpp" line="53"/>
-        <location filename="widgets/axes/axesextended.cpp" line="80"/>
+        <location filename="widgets/axes/axesextended.cpp" line="54"/>
+        <location filename="widgets/axes/axesextended.cpp" line="82"/>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
@@ -898,20 +920,17 @@ Device has: %2</source>
     <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="829"/>
         <source>Debounce Timer</source>
-        <oldsource>Debounce timer</oldsource>
-        <translation type="unfinished">Entprell-Timer</translation>
+        <translation>Entprell-Timer</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="905"/>
         <source>Axes to buttons Timer</source>
-        <oldsource>Axes to buttons timer</oldsource>
-        <translation type="unfinished">Achsen zu Schaltflächen-Timer</translation>
+        <translation>Achsen zu Schaltflächen-Timer</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="981"/>
         <source>Encoder press Timer</source>
-        <oldsource>Encoder press timer</oldsource>
-        <translation type="unfinished">Encoder-Press-Timer</translation>
+        <translation>Encoder-Press-Timer</translation>
     </message>
 </context>
 <context>
@@ -1155,42 +1174,40 @@ Device has: %2</source>
         <translation type="vanished">POV4 Links</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="120"/>
         <source>Encoder A</source>
-        <translation>Drehgeber A</translation>
+        <translation type="vanished">Drehgeber A</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="121"/>
         <source>Encoder B</source>
-        <translation>Drehgeber B</translation>
+        <translation type="vanished">Drehgeber B</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="122"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="120"/>
         <source>Radio button 1</source>
         <translation>Radio Taste 1</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="123"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="121"/>
         <source>Radio button 2</source>
         <translation>Radio Taste 2</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="124"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="122"/>
         <source>Radio button 3</source>
         <translation>Radio Taste 3</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="125"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="123"/>
         <source>Radio button 4</source>
         <translation>Radio Taste 4</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="126"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="124"/>
         <source>Sequential toggle</source>
         <translation>Sequentieller Kipper</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="127"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="125"/>
         <source>Sequential button</source>
         <translation>Sequentieller Taster</translation>
     </message>
@@ -1320,7 +1337,7 @@ Device has: %2</source>
     </message>
     <message>
         <location filename="widgets/debugwindow.ui" line="115"/>
-        <location filename="widgets/debugwindow.cpp" line="74"/>
+        <location filename="widgets/debugwindow.cpp" line="76"/>
         <source>0 ms</source>
         <translation>0 ms</translation>
     </message>
@@ -1340,26 +1357,25 @@ Device has: %2</source>
         <translation>Tastenprotokoll löschen</translation>
     </message>
     <message>
-        <location filename="widgets/debugwindow.cpp" line="59"/>
+        <location filename="widgets/debugwindow.cpp" line="61"/>
         <source> ms</source>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="widgets/debugwindow.cpp" line="101"/>
-        <location filename="widgets/debugwindow.cpp" line="107"/>
+        <location filename="widgets/debugwindow.cpp" line="103"/>
+        <location filename="widgets/debugwindow.cpp" line="109"/>
         <source>Logical button </source>
         <translation>Logische Taster</translation>
     </message>
     <message>
-        <location filename="widgets/debugwindow.cpp" line="102"/>
+        <location filename="widgets/debugwindow.cpp" line="104"/>
         <source> pressed</source>
         <translation> gedrückt</translation>
     </message>
     <message>
-        <location filename="widgets/debugwindow.cpp" line="108"/>
+        <location filename="widgets/debugwindow.cpp" line="110"/>
         <source> released</source>
-        <oldsource> unpressed</oldsource>
-        <translation type="unfinished"> ungepresst</translation>
+        <translation> losgelassen</translation>
     </message>
 </context>
 <context>
@@ -1367,7 +1383,7 @@ Device has: %2</source>
     <message>
         <location filename="widgets/developer.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="32"/>
@@ -1400,6 +1416,10 @@ Device has: %2</source>
         <translation>75% (12,75 lbf)</translation>
     </message>
     <message>
+        <source>Set Anchor</source>
+        <translation type="vanished">Anker setzen</translation>
+    </message>
+    <message>
         <location filename="widgets/developer.ui" line="221"/>
         <location filename="widgets/developer.ui" line="240"/>
         <location filename="widgets/developer.ui" line="259"/>
@@ -1415,8 +1435,8 @@ Device has: %2</source>
         <location filename="widgets/developer.ui" line="1179"/>
         <location filename="widgets/developer.ui" line="1198"/>
         <location filename="widgets/developer.ui" line="1217"/>
-        <source>Set Anchor</source>
-        <translation>Anker setzen</translation>
+        <source>Set</source>
+        <translation>Setzen</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="282"/>
@@ -1495,30 +1515,32 @@ Device has: %2</source>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1326"/>
-        <source>Read Force Anchors from Device</source>
-        <translation>Kraftanker vom Gerät lesen</translation>
+        <source>Read Force Anchors</source>
+        <translation>Kraftanker lesen</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1339"/>
-        <source>Write Force Anchors to Device</source>
-        <translation>Kraftanker auf Gerät schreiben</translation>
+        <source>Write Force Anchors</source>
+        <translation>Kraftanker schreiben</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1352"/>
-        <location filename="widgets/developer.cpp" line="349"/>
-        <location filename="widgets/developer.cpp" line="525"/>
+        <location filename="widgets/developer.cpp" line="350"/>
+        <location filename="widgets/developer.cpp" line="526"/>
         <source>Lock Force Anchors</source>
         <translation>Kraftanker sperren</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1365"/>
-        <source>Import Force Anchors from File</source>
-        <translation>Kraftanker aus Datei importieren</translation>
+        <location filename="widgets/developer.cpp" line="898"/>
+        <source>Import Force Anchors</source>
+        <translation>Kraftanker importieren</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1378"/>
-        <source>Export Force Anchors to File</source>
-        <translation>Kraftanker in Datei exportieren</translation>
+        <location filename="widgets/developer.cpp" line="827"/>
+        <source>Export Force Anchors</source>
+        <translation>Kraftanker exportieren</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1392"/>
@@ -1546,46 +1568,42 @@ Device has: %2</source>
         <translation>Seriennummer: </translation>
     </message>
     <message>
-        <source>Device USB name:</source>
-        <translation>USB-Gerätename:</translation>
-    </message>
-    <message>
         <location filename="widgets/developer.ui" line="1464"/>
         <source>Write Device Identity</source>
         <translation>Geräteidentität schreiben</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="311"/>
-        <location filename="widgets/developer.cpp" line="326"/>
-        <location filename="widgets/developer.cpp" line="437"/>
-        <location filename="widgets/developer.cpp" line="455"/>
-        <location filename="widgets/developer.cpp" line="489"/>
-        <location filename="widgets/developer.cpp" line="505"/>
-        <location filename="widgets/developer.cpp" line="528"/>
-        <location filename="widgets/developer.cpp" line="542"/>
-        <location filename="widgets/developer.cpp" line="553"/>
-        <location filename="widgets/developer.cpp" line="566"/>
+        <location filename="widgets/developer.cpp" line="312"/>
+        <location filename="widgets/developer.cpp" line="327"/>
+        <location filename="widgets/developer.cpp" line="438"/>
+        <location filename="widgets/developer.cpp" line="456"/>
+        <location filename="widgets/developer.cpp" line="490"/>
+        <location filename="widgets/developer.cpp" line="506"/>
+        <location filename="widgets/developer.cpp" line="529"/>
+        <location filename="widgets/developer.cpp" line="543"/>
+        <location filename="widgets/developer.cpp" line="554"/>
+        <location filename="widgets/developer.cpp" line="567"/>
         <source>Force Anchors</source>
         <translation>Kraftanker</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="312"/>
+        <location filename="widgets/developer.cpp" line="313"/>
         <source>Factory anchors missing; using calibration defaults.</source>
         <translation>Werksanker fehlen; verwende Kalibrierungsstandards.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="327"/>
+        <location filename="widgets/developer.cpp" line="328"/>
         <source>Unable to read anchors and no fallback available.</source>
         <translation>Anker können nicht gelesen werden und kein Fallback verfügbar.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="345"/>
-        <location filename="widgets/developer.cpp" line="539"/>
+        <location filename="widgets/developer.cpp" line="346"/>
+        <location filename="widgets/developer.cpp" line="540"/>
         <source>Unlock Force Anchors</source>
         <translation>Kraftanker entsperren</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="438"/>
+        <location filename="widgets/developer.cpp" line="439"/>
         <source>Transport not set.</source>
         <translation>Transport nicht gesetzt.</translation>
     </message>
@@ -1598,7 +1616,7 @@ Device has: %2</source>
         <translation type="vanished">Gerät hat Sperrung abgelehnt.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="543"/>
+        <location filename="widgets/developer.cpp" line="544"/>
         <source>Anchors locked.</source>
         <translation>Anker gesperrt.</translation>
     </message>
@@ -1611,174 +1629,164 @@ Device has: %2</source>
         <translation type="vanished">Sperr-ACK OK, aber Anker können nicht gelesen/geparst werden.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="456"/>
+        <location filename="widgets/developer.cpp" line="457"/>
         <source>Unable to read current anchor state.</source>
         <translation>Aktueller Ankerzustand konnte nicht gelesen werden.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="468"/>
+        <location filename="widgets/developer.cpp" line="469"/>
         <source>unlock</source>
         <translation>entsperren</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="468"/>
+        <location filename="widgets/developer.cpp" line="469"/>
         <source>lock</source>
         <translation>sperren</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="490"/>
+        <location filename="widgets/developer.cpp" line="491"/>
         <source>Failed to %1 anchors (no reply).</source>
         <translation>Fehler beim %1 der Anker (keine Antwort).</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="506"/>
+        <location filename="widgets/developer.cpp" line="507"/>
         <source>Device refused %1.</source>
         <translation>Gerät hat %1 verweigert.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="529"/>
+        <location filename="widgets/developer.cpp" line="530"/>
         <source>Anchors unlocked.</source>
         <translation>Anker entsperrt.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="554"/>
+        <location filename="widgets/developer.cpp" line="555"/>
         <source>Operation acknowledged but sealed flag did not change.</source>
         <translation>Operation bestätigt, aber Versiegelungsflag hat sich nicht geändert.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="567"/>
+        <location filename="widgets/developer.cpp" line="568"/>
         <source>Operation acknowledged but unable to read/parse anchors.</source>
         <translation>Operation bestätigt, aber Anker konnten nicht gelesen/analysiert werden.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="648"/>
-        <location filename="widgets/developer.cpp" line="680"/>
-        <location filename="widgets/developer.cpp" line="723"/>
-        <location filename="widgets/developer.cpp" line="751"/>
-        <location filename="widgets/developer.cpp" line="762"/>
-        <location filename="widgets/developer.cpp" line="773"/>
-        <location filename="widgets/developer.cpp" line="784"/>
-        <location filename="widgets/developer.cpp" line="795"/>
-        <location filename="widgets/developer.cpp" line="806"/>
+        <location filename="widgets/developer.cpp" line="649"/>
+        <location filename="widgets/developer.cpp" line="681"/>
+        <location filename="widgets/developer.cpp" line="724"/>
+        <location filename="widgets/developer.cpp" line="752"/>
+        <location filename="widgets/developer.cpp" line="763"/>
+        <location filename="widgets/developer.cpp" line="774"/>
+        <location filename="widgets/developer.cpp" line="785"/>
+        <location filename="widgets/developer.cpp" line="796"/>
+        <location filename="widgets/developer.cpp" line="807"/>
         <source>Device Info</source>
         <translation>Geräteinfo</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="373"/>
-        <location filename="widgets/developer.cpp" line="649"/>
+        <location filename="widgets/developer.cpp" line="374"/>
+        <location filename="widgets/developer.cpp" line="650"/>
         <source>Transport not set</source>
         <translation>Transport nicht gesetzt</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="681"/>
+        <location filename="widgets/developer.cpp" line="682"/>
         <source>Date must be in YYYY-MM-DD format</source>
         <translation>Datum muss im Format JJJJ-MM-TT sein</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="413"/>
-        <location filename="widgets/developer.cpp" line="724"/>
+        <location filename="widgets/developer.cpp" line="414"/>
+        <location filename="widgets/developer.cpp" line="725"/>
         <source>Write failed</source>
         <translation>Schreiben fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="392"/>
+        <location filename="widgets/developer.cpp" line="393"/>
         <source>Anchors are locked; writing is not allowed.</source>
         <translation>Anker sind gesperrt; Schreiben ist nicht erlaubt.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="425"/>
+        <location filename="widgets/developer.cpp" line="426"/>
         <source>Anchors written.</source>
         <translation>Anker geschrieben.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="752"/>
+        <location filename="widgets/developer.cpp" line="753"/>
         <source>Device refused write (unknown error)</source>
         <translation>Gerät hat Schreiben abgelehnt (unbekannter Fehler)</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="763"/>
+        <location filename="widgets/developer.cpp" line="764"/>
         <source>Device info written successfully</source>
         <translation>Geräteinfo erfolgreich geschrieben</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="774"/>
+        <location filename="widgets/developer.cpp" line="775"/>
         <source>Device info is locked</source>
         <translation>Geräteinfo ist gesperrt</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="785"/>
+        <location filename="widgets/developer.cpp" line="786"/>
         <source>Invalid payload size</source>
         <translation>Ungültige Nutzlastgröße</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="796"/>
+        <location filename="widgets/developer.cpp" line="797"/>
         <source>Flash write failed</source>
         <translation>Flash-Schreiben fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="807"/>
+        <location filename="widgets/developer.cpp" line="808"/>
         <source>Unknown error code: %1</source>
         <translation>Unbekannter Fehlercode: %1</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="826"/>
-        <source>Export Force Anchors</source>
-        <translation>Kraftanker exportieren</translation>
-    </message>
-    <message>
-        <location filename="widgets/developer.cpp" line="828"/>
-        <location filename="widgets/developer.cpp" line="899"/>
+        <location filename="widgets/developer.cpp" line="829"/>
+        <location filename="widgets/developer.cpp" line="900"/>
         <source>JSON Files (*.json);;All Files (*)</source>
         <translation>JSON-Dateien (*.json);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="866"/>
+        <location filename="widgets/developer.cpp" line="867"/>
         <source>Export Failed</source>
         <translation>Export fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="867"/>
+        <location filename="widgets/developer.cpp" line="868"/>
         <source>Could not open file for writing: %1</source>
         <translation>Datei konnte nicht zum Schreiben geöffnet werden: %1</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="882"/>
+        <location filename="widgets/developer.cpp" line="883"/>
         <source>Export Successful</source>
         <translation>Export erfolgreich</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="883"/>
+        <location filename="widgets/developer.cpp" line="884"/>
         <source>Force anchors exported successfully.</source>
         <translation>Kraftanker erfolgreich exportiert.</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="897"/>
-        <source>Import Force Anchors</source>
-        <translation>Kraftanker importieren</translation>
-    </message>
-    <message>
-        <location filename="widgets/developer.cpp" line="910"/>
-        <location filename="widgets/developer.cpp" line="929"/>
+        <location filename="widgets/developer.cpp" line="911"/>
+        <location filename="widgets/developer.cpp" line="930"/>
         <source>Import Failed</source>
         <translation>Import fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="911"/>
+        <location filename="widgets/developer.cpp" line="912"/>
         <source>Could not open file for reading: %1</source>
         <translation>Datei konnte nicht zum Lesen geöffnet werden: %1</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="930"/>
+        <location filename="widgets/developer.cpp" line="931"/>
         <source>Failed to parse JSON: %1</source>
         <translation>JSON-Analyse fehlgeschlagen: %1</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="981"/>
+        <location filename="widgets/developer.cpp" line="982"/>
         <source>Import Successful</source>
         <translation>Import erfolgreich</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="982"/>
+        <location filename="widgets/developer.cpp" line="983"/>
         <source>Force anchors imported successfully.
 Remember to write to device if you want to save these values.</source>
         <translation>Kraftanker erfolgreich importiert.
@@ -1788,107 +1796,83 @@ Denken Sie daran, auf das Gerät zu schreiben, wenn Sie diese Werte speichern m�
 <context>
     <name>Encoders</name>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="20"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="vanished">Form</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="60"/>
-        <location filename="widgets/encoders/encoders.ui" line="99"/>
-        <location filename="widgets/encoders/encoders.cpp" line="11"/>
         <source>Not defined</source>
-        <translation>Nicht definiert</translation>
+        <translation type="vanished">Nicht definiert</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="73"/>
         <source>Encoder type</source>
-        <translation>Drehgeber-Typ</translation>
+        <translation type="vanished">Drehgeber-Typ</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="86"/>
         <source>Input A</source>
-        <translation>Eingabe A</translation>
+        <translation type="vanished">Eingabe A</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="125"/>
         <source>Input B</source>
-        <translation>Eingabe B</translation>
+        <translation type="vanished">Eingabe B</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.cpp" line="47"/>
-        <location filename="widgets/encoders/encoders.cpp" line="60"/>
         <source>Button № %1</source>
-        <translation>Taster № %1</translation>
+        <translation type="vanished">Taster № %1</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.h" line="45"/>
         <source>Encoder 1x</source>
-        <translation>Drehgeber 1x</translation>
+        <translation type="vanished">Drehgeber 1x</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.h" line="46"/>
         <source>Encoder 2x</source>
-        <translation>Drehgeber 2x</translation>
+        <translation type="vanished">Drehgeber 2x</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.h" line="47"/>
         <source>Encoder 4x</source>
-        <translation>Drehgeber 4x</translation>
+        <translation type="vanished">Drehgeber 4x</translation>
     </message>
 </context>
 <context>
     <name>EncodersConfig</name>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="vanished">Form</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="71"/>
         <source>Fast encoder</source>
-        <translation>Schneller Drehgeber</translation>
+        <translation type="vanished">Schneller Drehgeber</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="105"/>
         <source>Fast encoder input A</source>
-        <translation>Schneller Drehgebereingang A</translation>
+        <translation type="vanished">Schneller Drehgebereingang A</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="118"/>
         <source>Fast encoder input B</source>
-        <translation>Schneller Drehgebereingang B</translation>
+        <translation type="vanished">Schneller Drehgebereingang B</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="131"/>
         <source>Encoder type</source>
-        <translation>Drehgeber Typ</translation>
+        <translation type="vanished">Drehgeber Typ</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="157"/>
-        <location filename="widgets/encoders/encodersconfig.ui" line="170"/>
-        <location filename="widgets/encoders/encodersconfig.cpp" line="13"/>
         <source>Not defined</source>
-        <translation>Nicht definiert</translation>
+        <translation type="vanished">Nicht definiert</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="193"/>
         <source>Slow encoders</source>
-        <translation>Langsame Drehgeber</translation>
+        <translation type="vanished">Langsame Drehgeber</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.h" line="46"/>
         <source>Encoder 1x</source>
-        <translation>Drehgeber 1x</translation>
+        <translation type="vanished">Drehgeber 1x</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.h" line="47"/>
         <source>Encoder 2x</source>
-        <translation>Drehgeber 2x</translation>
+        <translation type="vanished">Drehgeber 2x</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.h" line="48"/>
         <source>Encoder 4x</source>
-        <translation>Drehgeber 4x</translation>
+        <translation type="vanished">Drehgeber 4x</translation>
     </message>
 </context>
 <context>
@@ -1909,47 +1893,47 @@ Denken Sie daran, auf das Gerät zu schreiben, wenn Sie diese Werte speichern m�
         <translation>Firmware flashen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="48"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="50"/>
         <source>Ready to flash</source>
         <translation>Bereit zum Flashen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="63"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="65"/>
         <source>Open Config</source>
         <translation>Konfig öffnen</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="63"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="65"/>
         <source>Binary files (.bin) (*.bin)</source>
         <translation>Binäre Dateien (.bin) (*.bin)</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="86"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="88"/>
         <source>Firmware flashing..</source>
         <translation>Firmware flashen..</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="90"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="92"/>
         <source>Finished</source>
         <translation>Fertig</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="95"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="97"/>
         <source>SIZE ERROR</source>
         <translation>GRÖSSENFEHLER</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="100"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="102"/>
         <source>CRC ERROR</source>
         <translation>CRC-FEHLER</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="105"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="107"/>
         <source>ERASE ERROR</source>
         <translation>LÖSCHEN-FEHLER</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="110"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="112"/>
         <source>ERROR</source>
         <translation>FEHLER</translation>
     </message>
@@ -1957,80 +1941,63 @@ Denken Sie daran, auf das Gerät zu schreiben, wenn Sie diese Werte speichern m�
 <context>
     <name>LED</name>
     <message>
-        <location filename="widgets/led/led.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="vanished">Form</translation>
     </message>
     <message>
-        <location filename="widgets/led/led.h" line="40"/>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="vanished">Normal</translation>
     </message>
     <message>
-        <location filename="widgets/led/led.h" line="41"/>
         <source>Inverted</source>
-        <translation>Invertiert</translation>
+        <translation type="vanished">Invertiert</translation>
     </message>
 </context>
 <context>
     <name>LedConfig</name>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation type="vanished">Form</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="32"/>
         <source>PWM</source>
-        <translation>PWM</translation>
+        <translation type="vanished">PWM</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="50"/>
         <source>Pin PA8</source>
-        <translation>Pin PA8</translation>
+        <translation type="vanished">Pin PA8</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="89"/>
-        <location filename="widgets/led/ledconfig.ui" line="153"/>
-        <location filename="widgets/led/ledconfig.ui" line="217"/>
-        <location filename="widgets/led/ledconfig.ui" line="278"/>
         <source>Connected to axis</source>
-        <translation>Verbunden mit der Achse</translation>
+        <translation type="vanished">Verbunden mit der Achse</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="114"/>
         <source>Pin PB0</source>
-        <translation>Pin PB0</translation>
+        <translation type="vanished">Pin PB0</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="178"/>
         <source>Pin PB1</source>
-        <translation>Pin PB1</translation>
+        <translation type="vanished">Pin PB1</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="239"/>
         <source>Pin PB4</source>
-        <translation>Pin PB4</translation>
+        <translation type="vanished">Pin PB4</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="307"/>
         <source>LED</source>
-        <translation>LED</translation>
+        <translation type="vanished">LED</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="316"/>
         <source>Input №</source>
-        <translation>Eingabe №</translation>
+        <translation type="vanished">Eingabe №</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="326"/>
         <source>Function</source>
-        <translation>Funktion</translation>
+        <translation type="vanished">Funktion</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="336"/>
         <source>№</source>
-        <translation>№</translation>
+        <translation type="vanished">№</translation>
     </message>
 </context>
 <context>
@@ -2048,27 +2015,25 @@ Denken Sie daran, auf das Gerät zu schreiben, wenn Sie diese Werte speichern m�
         <translation type="vanished">Achsen-Konfiguration</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="868"/>
+        <location filename="mainwindow.ui" line="893"/>
         <source> Axes Curves </source>
         <translation> Achsen Kurven </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="890"/>
+        <location filename="mainwindow.ui" line="915"/>
         <source> Shift Registers </source>
         <translation> Schieberegister </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="912"/>
         <source> Encoders</source>
-        <translation> Drehgeber</translation>
+        <translation type="vanished"> Drehgeber</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="934"/>
         <source> LED/PWM </source>
-        <translation> LED/PWM </translation>
+        <translation type="vanished"> LED/PWM </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="956"/>
+        <location filename="mainwindow.ui" line="937"/>
         <source> Advanced Settings </source>
         <translation> Erweiterte Einstellungen </translation>
     </message>
@@ -2089,7 +2054,7 @@ Denken Sie daran, auf das Gerät zu schreiben, wenn Sie diese Werte speichern m�
         <translation type="vanished">Konfiguration in Gerät schreiben</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="541"/>
+        <location filename="mainwindow.ui" line="557"/>
         <source>Load config from file</source>
         <translation>Konfiguration aus Datei laden</translation>
     </message>
@@ -2105,38 +2070,41 @@ Denken Sie daran, auf das Gerät zu schreiben, wenn Sie diese Werte speichern m�
     </message>
     <message>
         <location filename="mainwindow.ui" line="237"/>
-        <location filename="mainwindow.cpp" line="1248"/>
-        <location filename="mainwindow.cpp" line="1292"/>
+        <location filename="mainwindow.cpp" line="1211"/>
+        <location filename="mainwindow.cpp" line="1278"/>
+        <location filename="mainwindow.cpp" line="1388"/>
         <source>DCS</source>
         <translation>DCS</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="242"/>
-        <location filename="mainwindow.cpp" line="1249"/>
-        <location filename="mainwindow.cpp" line="1293"/>
+        <location filename="mainwindow.cpp" line="1212"/>
+        <location filename="mainwindow.cpp" line="1279"/>
+        <location filename="mainwindow.cpp" line="1389"/>
         <source>Falcon BMS</source>
         <translation>Falcon BMS</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="247"/>
-        <location filename="mainwindow.cpp" line="1250"/>
-        <location filename="mainwindow.cpp" line="1294"/>
+        <location filename="mainwindow.cpp" line="1213"/>
+        <location filename="mainwindow.cpp" line="1280"/>
+        <location filename="mainwindow.cpp" line="1390"/>
         <source>MSFS</source>
         <translation>MSFS</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="268"/>
-        <source>Active Sim Software Profile</source>
-        <translation>Aktives Sim-Software-Profil</translation>
+        <source>Sim Software</source>
+        <translation>Sim-Software</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="314"/>
-        <source>Device Control Board Version</source>
-        <translation>Geräte-Steuerplatinen-Version</translation>
+        <source>Control Board</source>
+        <translation>Steuerplatine</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="342"/>
-        <location filename="mainwindow.cpp" line="1611"/>
+        <location filename="mainwindow.cpp" line="1716"/>
         <source>Activate Advanced Mode</source>
         <translation>Erweiterten Modus aktivieren</translation>
     </message>
@@ -2151,72 +2119,72 @@ Denken Sie daran, auf das Gerät zu schreiben, wenn Sie diese Werte speichern m�
         <translation>...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="490"/>
-        <source>Write Current Settings to Device</source>
-        <translation>Aktuelle Einstellungen auf Gerät schreiben</translation>
+        <location filename="mainwindow.ui" line="506"/>
+        <source>Write Settings to Device</source>
+        <translation>Einstellungen auf Gerät schreiben</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="513"/>
+        <location filename="mainwindow.ui" line="529"/>
         <source>Active Grip Profile</source>
         <translation>Aktives Griffprofil</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="569"/>
+        <location filename="mainwindow.ui" line="585"/>
         <source>Reset All</source>
         <translation>Alle zurücksetzen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="706"/>
+        <location filename="mainwindow.ui" line="731"/>
         <source> Pin Settings</source>
         <translation> Pin-Einstellungen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="725"/>
+        <location filename="mainwindow.ui" line="750"/>
         <source> Button Settings</source>
         <translation> Tasten-Einstellungen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="744"/>
+        <location filename="mainwindow.ui" line="769"/>
         <source> Axes Settings</source>
         <translation> Achsen-Einstellungen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="795"/>
+        <location filename="mainwindow.ui" line="820"/>
         <source>Proportional Force Scaling</source>
         <translation>Proportionale Kraftskalierung</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="807"/>
+        <location filename="mainwindow.ui" line="832"/>
         <source>50% FLCS</source>
         <translation>50% FLCS</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="814"/>
+        <location filename="mainwindow.ui" line="839"/>
         <source>Full FLCS Force</source>
         <translation>Volle FLCS-Kraft</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="821"/>
+        <location filename="mainwindow.ui" line="846"/>
         <source>75% FLCS</source>
         <translation>75% FLCS</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="837"/>
+        <location filename="mainwindow.ui" line="862"/>
         <source>FLCS Mode</source>
         <translation>FLCS-Modus</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="849"/>
+        <location filename="mainwindow.ui" line="874"/>
         <source>Analog</source>
         <translation>Analog</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="856"/>
+        <location filename="mainwindow.ui" line="881"/>
         <source>Digital</source>
         <translation>Digital</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="978"/>
+        <location filename="mainwindow.ui" line="959"/>
         <source> Developer Settings</source>
         <translation> Entwicklereinstellungen</translation>
     </message>
@@ -2229,160 +2197,172 @@ Denken Sie daran, auf das Gerät zu schreiben, wenn Sie diese Werte speichern m�
         <translation type="vanished">Fehlersuche anzeigen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>Invictus HOTAS Configurator</source>
         <translation>Invictus HOTAS Konfigurator</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="241"/>
-        <location filename="mainwindow.cpp" line="258"/>
+        <location filename="mainwindow.cpp" line="222"/>
+        <location filename="mainwindow.cpp" line="239"/>
         <source>Firmware update available</source>
         <translation>Firmware-Update verfügbar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="242"/>
-        <location filename="mainwindow.cpp" line="259"/>
+        <location filename="mainwindow.cpp" line="223"/>
+        <location filename="mainwindow.cpp" line="240"/>
         <source>A newer firmware is available: %1</source>
         <translation>Eine neuere Firmware ist verfügbar: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="243"/>
-        <location filename="mainwindow.cpp" line="260"/>
+        <location filename="mainwindow.cpp" line="224"/>
+        <location filename="mainwindow.cpp" line="241"/>
         <source>Open the firmware release page?</source>
         <translation>Firmware-Release-Seite öffnen?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="248"/>
-        <location filename="mainwindow.cpp" line="265"/>
-        <location filename="mainwindow.cpp" line="2166"/>
+        <location filename="mainwindow.cpp" line="229"/>
+        <location filename="mainwindow.cpp" line="246"/>
+        <location filename="mainwindow.cpp" line="2252"/>
         <source>Open GitHub</source>
         <translation>GitHub öffnen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="352"/>
+        <location filename="mainwindow.cpp" line="324"/>
+        <location filename="mainwindow.cpp" line="1229"/>
+        <location filename="mainwindow.cpp" line="1296"/>
+        <location filename="mainwindow.cpp" line="1406"/>
         <source>— Select board —</source>
         <translation>— Platine wählen —</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="354"/>
-        <location filename="mainwindow.cpp" line="2022"/>
+        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="1230"/>
+        <location filename="mainwindow.cpp" line="1297"/>
+        <location filename="mainwindow.cpp" line="1407"/>
         <source>VFT Controller Gen 1-3</source>
         <translation>VFT Controller Gen 1-3</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="355"/>
-        <location filename="mainwindow.cpp" line="2023"/>
+        <location filename="mainwindow.cpp" line="327"/>
+        <location filename="mainwindow.cpp" line="1231"/>
+        <location filename="mainwindow.cpp" line="1298"/>
+        <location filename="mainwindow.cpp" line="1408"/>
         <source>VFT Controller Gen 4</source>
         <translation>VFT Controller Gen 4</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="458"/>
-        <location filename="mainwindow.cpp" line="479"/>
-        <location filename="mainwindow.cpp" line="507"/>
+        <location filename="mainwindow.cpp" line="418"/>
+        <location filename="mainwindow.cpp" line="439"/>
+        <location filename="mainwindow.cpp" line="467"/>
         <source>Force Anchors</source>
         <translation>Kraftanker</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="459"/>
+        <location filename="mainwindow.cpp" line="419"/>
         <source>No reply from device.</source>
         <translation>Keine Antwort vom Gerät.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="480"/>
+        <location filename="mainwindow.cpp" line="440"/>
         <source>CRC/format error reading anchors.</source>
         <translation>CRC-/Formatfehler beim Lesen der Anker.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="508"/>
+        <location filename="mainwindow.cpp" line="468"/>
         <source>Device config not loaded.</source>
         <translation>Gerätekonfiguration nicht geladen.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="625"/>
+        <location filename="mainwindow.cpp" line="585"/>
+        <location filename="mainwindow.cpp" line="1246"/>
+        <location filename="mainwindow.cpp" line="1306"/>
+        <location filename="mainwindow.cpp" line="1416"/>
         <source>— Select grip —</source>
         <translation>— Griff wählen —</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="642"/>
-        <location filename="mainwindow.cpp" line="643"/>
-        <location filename="mainwindow.cpp" line="1245"/>
-        <location filename="mainwindow.cpp" line="1289"/>
+        <location filename="mainwindow.cpp" line="602"/>
+        <location filename="mainwindow.cpp" line="603"/>
+        <location filename="mainwindow.cpp" line="1210"/>
+        <location filename="mainwindow.cpp" line="1277"/>
+        <location filename="mainwindow.cpp" line="1387"/>
         <source>— Select sim software—</source>
         <translation>— Sim-Software wählen —</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="737"/>
-        <location filename="mainwindow.cpp" line="1361"/>
+        <location filename="mainwindow.cpp" line="697"/>
+        <location filename="mainwindow.cpp" line="1466"/>
         <source>Disconnected</source>
         <translation>Getrennt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="756"/>
-        <location filename="mainwindow.cpp" line="1367"/>
+        <location filename="mainwindow.cpp" line="716"/>
+        <location filename="mainwindow.cpp" line="1472"/>
         <source>Connected</source>
         <translation>Verbunden</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="796"/>
-        <location filename="mainwindow.cpp" line="1364"/>
+        <location filename="mainwindow.cpp" line="756"/>
+        <location filename="mainwindow.cpp" line="1469"/>
         <source>Firmware Update Required</source>
         <translation>Firmware-Update erforderlich</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1588"/>
+        <location filename="mainwindow.cpp" line="1693"/>
         <source>Deactivate Advanced Mode</source>
         <translation>Erweiterten Modus deaktivieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1639"/>
+        <location filename="mainwindow.cpp" line="1744"/>
         <source>What Board Do I Have?</source>
         <translation>Welche Platine habe ich?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1640"/>
+        <location filename="mainwindow.cpp" line="1745"/>
         <source>Identify your board by connector count on the left side.</source>
         <translation>Identifizieren Sie Ihre Platine anhand der Steckeranzahl auf der linken Seite.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1641"/>
+        <location filename="mainwindow.cpp" line="1746"/>
         <source>Gen 1–2: Two 3-pin headers
 Gen 3: One 4-pin header
 Gen 4: One 6-pin header</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen 1–2: Zwei 3-Pin-Stecker
+Gen 3: Ein 4-Pin-Stecker
+Gen 4: Ein 6-Pin-Stecker</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1770"/>
+        <location filename="mainwindow.cpp" line="1875"/>
         <source>Failed to load grip profile: %1</source>
         <translation>Griffprofil konnte nicht geladen werden: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1969"/>
+        <location filename="mainwindow.cpp" line="2074"/>
         <source>Developer</source>
         <translation>Entwickler</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2027"/>
         <source>Apply board defaults?</source>
-        <translation>Platinen-Standards anwenden?</translation>
+        <translation type="vanished">Platinen-Standards anwenden?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2028"/>
         <source>Replace current pin mapping with %1 defaults?</source>
-        <translation>Aktuelle Pin-Zuordnung durch %1-Standards ersetzen?</translation>
+        <translation type="vanished">Aktuelle Pin-Zuordnung durch %1-Standards ersetzen?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2158"/>
+        <location filename="mainwindow.cpp" line="2244"/>
         <source>Update available</source>
         <translation>Update verfügbar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2159"/>
+        <location filename="mainwindow.cpp" line="2245"/>
         <source>A newer version is available: %1
 You have: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine neuere Version ist verfügbar: %1
+Sie haben: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2161"/>
+        <location filename="mainwindow.cpp" line="2247"/>
         <source>Open the release page to download?</source>
         <translation>Release-Seite zum Herunterladen öffnen?</translation>
     </message>
@@ -2391,53 +2371,53 @@ You have: %2</source>
         <translation type="vanished">Inkompatible Firmware</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="805"/>
-        <location filename="mainwindow.cpp" line="1137"/>
-        <location filename="mainwindow.cpp" line="1351"/>
-        <location filename="mainwindow.cpp" line="1356"/>
+        <location filename="mainwindow.cpp" line="765"/>
+        <location filename="mainwindow.cpp" line="1104"/>
+        <location filename="mainwindow.cpp" line="1456"/>
+        <location filename="mainwindow.cpp" line="1461"/>
         <source>Device firmware</source>
         <translation>Geräte-Firmware</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1139"/>
+        <location filename="mainwindow.cpp" line="1106"/>
         <source>Received</source>
         <translation>Empfangen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1151"/>
-        <location filename="mainwindow.cpp" line="1183"/>
-        <location filename="mainwindow.cpp" line="1769"/>
+        <location filename="mainwindow.cpp" line="1118"/>
+        <location filename="mainwindow.cpp" line="1150"/>
+        <location filename="mainwindow.cpp" line="1874"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1172"/>
+        <location filename="mainwindow.cpp" line="1139"/>
         <source>Sent</source>
         <translation>Gesendet</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1336"/>
+        <location filename="mainwindow.cpp" line="1438"/>
         <source>Hide debug</source>
         <translation>Debug ausblenden</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1492"/>
+        <location filename="mainwindow.cpp" line="1597"/>
         <source>Open Config</source>
         <translation>Konfiguration öffnen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1492"/>
-        <location filename="mainwindow.cpp" line="1510"/>
+        <location filename="mainwindow.cpp" line="1597"/>
+        <location filename="mainwindow.cpp" line="1615"/>
         <source>Config Files (*.cfg)</source>
         <translation>Konfig-Dateien (*.cfg)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1509"/>
+        <location filename="mainwindow.cpp" line="1614"/>
         <source>Save Config</source>
         <translation>Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="459"/>
+        <location filename="mainwindow.ui" line="475"/>
         <source>Visit Wiki</source>
         <translation>Wiki besuchen</translation>
     </message>
@@ -2450,282 +2430,269 @@ You have: %2</source>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="145"/>
+        <location filename="widgets/pins/pincombobox.h" line="143"/>
         <source>Pin A0</source>
         <translation>Pin A0</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="146"/>
+        <location filename="widgets/pins/pincombobox.h" line="144"/>
         <source>Pin A1</source>
         <translation>Pin A1</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="147"/>
+        <location filename="widgets/pins/pincombobox.h" line="145"/>
         <source>Pin A2</source>
         <translation>Pin A2</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="148"/>
+        <location filename="widgets/pins/pincombobox.h" line="146"/>
         <source>Pin A3</source>
         <translation>Pin A3</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="149"/>
+        <location filename="widgets/pins/pincombobox.h" line="147"/>
         <source>Pin A4</source>
         <translation>Pin A4</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="150"/>
+        <location filename="widgets/pins/pincombobox.h" line="148"/>
         <source>Pin A5</source>
         <translation>Pin A5</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="151"/>
+        <location filename="widgets/pins/pincombobox.h" line="149"/>
         <source>Pin A6</source>
         <translation>Pin A6</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="152"/>
+        <location filename="widgets/pins/pincombobox.h" line="150"/>
         <source>Pin A7</source>
         <translation>Pin A7</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="153"/>
+        <location filename="widgets/pins/pincombobox.h" line="151"/>
         <source>Pin A8</source>
         <translation>Pin A8</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="154"/>
+        <location filename="widgets/pins/pincombobox.h" line="152"/>
         <source>Pin A9</source>
         <translation>Pin A9</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="155"/>
+        <location filename="widgets/pins/pincombobox.h" line="153"/>
         <source>Pin A10</source>
         <translation>Pin A10</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="156"/>
+        <location filename="widgets/pins/pincombobox.h" line="154"/>
         <source>Pin A15</source>
         <translation>Pin A15</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="157"/>
+        <location filename="widgets/pins/pincombobox.h" line="155"/>
         <source>Pin B0</source>
         <translation>Pin B0</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="158"/>
+        <location filename="widgets/pins/pincombobox.h" line="156"/>
         <source>Pin B1</source>
         <translation>Pin B1</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="159"/>
+        <location filename="widgets/pins/pincombobox.h" line="157"/>
         <source>Pin B3</source>
         <translation>Pin B3</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="160"/>
+        <location filename="widgets/pins/pincombobox.h" line="158"/>
         <source>Pin B4</source>
         <translation>Pin B4</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="161"/>
+        <location filename="widgets/pins/pincombobox.h" line="159"/>
         <source>Pin B5</source>
         <translation>Pin B5</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="162"/>
+        <location filename="widgets/pins/pincombobox.h" line="160"/>
         <source>Pin B6</source>
         <translation>Pin B6</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="163"/>
+        <location filename="widgets/pins/pincombobox.h" line="161"/>
         <source>Pin B7</source>
         <translation>Pin B7</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="164"/>
+        <location filename="widgets/pins/pincombobox.h" line="162"/>
         <source>Pin B8</source>
         <translation>Pin B8</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="165"/>
+        <location filename="widgets/pins/pincombobox.h" line="163"/>
         <source>Pin B9</source>
         <translation>Pin B9</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="166"/>
+        <location filename="widgets/pins/pincombobox.h" line="164"/>
         <source>Pin B10</source>
         <translation>Pin B10</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="167"/>
+        <location filename="widgets/pins/pincombobox.h" line="165"/>
         <source>Pin B11</source>
         <translation>Pin B11</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="168"/>
+        <location filename="widgets/pins/pincombobox.h" line="166"/>
         <source>Pin B12</source>
         <translation>Pin B12</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="169"/>
+        <location filename="widgets/pins/pincombobox.h" line="167"/>
         <source>Pin B13</source>
         <translation>Pin B13</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="170"/>
+        <location filename="widgets/pins/pincombobox.h" line="168"/>
         <source>Pin B14</source>
         <translation>Pin B14</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="171"/>
+        <location filename="widgets/pins/pincombobox.h" line="169"/>
         <source>Pin B15</source>
         <translation>Pin B15</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="172"/>
+        <location filename="widgets/pins/pincombobox.h" line="170"/>
         <source>Pin C13</source>
         <translation>Pin C13</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="173"/>
+        <location filename="widgets/pins/pincombobox.h" line="171"/>
         <source>Pin C14</source>
         <translation>Pin C14</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="174"/>
+        <location filename="widgets/pins/pincombobox.h" line="172"/>
         <source>Pin C15</source>
         <translation>Pin C15</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="179"/>
+        <location filename="widgets/pins/pincombobox.h" line="177"/>
         <source>Not Used</source>
         <translation>Nicht benutzt</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="184"/>
+        <location filename="widgets/pins/pincombobox.h" line="182"/>
         <source>Button Gnd</source>
         <translation>Taster Gnd</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="189"/>
+        <location filename="widgets/pins/pincombobox.h" line="187"/>
         <source>Button Vcc</source>
         <translation>Taster Vcc</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="194"/>
+        <location filename="widgets/pins/pincombobox.h" line="192"/>
         <source>Button Row</source>
         <translation>Taster Reihe</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="199"/>
+        <location filename="widgets/pins/pincombobox.h" line="197"/>
         <source>Button Column</source>
         <translation>Taster Spalte</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="204"/>
+        <location filename="widgets/pins/pincombobox.h" line="202"/>
         <source>ShiftReg LATCH</source>
         <translation>ShiftReg LATCH</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="209"/>
+        <location filename="widgets/pins/pincombobox.h" line="207"/>
         <source>ShiftReg DATA</source>
         <translation>ShiftReg DATA</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="214"/>
+        <location filename="widgets/pins/pincombobox.h" line="212"/>
         <source>ShiftReg CLK</source>
         <translation>ShiftReg CLK</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="219"/>
         <source>TLE5011 CS</source>
-        <translation>TLE5011 CS</translation>
+        <translation type="vanished">TLE5011 CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="224"/>
         <source>TLE5012B CS</source>
-        <translation>TLE5012B CS</translation>
+        <translation type="vanished">TLE5012B CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="229"/>
         <source>MCP3201 CS</source>
-        <translation>MCP3201 CS</translation>
+        <translation type="vanished">MCP3201 CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="234"/>
+        <location filename="widgets/pins/pincombobox.h" line="217"/>
         <source>MCP3202 CS</source>
         <translation>MCP3202 CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="239"/>
         <source>MCP3204 CS</source>
-        <translation>MCP3204 CS</translation>
+        <translation type="vanished">MCP3204 CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="244"/>
         <source>MCP3208 CS</source>
-        <translation>MCP3208 CS</translation>
+        <translation type="vanished">MCP3208 CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="249"/>
         <source>MLX90393 CS</source>
-        <translation>MLX90393 CS</translation>
+        <translation type="vanished">MLX90393 CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="254"/>
         <source>MLX90363 CS</source>
-        <translation>MLX90363 CS</translation>
+        <translation type="vanished">MLX90363 CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="259"/>
         <source>AS5048A CS</source>
-        <translation>AS5048A CS</translation>
+        <translation type="vanished">AS5048A CS</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="264"/>
         <source>LED Single</source>
-        <translation>LED Single</translation>
+        <translation type="vanished">LED Single</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="269"/>
         <source>LED Row</source>
-        <translation>LED Reihe</translation>
+        <translation type="vanished">LED Reihe</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="274"/>
         <source>LED Column</source>
-        <translation>LED Spalte</translation>
+        <translation type="vanished">LED Spalte</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="279"/>
         <source>LED PWM</source>
-        <translation>LED PWM</translation>
+        <translation type="vanished">LED PWM</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="284"/>
+        <location filename="widgets/pins/pincombobox.h" line="222"/>
         <source>Axis Analog</source>
         <translation>Axis Analog</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="289"/>
         <source>Fast Encoder</source>
-        <translation>Fast Encoder</translation>
+        <translation type="vanished">Fast Encoder</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="294"/>
+        <location filename="widgets/pins/pincombobox.h" line="227"/>
         <source>SPI SCK</source>
         <translation>SPI SCK</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="299"/>
+        <location filename="widgets/pins/pincombobox.h" line="232"/>
         <source>SPI MOSI</source>
         <translation>SPI MOSI</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="304"/>
+        <location filename="widgets/pins/pincombobox.h" line="237"/>
         <source>SPI MISO</source>
         <translation>SPI MISO</translation>
     </message>
@@ -2734,12 +2701,12 @@ You have: %2</source>
         <translation type="vanished">TLE5011 GEN</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="314"/>
+        <location filename="widgets/pins/pincombobox.h" line="247"/>
         <source>I2C SCL</source>
         <translation>I2C SCL</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="319"/>
+        <location filename="widgets/pins/pincombobox.h" line="252"/>
         <source>I2C SDA</source>
         <translation>I2C SDA</translation>
     </message>
@@ -2824,7 +2791,7 @@ You have: %2</source>
         <translation>CLK Pin</translation>
     </message>
     <message>
-        <location filename="widgets/shift-reg/shiftregisters.cpp" line="17"/>
+        <location filename="widgets/shift-reg/shiftregisters.cpp" line="18"/>
         <source>Not defined</source>
         <translation>Nicht definiert</translation>
     </message>

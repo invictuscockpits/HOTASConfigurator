@@ -1492,10 +1492,6 @@ Device has: %2</source>
         <translation>시리얼 번호: </translation>
     </message>
     <message>
-        <source>Device USB name:</source>
-        <translation>장치 USB 이름:</translation>
-    </message>
-    <message>
         <source>Write Device Identity</source>
         <translation>장치 식별 정보 쓰기</translation>
     </message>

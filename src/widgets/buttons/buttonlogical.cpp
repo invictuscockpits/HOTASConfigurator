@@ -1,6 +1,7 @@
 #include "buttonlogical.h"
 #include "ui_buttonlogical.h"
 
+#include "adv-settings/text_fit_helpers.h"
 #include "widgets/debugwindow.h"
 #include "converter.h"
 
@@ -35,6 +36,7 @@ ButtonLogical::~ButtonLogical()
 void ButtonLogical::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
 }
 
 void ButtonLogical::initialization()

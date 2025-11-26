@@ -14,52 +14,57 @@
         <translation>应用程序设置</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="62"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="50"/>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="75"/>
         <source>Check for Software Updates</source>
         <translation>检查软件更新</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="81"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="94"/>
         <source>Check for Firmware Update</source>
         <translation>检查固件更新</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="174"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="187"/>
         <source>Restart Application</source>
         <translation>重启应用程序</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="193"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="206"/>
         <source>About HOTAS Configurator</source>
         <translation>关于 HOTAS 配置程序</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="361"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="314"/>
         <source>Firmware flasher</source>
         <translation>固件刷写</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="382"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="335"/>
         <source>Device Information</source>
         <translation>设备信息</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="434"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="387"/>
         <source>Model:</source>
         <translation>型号：</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="447"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="400"/>
         <source>Serial #:</source>
         <translation>序列号：</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="460"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="413"/>
         <source>Date of Manufacture:</source>
         <translation>制造日期：</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="473"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="426"/>
         <source>Firmware Version:</source>
         <translation>固件版本：</translation>
     </message>
@@ -72,7 +77,7 @@
         <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;某些值在某些操作系统上可能不起作用(例如,Ubuntu上的PID 5750)。选择错误的值后,需要使用ST-link/UART重新刷写控制器。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="100"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="113"/>
         <source>USB exchange period</source>
         <translation>USB交换时间(原文: USB exchange period)</translation>
     </message>
@@ -85,7 +90,7 @@
         <translation type="vanished">设备USB名称</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="143"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="156"/>
         <source> ms</source>
         <translation> 毫秒</translation>
     </message>
@@ -98,7 +103,7 @@
         <translation type="vanished">应用程序设置</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="171"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="184"/>
         <source>Restart for full changes</source>
         <translation>重启应用以进行完全更改</translation>
     </message>
@@ -111,7 +116,7 @@
         <translation type="vanished">其他设置</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.ui" line="212"/>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="225"/>
         <source>Font size</source>
         <translation>字体大小</translation>
     </message>
@@ -191,7 +196,7 @@
         <translation type="vanished">关于 Invictus HOTAS 配置程序</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="116"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="160"/>
         <source>Device Info Error</source>
         <translation>设备信息错误</translation>
     </message>
@@ -208,138 +213,158 @@
         <translation type="vanished">日期必须为 YYYY-MM-DD 格式</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="237"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="293"/>
         <source>
         &lt;p&gt;Source code available under GPLv3 on
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
         &lt;p&gt;This software and firmware are based on
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;.
         We highly recommend starting there if you&apos;re building something similar.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>
+        &lt;p&gt;源代码在 GPLv3 许可下可从
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;GitHub&lt;/a&gt; 获取。&lt;/p&gt;
+        &lt;p&gt;此软件和固件基于
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;。
+        如果您正在构建类似的东西，我们强烈建议从那里开始。&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="244"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="300"/>
         <source>
         &lt;p&gt;Visit our
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;wiki&lt;/a&gt;
         for detailed instructions.&lt;/p&gt;
         &lt;/div&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>
+        &lt;p&gt;访问我们的
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;wiki&lt;/a&gt;
+        获取详细说明。&lt;/p&gt;
+        &lt;/div&gt;</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="274"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="315"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="326"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="400"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="432"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="330"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="371"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="382"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="456"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="488"/>
         <source>Update Check</source>
         <translation>更新检查</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="275"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="331"/>
         <source>Update check is only implemented for Windows in this build.</source>
         <translation>此版本仅在 Windows 上实现更新检查。</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="316"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="514"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="372"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="570"/>
         <source>WinHTTP initialization failed (error %1).</source>
         <translation>WinHTTP 初始化失败（错误 %1）。</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="327"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="383"/>
         <source>Network connect failed (error %1).</source>
         <translation>网络连接失败（错误 %1）。</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="401"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="556"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="457"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="612"/>
         <source>GitHub returned HTTP %1.</source>
         <translation>GitHub 返回 HTTP %1。</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="432"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="586"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="488"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="642"/>
         <source>No releases found.</source>
         <translation>未找到版本。</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="451"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="507"/>
         <source>Up to date</source>
         <translation>已是最新版本</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="452"/>
-        <source>You’re on the latest version (%1).</source>
-        <translation type="unfinished"></translation>
+        <source>You&apos;re on the latest version (%1).</source>
+        <translation type="vanished">您使用的是最新版本 (%1)。</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="465"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="508"/>
+        <source>You're on the latest version (%1).</source>
+        <translation>您已使用最新版本 (%1)。</translation>
+    </message>
+    <message>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="521"/>
         <source>Update available</source>
         <translation>有可用更新</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="466"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="522"/>
         <source>A newer version is available: %1
 You have: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>有更新版本可用：%1
+您的版本：%2</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="468"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="524"/>
         <source>Open the release page to download?</source>
         <translation>打开发布页面下载？</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="473"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="529"/>
         <source>Don&apos;t remind me again for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>不再提醒 %1</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="475"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="658"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="531"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="714"/>
         <source>Open GitHub</source>
         <translation>打开 GitHub</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="514"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="518"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="556"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="586"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="640"/>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="671"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="570"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="574"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="612"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="642"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="696"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="727"/>
         <source>Firmware Update</source>
         <translation>固件更新</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="518"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="574"/>
         <source>Connect failed (error %1).</source>
         <translation>连接失败（错误 %1）。</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="640"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="696"/>
         <source>Your device firmware is up to date (%1).</source>
         <translation>您的设备固件已是最新版本 (%1)。</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="651"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="707"/>
         <source>Firmware update available</source>
         <translation>有可用的固件更新</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="652"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="708"/>
         <source>A newer firmware is available: %1
 Device has: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>有更新的固件可用：%1
+设备版本：%2</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="653"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="709"/>
         <source>Open the firmware release page?</source>
         <translation>打开固件发布页面？</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/advancedsettings.cpp" line="672"/>
+        <location filename="widgets/adv-settings/advancedsettings.cpp" line="728"/>
         <source>Firmware update check is only implemented for Windows in this build.</source>
         <translation>此版本仅在 Windows 上实现固件更新检查。</translation>
+    </message>
+    <message>
+        <location filename="widgets/adv-settings/advancedsettings.ui" line="297"/>
+        <source>Translations were AI-generated. Please report issues on GitHub.</source>
+        <translation>翻译由AI生成。请在GitHub上报告问题。</translation>
     </message>
 </context>
 <context>
@@ -426,24 +451,22 @@ Device has: %2</source>
         <translation>停止并保存</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axes.h" line="115"/>
-        <location filename="widgets/axes/axes.h" line="152"/>
+        <location filename="widgets/axes/axes.h" line="114"/>
+        <location filename="widgets/axes/axes.h" line="150"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axes.h" line="116"/>
-        <location filename="widgets/axes/axes.h" line="153"/>
         <source>Encoder</source>
-        <translation>编码器</translation>
+        <translation type="vanished">编码器</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axes.cpp" line="18"/>
+        <location filename="widgets/axes/axes.cpp" line="19"/>
         <source>Slider 1</source>
         <translation>滑条 1 (原文Slider 1)</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axes.cpp" line="19"/>
+        <location filename="widgets/axes/axes.cpp" line="20"/>
         <source>Slider 2</source>
         <translation>滑条 2 (原文Slider 2)</translation>
     </message>
@@ -544,7 +567,6 @@ Device has: %2</source>
     <message>
         <location filename="widgets/axes-curves/axescurvesconfig.ui" line="79"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Curve profiles are saves in the application configuration.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; sets profile to the current value of the curve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - resets profile value.&lt;/p&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; for multiple selection.&lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;drag&lt;/span&gt; curves with the &lt;span style=&quot; font-weight:600;&quot;&gt;mouse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Curve profiles are saved in the application configuration.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; sets the profile to the current value of the curve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - resets the profile value.&lt;/p&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; for multiple selection.&lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;drag&lt;/span&gt; curves with the &lt;span style=&quot; font-weight:600;&quot;&gt;mouse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;曲线预设保存在本程序中的配置中。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;设置 &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; 将当前轴曲线保存为此预设。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - 重置曲线预设。&lt;/p&gt;&lt;p&gt;可以使用 &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; 键多选。&lt;/p&gt;&lt;p&gt;可以使用 &lt;span style=&quot; font-weight:600;&quot;&gt;鼠标拖动&lt;/span&gt; 曲线上的点设置&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -639,47 +661,47 @@ Device has: %2</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="28"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="29"/>
         <source>Set current axis curve to this preset</source>
         <translation>将当前轴曲线保存为此预设</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="92"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="94"/>
         <source>Reset to Linear</source>
         <translation>重置为线性</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="110"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="112"/>
         <source>Reset to Linear Invert</source>
         <translation>重置为线性反转</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="139"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="141"/>
         <source>Reset to Exponent</source>
         <translation>重置为指数</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="168"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="170"/>
         <source>Reset to Exponent Invert</source>
         <translation>重置为指数反转</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="176"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="178"/>
         <source>Reset to Shape</source>
         <translation>重置为波形1</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="184"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="186"/>
         <source>Reset to Shape2</source>
         <translation>重置为波形2</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="192"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="194"/>
         <source>Reset to Pulse</source>
         <translation>重置为脉冲</translation>
     </message>
     <message>
-        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="200"/>
+        <location filename="widgets/axes-curves/axescurvesprofiles.cpp" line="202"/>
         <source>Reset to no Pulse</source>
         <translation>重置为无脉冲</translation>
     </message>
@@ -743,7 +765,7 @@ Device has: %2</source>
     <message>
         <location filename="widgets/axes/axesextended.ui" line="460"/>
         <source>Step div</source>
-        <translation type="unfinished"></translation>
+        <translation>步进分频</translation>
     </message>
     <message>
         <location filename="widgets/axes/axesextended.ui" line="510"/>
@@ -775,8 +797,8 @@ Device has: %2</source>
         <translation type="vanished">动态死区</translation>
     </message>
     <message>
-        <location filename="widgets/axes/axesextended.cpp" line="53"/>
-        <location filename="widgets/axes/axesextended.cpp" line="80"/>
+        <location filename="widgets/axes/axesextended.cpp" line="54"/>
+        <location filename="widgets/axes/axesextended.cpp" line="82"/>
         <source>Filter</source>
         <translation>滤波</translation>
     </message>
@@ -907,11 +929,6 @@ Device has: %2</source>
         <translation>子菜单</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonconfig.ui" line="43"/>
-        <source>Shift 1</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="58"/>
         <location filename="widgets/buttons/buttonconfig.ui" line="96"/>
         <location filename="widgets/buttons/buttonconfig.ui" line="134"/>
@@ -919,26 +936,6 @@ Device has: %2</source>
         <location filename="widgets/buttons/buttonconfig.ui" line="210"/>
         <source>Logical button</source>
         <translation>逻辑按钮</translation>
-    </message>
-    <message>
-        <location filename="widgets/buttons/buttonconfig.ui" line="81"/>
-        <source>Shift 2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/buttons/buttonconfig.ui" line="119"/>
-        <source>Shift 3</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/buttons/buttonconfig.ui" line="157"/>
-        <source>Shift 4</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/buttons/buttonconfig.ui" line="195"/>
-        <source>Shift 5</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="235"/>
@@ -976,9 +973,34 @@ Device has: %2</source>
         <translation>延时计时器</translation>
     </message>
     <message>
+        <location filename="widgets/buttons/buttonconfig.ui" line="43"/>
+        <source>Shift 1</source>
+        <translation>切换 1</translation>
+    </message>
+    <message>
+        <location filename="widgets/buttons/buttonconfig.ui" line="81"/>
+        <source>Shift 2</source>
+        <translation>切换 2</translation>
+    </message>
+    <message>
+        <location filename="widgets/buttons/buttonconfig.ui" line="119"/>
+        <source>Shift 3</source>
+        <translation>切换 3</translation>
+    </message>
+    <message>
+        <location filename="widgets/buttons/buttonconfig.ui" line="157"/>
+        <source>Shift 4</source>
+        <translation>切换 4</translation>
+    </message>
+    <message>
+        <location filename="widgets/buttons/buttonconfig.ui" line="195"/>
+        <source>Shift 5</source>
+        <translation>切换 5</translation>
+    </message>
+    <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="256"/>
         <source>Shift</source>
-        <translation></translation>
+        <translation>切换</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="286"/>
@@ -1029,20 +1051,17 @@ Device has: %2</source>
     <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="829"/>
         <source>Debounce Timer</source>
-        <oldsource>Debounce timer</oldsource>
-        <translation type="unfinished">防抖延时</translation>
+        <translation>防抖延时</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="905"/>
         <source>Axes to buttons Timer</source>
-        <oldsource>Axes to buttons timer</oldsource>
-        <translation type="unfinished">轴上按钮延时</translation>
+        <translation>轴上按钮延时</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonconfig.ui" line="981"/>
         <source>Encoder press Timer</source>
-        <oldsource>Encoder press timer</oldsource>
-        <translation type="unfinished">编码器延时</translation>
+        <translation>编码器延时</translation>
     </message>
 </context>
 <context>
@@ -1068,35 +1087,29 @@ Device has: %2</source>
         <translation>计时器 3</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="78"/>
-        <location filename="widgets/buttons/buttonlogical.h" line="86"/>
-        <source>-</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="widgets/buttons/buttonlogical.h" line="87"/>
         <source>Shift 1</source>
-        <translation></translation>
+        <translation>切换 1</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonlogical.h" line="88"/>
         <source>Shift 2</source>
-        <translation></translation>
+        <translation>切换 2</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonlogical.h" line="89"/>
         <source>Shift 3</source>
-        <translation></translation>
+        <translation>切换 3</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonlogical.h" line="90"/>
         <source>Shift 4</source>
-        <translation></translation>
+        <translation>切换 4</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonlogical.h" line="91"/>
         <source>Shift 5</source>
-        <translation></translation>
+        <translation>切换 5</translation>
     </message>
     <message>
         <location filename="widgets/buttons/buttonlogical.h" line="97"/>
@@ -1199,6 +1212,12 @@ Device has: %2</source>
         <translation>拨动开关 ON/OFF</translation>
     </message>
     <message>
+        <location filename="widgets/buttons/buttonlogical.h" line="78"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="86"/>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
         <location filename="widgets/buttons/buttonlogical.h" line="101"/>
         <source>Toggle switch OFF</source>
         <translation>拨动开关 OFF</translation>
@@ -1250,8 +1269,7 @@ Device has: %2</source>
     <message>
         <location filename="widgets/buttons/buttonlogical.h" line="103"/>
         <source>CMS Right</source>
-        <oldsource>POV3 Right</oldsource>
-        <translation type="unfinished">视角3 右</translation>
+        <translation>CMS 右</translation>
     </message>
     <message>
         <source>POV3 Down</source>
@@ -1260,8 +1278,7 @@ Device has: %2</source>
     <message>
         <location filename="widgets/buttons/buttonlogical.h" line="105"/>
         <source>CMS Left</source>
-        <oldsource>POV3 Left</oldsource>
-        <translation type="unfinished">视角3 左</translation>
+        <translation>CMS 左</translation>
     </message>
     <message>
         <source>POV4 Up</source>
@@ -1280,42 +1297,40 @@ Device has: %2</source>
         <translation type="vanished">视角4 左</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="120"/>
         <source>Encoder A</source>
-        <translation>编码器 A</translation>
+        <translation type="vanished">编码器 A</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="121"/>
         <source>Encoder B</source>
-        <translation>编码器 B</translation>
+        <translation type="vanished">编码器 B</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="122"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="120"/>
         <source>Radio button 1</source>
         <translation>单选按钮 1</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="123"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="121"/>
         <source>Radio button 2</source>
         <translation>单选按钮 2</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="124"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="122"/>
         <source>Radio button 3</source>
         <translation>单选按钮 3</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="125"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="123"/>
         <source>Radio button 4</source>
         <translation>单选按钮 4</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="126"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="124"/>
         <source>Sequential toggle</source>
         <translation>顺序拨动</translation>
     </message>
     <message>
-        <location filename="widgets/buttons/buttonlogical.h" line="127"/>
+        <location filename="widgets/buttons/buttonlogical.h" line="125"/>
         <source>Sequential button</source>
         <translation>顺序按钮</translation>
     </message>
@@ -1440,7 +1455,7 @@ Device has: %2</source>
     </message>
     <message>
         <location filename="widgets/debugwindow.ui" line="115"/>
-        <location filename="widgets/debugwindow.cpp" line="74"/>
+        <location filename="widgets/debugwindow.cpp" line="76"/>
         <source>0 ms</source>
         <translation>0 毫秒</translation>
     </message>
@@ -1465,26 +1480,25 @@ Device has: %2</source>
         <translation>应用程序日志</translation>
     </message>
     <message>
-        <location filename="widgets/debugwindow.cpp" line="59"/>
+        <location filename="widgets/debugwindow.cpp" line="61"/>
         <source> ms</source>
         <translation> 毫秒</translation>
     </message>
     <message>
-        <location filename="widgets/debugwindow.cpp" line="101"/>
-        <location filename="widgets/debugwindow.cpp" line="107"/>
+        <location filename="widgets/debugwindow.cpp" line="103"/>
+        <location filename="widgets/debugwindow.cpp" line="109"/>
         <source>Logical button </source>
         <translation>逻辑按钮 </translation>
     </message>
     <message>
-        <location filename="widgets/debugwindow.cpp" line="102"/>
+        <location filename="widgets/debugwindow.cpp" line="104"/>
         <source> pressed</source>
         <translation> 按下</translation>
     </message>
     <message>
-        <location filename="widgets/debugwindow.cpp" line="108"/>
+        <location filename="widgets/debugwindow.cpp" line="110"/>
         <source> released</source>
-        <oldsource> unpressed</oldsource>
-        <translation type="unfinished"> 松开</translation>
+        <translation> 松开</translation>
     </message>
 </context>
 <context>
@@ -1492,7 +1506,7 @@ Device has: %2</source>
     <message>
         <location filename="widgets/developer.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">子菜单</translation>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="32"/>
@@ -1525,6 +1539,10 @@ Device has: %2</source>
         <translation>75% (12.75 磅力)</translation>
     </message>
     <message>
+        <source>Set Anchor</source>
+        <translation type="vanished">设置锚点</translation>
+    </message>
+    <message>
         <location filename="widgets/developer.ui" line="221"/>
         <location filename="widgets/developer.ui" line="240"/>
         <location filename="widgets/developer.ui" line="259"/>
@@ -1540,8 +1558,8 @@ Device has: %2</source>
         <location filename="widgets/developer.ui" line="1179"/>
         <location filename="widgets/developer.ui" line="1198"/>
         <location filename="widgets/developer.ui" line="1217"/>
-        <source>Set Anchor</source>
-        <translation>设置锚点</translation>
+        <source>Set</source>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="282"/>
@@ -1620,30 +1638,32 @@ Device has: %2</source>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1326"/>
-        <source>Read Force Anchors from Device</source>
-        <translation>从设备读取力锚点</translation>
+        <source>Read Force Anchors</source>
+        <translation>读取力锚点</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1339"/>
-        <source>Write Force Anchors to Device</source>
-        <translation>将力锚点写入设备</translation>
+        <source>Write Force Anchors</source>
+        <translation>写入力锚点</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1352"/>
-        <location filename="widgets/developer.cpp" line="349"/>
-        <location filename="widgets/developer.cpp" line="525"/>
+        <location filename="widgets/developer.cpp" line="350"/>
+        <location filename="widgets/developer.cpp" line="526"/>
         <source>Lock Force Anchors</source>
         <translation>锁定力锚点</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1365"/>
-        <source>Import Force Anchors from File</source>
-        <translation>从文件导入力锚点</translation>
+        <location filename="widgets/developer.cpp" line="898"/>
+        <source>Import Force Anchors</source>
+        <translation>导入力锚点</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1378"/>
-        <source>Export Force Anchors to File</source>
-        <translation>将力锚点导出到文件</translation>
+        <location filename="widgets/developer.cpp" line="827"/>
+        <source>Export Force Anchors</source>
+        <translation>导出力锚点</translation>
     </message>
     <message>
         <location filename="widgets/developer.ui" line="1392"/>
@@ -1671,46 +1691,42 @@ Device has: %2</source>
         <translation>序列号： </translation>
     </message>
     <message>
-        <source>Device USB name:</source>
-        <translation>设备USB名称：</translation>
-    </message>
-    <message>
         <location filename="widgets/developer.ui" line="1464"/>
         <source>Write Device Identity</source>
         <translation>写入设备标识</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="311"/>
-        <location filename="widgets/developer.cpp" line="326"/>
-        <location filename="widgets/developer.cpp" line="437"/>
-        <location filename="widgets/developer.cpp" line="455"/>
-        <location filename="widgets/developer.cpp" line="489"/>
-        <location filename="widgets/developer.cpp" line="505"/>
-        <location filename="widgets/developer.cpp" line="528"/>
-        <location filename="widgets/developer.cpp" line="542"/>
-        <location filename="widgets/developer.cpp" line="553"/>
-        <location filename="widgets/developer.cpp" line="566"/>
+        <location filename="widgets/developer.cpp" line="312"/>
+        <location filename="widgets/developer.cpp" line="327"/>
+        <location filename="widgets/developer.cpp" line="438"/>
+        <location filename="widgets/developer.cpp" line="456"/>
+        <location filename="widgets/developer.cpp" line="490"/>
+        <location filename="widgets/developer.cpp" line="506"/>
+        <location filename="widgets/developer.cpp" line="529"/>
+        <location filename="widgets/developer.cpp" line="543"/>
+        <location filename="widgets/developer.cpp" line="554"/>
+        <location filename="widgets/developer.cpp" line="567"/>
         <source>Force Anchors</source>
         <translation>力锚点</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="312"/>
+        <location filename="widgets/developer.cpp" line="313"/>
         <source>Factory anchors missing; using calibration defaults.</source>
         <translation>出厂锚点丢失；使用校准默认值。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="327"/>
+        <location filename="widgets/developer.cpp" line="328"/>
         <source>Unable to read anchors and no fallback available.</source>
         <translation>无法读取锚点且没有可用的备用方案。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="345"/>
-        <location filename="widgets/developer.cpp" line="539"/>
+        <location filename="widgets/developer.cpp" line="346"/>
+        <location filename="widgets/developer.cpp" line="540"/>
         <source>Unlock Force Anchors</source>
         <translation>解锁力锚点</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="438"/>
+        <location filename="widgets/developer.cpp" line="439"/>
         <source>Transport not set.</source>
         <translation>未设置传输。</translation>
     </message>
@@ -1723,7 +1739,7 @@ Device has: %2</source>
         <translation type="vanished">设备拒绝锁定。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="543"/>
+        <location filename="widgets/developer.cpp" line="544"/>
         <source>Anchors locked.</source>
         <translation>锚点已锁定。</translation>
     </message>
@@ -1736,174 +1752,164 @@ Device has: %2</source>
         <translation type="vanished">锁定确认正常但无法读取/解析锚点。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="456"/>
+        <location filename="widgets/developer.cpp" line="457"/>
         <source>Unable to read current anchor state.</source>
         <translation>无法读取当前锚点状态。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="468"/>
+        <location filename="widgets/developer.cpp" line="469"/>
         <source>unlock</source>
         <translation>解锁</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="468"/>
+        <location filename="widgets/developer.cpp" line="469"/>
         <source>lock</source>
         <translation>锁定</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="490"/>
+        <location filename="widgets/developer.cpp" line="491"/>
         <source>Failed to %1 anchors (no reply).</source>
         <translation>无法%1锚点（无响应）。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="506"/>
+        <location filename="widgets/developer.cpp" line="507"/>
         <source>Device refused %1.</source>
         <translation>设备拒绝%1。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="529"/>
+        <location filename="widgets/developer.cpp" line="530"/>
         <source>Anchors unlocked.</source>
         <translation>锚点已解锁。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="554"/>
+        <location filename="widgets/developer.cpp" line="555"/>
         <source>Operation acknowledged but sealed flag did not change.</source>
         <translation>操作已确认但密封标志未改变。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="567"/>
+        <location filename="widgets/developer.cpp" line="568"/>
         <source>Operation acknowledged but unable to read/parse anchors.</source>
         <translation>操作已确认但无法读取/解析锚点。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="648"/>
-        <location filename="widgets/developer.cpp" line="680"/>
-        <location filename="widgets/developer.cpp" line="723"/>
-        <location filename="widgets/developer.cpp" line="751"/>
-        <location filename="widgets/developer.cpp" line="762"/>
-        <location filename="widgets/developer.cpp" line="773"/>
-        <location filename="widgets/developer.cpp" line="784"/>
-        <location filename="widgets/developer.cpp" line="795"/>
-        <location filename="widgets/developer.cpp" line="806"/>
+        <location filename="widgets/developer.cpp" line="649"/>
+        <location filename="widgets/developer.cpp" line="681"/>
+        <location filename="widgets/developer.cpp" line="724"/>
+        <location filename="widgets/developer.cpp" line="752"/>
+        <location filename="widgets/developer.cpp" line="763"/>
+        <location filename="widgets/developer.cpp" line="774"/>
+        <location filename="widgets/developer.cpp" line="785"/>
+        <location filename="widgets/developer.cpp" line="796"/>
+        <location filename="widgets/developer.cpp" line="807"/>
         <source>Device Info</source>
         <translation>设备信息</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="373"/>
-        <location filename="widgets/developer.cpp" line="649"/>
+        <location filename="widgets/developer.cpp" line="374"/>
+        <location filename="widgets/developer.cpp" line="650"/>
         <source>Transport not set</source>
         <translation>未设置传输</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="681"/>
+        <location filename="widgets/developer.cpp" line="682"/>
         <source>Date must be in YYYY-MM-DD format</source>
         <translation>日期必须为 YYYY-MM-DD 格式</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="413"/>
-        <location filename="widgets/developer.cpp" line="724"/>
+        <location filename="widgets/developer.cpp" line="414"/>
+        <location filename="widgets/developer.cpp" line="725"/>
         <source>Write failed</source>
         <translation>写入失败</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="392"/>
+        <location filename="widgets/developer.cpp" line="393"/>
         <source>Anchors are locked; writing is not allowed.</source>
         <translation>锚点已锁定；不允许写入。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="425"/>
+        <location filename="widgets/developer.cpp" line="426"/>
         <source>Anchors written.</source>
         <translation>锚点已写入。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="752"/>
+        <location filename="widgets/developer.cpp" line="753"/>
         <source>Device refused write (unknown error)</source>
         <translation>设备拒绝写入（未知错误）</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="763"/>
+        <location filename="widgets/developer.cpp" line="764"/>
         <source>Device info written successfully</source>
         <translation>设备信息写入成功</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="774"/>
+        <location filename="widgets/developer.cpp" line="775"/>
         <source>Device info is locked</source>
         <translation>设备信息已锁定</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="785"/>
+        <location filename="widgets/developer.cpp" line="786"/>
         <source>Invalid payload size</source>
         <translation>无效的负载大小</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="796"/>
+        <location filename="widgets/developer.cpp" line="797"/>
         <source>Flash write failed</source>
         <translation>闪存写入失败</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="807"/>
+        <location filename="widgets/developer.cpp" line="808"/>
         <source>Unknown error code: %1</source>
         <translation>未知错误代码：%1</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="826"/>
-        <source>Export Force Anchors</source>
-        <translation>导出力锚点</translation>
-    </message>
-    <message>
-        <location filename="widgets/developer.cpp" line="828"/>
-        <location filename="widgets/developer.cpp" line="899"/>
+        <location filename="widgets/developer.cpp" line="829"/>
+        <location filename="widgets/developer.cpp" line="900"/>
         <source>JSON Files (*.json);;All Files (*)</source>
         <translation>JSON 文件 (*.json);;所有文件 (*)</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="866"/>
+        <location filename="widgets/developer.cpp" line="867"/>
         <source>Export Failed</source>
         <translation>导出失败</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="867"/>
+        <location filename="widgets/developer.cpp" line="868"/>
         <source>Could not open file for writing: %1</source>
         <translation>无法打开文件进行写入：%1</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="882"/>
+        <location filename="widgets/developer.cpp" line="883"/>
         <source>Export Successful</source>
         <translation>导出成功</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="883"/>
+        <location filename="widgets/developer.cpp" line="884"/>
         <source>Force anchors exported successfully.</source>
         <translation>力锚点导出成功。</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="897"/>
-        <source>Import Force Anchors</source>
-        <translation>导入力锚点</translation>
-    </message>
-    <message>
-        <location filename="widgets/developer.cpp" line="910"/>
-        <location filename="widgets/developer.cpp" line="929"/>
+        <location filename="widgets/developer.cpp" line="911"/>
+        <location filename="widgets/developer.cpp" line="930"/>
         <source>Import Failed</source>
         <translation>导入失败</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="911"/>
+        <location filename="widgets/developer.cpp" line="912"/>
         <source>Could not open file for reading: %1</source>
         <translation>无法打开文件进行读取：%1</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="930"/>
+        <location filename="widgets/developer.cpp" line="931"/>
         <source>Failed to parse JSON: %1</source>
         <translation>JSON 解析失败：%1</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="981"/>
+        <location filename="widgets/developer.cpp" line="982"/>
         <source>Import Successful</source>
         <translation>导入成功</translation>
     </message>
     <message>
-        <location filename="widgets/developer.cpp" line="982"/>
+        <location filename="widgets/developer.cpp" line="983"/>
         <source>Force anchors imported successfully.
 Remember to write to device if you want to save these values.</source>
         <translation>力锚点导入成功。
@@ -1913,109 +1919,59 @@ Remember to write to device if you want to save these values.</source>
 <context>
     <name>Encoders</name>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="20"/>
         <source>Form</source>
-        <translation>子菜单</translation>
+        <translation type="vanished">子菜单</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="60"/>
-        <location filename="widgets/encoders/encoders.ui" line="99"/>
-        <location filename="widgets/encoders/encoders.cpp" line="11"/>
         <source>Not defined</source>
-        <translation>未定义</translation>
+        <translation type="vanished">未定义</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="73"/>
         <source>Encoder type</source>
-        <translation>编码器类型</translation>
+        <translation type="vanished">编码器类型</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="86"/>
         <source>Input A</source>
-        <translation>A相输入</translation>
+        <translation type="vanished">A相输入</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.ui" line="125"/>
         <source>Input B</source>
-        <translation>B相输入</translation>
+        <translation type="vanished">B相输入</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encoders.h" line="45"/>
-        <source>Encoder 1x</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/encoders/encoders.h" line="46"/>
-        <source>Encoder 2x</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/encoders/encoders.h" line="47"/>
-        <source>Encoder 4x</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/encoders/encoders.cpp" line="47"/>
-        <location filename="widgets/encoders/encoders.cpp" line="60"/>
         <source>Button № %1</source>
-        <translation>按钮 № %1</translation>
+        <translation type="vanished">按钮 № %1</translation>
     </message>
 </context>
 <context>
     <name>EncodersConfig</name>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="14"/>
         <source>Form</source>
-        <translation>子菜单</translation>
+        <translation type="vanished">子菜单</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="71"/>
         <source>Fast encoder</source>
-        <translation>高分辨率编码器</translation>
+        <translation type="vanished">高分辨率编码器</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="105"/>
         <source>Fast encoder input A</source>
-        <oldsource>Fast encioder input A</oldsource>
-        <translation>高分编码器A相</translation>
+        <translation type="vanished">高分编码器A相</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="118"/>
         <source>Fast encoder input B</source>
-        <oldsource>Fast encioder input B</oldsource>
-        <translation>高分编码器B相</translation>
+        <translation type="vanished">高分编码器B相</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="131"/>
         <source>Encoder type</source>
-        <translation>编码器类型</translation>
+        <translation type="vanished">编码器类型</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="157"/>
-        <location filename="widgets/encoders/encodersconfig.ui" line="170"/>
-        <location filename="widgets/encoders/encodersconfig.cpp" line="13"/>
         <source>Not defined</source>
-        <translation>未定义</translation>
+        <translation type="vanished">未定义</translation>
     </message>
     <message>
-        <location filename="widgets/encoders/encodersconfig.ui" line="193"/>
         <source>Slow encoders</source>
-        <translation>低分辨率编码器</translation>
-    </message>
-    <message>
-        <location filename="widgets/encoders/encodersconfig.h" line="46"/>
-        <source>Encoder 1x</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/encoders/encodersconfig.h" line="47"/>
-        <source>Encoder 2x</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/encoders/encodersconfig.h" line="48"/>
-        <source>Encoder 4x</source>
-        <translation></translation>
+        <translation type="vanished">低分辨率编码器</translation>
     </message>
 </context>
 <context>
@@ -2036,47 +1992,47 @@ Remember to write to device if you want to save these values.</source>
         <translation>写入固件</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="48"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="50"/>
         <source>Ready to flash</source>
         <translation>准备写入</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="63"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="65"/>
         <source>Open Config</source>
         <translation>载入固件</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="63"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="65"/>
         <source>Binary files (.bin) (*.bin)</source>
         <translation>二进制文件 (.bin) (*.bin)</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="86"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="88"/>
         <source>Firmware flashing..</source>
         <translation>固件写入中..</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="90"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="92"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="95"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="97"/>
         <source>SIZE ERROR</source>
         <translation>大小错误-SIZE ERROR</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="100"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="102"/>
         <source>CRC ERROR</source>
         <translation>CRC校验错误-CRC ERROR</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="105"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="107"/>
         <source>ERASE ERROR</source>
         <translation>擦除错误-ERASE ERROR</translation>
     </message>
     <message>
-        <location filename="widgets/adv-settings/flasher.cpp" line="110"/>
+        <location filename="widgets/adv-settings/flasher.cpp" line="112"/>
         <source>ERROR</source>
         <translation>错误</translation>
     </message>
@@ -2084,80 +2040,35 @@ Remember to write to device if you want to save these values.</source>
 <context>
     <name>LED</name>
     <message>
-        <location filename="widgets/led/led.ui" line="14"/>
         <source>Form</source>
-        <translation>子菜单</translation>
+        <translation type="vanished">子菜单</translation>
     </message>
     <message>
-        <location filename="widgets/led/led.h" line="40"/>
         <source>Normal</source>
-        <translation>正常</translation>
+        <translation type="vanished">正常</translation>
     </message>
     <message>
-        <location filename="widgets/led/led.h" line="41"/>
         <source>Inverted</source>
-        <translation>相反</translation>
+        <translation type="vanished">相反</translation>
     </message>
 </context>
 <context>
     <name>LedConfig</name>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="14"/>
         <source>Form</source>
-        <translation>子菜单</translation>
+        <translation type="vanished">子菜单</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="32"/>
-        <source>PWM</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/led/ledconfig.ui" line="50"/>
-        <source>Pin PA8</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/led/ledconfig.ui" line="89"/>
-        <location filename="widgets/led/ledconfig.ui" line="153"/>
-        <location filename="widgets/led/ledconfig.ui" line="217"/>
-        <location filename="widgets/led/ledconfig.ui" line="278"/>
         <source>Connected to axis</source>
-        <translation>绑定到轴</translation>
+        <translation type="vanished">绑定到轴</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="114"/>
-        <source>Pin PB0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/led/ledconfig.ui" line="178"/>
-        <source>Pin PB1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/led/ledconfig.ui" line="239"/>
-        <source>Pin PB4</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/led/ledconfig.ui" line="307"/>
-        <source>LED</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="widgets/led/ledconfig.ui" line="316"/>
         <source>Input №</source>
-        <translation>输入 №</translation>
+        <translation type="vanished">输入 №</translation>
     </message>
     <message>
-        <location filename="widgets/led/ledconfig.ui" line="326"/>
         <source>Function</source>
-        <translation>作用</translation>
-    </message>
-    <message>
-        <location filename="widgets/led/ledconfig.ui" line="336"/>
-        <source>№</source>
-        <translation></translation>
+        <translation type="vanished">作用</translation>
     </message>
 </context>
 <context>
@@ -2176,7 +2087,6 @@ Remember to write to device if you want to save these values.</source>
     </message>
     <message>
         <source> Axes Config </source>
-        <oldsource> Axis Config </oldsource>
         <translation type="vanished"> 轴配置 </translation>
     </message>
     <message>
@@ -2186,38 +2096,41 @@ Remember to write to device if you want to save these values.</source>
     </message>
     <message>
         <location filename="mainwindow.ui" line="237"/>
-        <location filename="mainwindow.cpp" line="1248"/>
-        <location filename="mainwindow.cpp" line="1292"/>
+        <location filename="mainwindow.cpp" line="1211"/>
+        <location filename="mainwindow.cpp" line="1278"/>
+        <location filename="mainwindow.cpp" line="1388"/>
         <source>DCS</source>
         <translation>DCS</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="242"/>
-        <location filename="mainwindow.cpp" line="1249"/>
-        <location filename="mainwindow.cpp" line="1293"/>
+        <location filename="mainwindow.cpp" line="1212"/>
+        <location filename="mainwindow.cpp" line="1279"/>
+        <location filename="mainwindow.cpp" line="1389"/>
         <source>Falcon BMS</source>
         <translation>Falcon BMS</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="247"/>
-        <location filename="mainwindow.cpp" line="1250"/>
-        <location filename="mainwindow.cpp" line="1294"/>
+        <location filename="mainwindow.cpp" line="1213"/>
+        <location filename="mainwindow.cpp" line="1280"/>
+        <location filename="mainwindow.cpp" line="1390"/>
         <source>MSFS</source>
         <translation>MSFS</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="268"/>
-        <source>Active Sim Software Profile</source>
-        <translation>活动模拟软件配置文件</translation>
+        <source>Sim Software</source>
+        <translation>模拟软件</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="314"/>
-        <source>Device Control Board Version</source>
-        <translation>设备控制板版本</translation>
+        <source>Control Board</source>
+        <translation>控制板</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="342"/>
-        <location filename="mainwindow.cpp" line="1611"/>
+        <location filename="mainwindow.cpp" line="1716"/>
         <source>Activate Advanced Mode</source>
         <translation>激活高级模式</translation>
     </message>
@@ -2232,100 +2145,96 @@ Remember to write to device if you want to save these values.</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="490"/>
-        <source>Write Current Settings to Device</source>
-        <translation>将当前设置写入设备</translation>
+        <location filename="mainwindow.ui" line="506"/>
+        <source>Write Settings to Device</source>
+        <translation>将设置写入设备</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="513"/>
+        <location filename="mainwindow.ui" line="529"/>
         <source>Active Grip Profile</source>
         <translation>活动操纵杆配置文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="706"/>
+        <location filename="mainwindow.ui" line="731"/>
         <source> Pin Settings</source>
         <translation> 引脚设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="725"/>
+        <location filename="mainwindow.ui" line="750"/>
         <source> Button Settings</source>
         <translation> 按钮设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="744"/>
+        <location filename="mainwindow.ui" line="769"/>
         <source> Axes Settings</source>
         <translation> 轴设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="795"/>
+        <location filename="mainwindow.ui" line="820"/>
         <source>Proportional Force Scaling</source>
         <translation>比例力缩放</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="807"/>
+        <location filename="mainwindow.ui" line="832"/>
         <source>50% FLCS</source>
         <translation>50% FLCS</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="814"/>
+        <location filename="mainwindow.ui" line="839"/>
         <source>Full FLCS Force</source>
         <translation>全FLCS力</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="821"/>
+        <location filename="mainwindow.ui" line="846"/>
         <source>75% FLCS</source>
         <translation>75% FLCS</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="837"/>
+        <location filename="mainwindow.ui" line="862"/>
         <source>FLCS Mode</source>
         <translation>FLCS 模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="849"/>
+        <location filename="mainwindow.ui" line="874"/>
         <source>Analog</source>
         <translation>模拟</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="856"/>
+        <location filename="mainwindow.ui" line="881"/>
         <source>Digital</source>
         <translation>数字</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="868"/>
+        <location filename="mainwindow.ui" line="893"/>
         <source> Axes Curves </source>
-        <oldsource> Axis Curves </oldsource>
         <translation> 轴曲线 </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="890"/>
+        <location filename="mainwindow.ui" line="915"/>
         <source> Shift Registers </source>
         <translation> 移位寄存器 </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="912"/>
         <source> Encoders</source>
-        <translation> 编码器</translation>
+        <translation type="vanished"> 编码器</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="934"/>
         <source> LED/PWM </source>
-        <oldsource> LED </oldsource>
-        <translation> LED/PWM </translation>
+        <translation type="vanished"> LED/PWM </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="956"/>
+        <location filename="mainwindow.ui" line="937"/>
         <source> Advanced Settings </source>
         <translation> 高级设置 </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="978"/>
+        <location filename="mainwindow.ui" line="959"/>
         <source> Developer Settings</source>
         <translation> 开发者设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="756"/>
-        <location filename="mainwindow.cpp" line="1367"/>
+        <location filename="mainwindow.cpp" line="716"/>
+        <location filename="mainwindow.cpp" line="1472"/>
         <source>Connected</source>
         <translation>已连接</translation>
     </message>
@@ -2347,7 +2256,7 @@ Remember to write to device if you want to save these values.</source>
         <translation type="vanished">从设备中读取配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="569"/>
+        <location filename="mainwindow.ui" line="585"/>
         <source>Reset All</source>
         <translation>重置所有设置</translation>
     </message>
@@ -2388,7 +2297,7 @@ Remember to write to device if you want to save these values.</source>
         <translation type="obsolete">Rz</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="541"/>
+        <location filename="mainwindow.ui" line="557"/>
         <source>Load config from file</source>
         <translation>从文件中加载配置</translation>
     </message>
@@ -2397,154 +2306,173 @@ Remember to write to device if you want to save these values.</source>
         <translation type="vanished">将配置写入设备</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="129"/>
+        <location filename="mainwindow.cpp" line="130"/>
         <source>Invictus HOTAS Configurator</source>
         <translation>Invictus HOTAS 配置程序 (由@sht2017翻译、@Clara补充完善)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="241"/>
-        <location filename="mainwindow.cpp" line="258"/>
+        <location filename="mainwindow.cpp" line="222"/>
+        <location filename="mainwindow.cpp" line="239"/>
         <source>Firmware update available</source>
         <translation>有可用的固件更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="242"/>
-        <location filename="mainwindow.cpp" line="259"/>
+        <location filename="mainwindow.cpp" line="223"/>
+        <location filename="mainwindow.cpp" line="240"/>
         <source>A newer firmware is available: %1</source>
         <translation>有更新的固件可用：%1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="243"/>
-        <location filename="mainwindow.cpp" line="260"/>
+        <location filename="mainwindow.cpp" line="224"/>
+        <location filename="mainwindow.cpp" line="241"/>
         <source>Open the firmware release page?</source>
         <translation>打开固件发布页面？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="248"/>
-        <location filename="mainwindow.cpp" line="265"/>
-        <location filename="mainwindow.cpp" line="2166"/>
+        <location filename="mainwindow.cpp" line="229"/>
+        <location filename="mainwindow.cpp" line="246"/>
+        <location filename="mainwindow.cpp" line="2252"/>
         <source>Open GitHub</source>
         <translation>打开 GitHub</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="352"/>
+        <location filename="mainwindow.cpp" line="324"/>
+        <location filename="mainwindow.cpp" line="1229"/>
+        <location filename="mainwindow.cpp" line="1296"/>
+        <location filename="mainwindow.cpp" line="1406"/>
         <source>— Select board —</source>
         <translation>— 选择板卡 —</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="354"/>
-        <location filename="mainwindow.cpp" line="2022"/>
+        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="1230"/>
+        <location filename="mainwindow.cpp" line="1297"/>
+        <location filename="mainwindow.cpp" line="1407"/>
         <source>VFT Controller Gen 1-3</source>
         <translation>VFT 控制器 Gen 1-3</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="355"/>
-        <location filename="mainwindow.cpp" line="2023"/>
+        <location filename="mainwindow.cpp" line="327"/>
+        <location filename="mainwindow.cpp" line="1231"/>
+        <location filename="mainwindow.cpp" line="1298"/>
+        <location filename="mainwindow.cpp" line="1408"/>
         <source>VFT Controller Gen 4</source>
         <translation>VFT 控制器 Gen 4</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="458"/>
-        <location filename="mainwindow.cpp" line="479"/>
-        <location filename="mainwindow.cpp" line="507"/>
+        <location filename="mainwindow.cpp" line="418"/>
+        <location filename="mainwindow.cpp" line="439"/>
+        <location filename="mainwindow.cpp" line="467"/>
         <source>Force Anchors</source>
         <translation>力锚点</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="459"/>
+        <location filename="mainwindow.cpp" line="419"/>
         <source>No reply from device.</source>
         <translation>设备无响应。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="480"/>
+        <location filename="mainwindow.cpp" line="440"/>
         <source>CRC/format error reading anchors.</source>
         <translation>读取锚点时 CRC/格式错误。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="508"/>
+        <location filename="mainwindow.cpp" line="468"/>
         <source>Device config not loaded.</source>
         <translation>设备配置未加载。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="625"/>
+        <location filename="mainwindow.cpp" line="585"/>
+        <location filename="mainwindow.cpp" line="1246"/>
+        <location filename="mainwindow.cpp" line="1306"/>
+        <location filename="mainwindow.cpp" line="1416"/>
         <source>— Select grip —</source>
         <translation>— 选择操纵杆 —</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="642"/>
-        <location filename="mainwindow.cpp" line="643"/>
-        <location filename="mainwindow.cpp" line="1245"/>
-        <location filename="mainwindow.cpp" line="1289"/>
+        <location filename="mainwindow.cpp" line="602"/>
+        <location filename="mainwindow.cpp" line="603"/>
+        <location filename="mainwindow.cpp" line="1210"/>
+        <location filename="mainwindow.cpp" line="1277"/>
+        <location filename="mainwindow.cpp" line="1387"/>
         <source>— Select sim software—</source>
         <translation>— 选择模拟软件—</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="737"/>
-        <location filename="mainwindow.cpp" line="1361"/>
+        <location filename="mainwindow.cpp" line="697"/>
+        <location filename="mainwindow.cpp" line="1466"/>
         <source>Disconnected</source>
         <translation>已断开连接</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="796"/>
-        <location filename="mainwindow.cpp" line="1364"/>
+        <location filename="mainwindow.cpp" line="756"/>
+        <location filename="mainwindow.cpp" line="1469"/>
         <source>Firmware Update Required</source>
         <translation>需要固件更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1588"/>
+        <location filename="mainwindow.cpp" line="1118"/>
+        <location filename="mainwindow.cpp" line="1150"/>
+        <location filename="mainwindow.cpp" line="1874"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1693"/>
         <source>Deactivate Advanced Mode</source>
         <translation>停用高级模式</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1639"/>
+        <location filename="mainwindow.cpp" line="1744"/>
         <source>What Board Do I Have?</source>
         <translation>我有什么板卡？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1640"/>
+        <location filename="mainwindow.cpp" line="1745"/>
         <source>Identify your board by connector count on the left side.</source>
         <translation>通过左侧的连接器数量识别您的板卡。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1641"/>
+        <location filename="mainwindow.cpp" line="1746"/>
         <source>Gen 1–2: Two 3-pin headers
 Gen 3: One 4-pin header
 Gen 4: One 6-pin header</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen 1–2：两个 3 针接头
+Gen 3：一个 4 针接头
+Gen 4：一个 6 针接头</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1770"/>
+        <location filename="mainwindow.cpp" line="1875"/>
         <source>Failed to load grip profile: %1</source>
         <translation>加载操纵杆配置文件失败：%1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1969"/>
+        <location filename="mainwindow.cpp" line="2074"/>
         <source>Developer</source>
         <translation>开发者</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2027"/>
         <source>Apply board defaults?</source>
-        <translation>应用板卡默认设置？</translation>
+        <translation type="vanished">应用板卡默认设置？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2028"/>
         <source>Replace current pin mapping with %1 defaults?</source>
-        <translation>用 %1 默认值替换当前引脚映射？</translation>
+        <translation type="vanished">用 %1 默认值替换当前引脚映射？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2158"/>
+        <location filename="mainwindow.cpp" line="2244"/>
         <source>Update available</source>
         <translation>有可用更新</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2159"/>
+        <location filename="mainwindow.cpp" line="2245"/>
         <source>A newer version is available: %1
 You have: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>有更新版本可用：%1
+您的版本：%2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2161"/>
+        <location filename="mainwindow.cpp" line="2247"/>
         <source>Open the release page to download?</source>
         <translation>打开发布页面下载？</translation>
     </message>
@@ -2553,53 +2481,46 @@ You have: %2</source>
         <translation type="vanished">固件不兼容</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="805"/>
-        <location filename="mainwindow.cpp" line="1137"/>
-        <location filename="mainwindow.cpp" line="1351"/>
-        <location filename="mainwindow.cpp" line="1356"/>
+        <location filename="mainwindow.cpp" line="765"/>
+        <location filename="mainwindow.cpp" line="1104"/>
+        <location filename="mainwindow.cpp" line="1456"/>
+        <location filename="mainwindow.cpp" line="1461"/>
         <source>Device firmware</source>
         <translation>设备固件</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1139"/>
+        <location filename="mainwindow.cpp" line="1106"/>
         <source>Received</source>
         <translation>已接收</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1151"/>
-        <location filename="mainwindow.cpp" line="1183"/>
-        <location filename="mainwindow.cpp" line="1769"/>
-        <source>Error</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="1172"/>
+        <location filename="mainwindow.cpp" line="1139"/>
         <source>Sent</source>
         <translation>已发送</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1492"/>
+        <location filename="mainwindow.cpp" line="1597"/>
         <source>Open Config</source>
         <translation>打开配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1492"/>
-        <location filename="mainwindow.cpp" line="1510"/>
+        <location filename="mainwindow.cpp" line="1597"/>
+        <location filename="mainwindow.cpp" line="1615"/>
         <source>Config Files (*.cfg)</source>
         <translation>配置文件 (*.cfg)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1509"/>
+        <location filename="mainwindow.cpp" line="1614"/>
         <source>Save Config</source>
         <translation>保存配置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1336"/>
+        <location filename="mainwindow.cpp" line="1438"/>
         <source>Hide debug</source>
         <translation>隐藏调试信息</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="459"/>
+        <location filename="mainwindow.ui" line="475"/>
         <source>Visit Wiki</source>
         <translation>访问Wiki</translation>
     </message>
@@ -2612,282 +2533,269 @@ You have: %2</source>
         <translation>子菜单</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="145"/>
+        <location filename="widgets/pins/pincombobox.h" line="143"/>
         <source>Pin A0</source>
         <translation>A0 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="146"/>
+        <location filename="widgets/pins/pincombobox.h" line="144"/>
         <source>Pin A1</source>
         <translation>A1 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="147"/>
+        <location filename="widgets/pins/pincombobox.h" line="145"/>
         <source>Pin A2</source>
         <translation>A2 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="148"/>
+        <location filename="widgets/pins/pincombobox.h" line="146"/>
         <source>Pin A3</source>
         <translation>A3 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="149"/>
+        <location filename="widgets/pins/pincombobox.h" line="147"/>
         <source>Pin A4</source>
         <translation>A4 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="150"/>
+        <location filename="widgets/pins/pincombobox.h" line="148"/>
         <source>Pin A5</source>
         <translation>A5 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="151"/>
+        <location filename="widgets/pins/pincombobox.h" line="149"/>
         <source>Pin A6</source>
         <translation>A6 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="152"/>
+        <location filename="widgets/pins/pincombobox.h" line="150"/>
         <source>Pin A7</source>
         <translation>A7 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="153"/>
+        <location filename="widgets/pins/pincombobox.h" line="151"/>
         <source>Pin A8</source>
         <translation>A8 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="154"/>
+        <location filename="widgets/pins/pincombobox.h" line="152"/>
         <source>Pin A9</source>
         <translation>A9 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="155"/>
+        <location filename="widgets/pins/pincombobox.h" line="153"/>
         <source>Pin A10</source>
         <translation>A10 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="156"/>
+        <location filename="widgets/pins/pincombobox.h" line="154"/>
         <source>Pin A15</source>
         <translation>A15 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="157"/>
+        <location filename="widgets/pins/pincombobox.h" line="155"/>
         <source>Pin B0</source>
         <translation>B0 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="158"/>
+        <location filename="widgets/pins/pincombobox.h" line="156"/>
         <source>Pin B1</source>
         <translation>B1 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="159"/>
+        <location filename="widgets/pins/pincombobox.h" line="157"/>
         <source>Pin B3</source>
         <translation>B3 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="160"/>
+        <location filename="widgets/pins/pincombobox.h" line="158"/>
         <source>Pin B4</source>
         <translation>B4 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="161"/>
+        <location filename="widgets/pins/pincombobox.h" line="159"/>
         <source>Pin B5</source>
         <translation>B5 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="162"/>
+        <location filename="widgets/pins/pincombobox.h" line="160"/>
         <source>Pin B6</source>
         <translation>B6 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="163"/>
+        <location filename="widgets/pins/pincombobox.h" line="161"/>
         <source>Pin B7</source>
         <translation>B7 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="164"/>
+        <location filename="widgets/pins/pincombobox.h" line="162"/>
         <source>Pin B8</source>
         <translation>B8 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="165"/>
+        <location filename="widgets/pins/pincombobox.h" line="163"/>
         <source>Pin B9</source>
         <translation>B9 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="166"/>
+        <location filename="widgets/pins/pincombobox.h" line="164"/>
         <source>Pin B10</source>
         <translation>B10 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="167"/>
+        <location filename="widgets/pins/pincombobox.h" line="165"/>
         <source>Pin B11</source>
         <translation>B11 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="168"/>
+        <location filename="widgets/pins/pincombobox.h" line="166"/>
         <source>Pin B12</source>
         <translation>B12 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="169"/>
+        <location filename="widgets/pins/pincombobox.h" line="167"/>
         <source>Pin B13</source>
         <translation>B13 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="170"/>
+        <location filename="widgets/pins/pincombobox.h" line="168"/>
         <source>Pin B14</source>
         <translation>B14 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="171"/>
+        <location filename="widgets/pins/pincombobox.h" line="169"/>
         <source>Pin B15</source>
         <translation>B15 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="172"/>
+        <location filename="widgets/pins/pincombobox.h" line="170"/>
         <source>Pin C13</source>
         <translation>C13 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="173"/>
+        <location filename="widgets/pins/pincombobox.h" line="171"/>
         <source>Pin C14</source>
         <translation>C14 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="174"/>
+        <location filename="widgets/pins/pincombobox.h" line="172"/>
         <source>Pin C15</source>
         <translation>C15 引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="179"/>
+        <location filename="widgets/pins/pincombobox.h" line="177"/>
         <source>Not Used</source>
         <translation>未使用</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="184"/>
+        <location filename="widgets/pins/pincombobox.h" line="182"/>
         <source>Button Gnd</source>
         <translation>按钮 负极</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="189"/>
+        <location filename="widgets/pins/pincombobox.h" line="187"/>
         <source>Button Vcc</source>
         <translation>按钮 正极</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="194"/>
+        <location filename="widgets/pins/pincombobox.h" line="192"/>
         <source>Button Row</source>
         <translation>按钮 行</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="199"/>
+        <location filename="widgets/pins/pincombobox.h" line="197"/>
         <source>Button Column</source>
         <translation>按钮 列</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="204"/>
+        <location filename="widgets/pins/pincombobox.h" line="202"/>
         <source>ShiftReg LATCH</source>
         <translation>移位寄存器 LATCH引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="209"/>
+        <location filename="widgets/pins/pincombobox.h" line="207"/>
         <source>ShiftReg DATA</source>
         <translation>移位寄存器 DATA引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="214"/>
+        <location filename="widgets/pins/pincombobox.h" line="212"/>
         <source>ShiftReg CLK</source>
         <translation>移位寄存器 CLK引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="219"/>
         <source>TLE5011 CS</source>
-        <translation>TLE5011 CS引脚</translation>
+        <translation type="vanished">TLE5011 CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="224"/>
         <source>TLE5012B CS</source>
-        <translation>TLE5012B CS引脚</translation>
+        <translation type="vanished">TLE5012B CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="229"/>
         <source>MCP3201 CS</source>
-        <translation>MCP3201 CS引脚</translation>
+        <translation type="vanished">MCP3201 CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="234"/>
+        <location filename="widgets/pins/pincombobox.h" line="217"/>
         <source>MCP3202 CS</source>
         <translation>MCP3202 CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="239"/>
         <source>MCP3204 CS</source>
-        <translation>MCP3204 CS引脚</translation>
+        <translation type="vanished">MCP3204 CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="244"/>
         <source>MCP3208 CS</source>
-        <translation>MCP3208 CS引脚</translation>
+        <translation type="vanished">MCP3208 CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="249"/>
         <source>MLX90393 CS</source>
-        <translation>MLX90393 CS引脚</translation>
+        <translation type="vanished">MLX90393 CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="254"/>
         <source>MLX90363 CS</source>
-        <translation>MLX90363 CS引脚</translation>
+        <translation type="vanished">MLX90363 CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="259"/>
         <source>AS5048A CS</source>
-        <translation>AS5048A CS引脚</translation>
+        <translation type="vanished">AS5048A CS引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="264"/>
         <source>LED Single</source>
-        <translation>单独LED</translation>
+        <translation type="vanished">单独LED</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="269"/>
         <source>LED Row</source>
-        <translation>LED 行</translation>
+        <translation type="vanished">LED 行</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="274"/>
         <source>LED Column</source>
-        <translation>LED 列</translation>
+        <translation type="vanished">LED 列</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="279"/>
         <source>LED PWM</source>
-        <translation>LED PWM引脚</translation>
+        <translation type="vanished">LED PWM引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="284"/>
+        <location filename="widgets/pins/pincombobox.h" line="222"/>
         <source>Axis Analog</source>
         <translation>模拟轴</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="289"/>
         <source>Fast Encoder</source>
-        <translation>高速编码器</translation>
+        <translation type="vanished">高速编码器</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="294"/>
+        <location filename="widgets/pins/pincombobox.h" line="227"/>
         <source>SPI SCK</source>
         <translation>SPI SCK引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="299"/>
+        <location filename="widgets/pins/pincombobox.h" line="232"/>
         <source>SPI MOSI</source>
         <translation>SPI MOSI引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="304"/>
+        <location filename="widgets/pins/pincombobox.h" line="237"/>
         <source>SPI MISO</source>
         <translation>SPI MISO引脚</translation>
     </message>
@@ -2896,12 +2804,12 @@ You have: %2</source>
         <translation type="vanished">TLE5011 GEN引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="314"/>
+        <location filename="widgets/pins/pincombobox.h" line="247"/>
         <source>I2C SCL</source>
         <translation>I2C SCL引脚</translation>
     </message>
     <message>
-        <location filename="widgets/pins/pincombobox.h" line="319"/>
+        <location filename="widgets/pins/pincombobox.h" line="252"/>
         <source>I2C SDA</source>
         <translation>I2C SDA引脚</translation>
     </message>
@@ -2918,7 +2826,7 @@ You have: %2</source>
     <message>
         <location filename="widgets/selectfolder.ui" line="26"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="widgets/selectfolder.ui" line="44"/>
@@ -2986,7 +2894,7 @@ You have: %2</source>
         <translation>按钮计数</translation>
     </message>
     <message>
-        <location filename="widgets/shift-reg/shiftregisters.cpp" line="17"/>
+        <location filename="widgets/shift-reg/shiftregisters.cpp" line="18"/>
         <source>Not defined</source>
         <translation>未定义</translation>
     </message>

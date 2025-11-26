@@ -1492,10 +1492,6 @@ Urządzenie ma: %2</translation>
         <translation>Numer seryjny: </translation>
     </message>
     <message>
-        <source>Device USB name:</source>
-        <translation>Nazwa USB urządzenia:</translation>
-    </message>
-    <message>
         <source>Write Device Identity</source>
         <translation>Zapisz identyfikację urządzenia</translation>
     </message>

@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QDebug>
+#include "adv-settings/text_fit_helpers.h"
 
 PinConfig::PinConfig(QWidget *parent) :
     QWidget(parent),
@@ -72,6 +73,7 @@ QList<PinComboBox *> PinConfig::getPinComboBoxList() const
 void PinConfig::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
     for (int i = 0; i < m_pinCBoxPtrList.size(); ++i) {
         m_pinCBoxPtrList[i]->retranslateUi();
     }

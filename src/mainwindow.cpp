@@ -1276,6 +1276,50 @@ void MainWindow::languageChanged(const QString &language)
     {
         if (trFunc(":/German") == false) return;
     }
+    else if (language == "english_uk")
+    {
+        if (trFunc(":/English_UK") == false) return;
+    }
+    else if (language == "dutch")
+    {
+        if (trFunc(":/Dutch") == false) return;
+    }
+    else if (language == "french")
+    {
+        if (trFunc(":/French") == false) return;
+    }
+    else if (language == "italian")
+    {
+        if (trFunc(":/Italian") == false) return;
+    }
+    else if (language == "japanese")
+    {
+        if (trFunc(":/Japanese") == false) return;
+    }
+    else if (language == "korean")
+    {
+        if (trFunc(":/Korean") == false) return;
+    }
+    else if (language == "polish")
+    {
+        if (trFunc(":/Polish") == false) return;
+    }
+    else if (language == "portuguese_br")
+    {
+        if (trFunc(":/Portuguese_BR") == false) return;
+    }
+    else if (language == "spanish_eu")
+    {
+        if (trFunc(":/Spanish_EU") == false) return;
+    }
+    else if (language == "spanish_la")
+    {
+        if (trFunc(":/Spanish_LA") == false) return;
+    }
+    else if (language == "turkish")
+    {
+        if (trFunc(":/Turkish") == false) return;
+    }
     else
     {
         return;

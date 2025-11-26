@@ -7,6 +7,7 @@
 #include <QSettings>
 #include "global.h"
 #include "axescurvesbutton.h"
+#include "adv-settings/text_fit_helpers.h"
 
 AxesConfig::AxesConfig(QWidget *parent)
     : QWidget(parent)
@@ -57,6 +58,7 @@ AxesConfig::~AxesConfig()
 void AxesConfig::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
     for (int i = 0; i < MAX_AXIS_NUM; ++i) {
         m_axesPtrList[i]->retranslateUi();
     }

@@ -3,6 +3,7 @@
 #include <cmath>
 #include <QJsonObject>
 #include <QJsonArray>
+#include "adv-settings/text_fit_helpers.h"
 
 QString ShiftRegisters::m_notDefined = nullptr;
 
@@ -41,6 +42,7 @@ ShiftRegisters::~ShiftRegisters()
 void ShiftRegisters::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
 }
 
 void ShiftRegisters::calcRegistersCount(int count)

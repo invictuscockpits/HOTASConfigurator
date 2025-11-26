@@ -1492,10 +1492,6 @@ Apparaat heeft: %2</translation>
         <translation>Serienr.: </translation>
     </message>
     <message>
-        <source>Device USB name:</source>
-        <translation>USB-apparaatnaam:</translation>
-    </message>
-    <message>
         <source>Write Device Identity</source>
         <translation>Apparaatidentiteit schrijven</translation>
     </message>

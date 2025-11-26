@@ -236,7 +236,12 @@
         &lt;p&gt;This software and firmware are based on
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;.
         We highly recommend starting there if you&apos;re building something similar.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>
+        &lt;p&gt;Исходный код доступен под лицензией GPLv3 на
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;Это программное обеспечение и прошивка основаны на
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt&quot;&gt;FreeJoy&lt;/a&gt;.
+        Мы настоятельно рекомендуем начать с него, если вы создаете что-то подобное.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Update Check</source>
@@ -267,8 +272,8 @@
         <translation>Актуальная версия</translation>
     </message>
     <message>
-        <source>You’re on the latest version (%1).</source>
-        <translation type="unfinished"></translation>
+        <source>You&apos;re on the latest version (%1).</source>
+        <translation type="vanished">У вас установлена последняя версия (%1).</translation>
     </message>
     <message>
         <source>Update available</source>
@@ -277,7 +282,8 @@
     <message>
         <source>A newer version is available: %1
 You have: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступна новая версия: %1
+У вас установлена: %2</translation>
     </message>
     <message>
         <source>Open the release page to download?</source>
@@ -306,7 +312,8 @@ You have: %2</source>
     <message>
         <source>A newer firmware is available: %1
 Device has: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступна новая прошивка: %1
+На устройстве установлена: %2</translation>
     </message>
     <message>
         <source>Open the firmware release page?</source>
@@ -322,10 +329,26 @@ Device has: %2</source>
         &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;wiki&lt;/a&gt;
         for detailed instructions.&lt;/p&gt;
         &lt;/div&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>
+        &lt;p&gt;Посетите нашу
+        &lt;a style=&quot;color: #14B307; text-decoration:none;&quot; href=&quot;https://github.com/invictuscockpits/HOTASConfigurator/wiki&quot;&gt;вики&lt;/a&gt;
+        для подробных инструкций.&lt;/p&gt;
+        &lt;/div&gt;</translation>
     </message>
     <message>
         <source>Don&apos;t remind me again for %1</source>
+        <translation>Больше не напоминать о %1</translation>
+    </message>
+    <message>
+        <source>Translations were AI-generated. Please report issues on GitHub.</source>
+        <translation>Переводы созданы ИИ. Пожалуйста, сообщайте о проблемах на GitHub.</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You’re on the latest version (%1).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -337,7 +360,7 @@ Device has: %2</source>
     </message>
     <message>
         <source>GroupBox</source>
-        <translation>Груп бокс</translation>
+        <translation>Группа</translation>
     </message>
     <message>
         <source>Output</source>
@@ -360,20 +383,12 @@ Device has: %2</source>
         <translation>Максимум</translation>
     </message>
     <message>
-        <source>Out</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Raw</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>None</source>
         <translation>Нет</translation>
     </message>
     <message>
         <source>Encoder</source>
-        <translation>Энкодер</translation>
+        <translation type="vanished">Энкодер</translation>
     </message>
     <message>
         <source>X</source>
@@ -414,6 +429,14 @@ Device has: %2</source>
     <message>
         <source>Buttons from axes</source>
         <translation>Кнопки из осей</translation>
+    </message>
+    <message>
+        <source>Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Raw</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -519,23 +542,23 @@ Device has: %2</source>
     </message>
     <message>
         <source>Rx</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Y</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ry</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Z</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rz</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -606,7 +629,7 @@ Device has: %2</source>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Curve profiles are saves in the application configuration.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; sets profile to the current value of the curve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - resets profile value.&lt;/p&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; for multiple selection.&lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;drag&lt;/span&gt; curves with the &lt;span style=&quot; font-weight:600;&quot;&gt;mouse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Профили кривых сорхраняются в настройках приложения.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; установить текущее значение кривой в профиль.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - вернуть стандартный профиль.&lt;/p&gt;&lt;p&gt;используйте &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; для множественного выбора.&lt;/p&gt;&lt;p&gt;Вы можете &lt;span style=&quot; font-weight:600;&quot;&gt;перетаскивать&lt;/span&gt; профили кривых с помощью &lt;span style=&quot; font-weight:600;&quot;&gt;мыши.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Профили кривых сохраняются в настройках приложения.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; установить текущее значение кривой в профиль.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - вернуть стандартный профиль.&lt;/p&gt;&lt;p&gt;используйте &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; для множественного выбора.&lt;/p&gt;&lt;p&gt;Вы можете &lt;span style=&quot; font-weight:600;&quot;&gt;перетаскивать&lt;/span&gt; профили кривых с помощью &lt;span style=&quot; font-weight:600;&quot;&gt;мыши.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -621,10 +644,6 @@ Device has: %2</source>
     <message>
         <source>Form</source>
         <translation>Форма</translation>
-    </message>
-    <message>
-        <source>Set</source>
-        <translation></translation>
     </message>
     <message>
         <source>Set current axis curve to this preset</source>
@@ -656,11 +675,15 @@ Device has: %2</source>
     </message>
     <message>
         <source>Reset to Pulse</source>
-        <translation>Сбросить до пулься</translation>
+        <translation>Сбросить до импульса</translation>
     </message>
     <message>
         <source>Reset to no Pulse</source>
-        <translation>Сбросить до нет пульса</translation>
+        <translation>Сбросить до без импульса</translation>
+    </message>
+    <message>
+        <source>Set</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -711,7 +734,7 @@ Device has: %2</source>
     </message>
     <message>
         <source>I2C address</source>
-        <translation>I2C аддресс</translation>
+        <translation>I2C адрес</translation>
     </message>
     <message>
         <source> bits</source>
@@ -949,15 +972,15 @@ Device has: %2</source>
     </message>
     <message>
         <source>Debounce Timer</source>
-        <translation type="unfinished"></translation>
+        <translation>Таймер дребезга</translation>
     </message>
     <message>
         <source>Axes to buttons Timer</source>
-        <translation type="unfinished"></translation>
+        <translation>Таймер осей в кнопки</translation>
     </message>
     <message>
         <source>Encoder press Timer</source>
-        <translation type="unfinished"></translation>
+        <translation>Таймер нажатия энкодера</translation>
     </message>
 </context>
 <context>
@@ -1092,11 +1115,11 @@ Device has: %2</source>
     </message>
     <message>
         <source>Encoder A</source>
-        <translation>Энкодер А</translation>
+        <translation type="vanished">Энкодер А</translation>
     </message>
     <message>
         <source>Encoder B</source>
-        <translation>Энкодер Б</translation>
+        <translation type="vanished">Энкодер Б</translation>
     </message>
     <message>
         <source>Radio button 1</source>
@@ -1129,10 +1152,6 @@ Device has: %2</source>
     <message>
         <source>POV2 Center</source>
         <translation type="vanished">POV2 Центр</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation></translation>
     </message>
     <message>
         <source>Toggle switch OFF</source>
@@ -1210,6 +1229,10 @@ Device has: %2</source>
         <source>TMS Left</source>
         <translation>TMS Влево</translation>
     </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ButtonPhysical</name>
@@ -1281,7 +1304,7 @@ Device has: %2</source>
     </message>
     <message>
         <source>0</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1301,10 +1324,6 @@ Device has: %2</source>
     <message>
         <source>0 ms</source>
         <translation>0 мс</translation>
-    </message>
-    <message>
-        <source>0</source>
-        <translation></translation>
     </message>
     <message>
         <source>Packets received:</source>
@@ -1352,6 +1371,10 @@ Device has: %2</source>
     </message>
     <message>
         <source> released</source>
+        <translation> отпущена</translation>
+    </message>
+    <message>
+        <source>0</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1359,7 +1382,7 @@ Device has: %2</source>
     <name>Developer</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Форма</translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <source>Persistent Force Anchors</source>
@@ -1383,7 +1406,7 @@ Device has: %2</source>
     </message>
     <message>
         <source>Set Anchor</source>
-        <translation>Установить якорь</translation>
+        <translation type="vanished">Установить якорь</translation>
     </message>
     <message>
         <source>Pitch Down</source>
@@ -1447,11 +1470,11 @@ Device has: %2</source>
     </message>
     <message>
         <source>Read Force Anchors from Device</source>
-        <translation>Считать якоря силы с устройства</translation>
+        <translation type="vanished">Считать якоря силы с устройства</translation>
     </message>
     <message>
         <source>Write Force Anchors to Device</source>
-        <translation>Записать якоря силы на устройство</translation>
+        <translation type="vanished">Записать якоря силы на устройство</translation>
     </message>
     <message>
         <source>Lock Force Anchors</source>
@@ -1476,10 +1499,6 @@ Device has: %2</source>
     <message>
         <source>Serial #: </source>
         <translation>Серийный номер: </translation>
-    </message>
-    <message>
-        <source>Device USB name:</source>
-        <translation>USB-имя устройства:</translation>
     </message>
     <message>
         <source>Write Device Identity</source>
@@ -1599,11 +1618,11 @@ Device has: %2</source>
     </message>
     <message>
         <source>Import Force Anchors from File</source>
-        <translation>Импортировать анкеры силы из файла</translation>
+        <translation type="vanished">Импортировать анкеры силы из файла</translation>
     </message>
     <message>
         <source>Export Force Anchors to File</source>
-        <translation>Экспортировать анкеры силы в файл</translation>
+        <translation type="vanished">Экспортировать анкеры силы в файл</translation>
     </message>
     <message>
         <source>Export Force Anchors</source>
@@ -1663,55 +1682,67 @@ Remember to write to device if you want to save these values.</source>
         <source>Anchors written.</source>
         <translation>Анкеры записаны.</translation>
     </message>
+    <message>
+        <source>Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Force Anchors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write Force Anchors</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Encoders</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="vanished">Форма</translation>
     </message>
     <message>
         <source>Not defined</source>
-        <translation>Не выбран</translation>
+        <translation type="vanished">Не выбран</translation>
     </message>
     <message>
         <source>Encoder type</source>
-        <translation>Тип энкодера</translation>
+        <translation type="vanished">Тип энкодера</translation>
     </message>
     <message>
         <source>Input A</source>
-        <translation>Вход А</translation>
+        <translation type="vanished">Вход А</translation>
     </message>
     <message>
         <source>Input B</source>
-        <translation>Вход Б</translation>
+        <translation type="vanished">Вход Б</translation>
     </message>
     <message>
         <source>Encoder 1x</source>
-        <translation>Энкодер 1x</translation>
+        <translation type="vanished">Энкодер 1x</translation>
     </message>
     <message>
         <source>Encoder 2x</source>
-        <translation>Энкодер 2x</translation>
+        <translation type="vanished">Энкодер 2x</translation>
     </message>
     <message>
         <source>Encoder 4x</source>
-        <translation>Энкодер 4x</translation>
+        <translation type="vanished">Энкодер 4x</translation>
     </message>
     <message>
         <source>Button № %1</source>
-        <translation>Кнопка № %1</translation>
+        <translation type="vanished">Кнопка № %1</translation>
     </message>
 </context>
 <context>
     <name>EncodersConfig</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="vanished">Форма</translation>
     </message>
     <message>
         <source>Fast encoder</source>
-        <translation>Быстрый энкодер</translation>
+        <translation type="vanished">Быстрый энкодер</translation>
     </message>
     <message>
         <source>Fast encioder input A</source>
@@ -1723,35 +1754,35 @@ Remember to write to device if you want to save these values.</source>
     </message>
     <message>
         <source>Encoder type</source>
-        <translation>Тип энкодера</translation>
+        <translation type="vanished">Тип энкодера</translation>
     </message>
     <message>
         <source>Not defined</source>
-        <translation>Не выбран</translation>
+        <translation type="vanished">Не выбран</translation>
     </message>
     <message>
         <source>Slow encoders</source>
-        <translation>Медленный энкодер</translation>
+        <translation type="vanished">Медленный энкодер</translation>
     </message>
     <message>
         <source>Encoder 1x</source>
-        <translation>Энкодер 1x</translation>
+        <translation type="vanished">Энкодер 1x</translation>
     </message>
     <message>
         <source>Encoder 2x</source>
-        <translation>Энкодер 2x</translation>
+        <translation type="vanished">Энкодер 2x</translation>
     </message>
     <message>
         <source>Encoder 4x</source>
-        <translation>Энкодер 4x</translation>
+        <translation type="vanished">Энкодер 4x</translation>
     </message>
     <message>
         <source>Fast encoder input A</source>
-        <translation>Быстрый энкодер вход А</translation>
+        <translation type="vanished">Быстрый энкодер вход А</translation>
     </message>
     <message>
         <source>Fast encoder input B</source>
-        <translation>Быстрый энкодер вход Б</translation>
+        <translation type="vanished">Быстрый энкодер вход Б</translation>
     </message>
 </context>
 <context>
@@ -1789,82 +1820,70 @@ Remember to write to device if you want to save these values.</source>
         <translation>Готово</translation>
     </message>
     <message>
+        <source>ERROR</source>
+        <translation>ОШИБКА</translation>
+    </message>
+    <message>
         <source>SIZE ERROR</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>CRC ERROR</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>ERASE ERROR</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>ERROR</source>
-        <translation>ОШИБКА</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LED</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="vanished">Форма</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Нормальный</translation>
+        <translation type="vanished">Нормальный</translation>
     </message>
     <message>
         <source>Inverted</source>
-        <translation>Инвертированный</translation>
+        <translation type="vanished">Инвертированный</translation>
     </message>
 </context>
 <context>
     <name>LedConfig</name>
     <message>
         <source>Form</source>
-        <translation>Форма</translation>
-    </message>
-    <message>
-        <source>PWM</source>
-        <translation></translation>
+        <translation type="vanished">Форма</translation>
     </message>
     <message>
         <source>Pin PB0</source>
-        <translation>Пин PB0</translation>
+        <translation type="vanished">Пин PB0</translation>
     </message>
     <message>
         <source>Pin PB1</source>
-        <translation>Пин PB1</translation>
+        <translation type="vanished">Пин PB1</translation>
     </message>
     <message>
         <source>Pin PB4</source>
-        <translation>Пин PB4</translation>
-    </message>
-    <message>
-        <source>LED</source>
-        <translation></translation>
+        <translation type="vanished">Пин PB4</translation>
     </message>
     <message>
         <source>Input №</source>
-        <translation>Вход №</translation>
+        <translation type="vanished">Вход №</translation>
     </message>
     <message>
         <source>Function</source>
-        <translation>Функция</translation>
-    </message>
-    <message>
-        <source>№</source>
-        <translation></translation>
+        <translation type="vanished">Функция</translation>
     </message>
     <message>
         <source>Pin PA8</source>
-        <translation>Пин PA8</translation>
+        <translation type="vanished">Пин PA8</translation>
     </message>
     <message>
         <source>Connected to axis</source>
-        <translation>Соединить с осью</translation>
+        <translation type="vanished">Соединить с осью</translation>
     </message>
 </context>
 <context>
@@ -1991,7 +2010,7 @@ Remember to write to device if you want to save these values.</source>
     </message>
     <message>
         <source> Encoders</source>
-        <translation> Энкодеры</translation>
+        <translation type="vanished"> Энкодеры</translation>
     </message>
     <message>
         <source>D
@@ -2033,7 +2052,7 @@ g</source>
     </message>
     <message>
         <source> LED/PWM </source>
-        <translation> Светодиоды/ШИМ </translation>
+        <translation type="vanished"> Светодиоды/ШИМ </translation>
     </message>
     <message>
         <source>X</source>
@@ -2089,11 +2108,11 @@ g</source>
     </message>
     <message>
         <source>Active Sim Software Profile</source>
-        <translation>Активный профиль симулятора</translation>
+        <translation type="vanished">Активный профиль симулятора</translation>
     </message>
     <message>
         <source>Device Control Board Version</source>
-        <translation>Версия платы управления устройства</translation>
+        <translation type="vanished">Версия платы управления устройства</translation>
     </message>
     <message>
         <source>Activate Advanced Mode</source>
@@ -2109,7 +2128,7 @@ g</source>
     </message>
     <message>
         <source>Write Current Settings to Device</source>
-        <translation>Записать текущие настройки на устройство</translation>
+        <translation type="vanished">Записать текущие настройки на устройство</translation>
     </message>
     <message>
         <source>Active Grip Profile</source>
@@ -2231,7 +2250,9 @@ g</source>
         <source>Gen 1–2: Two 3-pin headers
 Gen 3: One 4-pin header
 Gen 4: One 6-pin header</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen 1–2: Два 3-контактных разъема
+Gen 3: Один 4-контактный разъем
+Gen 4: Один 6-контактный разъем</translation>
     </message>
     <message>
         <source>Failed to load grip profile: %1</source>
@@ -2243,11 +2264,11 @@ Gen 4: One 6-pin header</source>
     </message>
     <message>
         <source>Apply board defaults?</source>
-        <translation>Применить настройки платы по умолчанию?</translation>
+        <translation type="vanished">Применить настройки платы по умолчанию?</translation>
     </message>
     <message>
         <source>Replace current pin mapping with %1 defaults?</source>
-        <translation>Заменить текущую раскладку контактов на стандартную %1?</translation>
+        <translation type="vanished">Заменить текущую раскладку контактов на стандартную %1?</translation>
     </message>
     <message>
         <source>Update available</source>
@@ -2256,7 +2277,8 @@ Gen 4: One 6-pin header</source>
     <message>
         <source>A newer version is available: %1
 You have: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступна новая версия: %1
+У вас установлена: %2</translation>
     </message>
     <message>
         <source>Open the release page to download?</source>
@@ -2265,6 +2287,18 @@ You have: %2</source>
     <message>
         <source>Visit Wiki</source>
         <translation>Посетить Wiki</translation>
+    </message>
+    <message>
+        <source>Sim Software</source>
+        <translation>Программа симулятора</translation>
+    </message>
+    <message>
+        <source>Control Board</source>
+        <translation>Плата управления</translation>
+    </message>
+    <message>
+        <source>Write Settings to Device</source>
+        <translation>Записать настройки на устройство</translation>
     </message>
 </context>
 <context>
@@ -2422,44 +2456,20 @@ You have: %2</source>
         <translation>Регистр DATA</translation>
     </message>
     <message>
-        <source>TLE5011 CS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MCP3201 CS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MCP3202 CS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MCP3204 CS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MCP3208 CS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>MLX90393 CS</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>LED Single</source>
-        <translation>Светодиод одиночный</translation>
+        <translation type="vanished">Светодиод одиночный</translation>
     </message>
     <message>
         <source>LED Row</source>
-        <translation>Светодиодная строка</translation>
+        <translation type="vanished">Светодиодная строка</translation>
     </message>
     <message>
         <source>LED Column</source>
-        <translation>Светодиодная колонна</translation>
+        <translation type="vanished">Светодиодная колонна</translation>
     </message>
     <message>
         <source>LED PWM</source>
-        <translation>Светодиод PWM</translation>
+        <translation type="vanished">Светодиод PWM</translation>
     </message>
     <message>
         <source>Axis Analog</source>
@@ -2467,43 +2477,35 @@ You have: %2</source>
     </message>
     <message>
         <source>Fast Encoder</source>
-        <translation>Быстрый энкодер</translation>
-    </message>
-    <message>
-        <source>SPI SCK</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SPI MOSI</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>SPI MISO</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>I2C SCL</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>I2C SDA</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>TLE5012B CS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>AS5048A CS</source>
-        <translation></translation>
+        <translation type="vanished">Быстрый энкодер</translation>
     </message>
     <message>
         <source>ShiftReg CLK</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>MLX90363 CS</source>
-        <translation></translation>
+        <source>MCP3202 CS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SPI SCK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SPI MOSI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SPI MISO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I2C SCL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I2C SDA</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2586,10 +2588,6 @@ You have: %2</source>
 <context>
     <name>SelectFolder</name>
     <message>
-        <source>Dialog</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
@@ -2604,6 +2602,10 @@ You have: %2</source>
     <message>
         <source>Select configs folder</source>
         <translation>Выберите папку с конфигами</translation>
+    </message>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2641,23 +2643,23 @@ You have: %2</source>
         <translation>Не выбран</translation>
     </message>
     <message>
+        <source>CLK pin</source>
+        <translation>Контакт CLK</translation>
+    </message>
+    <message>
         <source>HC165 Pull Down</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>CD4021 Pull Down</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>HC165 Pull Up</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>CD4021 Pull Up</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>CLK pin</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

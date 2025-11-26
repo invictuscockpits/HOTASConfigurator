@@ -1501,10 +1501,6 @@ El dispositivo tiene: %2</translation>
         <translation>Serie #: </translation>
     </message>
     <message>
-        <source>Device USB name:</source>
-        <translation>Nombre USB del dispositivo:</translation>
-    </message>
-    <message>
         <source>Write Device Identity</source>
         <translation>Escribir identidad del dispositivo</translation>
     </message>

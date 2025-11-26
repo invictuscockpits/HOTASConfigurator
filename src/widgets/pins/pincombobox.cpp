@@ -1,5 +1,6 @@
 #include "pincombobox.h"
 #include "ui_pincombobox.h"
+#include "adv-settings/text_fit_helpers.h"
 
 //! pinNumber cannot be less 1 and more than PINS_COUNT
 PinComboBox::PinComboBox(uint pinNumber, QWidget *parent) :
@@ -49,6 +50,7 @@ int PinComboBox::getIndexForGuiName(const QString &guiName) const
 void PinComboBox::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
 }
 
 const pins *PinComboBox::pinList() const

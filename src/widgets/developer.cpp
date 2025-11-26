@@ -13,6 +13,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
+#include "adv-settings/text_fit_helpers.h"
 
 Developer::Developer(QWidget *parent)
     : QWidget(parent),
@@ -1314,5 +1315,6 @@ void Developer::retranslateUi()
 {
     if (ui) {
         ui->retranslateUi(this);
+        autoAdjustAllWidgetsForTranslation(this);
     }
 }

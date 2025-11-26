@@ -1,6 +1,7 @@
 #include "shiftregistersconfig.h"
 #include "ui_shiftregistersconfig.h"
 #include <QDebug>
+#include "adv-settings/text_fit_helpers.h"
 
 ShiftRegistersConfig::ShiftRegistersConfig(QWidget *parent) :
     QWidget(parent),
@@ -29,6 +30,7 @@ ShiftRegistersConfig::~ShiftRegistersConfig()
 void ShiftRegistersConfig::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
     for (int i = 0; i < m_shiftRegsPtrList.size(); ++i) {
         m_shiftRegsPtrList[i]->retranslateUi();
     }

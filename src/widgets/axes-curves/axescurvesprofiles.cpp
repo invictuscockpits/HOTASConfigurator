@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QStyleOption>
 #include <cmath>
+#include "adv-settings/text_fit_helpers.h"
 
 AxesCurvesProfiles::AxesCurvesProfiles(QWidget *parent) :
     QWidget(parent),
@@ -48,6 +49,7 @@ AxesCurvesProfiles::~AxesCurvesProfiles()
 void AxesCurvesProfiles::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
 }
 
 

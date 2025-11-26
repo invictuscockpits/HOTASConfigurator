@@ -1,0 +1,69 @@
+diff --git a/src/mainwindow.ui b/src/mainwindow.ui
+index 035d3a5..8f082e2 100644
+--- a/src/mainwindow.ui
++++ b/src/mainwindow.ui
+@@ -40,13 +40,13 @@
+      <widget class="QGroupBox" name="groupBox_DeviceSettings">
+       <property name="minimumSize">
+        <size>
+-        <width>200</width>
++        <width>225</width>
+         <height>520</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+-        <width>200</width>
++        <width>225</width>
+         <height>16777215</height>
+        </size>
+       </property>
+@@ -265,7 +265,7 @@ border: none;</string>
+        <item row="12" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+-          <string>Active Sim Software Profile</string>
++          <string>Sim Software</string>
+          </property>
+         </widget>
+        </item>
+@@ -311,7 +311,7 @@ border: none;</string>
+        <item row="14" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+-          <string>Device Control Board Version</string>
++          <string>Control Board</string>
+          </property>
+         </widget>
+        </item>
+@@ -503,7 +503,7 @@ QPushButton:pressed {
+           <string notr="true"/>
+          </property>
+          <property name="text">
+-          <string>Write Current Settings to Device</string>
++          <string>Write Settings to Device</string>
+          </property>
+         </widget>
+        </item>
+@@ -659,9 +659,9 @@ QPushButton:pressed {
+ 
+ 
+ QFrame QTabBar::tab {
+-            min-width: 120px;  /* Minimum width */
+-            max-width: 120px;  /* Maximum width */
+-  
++            min-width: 130px;  /* Minimum width */
++            max-width: 160px;  /* Maximum width */
++
+         }
+ 
+ /* Selected tab */
+@@ -722,7 +722,7 @@ QFrame QTabWidget &gt; QWidget {
+        </property>
+        <property name="iconSize">
+         <size>
+-         <width>60</width>
++         <width>150</width>
+          <height>16</height>
+         </size>
+        </property>

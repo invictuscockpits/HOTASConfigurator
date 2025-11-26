@@ -8,6 +8,7 @@
 #include "global.h"
 
 #include <QDebug>
+#include "adv-settings/text_fit_helpers.h"
 
 Flasher::Flasher(QWidget *parent)
     : QWidget(parent)
@@ -26,6 +27,7 @@ Flasher::~Flasher()
 void Flasher::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
 }
 
 void Flasher::deviceConnected(bool isConnect)

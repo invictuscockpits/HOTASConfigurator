@@ -13,6 +13,7 @@
 #include "deviceconfig.h"
 #include "global.h"
 #include "axescurvesbutton.h"
+#include "adv-settings/text_fit_helpers.h"
 
 static const int PROFILES_COUNT = 8;
 
@@ -139,6 +140,7 @@ AxesCurvesConfig::~AxesCurvesConfig()
 void AxesCurvesConfig::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
     ui->widget_AxesCurves->retranslateUi();
     for (int i = 0; i < m_profiles.size(); ++i) {
         m_profiles[i]->retranslateUi();

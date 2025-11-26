@@ -1,5 +1,6 @@
 #include "advancedsettings.h"
 #include "ui_advancedsettings.h"
+#include "text_fit_helpers.h"
 
 //#include <QFile>
 #include <QComboBox>
@@ -65,6 +66,33 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     gEnv.pAppSettings->beginGroup("FontSettings");
     ui->spinBox_FontSize->setValue(gEnv.pAppSettings->value("FontSize", "8").toInt());
     gEnv.pAppSettings->endGroup();
+
+    // Populate language combo box
+    ui->comboBox_Language->addItem("English (US)", "english");
+    ui->comboBox_Language->addItem("English (UK)", "english_uk");
+    ui->comboBox_Language->addItem("Русский", "russian");
+    ui->comboBox_Language->addItem("简体中文", "schinese");
+    ui->comboBox_Language->addItem("Deutsch", "deutsch");
+    ui->comboBox_Language->addItem("Nederlands", "dutch");
+    ui->comboBox_Language->addItem("Français", "french");
+    ui->comboBox_Language->addItem("Italiano", "italian");
+    ui->comboBox_Language->addItem("日本語", "japanese");
+    ui->comboBox_Language->addItem("한국어", "korean");
+    ui->comboBox_Language->addItem("Polski", "polish");
+    ui->comboBox_Language->addItem("Português (BR)", "portuguese_br");
+    ui->comboBox_Language->addItem("Español (ES)", "spanish_eu");
+    ui->comboBox_Language->addItem("Español (LA)", "spanish_la");
+    ui->comboBox_Language->addItem("Türkçe", "turkish");
+
+    // Set current language
+    gEnv.pAppSettings->beginGroup("LanguageSettings");
+    QString currentLang = gEnv.pAppSettings->value("Language", "english").toString();
+    gEnv.pAppSettings->endGroup();
+
+    int langIndex = ui->comboBox_Language->findData(currentLang);
+    if (langIndex >= 0) {
+        ui->comboBox_Language->setCurrentIndex(langIndex);
+    }
 
     gEnv.pAppSettings->beginGroup("StyleSettings");
     QString style = gEnv.pAppSettings->value("StyleSheet", "default").toString();
@@ -150,6 +178,7 @@ AdvancedSettings::~AdvancedSettings()
 void AdvancedSettings::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
     m_flasher->retranslateUi();
 }
 
@@ -158,40 +187,15 @@ Flasher *AdvancedSettings::flasher() const
     return m_flasher;
 }
 
-void AdvancedSettings::on_pushButton_LangEnglish_clicked()
+void AdvancedSettings::on_comboBox_Language_currentIndexChanged(int index)
 {
+    QString languageCode = ui->comboBox_Language->itemData(index).toString();
+
     gEnv.pAppSettings->beginGroup("LanguageSettings");
-    gEnv.pAppSettings->setValue("Language", "english");
+    gEnv.pAppSettings->setValue("Language", languageCode);
     gEnv.pAppSettings->endGroup();
 
-    emit languageChanged("english");
-}
-
-void AdvancedSettings::on_pushButton_LangRussian_clicked()
-{
-    gEnv.pAppSettings->beginGroup("LanguageSettings");
-    gEnv.pAppSettings->setValue("Language", "russian");
-    gEnv.pAppSettings->endGroup();
-
-    emit languageChanged("russian");
-}
-
-void AdvancedSettings::on_pushButton_LangSChinese_clicked()
-{
-    gEnv.pAppSettings->beginGroup("LanguageSettings");
-    gEnv.pAppSettings->setValue("Language", "schinese");
-    gEnv.pAppSettings->endGroup();
-
-    emit languageChanged("schinese");
-}
-
-void AdvancedSettings::on_pushButton_LangDeutsch_clicked()
-{
-    gEnv.pAppSettings->beginGroup("LanguageSettings");
-    gEnv.pAppSettings->setValue("Language", "deutsch");
-    gEnv.pAppSettings->endGroup();
-
-    emit languageChanged("deutsch");
+    emit languageChanged(languageCode);
 }
 
 void AdvancedSettings::on_pushButton_RestartApp_clicked()

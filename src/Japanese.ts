@@ -1491,10 +1491,6 @@ Device has: %2</source>
         <translation>Serie #: </translation>
     </message>
     <message>
-        <source>Device USB name:</source>
-        <translation>デバイスUSB名：</translation>
-    </message>
-    <message>
         <source>Write Device Identity</source>
         <translation>Escribir identidad del dispositivo</translation>
     </message>

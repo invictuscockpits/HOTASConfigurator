@@ -362,7 +362,6 @@
     <message>
         <location filename="widgets/axes-curves/axescurvesconfig.ui" line="79"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Curve profiles are saves in the application configuration.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; sets profile to the current value of the curve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - resets profile value.&lt;/p&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; for multiple selection.&lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;drag&lt;/span&gt; curves with the &lt;span style=&quot; font-weight:600;&quot;&gt;mouse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Curve profiles are saved in the application configuration.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Set &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; sets the profile to the current value of the curve.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - resets the profile value.&lt;/p&gt;&lt;p&gt;Use &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; for multiple selection.&lt;/p&gt;&lt;p&gt;You can &lt;span style=&quot; font-weight:600;&quot;&gt;drag&lt;/span&gt; curves with the &lt;span style=&quot; font-weight:600;&quot;&gt;mouse.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;曲线预设保存在本程序中的配置中。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;设置 &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;-&lt;/span&gt; 将当前轴曲线保存为此预设。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/Images/reset.png&quot; height=&quot;16&quot;/&gt; - 重置曲线预设。&lt;/p&gt;&lt;p&gt;可以使用 &lt;span style=&quot; font-weight:600;&quot;&gt;CTRL&lt;/span&gt; 键多选。&lt;/p&gt;&lt;p&gt;可以使用 &lt;span style=&quot; font-weight:600;&quot;&gt;鼠标拖动&lt;/span&gt; 曲线上的点设置&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -1286,13 +1285,11 @@
     <message>
         <location filename="widgets/encoders/encodersconfig.ui" line="105"/>
         <source>Fast encoder input A</source>
-        <oldsource>Fast encioder input A</oldsource>
         <translation>高分编码器A相</translation>
     </message>
     <message>
         <location filename="widgets/encoders/encodersconfig.ui" line="118"/>
         <source>Fast encoder input B</source>
-        <oldsource>Fast encioder input B</oldsource>
         <translation>高分编码器B相</translation>
     </message>
     <message>
@@ -1491,13 +1488,11 @@
     <message>
         <location filename="mainwindow.ui" line="94"/>
         <source> Axes Config </source>
-        <oldsource> Axis Config </oldsource>
         <translation> 轴配置 </translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="116"/>
         <source> Axes Curves </source>
-        <oldsource> Axis Curves </oldsource>
         <translation> 轴曲线 </translation>
     </message>
     <message>
@@ -1513,7 +1508,6 @@
     <message>
         <location filename="mainwindow.ui" line="182"/>
         <source> LED/PWM </source>
-        <oldsource> LED </oldsource>
         <translation> LED/PWM </translation>
     </message>
     <message>

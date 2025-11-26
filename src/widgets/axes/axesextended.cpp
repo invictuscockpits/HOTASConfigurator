@@ -4,6 +4,7 @@
 
 #include "converter.h"
 #include "axes.h"
+#include "adv-settings/text_fit_helpers.h"
 
 AxesExtended::AxesExtended(int axisNumber, QWidget *parent)
     : QWidget(parent)
@@ -68,6 +69,7 @@ AxesExtended::~AxesExtended()
 void AxesExtended::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
 }
 
 void AxesExtended::setI2CEnabled(bool isEnable)

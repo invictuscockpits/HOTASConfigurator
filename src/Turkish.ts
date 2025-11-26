@@ -1491,10 +1491,6 @@ Cihazda olan: %2</translation>
         <translation>Serie #: </translation>
     </message>
     <message>
-        <source>Device USB name:</source>
-        <translation>Cihaz USB adı:</translation>
-    </message>
-    <message>
         <source>Write Device Identity</source>
         <translation>Yaz identidad del cihaz</translation>
     </message>

@@ -4,6 +4,7 @@
 #include <QTranslator>
 #include "converter.h"
 #include <qdebug.h>
+#include "adv-settings/text_fit_helpers.h"
 
 const QVector <deviceEnum_guiName_t> &axesList()    // The order below must match the list in common_types.h
 {
@@ -86,6 +87,7 @@ Axes::~Axes()
 void Axes::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
     m_axesExtend->retranslateUi();
 }
 

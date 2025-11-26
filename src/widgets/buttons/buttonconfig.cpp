@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QScrollArea>
 
+#include "adv-settings/text_fit_helpers.h"
 #ifdef DYNAMIC_CREATION
     #include <QScrollArea>
     #include <QScrollBar>
@@ -57,6 +58,7 @@ ButtonConfig::~ButtonConfig()
 void ButtonConfig::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
     for (int i = 0; i < m_logicButtonPtrList.size(); ++i) {
         m_logicButtonPtrList[i]->retranslateUi();
     }

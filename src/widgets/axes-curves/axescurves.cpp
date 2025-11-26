@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 #include <cmath>
 #include "axes.h"
+#include "adv-settings/text_fit_helpers.h"
 
 #include <QDebug>
 
@@ -57,6 +58,7 @@ AxesCurves::~AxesCurves()
 void AxesCurves::retranslateUi()
 {
     ui->retranslateUi(this);
+    autoAdjustAllWidgetsForTranslation(this);
 }
 
 void AxesCurves::pointValueChanged(int pointNumber, int value)
