@@ -43,3 +43,9 @@ cmake-build*/
 Invictus-HOTAS-Congfigurator/
 CODE_REMOVAL_PLAN.md
 nul
+
+# Batch scripts and deployment
+*.bat
+
+# Installer output
+installer_output/

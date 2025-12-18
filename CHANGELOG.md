@@ -5,6 +5,59 @@ All notable changes to the Invictus HOTAS Configurator will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1] - 2025-12-18
+
+### Critical Fixes
+- **Fixed PGA corruption bug** - Resolved premature return in factory anchors `pack()` function that was corrupting PGA settings in adjacent flash memory
+- **Fixed device identity UI refresh** - Device information now automatically updates in UI after writing to device
+
+### Added
+- **Developer Mode keyboard shortcuts** - Streamlined force calibration workflow:
+  - **Enter key** - Press currently focused Set button (capture anchor value)
+  - **Period (.) key** - Navigate to next Set button in sequence
+  - **Bright green highlighting** - Visual feedback for focused Set button
+  - Enables hands-free calibration while applying forces up to 40 lbf
+- **Automated deployment script** - `deploy_and_package.bat` for building installers
+
+### UI Improvements
+- **Developer tab**:
+  - "Set Anchor" buttons shortened to "Set" with optimized sizing
+  - Device Identity section repositioned with improved margins
+  - "Write Device Identity" shortened to "Write Identity"
+  - Removed PGA Reference label for cleaner layout
+- **Main window**:
+  - Tab names: "Button Settings" → "Buttons", "Advanced Settings" → "Settings"
+  - Button text: "Write Current Settings to Device" → "Write Device Settings"
+  - FLCS Mode and Proportional Force Scaling group boxes resized to prevent clipping
+  - Increased spacing between axis widgets for better readability
+- **Settings tab**:
+  - All buttons standardized: 180px width × 30px height
+  - "USB Exchange Period" → "USB Exchange Rate"
+  - Spinbox controls enlarged: 70px width × 25px height with 9pt font
+  - Device info labels widened to 135px for better visibility
+  - "Firmware flasher" → "Firmware Flasher" (capitalization fix)
+  - Translation disclaimer repositioned
+- **Axes Settings**:
+  - Overall height increased from 115px to 135px
+  - Improved margins: top 16px, bottom 11px, spacing 15px between axes
+  - Fixed filter slider clipping issue
+- **Shift Registers**:
+  - Combo box and spinbox minimum height set to 25px
+
+### Documentation
+- **Updated wiki** - All documentation files updated to reflect UI changes and new keyboard shortcuts:
+  - Developer-Mode.md: Keyboard shortcut workflow, PGA settings documentation
+  - Overview.md: Updated tab names and expanded Settings section
+  - Axes-Settings.md: FLCS Mode and Force Scaling documentation
+  - Getting-Started.md, Troubleshooting.md, Axes-Curves.md, Reflashing-Firmware.md: Button/label updates
+
+### Technical Details
+- Signal-slot mechanism for device info UI refresh
+- Event filter pattern for keyboard shortcut interception
+- Button focus order: Roll Left → Roll Right → Pitch Down → Pitch Up Digital → Pitch Up Analog (100%, 75%, 50% for each)
+
+---
+
 ## [2.3.0] - 2025-11-26
 
 ### Important Note

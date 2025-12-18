@@ -316,7 +316,8 @@ MainWindow::MainWindow(QWidget *parent)
         return true;
     });
 
-
+    // Connect Developer signal to refresh device info display after successful write
+    connect(m_developer, &Developer::deviceInfoWritten, this, &MainWindow::readDeviceInfo);
 
     // Building Board Preset Selector
     ui->comboBox_Board->clear();

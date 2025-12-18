@@ -3,7 +3,10 @@
 
 #include <QWidget>
 #include <QByteArray>
+#include <QList>
 #include <functional>
+
+class QPushButton;
 
 namespace Ui { class Developer; }
 
@@ -23,6 +26,12 @@ public:
     using RxFn = std::function<bool(quint8 /*op*/, QByteArray*)>;
     void setTransport(TxFn tx, RxFn rx) { m_send = std::move(tx); m_recv = std::move(rx); }
 
+
+signals:
+    void deviceInfoWritten();  // Emitted after successful device info write
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 public slots:
     // Hooked to the buttons
@@ -88,6 +97,7 @@ private:
 
     void updateRawReadouts();   // writes to lineEdit_RawX / lineEdit_RawY
     void bindSetButtons();      // connects ^btnSet_.*$ -> onAnySetClicked()
+    QList<QPushButton*> m_setButtons;  // List of all Set buttons for keyboard navigation
 
     // Decide X vs Y based on button name ("Roll" -> X, otherwise Y)
     static inline bool isRollButtonName(const QString& n) {

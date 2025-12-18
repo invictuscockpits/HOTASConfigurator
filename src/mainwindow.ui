@@ -503,7 +503,7 @@ QPushButton:pressed {
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Write Current Settings to Device</string>
+          <string>Write Device Settings</string>
          </property>
         </widget>
        </item>
@@ -747,7 +747,7 @@ QFrame QTabWidget &gt; QWidget {
        </widget>
        <widget class="QWidget" name="tab_ButtonConfig">
         <attribute name="title">
-         <string> Button Settings</string>
+         <string> Buttons</string>
         </attribute>
         <layout class="QVBoxLayout" name="layoutV_tabButtonConfig">
          <property name="leftMargin">
@@ -770,13 +770,13 @@ QFrame QTabWidget &gt; QWidget {
         </attribute>
         <layout class="QVBoxLayout" name="layoutV_tabAxesConfig">
          <property name="spacing">
-          <number>6</number>
+          <number>11</number>
          </property>
          <property name="leftMargin">
           <number>6</number>
          </property>
          <property name="topMargin">
-          <number>6</number>
+          <number>16</number>
          </property>
          <property name="rightMargin">
           <number>6</number>
@@ -789,13 +789,7 @@ QFrame QTabWidget &gt; QWidget {
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>50</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>87</height>
+             <height>70</height>
             </size>
            </property>
            <property name="frameShape">
@@ -813,7 +807,7 @@ QFrame QTabWidget &gt; QWidget {
               <x>240</x>
               <y>0</y>
               <width>391</width>
-              <height>41</height>
+              <height>60</height>
              </rect>
             </property>
             <property name="title">
@@ -821,10 +815,10 @@ QFrame QTabWidget &gt; QWidget {
             </property>
             <layout class="QGridLayout" name="gridLayout_2">
              <property name="topMargin">
-              <number>2</number>
+              <number>5</number>
              </property>
              <property name="bottomMargin">
-              <number>2</number>
+              <number>5</number>
              </property>
              <item row="0" column="2">
               <widget class="QRadioButton" name="radio_Anchor50">
@@ -855,7 +849,7 @@ QFrame QTabWidget &gt; QWidget {
               <x>10</x>
               <y>0</y>
               <width>201</width>
-              <height>41</height>
+              <height>60</height>
              </rect>
             </property>
             <property name="title">
@@ -863,10 +857,10 @@ QFrame QTabWidget &gt; QWidget {
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
              <property name="topMargin">
-              <number>2</number>
+              <number>5</number>
              </property>
              <property name="bottomMargin">
-              <number>2</number>
+              <number>5</number>
              </property>
              <item>
               <widget class="QRadioButton" name="radioButton_2">
@@ -934,7 +928,7 @@ QFrame QTabWidget &gt; QWidget {
        </widget>
        <widget class="QWidget" name="tab_AdvancedSettings">
         <attribute name="title">
-         <string> Advanced Settings </string>
+         <string> Settings </string>
         </attribute>
         <layout class="QVBoxLayout" name="layoutV_tabAdvSettings">
          <property name="spacing">

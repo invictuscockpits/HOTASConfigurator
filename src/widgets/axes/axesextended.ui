@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>1068</width>
-    <height>115</height>
+    <height>150</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>0</width>
-    <height>115</height>
+    <height>150</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>115</height>
+    <height>150</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -68,7 +68,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="text_chanelEncoder">
         <property name="text">
-         <string>Channel</string>
+         <string>Channel:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -100,7 +100,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Function axis</string>
+         <string>Function Axis:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
@@ -142,7 +142,7 @@
          <string>Resolution</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -447,7 +447,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Function</string>
+         <string>Function:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
@@ -457,7 +457,7 @@
       <item row="0" column="3">
        <widget class="QLabel" name="text_stepDiv">
         <property name="text">
-         <string>Step div</string>
+         <string>Step Div</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -507,7 +507,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>I2C address</string>
+         <string>I2C Address:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
@@ -558,7 +558,7 @@
          <string>Offset</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -599,6 +599,12 @@
       </item>
       <item row="3" column="3" colspan="2">
        <widget class="QSlider" name="sliderH_Filter">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
         <property name="maximum">
          <number>7</number>
         </property>
@@ -644,7 +650,7 @@
          <string>Deadband</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
       </item>

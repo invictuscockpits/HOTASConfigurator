@@ -214,11 +214,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_RollLeft75">
@@ -233,11 +233,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_RollLeft50">
@@ -252,11 +252,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <zorder>label</zorder>
@@ -452,11 +452,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_PD75">
@@ -471,11 +471,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_PD50">
@@ -490,11 +490,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <zorder>label_7</zorder>
@@ -690,11 +690,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_RollRight100">
@@ -709,11 +709,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_RollRight75">
@@ -728,11 +728,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <zorder>label_4</zorder>
@@ -934,11 +934,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_APU75">
@@ -953,11 +953,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_APU50">
@@ -972,11 +972,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <zorder>label_13</zorder>
@@ -1172,11 +1172,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_DPU75">
@@ -1191,11 +1191,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnSet_DPU100">
@@ -1210,11 +1210,11 @@
        <property name="minimumSize">
         <size>
          <width>75</width>
-         <height>0</height>
+         <height>21</height>
         </size>
        </property>
        <property name="text">
-        <string>Set Anchor</string>
+        <string>Set</string>
        </property>
       </widget>
       <zorder>label_11</zorder>
@@ -1395,12 +1395,15 @@
     <property name="geometry">
      <rect>
       <x>9</x>
-      <y>14</y>
+      <y>24</y>
       <width>231</width>
       <height>200</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
+     <property name="topMargin">
+      <number>5</number>
+     </property>
      <property name="rightMargin">
       <number>4</number>
      </property>
@@ -1498,7 +1501,7 @@
      <item row="4" column="2">
       <widget class="QPushButton" name="btnDeviceInfoWrite">
        <property name="text">
-        <string>Write Device Identity</string>
+        <string>Write Identity</string>
        </property>
       </widget>
      </item>
@@ -1517,36 +1520,12 @@
    <property name="title">
     <string>ADC PGA Settings (ADS1115)</string>
    </property>
-   <widget class="QLabel" name="label_PGA_Reference">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>120</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PGA Reference:
-1  = ±4.096V
-2  = ±2.048V
-4  = ±1.024V
-8  = ±0.512V
-16 = ±0.256V</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-family: Consolas, monospace;</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="gridLayoutWidget_PGA">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>20</y>
-      <width>470</width>
+      <x>10</x>
+      <y>25</y>
+      <width>600</width>
       <height>58</height>
      </rect>
     </property>
@@ -1555,7 +1534,7 @@
       <number>0</number>
      </property>
      <property name="topMargin">
-      <number>0</number>
+      <number>5</number>
      </property>
      <property name="rightMargin">
       <number>0</number>

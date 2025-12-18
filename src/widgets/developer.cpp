@@ -13,6 +13,10 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
+#include <QKeyEvent>
+#include <QApplication>
+#include <QEvent>
+#include <algorithm>
 #include "adv-settings/text_fit_helpers.h"
 
 Developer::Developer(QWidget *parent)
@@ -219,10 +223,9 @@ QByteArray Developer::pack(const Anchors& a) const
         }
     };
 
+    for (int i=0;i<8;i++) b.append(char(0));  // reserved bytes
 
     return b;
-
-    for (int i=0;i<8;i++) b.append(char(0));  // reserved bytes
 }
 
 bool Developer::unpack(const QByteArray& b, Anchors* out) const
@@ -590,8 +593,80 @@ void Developer::onLock()
 void Developer::bindSetButtons()
 {
     const auto buttons = findChildren<QPushButton*>(QRegularExpression("^btnSet_.*$"));
-    for (auto* b : buttons)
+
+    // Sort buttons in the correct order:
+    // Roll Left (100, 75, 50), Roll Right (100, 75, 50),
+    // Pitch Down (100, 75, 50), Pitch Up Digital (100, 75, 50), Pitch Up Analog (100, 75, 50)
+    auto getSortKey = [](const QString& name) -> int {
+        // Define order: axis type * 1000 + percentage priority
+        int axisOrder = 0;
+        if (name.contains("RollLeft")) axisOrder = 0;
+        else if (name.contains("RollRight")) axisOrder = 1;
+        else if (name.contains("_PD")) axisOrder = 2;  // Pitch Down
+        else if (name.contains("_DPU")) axisOrder = 3; // Digital Pitch Up
+        else if (name.contains("_APU")) axisOrder = 4; // Analog Pitch Up
+
+        int percentOrder = 0;
+        if (name.contains("100")) percentOrder = 0;
+        else if (name.contains("75")) percentOrder = 1;
+        else if (name.contains("50")) percentOrder = 2;
+
+        return axisOrder * 1000 + percentOrder;
+    };
+
+    QList<QPushButton*> sortedButtons = buttons;
+    std::sort(sortedButtons.begin(), sortedButtons.end(),
+              [&](QPushButton* a, QPushButton* b) {
+                  return getSortKey(a->objectName()) < getSortKey(b->objectName());
+              });
+
+    for (auto* b : sortedButtons) {
         connect(b, &QPushButton::clicked, this, &Developer::onAnySetClicked);
+        m_setButtons.append(b);
+
+        // Install event filter to intercept key presses
+        b->installEventFilter(this);
+
+        // Add stylesheet for Invictus green focus indicator
+        QString style = b->styleSheet();
+        if (!style.isEmpty()) style += "\n";
+        style += "QPushButton:focus { background-color: #00ff00; }";
+        b->setStyleSheet(style);
+    }
+}
+
+bool Developer::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+
+        // Check if the object is one of our Set buttons
+        QPushButton* btn = qobject_cast<QPushButton*>(obj);
+        if (btn && m_setButtons.contains(btn)) {
+
+            // Enter key: trigger the focused Set button
+            if (keyEvent->key() == Qt::Key_Return || keyEvent->key() == Qt::Key_Enter) {
+                btn->click();
+                return true; // Event handled
+            }
+
+            // Period key: move focus to next Set button
+            if (keyEvent->key() == Qt::Key_Period) {
+                if (m_setButtons.isEmpty()) {
+                    return false;
+                }
+
+                int currentIndex = m_setButtons.indexOf(btn);
+                // Move to next button (wrap around to first if at end)
+                int nextIndex = (currentIndex + 1) % m_setButtons.size();
+                m_setButtons[nextIndex]->setFocus();
+                return true; // Event handled
+            }
+        }
+    }
+
+    // Pass event to base class
+    return QWidget::eventFilter(obj, event);
 }
 
 void Developer::setLiveRaw(int rawX, int rawY)
@@ -789,6 +864,9 @@ void Developer::onWriteDeviceInfo()
         box.exec();
         return;
     } else if (ack.at(0) == 1) {
+        // Emit signal to trigger UI refresh in MainWindow
+        emit deviceInfoWritten();
+
         QMessageBox box(window());  // Use main window as parent
         box.setWindowTitle(tr("Device Info"));
         box.setText(tr("Device info written successfully"));
