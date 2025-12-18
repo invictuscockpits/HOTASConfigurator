@@ -1,12 +1,17 @@
 # Invictus HOTAS Configurator v2.3.1
 
-## Critical Bug Fix Release
-
-This patch release fixes two critical bugs and introduces quality-of-life improvements for Developer Mode and general UI refinements.
+## Important Note
+**Version 2.2.x was never fully released.** Development continued directly to v2.3.0 due to significant changes required for ADC functionality in Gen 4 boards. All features from v2.2.x are included in v2.3.0, and this v2.3.1 release builds upon that foundation with critical bug fixes and UI improvements.
 
 ---
 
-## Critical Fixes
+## Critical Bug Fix Release
+
+This patch release fixes two critical bugs discovered in v2.3.0 and introduces quality-of-life improvements for Developer Mode and general UI refinements.
+
+---
+
+## Critical Fixes in v2.3.1
 
 ### 🛠️ PGA Corruption Bug [CRITICAL]
 - **Fixed:** PGA (Programmable Gain Amplifier) settings were being corrupted when writing configuration to device
@@ -93,6 +98,56 @@ All wiki documentation has been updated to reflect UI changes:
 
 ---
 
+## Also Includes All v2.3.0 Features
+
+If you're upgrading from v2.2.x or earlier, v2.3.1 also includes all features introduced in v2.3.0:
+
+### ADC Support & Diagnostics
+- **Differential mode ADC** - Full support for differential mode on Gen 4 ADC (ADS1115)
+- **Per-channel PGA selection** - Individual programmable gain amplifier settings for each ADC channel
+- **Single-ended/Differential selector** - Choose between single-ended or differential input modes
+- **Improved precision** - Enhanced analog signal processing for force-sensing axes
+
+### Enhanced Language Support
+- **15 Languages** - Expanded from 4 to 15 languages with modern combo box dropdown:
+  - 🇺🇸 English (US)
+  - 🇬🇧 English (UK)
+  - 🇷🇺 Russian
+  - 🇨🇳 Simplified Chinese
+  - 🇩🇪 German
+  - 🇳🇱 Dutch
+  - 🇫🇷 French
+  - 🇮🇹 Italian
+  - 🇯🇵 Japanese
+  - 🇰🇷 Korean
+  - 🇵🇱 Polish
+  - 🇧🇷 Portuguese (BR)
+  - 🇪🇸 Spanish (ES)
+  - 🇲🇽 Spanish (LA)
+  - 🇹🇷 Turkish
+
+- **Improved UI** - Replaced 4 individual language buttons with single dropdown selector
+- **Text auto-sizing** - UI elements automatically adjust for different language text lengths
+- **AI-generated translations** - All new languages feature machine-translated strings
+
+### Hardware & Device Support
+- **Gen 4 hardware support** - Full compatibility with latest generation control boards
+- **Device identification** - Serial number and model marker implementation
+- **Enhanced update checking** - Automatic checks for both GUI and firmware updates
+
+### v2.3.0 Fixes & Improvements
+- ✅ Significant layout and button initialization fixes
+- ✅ Logical button background rendering issue resolved
+- ✅ Pin mapping corrections for accurate hardware control
+- ✅ Unused axes now hidden by default for cleaner interface
+- ✅ Improved Read From/Write to Device functions
+- 🔄 Streamlined codebase - Removed unused features
+- 🔄 Enhanced styling and UI improvements throughout
+- 🔄 Better code documentation and comments
+- 🔄 Updated translation infrastructure
+
+---
+
 ## Installation
 
 ### New Installation
@@ -101,19 +156,21 @@ All wiki documentation has been updated to reflect UI changes:
 3. Install latest firmware from [Firmware Releases](https://github.com/invictuscockpits/invictus-ssc-firmware/releases)
 
 ### Upgrading from Previous Versions
-- The installer will **automatically detect and upgrade** existing installations
-- All device configurations and settings will be **preserved**
-- No manual uninstall required
+- **From v2.2.x or v2.3.0:** The installer will automatically detect and upgrade existing installations
+- **From versions prior to v2.2:** Manual uninstall of the old version is required before installing v2.3.1
+- All device configurations and settings will be **preserved** during upgrade
 
 ---
 
 ## Requirements
 
 - **Operating System:** Windows 7 or later (32-bit or 64-bit)
-- **Firmware:** Invictus SSC Firmware v2.3.x recommended
+- **Firmware:** Invictus SSC Firmware v2.3.x (required for full functionality)
 - **Hardware:** All Invictus HOTAS devices (Gen 1-4)
 
-⚠️ **Important:** If you experienced PGA corruption issues or axes pinning to maximum in v2.3.0, this update resolves the root cause. You may need to reconfigure PGA settings in Developer Mode after updating.
+⚠️ **Important Notes:**
+- If you experienced PGA corruption issues or axes pinning to maximum in v2.3.0, this update resolves the root cause. You may need to reconfigure PGA settings in Developer Mode after updating.
+- **For early adopters:** If your device was shipped before 8/1/2025 and the Configurator cannot flash firmware, please contact us at [invictuscockpits.com](https://invictuscockpits.com) with your order number.
 
 ---
 
