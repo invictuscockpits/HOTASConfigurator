@@ -317,7 +317,10 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     // Connect Developer signal to refresh device info display after successful write
-    connect(m_developer, &Developer::deviceInfoWritten, this, &MainWindow::readDeviceInfo);
+    // Add a small delay to ensure flash write completes before reading back
+    connect(m_developer, &Developer::deviceInfoWritten, this, [this]() {
+        QTimer::singleShot(100, this, &MainWindow::readDeviceInfo);
+    });
 
     // Building Board Preset Selector
     ui->comboBox_Board->clear();
@@ -1928,7 +1931,7 @@ bool MainWindow::devRequestReply(quint8 op, const QByteArray& payload, QByteArra
             if (rxOp == op) { resp = data; ok = true; loop.quit(); }
         }
         );
-    QTimer::singleShot(1000, &loop, &QEventLoop::quit);  // 1s timeout
+    QTimer::singleShot(3000, &loop, &QEventLoop::quit);  // 3s timeout (matches Developer tab)
     loop.exec();
     disconnect(c);
 
@@ -2527,35 +2530,46 @@ void MainWindow::readDeviceInfo()
 {
     if (!m_hidDeviceWorker) return;
 
-    // Use one-shot connection to avoid memory leaks
-    QMetaObject::Connection conn = connect(
-        m_hidDeviceWorker, &HidDevice::devPacket,
-        this, [this](quint8 op, const QByteArray& data) {
-            //qDebug() << "[MainWindow] devPacket received: op=" << op << " size=" << data.size();
-
-        if (op == OP_GET_DEVICE_INFO) {
-            qDebug() << "[MainWindow] Got device info response";
-            if (data.size() >= sizeof(device_info_t)) {
-                //qDebug() << "[MainWindow] First 16 bytes:" << data.left(16).toHex(' ');
-
-                const device_info_t* info = reinterpret_cast<const device_info_t*>(data.constData());
-
-                // Show raw bytes of model number
-                QByteArray modelBytes(info->model_number, 24);
-                //qDebug() << "[MainWindow] Model bytes:" << modelBytes.left(16).toHex(' ');
-
-                QString model = QString::fromLatin1(info->model_number, strnlen(info->model_number, INV_MODEL_MAX_LEN));
-                QString serial = QString::fromLatin1(info->serial_number, strnlen(info->serial_number, INV_SERIAL_MAX_LEN));
-                QString dom = QString::fromLatin1(info->manufacture_date, strnlen(info->manufacture_date, DOM_ASCII_LEN));
-
-                qDebug() << "[MainWindow] Parsed - Model:" << model << " Serial:" << serial << " DoM:" << dom;
-
-                if (m_advSettings) {
-                    m_advSettings->showDeviceInfo(model, serial, dom,
-                                                  gEnv.pDeviceConfig->config.firmware_version);
-                }
-            }
-        }
+    // Read device info using 2-packet protocol (85 bytes total)
+    // Part 1: Read first 62 bytes
+    QByteArray part1;
+    if (!devRequestReply(OP_GET_DEVICE_INFO, QByteArray(), &part1)) {
+        return;
     }
-    );
+
+    if (part1.size() < 62) {
+        return;
+    }
+
+    // Small delay to ensure firmware is ready for next request
+    QThread::msleep(50);
+
+    // Part 2: Read remaining 23 bytes
+    QByteArray part2;
+    if (!devRequestReply(OP_GET_DEVICE_INFO_PART2, QByteArray(), &part2)) {
+        return;
+    }
+
+    // Note: HID always sends 62-byte payloads, but only first 23 bytes are valid device info data
+    if (part2.size() < 23) {
+        return;
+    }
+
+    // Combine both parts into complete device_info_t (85 bytes total)
+    // Part 1: 62 bytes, Part 2: first 23 bytes (rest is HID padding)
+    device_info_t info;
+    memset(&info, 0, sizeof(info));
+    memcpy((uint8_t*)&info, part1.constData(), 62);
+    memcpy((uint8_t*)&info + 62, part2.constData(), 23);
+
+    // Parse device info fields
+    QString model = QString::fromLatin1(info.model_number, strnlen(info.model_number, INV_MODEL_MAX_LEN));
+    QString serial = QString::fromLatin1(info.serial_number, strnlen(info.serial_number, INV_SERIAL_MAX_LEN));
+    QString dom = QString::fromLatin1(info.manufacture_date, strnlen(info.manufacture_date, DOM_ASCII_LEN));
+
+    // Update the UI via the advanced settings tab
+    if (m_advSettings) {
+        m_advSettings->showDeviceInfo(model, serial, dom,
+                                      gEnv.pDeviceConfig->config.firmware_version);
+    }
 }

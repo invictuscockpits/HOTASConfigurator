@@ -11,7 +11,7 @@
 
 //#define DEBUG
 
-#define FIRMWARE_VERSION					0x2300              // v2.3.0.0 (Removed ADC debug opcode)
+#define FIRMWARE_VERSION					0x2310              // v2.3.1.0 (Fixed device info write/read using 2-packet protocol)
 #define USED_PINS_NUM						30					// Contstant for HOTAS Control boards
 #define MAX_AXIS_NUM						8					// max 8
 #define MAX_BUTTONS_NUM						128					// power of 2, max 128

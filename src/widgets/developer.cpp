@@ -29,16 +29,16 @@ Developer::Developer(QWidget *parent)
     // Bind every Set button named "btnSet_*"
     bindSetButtons();
 
-    // Set default PGA values to match firmware defaults
+    // Set default PGA values - all channels PGA 8 for differential mode
     // ComboBox indices: 0=PGA1, 1=PGA2, 2=PGA4, 3=PGA8, 4=PGA16
-    ui->comboBox_PGA_Ch0->setCurrentIndex(3);  // PGA 8 (±0.512V) for Ch0 (Roll)
-    ui->comboBox_PGA_Ch1->setCurrentIndex(2);  // PGA 4 (±1.024V) for Ch1
-    ui->comboBox_PGA_Ch2->setCurrentIndex(2);  // PGA 4 (±1.024V) for Ch2 (Pitch)
-    ui->comboBox_PGA_Ch3->setCurrentIndex(2);  // PGA 4 (±1.024V) for Ch3
+    ui->comboBox_PGA_Ch0->setCurrentIndex(3);  // PGA 8 (±0.512V) for Ch0
+    ui->comboBox_PGA_Ch1->setCurrentIndex(3);  // PGA 8 (±0.512V) for Ch1
+    ui->comboBox_PGA_Ch2->setCurrentIndex(3);  // PGA 8 (±0.512V) for Ch2
+    ui->comboBox_PGA_Ch3->setCurrentIndex(3);  // PGA 8 (±0.512V) for Ch3
 
-    // Set default Mode to match firmware default
+    // Set default Mode to Differential
     // ComboBox indices: 0=Single-Ended, 1=Differential
-    ui->comboBox_ADCMode->setCurrentIndex(0);  // Single-Ended
+    ui->comboBox_ADCMode->setCurrentIndex(1);  // Differential
 
     auto prepLine = [](QLineEdit* le){
         if (!le) return;
@@ -750,20 +750,6 @@ void Developer::onWriteDeviceInfo()
     QString date = ui->lineEdit_ManufactureDate->text();
     QString deviceName = ui->comboBox_DeviceName->currentText();
 
-    // Debug output
-    qDebug() << "[Developer] Writing device info:";
-    qDebug() << "  - Serial:" << serial;
-    qDebug() << "  - Model:" << model;
-    qDebug() << "  - Date:" << date;
-    qDebug() << "  - Device Name:" << deviceName;
-    // Debug: show structure offsets
-    //qDebug() << "  - magic offset:" << offsetof(device_info_t, magic);
-    //qDebug() << "  - version offset:" << offsetof(device_info_t, version);
-    //qDebug() << "  - locked offset:" << offsetof(device_info_t, locked);
-    //qDebug() << "  - crc32 offset:" << offsetof(device_info_t, crc32);
-    //qDebug() << "  - model offset:" << offsetof(device_info_t, model_number);
-    //qDebug() << "  - serial offset:" << offsetof(device_info_t, serial_number);
-
     // Validate date format if provided
     if (!date.isEmpty() && !QRegExp("\\d{4}-\\d{2}-\\d{2}").exactMatch(date)) {
         QMessageBox box(window());  // Use main window as parent
@@ -813,21 +799,15 @@ void Developer::onWriteDeviceInfo()
     info.adc_pga[2] = pgaValues[ui->comboBox_PGA_Ch2->currentIndex()];
     info.adc_pga[3] = pgaValues[ui->comboBox_PGA_Ch3->currentIndex()];
 
-    qDebug() << "  - PGA Ch0:" << info.adc_pga[0];
-    qDebug() << "  - PGA Ch1:" << info.adc_pga[1];
-    qDebug() << "  - PGA Ch2:" << info.adc_pga[2];
-    qDebug() << "  - PGA Ch3:" << info.adc_pga[3];
+    // Send to device using 2-packet protocol (device_info_t is 85 bytes, USB HID max payload is 62 bytes)
+    // Part 1: First 62 bytes
+    QByteArray part1((const char*)&info, 62);
+    QByteArray ack1;
 
-    // Send to device
-    QByteArray payload((const char*)&info, sizeof(info));
-    QByteArray ack;
-
-
-
-    if (!m_send(OP_SET_DEVICE_INFO, payload) || !m_recv(OP_SET_DEVICE_INFO, &ack)) {
-        QMessageBox box(window());  // Use main window as parent
+    if (!m_send(OP_SET_DEVICE_INFO, part1) || !m_recv(OP_SET_DEVICE_INFO, &ack1)) {
+        QMessageBox box(window());
         box.setWindowTitle(tr("Device Info"));
-        box.setText(tr("Write failed"));
+        box.setText(tr("Write failed (Part 1)"));
         box.setIcon(QMessageBox::NoIcon);
         box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
         box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
@@ -837,50 +817,27 @@ void Developer::onWriteDeviceInfo()
         return;
     }
 
-    // Check response
-    //qDebug() << "  - Response size:" << ack.size();
-    //if (!ack.isEmpty()) {
-    //    qDebug() << "  - Full response:" << ack.left(10).toHex(' ');
-    //}
-
-    // Parse the echo response to see what firmware received
-    if (ack.size() >= 9 && ack.at(0) == (char)0xAA) {
-        qDebug() << "  - Echo: ReportID=" << (int)(uint8_t)ack.at(1)
-        << " OpCode=" << (int)(uint8_t)ack.at(2)
-        << " Payload starts:" << ack.mid(3, 4).toHex(' ');
-        return;  // Don't show error for echo test
+    if (ack1.isEmpty() || ack1.at(0) != 1) {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Device refused write Part 1"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
     }
 
-    // Handle normal responses
-    if (ack.isEmpty() || ack.at(0) == 0) {
-        QMessageBox box(window());  // Use main window as parent
-        box.setWindowTitle(tr("Device Info"));
-        box.setText(tr("Device refused write (unknown error)"));
-        box.setIcon(QMessageBox::NoIcon);
-        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
-        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
-                         "QMessageBox QLabel { background-color: transparent; }");
-        box.setStandardButtons(QMessageBox::Ok);
-        box.exec();
-        return;
-    } else if (ack.at(0) == 1) {
-        // Emit signal to trigger UI refresh in MainWindow
-        emit deviceInfoWritten();
+    // Part 2: Remaining 23 bytes (bytes 62-84)
+    QByteArray part2((const char*)&info + 62, 23);
+    QByteArray ack2;
 
-        QMessageBox box(window());  // Use main window as parent
+    if (!m_send(OP_SET_DEVICE_INFO_PART2, part2) || !m_recv(OP_SET_DEVICE_INFO_PART2, &ack2)) {
+        QMessageBox box(window());
         box.setWindowTitle(tr("Device Info"));
-        box.setText(tr("Device info written successfully"));
-        box.setIcon(QMessageBox::NoIcon);
-        box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
-        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
-                         "QMessageBox QLabel { background-color: transparent; }");
-        box.setStandardButtons(QMessageBox::Ok);
-        box.exec();
-        return;
-    } else if (ack.at(0) == 2) {
-        QMessageBox box(window());  // Use main window as parent
-        box.setWindowTitle(tr("Device Info"));
-        box.setText(tr("Device info is locked"));
+        box.setText(tr("Write failed (Part 2)"));
         box.setIcon(QMessageBox::NoIcon);
         box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
         box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
@@ -888,19 +845,11 @@ void Developer::onWriteDeviceInfo()
         box.setStandardButtons(QMessageBox::Ok);
         box.exec();
         return;
-    } else if (ack.at(0) == 3) {
-        QMessageBox box(window());  // Use main window as parent
-        box.setWindowTitle(tr("Device Info"));
-        box.setText(tr("Invalid payload size"));
-        box.setIcon(QMessageBox::NoIcon);
-        box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
-        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
-                         "QMessageBox QLabel { background-color: transparent; }");
-        box.setStandardButtons(QMessageBox::Ok);
-        box.exec();
-        return;
-    } else if (ack.at(0) == 4) {
-        QMessageBox box(window());  // Use main window as parent
+    }
+
+    // Check Part 2 response (this is where flash write happens)
+    if (ack2.isEmpty() || ack2.at(0) == 0) {
+        QMessageBox box(window());
         box.setWindowTitle(tr("Device Info"));
         box.setText(tr("Flash write failed"));
         box.setIcon(QMessageBox::NoIcon);
@@ -910,10 +859,24 @@ void Developer::onWriteDeviceInfo()
         box.setStandardButtons(QMessageBox::Ok);
         box.exec();
         return;
-    } else {
-        QMessageBox box(window());  // Use main window as parent
+    } else if (ack2.at(0) == 1) {
+        // Emit signal to trigger UI refresh in MainWindow AFTER flash write completes
+        emit deviceInfoWritten();
+
+        QMessageBox box(window());
         box.setWindowTitle(tr("Device Info"));
-        box.setText(tr("Unknown error code: %1").arg((int)(uint8_t)ack.at(0)));
+        box.setText(tr("Device info written successfully"));
+        box.setIcon(QMessageBox::NoIcon);
+        box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
+        box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
+                         "QMessageBox QLabel { background-color: transparent; }");
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    } else {
+        QMessageBox box(window());
+        box.setWindowTitle(tr("Device Info"));
+        box.setText(tr("Unknown error writing device info (code: %1)").arg((int)ack2.at(0)));
         box.setIcon(QMessageBox::NoIcon);
         box.setIconPixmap(QIcon(":/Images/warning_icon.svg").pixmap(48,48));
         box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
@@ -1010,13 +973,6 @@ void Developer::onReadPGA()
     // Update mode - assume all channels have same mode (we only check channel 0)
     ui->comboBox_ADCMode->setCurrentIndex(info.adc_mode[0]);
 
-    qDebug() << "[Developer] Read PGA settings:";
-    qDebug() << "  - PGA Ch0:" << info.adc_pga[0];
-    qDebug() << "  - PGA Ch1:" << info.adc_pga[1];
-    qDebug() << "  - PGA Ch2:" << info.adc_pga[2];
-    qDebug() << "  - PGA Ch3:" << info.adc_pga[3];
-    qDebug() << "  - Mode:" << (info.adc_mode[0] == 0 ? "Single-Ended" : "Differential");
-
     QMessageBox box(window());
     box.setWindowTitle(tr("PGA Settings"));
     box.setText(tr("PGA settings read successfully"));
@@ -1059,8 +1015,6 @@ void Developer::onWritePGA()
         return;
     }
 
-    qDebug() << "[Developer] Device info part 1 size:" << readAck1.size() << "expected: 62";
-
     if (readAck1.size() < 62) {
         QMessageBox box(window());
         box.setWindowTitle(tr("PGA Settings"));
@@ -1088,8 +1042,6 @@ void Developer::onWritePGA()
         box.exec();
         return;
     }
-
-    qDebug() << "[Developer] Device info part 2 size:" << readAck2.size() << "expected: 23";
 
     if (readAck2.size() < 23) {
         QMessageBox box(window());
@@ -1123,13 +1075,6 @@ void Developer::onWritePGA()
     info.adc_mode[1] = mode;
     info.adc_mode[2] = mode;
     info.adc_mode[3] = mode;
-
-    qDebug() << "[Developer] Writing PGA settings:";
-    qDebug() << "  - PGA Ch0:" << info.adc_pga[0];
-    qDebug() << "  - PGA Ch1:" << info.adc_pga[1];
-    qDebug() << "  - PGA Ch2:" << info.adc_pga[2];
-    qDebug() << "  - PGA Ch3:" << info.adc_pga[3];
-    qDebug() << "  - Mode:" << (mode == 0 ? "Single-Ended" : "Differential");
 
     // Send to device using 2-packet protocol
     // Part 1: Send first 62 bytes
@@ -1260,6 +1205,18 @@ void Developer::onExport()
     if (!a.modelNumber.isEmpty()) json["model_number"] = a.modelNumber;
     if (!a.manufactureDate.isEmpty()) json["manufacture_date"] = a.manufactureDate;
 
+    // Add PGA settings (factory calibration data)
+    const uint8_t pgaValues[] = {1, 2, 4, 8, 16};
+    QJsonObject pgaSettings;
+    pgaSettings["ch0"] = (int)pgaValues[ui->comboBox_PGA_Ch0->currentIndex()];
+    pgaSettings["ch1"] = (int)pgaValues[ui->comboBox_PGA_Ch1->currentIndex()];
+    pgaSettings["ch2"] = (int)pgaValues[ui->comboBox_PGA_Ch2->currentIndex()];
+    pgaSettings["ch3"] = (int)pgaValues[ui->comboBox_PGA_Ch3->currentIndex()];
+    json["pga_settings"] = pgaSettings;
+
+    // Add ADC mode (0=Single-Ended, 1=Differential)
+    json["adc_mode"] = ui->comboBox_ADCMode->currentIndex();
+
     // Write to file
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly)) {
@@ -1281,7 +1238,7 @@ void Developer::onExport()
 
     QMessageBox box(window());  // Use main window as parent
     box.setWindowTitle(tr("Export Successful"));
-    box.setText(tr("Force anchors exported successfully."));
+    box.setText(tr("Force anchors and PGA settings exported successfully."));
     box.setIcon(QMessageBox::NoIcon);
     box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
     box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
@@ -1378,9 +1335,40 @@ void Developer::onImport()
     // Set UI from imported data
     uiSet(a);
 
+    // Load and set PGA settings if present
+    if (json.contains("pga_settings")) {
+        QJsonObject pgaSettings = json["pga_settings"].toObject();
+
+        // Map PGA values to combo box indices: 0=PGA1, 1=PGA2, 2=PGA4, 3=PGA8, 4=PGA16
+        auto pgaToIndex = [](int pga) -> int {
+            switch(pga) {
+                case 1: return 0;
+                case 2: return 1;
+                case 4: return 2;
+                case 8: return 3;
+                case 16: return 4;
+                default: return 2; // Default to PGA 4
+            }
+        };
+
+        if (pgaSettings.contains("ch0"))
+            ui->comboBox_PGA_Ch0->setCurrentIndex(pgaToIndex(pgaSettings["ch0"].toInt()));
+        if (pgaSettings.contains("ch1"))
+            ui->comboBox_PGA_Ch1->setCurrentIndex(pgaToIndex(pgaSettings["ch1"].toInt()));
+        if (pgaSettings.contains("ch2"))
+            ui->comboBox_PGA_Ch2->setCurrentIndex(pgaToIndex(pgaSettings["ch2"].toInt()));
+        if (pgaSettings.contains("ch3"))
+            ui->comboBox_PGA_Ch3->setCurrentIndex(pgaToIndex(pgaSettings["ch3"].toInt()));
+    }
+
+    // Load and set ADC mode if present
+    if (json.contains("adc_mode")) {
+        ui->comboBox_ADCMode->setCurrentIndex(json["adc_mode"].toInt());
+    }
+
     QMessageBox box(window());  // Use main window as parent
     box.setWindowTitle(tr("Import Successful"));
-    box.setText(tr("Force anchors imported successfully.\nRemember to write to device if you want to save these values."));
+    box.setText(tr("Force anchors and PGA settings imported successfully.\nRemember to write to device if you want to save these values."));
     box.setIcon(QMessageBox::NoIcon);
     box.setIconPixmap(QIcon(":/Images/Info_icon.svg").pixmap(48,48));
     box.setStyleSheet("QMessageBox { background-color: rgb(36, 39, 49); }"
