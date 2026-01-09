@@ -13,12 +13,12 @@ BEGIN
         BEGIN
             VALUE "FileVersion",      APP_VERSION
             VALUE "ProductVersion",   APP_VERSION
-            VALUE "FileDescription",  "FreeJoyConfiguratorQt"
-            VALUE "ProductName",      "FreeJoyConfiguratorQt"
-            VALUE "InternalName",     "FreeJoyConfiguratorQt"
-            VALUE "OriginalFilename", "FreeJoyQt.exe"
-            VALUE "CompanyName",      "FreeJoy Team"
-            VALUE "LegalCopyright",   "Copyright © FreeJoy Team"
+            VALUE "FileDescription",  "Invictus HOTAS Configurator"
+            VALUE "ProductName",      "Invictus HOTAS Configurator"
+            VALUE "InternalName",     "InvictusHOTASConfigurator"
+            VALUE "OriginalFilename", "InvictusHOTASConfigurator.exe"
+            VALUE "CompanyName",      "Invictus Cockpit Systems"
+            VALUE "LegalCopyright",   "Copyright (C) 2026 Invictus Cockpit Systems"
         END
     END
     BLOCK "VarFileInfo"

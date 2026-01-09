@@ -764,19 +764,40 @@ void Developer::onWriteDeviceInfo()
         return;
     }
 
-    // Prepare device_info_t structure
-    // Prepare device_info_t structure
+    // Read current device info first to preserve PGA and adc_mode settings
     device_info_t info;
     memset(&info, 0, sizeof(info));
 
-    // Set the required header fields - ADD THESE LINES
-    info.magic = 0xDEF0;  // DEVICE_INFO_MAGIC
-    info.version = 1;
-    info.locked = 0;
-    info.crc32 = 0;  // Will be calculated by firmware
+    // Read existing device info using 2-packet protocol
+    QByteArray readPart1;
+    if (m_send(OP_GET_DEVICE_INFO, QByteArray()) && m_recv(OP_GET_DEVICE_INFO, &readPart1) && readPart1.size() >= 62) {
+        QByteArray readPart2;
+        if (m_send(OP_GET_DEVICE_INFO_PART2, QByteArray()) && m_recv(OP_GET_DEVICE_INFO_PART2, &readPart2) && readPart2.size() >= 23) {
+            // Combine parts into existing device info
+            memcpy((uint8_t*)&info, readPart1.constData(), 62);
+            memcpy((uint8_t*)&info + 62, readPart2.constData(), 23);
+        }
+    }
 
+    // If read failed, initialize with defaults
+    if (info.magic != 0xDEF0) {
+        memset(&info, 0, sizeof(info));
+        info.magic = 0xDEF0;  // DEVICE_INFO_MAGIC
+        info.version = 1;
+        info.locked = 0;
+        info.crc32 = 0;
+        // Set default PGA and mode values
+        info.adc_pga[0] = 8;
+        info.adc_pga[1] = 8;
+        info.adc_pga[2] = 8;
+        info.adc_pga[3] = 8;
+        info.adc_mode[0] = 1;  // Differential
+        info.adc_mode[1] = 1;
+        info.adc_mode[2] = 1;
+        info.adc_mode[3] = 1;
+    }
 
-    // Use safer string copying
+    // Now update ONLY the identity fields (preserve PGA and adc_mode)
     QByteArray modelBytes = model.toLatin1();
     QByteArray serialBytes = serial.toLatin1();
     QByteArray dateBytes = date.toLatin1();
@@ -791,13 +812,7 @@ void Developer::onWriteDeviceInfo()
     memcpy(info.device_name, deviceNameBytes.constData(),
            qMin(deviceNameBytes.size(), (int)(sizeof(info.device_name) - 1)));
 
-    // Get PGA values from combo boxes and convert to numeric gain values
-    // ComboBox indices: 0=PGA1, 1=PGA2, 2=PGA4, 3=PGA8, 4=PGA16
-    const uint8_t pgaValues[] = {1, 2, 4, 8, 16};
-    info.adc_pga[0] = pgaValues[ui->comboBox_PGA_Ch0->currentIndex()];
-    info.adc_pga[1] = pgaValues[ui->comboBox_PGA_Ch1->currentIndex()];
-    info.adc_pga[2] = pgaValues[ui->comboBox_PGA_Ch2->currentIndex()];
-    info.adc_pga[3] = pgaValues[ui->comboBox_PGA_Ch3->currentIndex()];
+    // NOTE: PGA and adc_mode are preserved from the read, NOT overwritten
 
     // Send to device using 2-packet protocol (device_info_t is 85 bytes, USB HID max payload is 62 bytes)
     // Part 1: First 62 bytes
