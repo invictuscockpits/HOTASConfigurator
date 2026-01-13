@@ -43,6 +43,10 @@ AxesExtended::AxesExtended(int axisNumber, QWidget *parent)
     for (int i = 0; i < axesList().size(); ++i) {
         ui->comboBox_AxisSource2->addItem(axesList()[i].guiName);
     }
+    // paired axis for circular deadband
+    for (int i = 0; i < axesList().size(); ++i) {
+        ui->comboBox_PairedAxis->addItem(axesList()[i].guiName);
+    }
 
     ui->comboBox_Button1->setCurrentIndex(AXIS_BUTTON_DOWN);
     ui->comboBox_Button2->setCurrentIndex(AXIS_BUTTON_RESET);
@@ -58,6 +62,9 @@ AxesExtended::AxesExtended(int axisNumber, QWidget *parent)
     // function changed
     connect(ui->comboBox_Function, qOverload<int>(&QComboBox::currentIndexChanged),
             this, &AxesExtended::functionIndexChanged);
+    // circular deadband changed
+    connect(ui->checkBox_CircularDeadband, &QCheckBox::stateChanged,
+            this, &AxesExtended::on_checkBox_CircularDeadband_stateChanged);
      this->show();
 }
 
@@ -118,6 +125,11 @@ void AxesExtended::readFromConfig()
     //deadband
     ui->checkBox_DynDeadband->setChecked(axisCfg->is_dynamic_deadband);
     ui->spinBox_Deadband->setValue(axisCfg->deadband_size);
+    // circular deadband
+    ui->checkBox_CircularDeadband->setChecked(axisCfg->is_circular_deadband);
+    ui->comboBox_PairedAxis->setCurrentIndex(axisCfg->circular_pair_axis);
+    // Update control states based on circular deadband setting
+    on_checkBox_CircularDeadband_stateChanged(axisCfg->is_circular_deadband ? Qt::Checked : Qt::Unchecked);
     // filter
     ui->sliderH_Filter->setValue(axisCfg->filter);
 }
@@ -147,6 +159,9 @@ void AxesExtended::writeToConfig()
     // deadband
     axisCfg->is_dynamic_deadband = ui->checkBox_DynDeadband->isChecked();
     axisCfg->deadband_size = ui->spinBox_Deadband->value();
+    // circular deadband
+    axisCfg->is_circular_deadband = ui->checkBox_CircularDeadband->isChecked();
+    axisCfg->circular_pair_axis = ui->comboBox_PairedAxis->currentIndex();
     // filter
     axisCfg->filter = ui->sliderH_Filter->value();
 }
@@ -155,4 +170,28 @@ void AxesExtended::writeToConfig()
 {
 
 }*/
+
+void AxesExtended::on_checkBox_CircularDeadband_stateChanged(int state)
+{
+    bool enabled = (state == Qt::Checked);
+
+    // Enable/disable paired axis controls
+    ui->text_pairedAxis->setEnabled(enabled);
+    ui->comboBox_PairedAxis->setEnabled(enabled);
+
+    // If enabling circular deadband, disable dynamic deadband (mutually exclusive)
+    if (enabled) {
+        ui->checkBox_DynDeadband->setChecked(false);
+        ui->checkBox_DynDeadband->setEnabled(false);
+    } else {
+        ui->checkBox_DynDeadband->setEnabled(true);
+    }
+}
+
+void AxesExtended::on_comboBox_PairedAxis_currentIndexChanged(int index)
+{
+    // This slot can be used for validation or additional logic if needed
+    // For now, the value is just stored when writeToConfig() is called
+    Q_UNUSED(index);
+}
 

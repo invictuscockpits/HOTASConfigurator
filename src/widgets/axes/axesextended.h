@@ -36,6 +36,8 @@ public:
 private slots:
     void filterChanged(int filterLevel);
     void functionIndexChanged(int index);
+    void on_checkBox_CircularDeadband_stateChanged(int state);
+    void on_comboBox_PairedAxis_currentIndexChanged(int index);
 
 private:
     Ui::AxesExtended *ui;

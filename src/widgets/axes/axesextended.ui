@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>1068</width>
-    <height>150</height>
+    <height>180</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>0</width>
-    <height>150</height>
+    <height>180</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>150</height>
+    <height>180</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -658,6 +658,39 @@
        <widget class="QCheckBox" name="checkBox_DynDeadband">
         <property name="text">
          <string>Dynamic Jitter Reduction</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="5" colspan="3">
+       <widget class="QCheckBox" name="checkBox_CircularDeadband">
+        <property name="text">
+         <string>Circular Deadband</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="5">
+       <widget class="QLabel" name="text_pairedAxis">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Paired Axis</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="6" colspan="2">
+       <widget class="QComboBox" name="comboBox_PairedAxis">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>60</width>
+          <height>25</height>
+         </size>
         </property>
        </widget>
       </item>
