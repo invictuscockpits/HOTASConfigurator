@@ -135,8 +135,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pushButton_ShowDebug->setVisible(false);
 
     // hide unused buttons and fields related to legacy config Maybe remove these elements when confirmed unneeded.
-    ui->pushButton_SaveToFile->hide();
-    ui->pushButton_LoadFromFile->hide();
     ui->comboBox_Configs->hide();
     ui->toolButton_ConfigsDir->hide();
 
@@ -194,6 +192,18 @@ MainWindow::MainWindow(QWidget *parent)
     m_advSettings = new AdvancedSettings(this);
     ui->layoutV_tabAdvSettings->addWidget(m_advSettings);
     //qDebug()<<"advanced settings load time ="<< timer.restart() << "ms";
+
+    // Pass config directory path to settings widget
+    m_advSettings->setConfigDirPath(m_cfgDirPath);
+
+    // Connect config management signals
+    connect(m_advSettings, &AdvancedSettings::configImportRequested, this, [this]() {
+        this->UiReadFromConfig();
+    });
+
+    connect(m_advSettings, &AdvancedSettings::configExportRequested, this, [this]() {
+        this->UiWriteToConfig();
+    });
 
     m_deviceInfo = new DeviceInfo(this);
     connect(m_deviceInfo, &DeviceInfo::infoUpdated, this, [this]() {
@@ -1488,52 +1498,13 @@ void MainWindow::on_pushButton_WriteConfig_clicked()
     m_hidDeviceWorker->sendConfigToDevice();
 }
 
-// load from file
-void MainWindow::on_pushButton_LoadFromFile_clicked()
-{
-    //qDebug()<<"Load from file started";
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("Open Config"), m_cfgDirPath + "/", tr("Config Files (*.cfg)"));
-
-    ConfigToFile::loadDeviceConfigFromFile(this, fileName, gEnv.pDeviceConfig->config);
-    UiReadFromConfig();
-    //qDebug()<<"done";
-}
-
-// save to file
-void MainWindow::on_pushButton_SaveToFile_clicked()
-{
-    //qDebug()<<"Save to file started";
-
-    QString tmpStr(ui->comboBox_Configs->currentText());
-    if (tmpStr == "") {
-        tmpStr = gEnv.pDeviceConfig->config.device_name;
-    }
-
-    QFileInfo file(QFileDialog::getSaveFileName(this, tr("Save Config"),
-                                                m_cfgDirPath + "/" + tmpStr, tr("Config Files (*.cfg)")));
-    UiWriteToConfig();
-    ConfigToFile::saveDeviceConfigToFile(file.absoluteFilePath(), gEnv.pDeviceConfig->config);
-
-    QTimer::singleShot(200, this, [this, file]{
-        QSignalBlocker bl(ui->comboBox_Configs);
-        ui->comboBox_Configs->clear();
-        ui->comboBox_Configs->addItems(cfgFilesList(m_cfgDirPath));
-        bl.unblock();
-
-        QString fileName(file.fileName());
-        fileName.remove(fileName.size() - 4, 4); // 4 = ".cfg" characters count
-        ui->comboBox_Configs->setCurrentText(fileName);
-    });
-    //qDebug()<<"done";
-}
-
 // select configs dir path
 void MainWindow::on_toolButton_ConfigsDir_clicked()
 {
     SelectFolder dialog(m_cfgDirPath, this);
     if (dialog.exec() == QDialog::Accepted) {
         m_cfgDirPath = dialog.folderPath();
+        m_advSettings->setConfigDirPath(m_cfgDirPath);
         QSignalBlocker bl(ui->comboBox_Configs);
         ui->comboBox_Configs->clear();
         bl.unblock();

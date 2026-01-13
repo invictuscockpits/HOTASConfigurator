@@ -343,34 +343,6 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="22" column="0">
-        <widget class="QPushButton" name="pushButton_SaveToFile">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>Save config to file</string>
-         </property>
-        </widget>
-       </item>
        <item row="11" column="0">
         <widget class="QComboBox" name="comboBox_GripSelection">
          <property name="editable">
@@ -527,34 +499,6 @@ QPushButton:pressed {
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Active Grip Profile</string>
-         </property>
-        </widget>
-       </item>
-       <item row="21" column="0">
-        <widget class="QPushButton" name="pushButton_LoadFromFile">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>165</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>37</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>Load config from file</string>
          </property>
         </widget>
        </item>

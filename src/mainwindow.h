@@ -89,9 +89,6 @@ private slots:
     void on_pushButton_ReadConfig_clicked();
     void on_pushButton_WriteConfig_clicked();
 
-    void on_pushButton_SaveToFile_clicked();
-    void on_pushButton_LoadFromFile_clicked();
-
     void on_pushButton_ShowDebug_clicked();
 
     void on_toolButton2_clicked();

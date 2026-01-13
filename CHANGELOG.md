@@ -119,7 +119,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Installation & Upgrade
 
 **New Installation:**
-- Download `InvictusHOTASConfigurator-v2.3.0-Setup.exe`
+- Download `InvictusHOTASConfigurator-v2.3.3-Setup.exe`
 - Run installer (no admin rights required)
 - Install latest firmware from [firmware releases](https://github.com/invictuscockpits/invictus-ssc-firmware/releases)
 
@@ -130,7 +130,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 **Requirements:**
 - Windows 7 or later (32-bit or 64-bit)
-- Latest Invictus SSC Firmware (v2.3.x)
+- Invictus SSC Firmware v2.3.1.2 (recommended for Tianhang 26 grip fix)
 - For devices shipped before 8/1/2025: Contact support if firmware flashing fails
 
 ---

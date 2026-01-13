@@ -31,6 +31,8 @@ public:
 
     void retranslateUi();
 
+    void setConfigDirPath(const QString &path);
+
     Flasher *flasher() const; // const?
 
     void checkForUpdatesSilent();   // GUI
@@ -45,6 +47,9 @@ signals:
     void updateAvailable(const QString& tag, const QUrl& url); //GUI
     void firmwareUpdateAvailable(const QString& tag, const QUrl& url); //firmware
 
+    void configImportRequested();
+    void configExportRequested();
+
 
 private slots:
     void on_comboBox_Language_currentIndexChanged(int index);
@@ -56,6 +61,9 @@ private slots:
 
     void on_pushButton_CheckUpdates_clicked();
     void on_pushButton_CheckFirmware_clicked();
+
+    void on_pushButton_ImportConfig_clicked();
+    void on_pushButton_ExportConfig_clicked();
 
     void onDeviceInfoUpdated();
     void onDeviceInfoError(const QString &error);
@@ -74,6 +82,8 @@ private:
     QString m_deviceSerial;
     QString m_deviceDoM;
     QString m_deviceFwVersion;
+
+    QString m_configDirPath;
 
 public slots:
     void showDeviceInfo(const QString& model,

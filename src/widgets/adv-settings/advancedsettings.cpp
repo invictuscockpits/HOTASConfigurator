@@ -5,7 +5,9 @@
 //#include <QFile>
 #include <QComboBox>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QMessageBox>
+#include "configtofile.h"
 #include <qicon.h>
 #include <QSettings>
 #include <QTextStream>
@@ -739,5 +741,38 @@ void AdvancedSettings::showDeviceInfo(const QString& model,
         ui->line_DeviceSerial->setText(m_deviceSerial);
         ui->line_DeviceDoM->setText(m_deviceDoM);
         ui->line_DeviceFwVersion->setText(m_deviceFwVersion);
+    }
+}
+
+void AdvancedSettings::setConfigDirPath(const QString &path)
+{
+    m_configDirPath = path;
+}
+
+void AdvancedSettings::on_pushButton_ImportConfig_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+        tr("Import Configuration"),
+        m_configDirPath + "/",
+        tr("Config Files (*.cfg)"));
+
+    if (!fileName.isEmpty()) {
+        ConfigToFile::loadDeviceConfigFromFile(this, fileName, gEnv.pDeviceConfig->config);
+        emit configImportRequested();  // MainWindow will call UiReadFromConfig()
+    }
+}
+
+void AdvancedSettings::on_pushButton_ExportConfig_clicked()
+{
+    QString tmpStr = QString::fromUtf8(gEnv.pDeviceConfig->config.device_name);
+
+    QFileInfo file(QFileDialog::getSaveFileName(this,
+        tr("Export Configuration"),
+        m_configDirPath + "/" + tmpStr,
+        tr("Config Files (*.cfg)")));
+
+    if (!file.fileName().isEmpty()) {
+        emit configExportRequested();  // MainWindow will call UiWriteToConfig()
+        ConfigToFile::saveDeviceConfigToFile(file.absoluteFilePath(), gEnv.pDeviceConfig->config);
     }
 }
