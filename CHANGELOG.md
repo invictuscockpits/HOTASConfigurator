@@ -5,6 +5,24 @@ All notable changes to the Invictus HOTAS Configurator will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.3] - 2026-01-13
+
+### Critical Fixes
+- **Fixed device identity write clearing PGA settings** - Developer tab write function now preserves PGA and ADC mode settings when writing device identity (model/serial/date)
+- **Implemented read-modify-write pattern** - Reads current device settings first, modifies only identity fields, then writes complete structure
+
+### Changed
+- **Grip profiles reorganization** - Moved master grip profile JSON files from deploy folder to source tree (`profiles/grips/`) for proper version control
+- **Updated firmware version check** - Configurator now expects firmware v2.3.1.2 (0x2312)
+- **Updated deployment script** - Modified `deploy_and_package.bat` to copy profiles from new source tree location
+
+### Compatible Firmware
+- **Firmware v2.3.1.2** - Fixed shift register timing for Tianhang grips (SHIFTREG_TICK_DELAY increased from 5 to 20)
+  - Resolves button bouncing on Tianhang 26-button grips
+  - Provides ~278ns delay for reliable CD4021 operation with long cables
+
+---
+
 ## [2.3.1] - 2025-12-18
 
 ### Critical Fixes
