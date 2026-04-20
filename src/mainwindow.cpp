@@ -175,6 +175,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_axesConfig, &AxesConfig::axisVisibilityChanged,
             m_axesCurvesConfig, &AxesCurvesConfig::handleAxisVisibility);
 
+    // Hide axes curves tab (widget still constructed for config round-trip).
+    int curvesTabIndex = ui->tabWidget->indexOf(ui->layoutV_tabAxesCurvesConfig->parentWidget());
+    if (curvesTabIndex != -1) {
+        ui->tabWidget->setTabVisible(curvesTabIndex, false);
+    }
+
 
     // add shift registers widget
     m_shiftRegConfig = new ShiftRegistersConfig(this);
@@ -1685,6 +1691,17 @@ void MainWindow::applyGripProfile(const QJsonObject &cfg)
         qWarning() << "m_shiftRegsPtrList is empty!";
     }
 
+    // Reset ALL logical buttons to disabled before applying grip profile.
+    // This prevents unmapped physical shift register bits from appearing
+    // as active buttons in the HID report (fixes Tianhang 26 ghost buttons).
+    for (int i = 0; i < m_buttonConfig->logicButtons().size(); ++i) {
+        ButtonLogical* btn = m_buttonConfig->logicButtons()[i];
+        btn->setPhysicButton(-1);           // no physical mapping (spinBox value 0)
+        btn->setFunctionType(BUTTON_NORMAL); // default type
+        btn->setButtonDisabled(true);        // mark disabled
+        btn->setJsonName(QString());         // clear grip name
+    }
+
     // Mapping physical buttons to logical buttons
     if (cfg.contains("logical_button_map")) {
         QJsonArray buttonMap = cfg["logical_button_map"].toArray();
@@ -1703,6 +1720,7 @@ void MainWindow::applyGripProfile(const QJsonObject &cfg)
             button_type_t typeEnum = Converter::StringToButtonType(typeStr);
             btn->setPhysicButton(bit);
             btn->setFunctionType(typeEnum);
+            btn->setButtonDisabled(false);   // Enable this mapped button
             btn->setJsonName(nameStr);
 
             // Optional: Apply rename for BUTTON_NORMAL only

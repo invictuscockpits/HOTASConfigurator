@@ -58,7 +58,7 @@ AxesExtended::AxesExtended(int axisNumber, QWidget *parent)
     // function changed
     connect(ui->comboBox_Function, qOverload<int>(&QComboBox::currentIndexChanged),
             this, &AxesExtended::functionIndexChanged);
-     this->show();
+    this->show();
 }
 
 AxesExtended::~AxesExtended()
@@ -115,9 +115,8 @@ void AxesExtended::readFromConfig()
     // resolution, offset
     ui->spinBox_Resolution->setValue(axisCfg->resolution + 1);
     ui->spinBox_Offset->setValue(axisCfg->offset_angle * 15);
-    //deadband
-    ui->checkBox_DynDeadband->setChecked(axisCfg->is_dynamic_deadband);
-    ui->spinBox_Deadband->setValue(axisCfg->deadband_size);
+    // hysteresis compensation
+    ui->checkBox_HysteresisCompensation->setChecked(axisCfg->hysteresis_compensation);
     // filter
     ui->sliderH_Filter->setValue(axisCfg->filter);
 }
@@ -144,15 +143,9 @@ void AxesExtended::writeToConfig()
     // resolution, offset
     axisCfg->resolution = ui->spinBox_Resolution->value() - 1;
     axisCfg->offset_angle = ui->spinBox_Offset->value() / 15;
-    // deadband
-    axisCfg->is_dynamic_deadband = ui->checkBox_DynDeadband->isChecked();
-    axisCfg->deadband_size = ui->spinBox_Deadband->value();
+    // hysteresis compensation
+    axisCfg->hysteresis_compensation = ui->checkBox_HysteresisCompensation->isChecked();
     // filter
     axisCfg->filter = ui->sliderH_Filter->value();
 }
-
-/*void AxesExtended::on_spinBox_Deadband_textChanged(const QString &arg1)
-{
-
-}*/
 

@@ -253,6 +253,11 @@ QString ButtonLogical::jsonName() const
     return m_jsonName;
 }
 
+void ButtonLogical::setButtonDisabled(bool disabled)
+{
+    ui->checkBox_IsDisable->setChecked(disabled);
+}
+
 void ButtonLogical::readFromConfig()
 {
     button_t *button = &gEnv.pDeviceConfig->config.buttons[m_buttonIndex];
@@ -292,8 +297,16 @@ void ButtonLogical::writeToConfig()
 {
     button_t *button = &gEnv.pDeviceConfig->config.buttons[m_buttonIndex];
 
-    button->physical_num = ui->spinBox_PhysicalButtonNumber->value() - 1; // -1 !!!!
     button->is_disabled = ui->checkBox_IsDisable->isChecked();
+    // Disabled buttons must have physical_num = -1 so the firmware's
+    // physical-to-logical mapping loop can never match them to a real pin.
+    // Otherwise pressing physical 0 triggers every disabled button that
+    // happens to have physical_num = 0 (spinBox default).
+    if (button->is_disabled) {
+        button->physical_num = -1;
+    } else {
+        button->physical_num = ui->spinBox_PhysicalButtonNumber->value() - 1; // -1 !!!!
+    }
     button->is_inverted = ui->checkBox_IsInvert->isChecked();
 
     button->type = m_logicFunc_enumIndex[ui->comboBox_ButtonFunction->currentIndex()];
