@@ -40,11 +40,15 @@ Compression=lzma2/max
 SolidCompression=yes
 ; UI settings
 WizardStyle=modern
+; Code signing (EV certificate via SafeNet token)
+; Sign tool "ev_sign" is passed via ISCC /S flag in deploy_and_package.bat
+SignTool=ev_sign
+SignedUninstaller=yes
 ; Version info
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoDescription={#MyAppName} Setup
-VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
+VersionInfoCopyright=Copyright (C) 2026 {#MyAppPublisher}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
