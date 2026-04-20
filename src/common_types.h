@@ -69,7 +69,10 @@ typedef struct
     uint8_t        button2_type : 2;
     uint8_t        button3_type : 3;
     uint8_t        prescaler;
-    uint8_t        reserved[1];
+    uint8_t        is_circular_deadband : 1;
+    uint8_t        circular_pair_axis   : 3;
+    uint8_t        hysteresis_compensation : 1;
+    uint8_t        reserved_bits        : 3;
 
 } axis_config_t;
 

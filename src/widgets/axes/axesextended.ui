@@ -619,45 +619,13 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="6">
-       <widget class="QSpinBox" name="spinBox_Deadband">
-        <property name="minimumSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
+      <item row="2" column="5" colspan="2">
+       <widget class="QCheckBox" name="checkBox_HysteresisCompensation">
+        <property name="toolTip">
+         <string>Compensates for mechanical hysteresis in force-sensing grips — the flexure doesn't quite return to the same ADC value after every release, causing output to drift off zero at rest. When enabled, the firmware captures the actual rest position after a release and treats it as a dynamic zero, giving a clean 0 on release while preserving fine proportional control in either direction from rest.</string>
         </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-        <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
-        </property>
-        <property name="maximum">
-         <number>127</number>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="5">
-       <widget class="QLabel" name="text_deadband">
         <property name="text">
-         <string>Deadband</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="5" colspan="3">
-       <widget class="QCheckBox" name="checkBox_DynDeadband">
-        <property name="text">
-         <string>Dynamic Jitter Reduction</string>
+         <string>Hysteresis Compensation</string>
         </property>
        </widget>
       </item>
