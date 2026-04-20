@@ -118,6 +118,9 @@ void ConfigToFile::loadDeviceConfigFromFile(QWidget *parent, const QString &file
         devC.axis_config[i].is_dynamic_deadband = uint8_t(deviceSettings.value("DynDeadbandEnabled", devC.axis_config[i].is_dynamic_deadband).toInt());
         devC.axis_config[i].is_circular_deadband = uint8_t(deviceSettings.value("IsCircularDeadband", 0).toInt());
         devC.axis_config[i].circular_pair_axis = uint8_t(deviceSettings.value("CircularPairAxis", 0).toInt());
+        // Falls back to legacy AutoCenterOnRelease key for old .cfg files.
+        devC.axis_config[i].hysteresis_compensation = uint8_t(deviceSettings.value("HysteresisCompensation",
+                                                              deviceSettings.value("AutoCenterOnRelease", 0)).toInt());
 
         devC.axis_config[i].source_main = int8_t(deviceSettings.value("SourceMain", devC.axis_config[i].source_main).toInt());
         devC.axis_config[i].source_secondary = uint8_t(deviceSettings.value("SourceSecond", devC.axis_config[i].source_secondary).toInt());
@@ -293,6 +296,7 @@ void ConfigToFile::saveDeviceConfigToFile(const QString &fileName, dev_config_t 
         deviceSettings.setValue("DynDeadbandEnabled", devC.axis_config[i].is_dynamic_deadband);
         deviceSettings.setValue("IsCircularDeadband", devC.axis_config[i].is_circular_deadband);
         deviceSettings.setValue("CircularPairAxis", devC.axis_config[i].circular_pair_axis);
+        deviceSettings.setValue("HysteresisCompensation", devC.axis_config[i].hysteresis_compensation);
 
         deviceSettings.setValue("SourceMain", devC.axis_config[i].source_main);
         deviceSettings.setValue("SourceSecond", devC.axis_config[i].source_secondary);

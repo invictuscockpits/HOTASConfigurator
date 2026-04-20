@@ -797,11 +797,18 @@ void Developer::onWriteDeviceInfo()
         info.adc_mode[3] = 1;
     }
 
-    // Now update ONLY the identity fields (preserve PGA and adc_mode)
+    // Update identity fields only; PGA and adc_mode retain their read values.
+    // Zero each buffer before memcpy so shorter new values don't leave trailing
+    // bytes from the previously-read string.
     QByteArray modelBytes = model.toLatin1();
     QByteArray serialBytes = serial.toLatin1();
     QByteArray dateBytes = date.toLatin1();
     QByteArray deviceNameBytes = deviceName.toLatin1();
+
+    memset(info.model_number, 0, sizeof(info.model_number));
+    memset(info.serial_number, 0, sizeof(info.serial_number));
+    memset(info.manufacture_date, 0, sizeof(info.manufacture_date));
+    memset(info.device_name, 0, sizeof(info.device_name));
 
     memcpy(info.model_number, modelBytes.constData(),
            qMin(modelBytes.size(), (int)(INV_MODEL_MAX_LEN - 1)));
@@ -812,10 +819,8 @@ void Developer::onWriteDeviceInfo()
     memcpy(info.device_name, deviceNameBytes.constData(),
            qMin(deviceNameBytes.size(), (int)(sizeof(info.device_name) - 1)));
 
-    // NOTE: PGA and adc_mode are preserved from the read, NOT overwritten
-
-    // Send to device using 2-packet protocol (device_info_t is 85 bytes, USB HID max payload is 62 bytes)
-    // Part 1: First 62 bytes
+    // 2-packet protocol: device_info_t is 85 bytes, USB HID payload max is 62.
+    // Part 1: first 62 bytes
     QByteArray part1((const char*)&info, 62);
     QByteArray ack1;
 

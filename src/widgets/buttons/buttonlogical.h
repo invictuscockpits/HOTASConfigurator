@@ -47,6 +47,7 @@ public:
     void renameButtonNormalLabel(const QString &customText); //renaming button_normals to F-16 button names
     void setJsonName(const QString &name);     // Stores button names for repopulating when switching to Falcon BMS
     QString jsonName() const;                  // optional getter
+    void setButtonDisabled(bool disabled);     // Programmatically set is_disabled for grip profile reset
 
 signals:
     void functionTypeChanged(button_type_t current, button_type_t previous, int buttonIndex);

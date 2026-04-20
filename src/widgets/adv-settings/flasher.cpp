@@ -2,6 +2,7 @@
 #include "ui_flasher.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QTimer>
 
 #include "deviceconfig.h"
@@ -92,6 +93,20 @@ void Flasher::flashStatus(int status, int percent)
         ui->pushButton_FlashFirmware->setText(tr("Finished"));
         ui->pushButton_FlashFirmware->setStyleSheet(m_defaultButtonStyle
                                                     + "color: white; background-color: rgb(5, 170, 61);");
+
+        QMessageBox msg(this);
+        msg.setIcon(QMessageBox::Information);
+        msg.setWindowTitle(tr("Firmware Updated"));
+        msg.setTextFormat(Qt::RichText);
+        msg.setStyleSheet("QMessageBox QLabel { background: transparent; }");
+        msg.setText(tr("<b>Firmware update complete.</b><br><br>"
+                       "To finish configuring your device, select your "
+                       "Device Control Board Version, sim software, and grip, "
+                       "then click "
+                       "<b><span style=\"color:#05AA3D;\">Write to Device</span></b>."));
+        msg.setStandardButtons(QMessageBox::Ok);
+        msg.exec();
+
         flashDone();
     } else if (status == SIZE_ERROR) {
         ui->pushButton_FlashFirmware->setText(tr("SIZE ERROR"));

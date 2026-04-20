@@ -11,7 +11,7 @@
 
 //#define DEBUG
 
-#define FIRMWARE_VERSION					0x2312              // v2.3.1.2 (Fixed shift register timing for Tianhang grips)
+#define FIRMWARE_VERSION					0x2420              // v2.4.2.0 (force config reset to recover from bad flash state)
 #define USED_PINS_NUM						30					// Contstant for HOTAS Control boards
 #define MAX_AXIS_NUM						8					// max 8
 #define MAX_BUTTONS_NUM						128					// power of 2, max 128
