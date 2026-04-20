@@ -230,7 +230,7 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="13" column="0">
+       <item row="14" column="0">
         <widget class="QComboBox" name="comboBox_simSoftware">
          <item>
           <property name="text">
@@ -262,7 +262,7 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="12" column="0">
+       <item row="13" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Active Sim Software Profile</string>
@@ -308,7 +308,7 @@ border: none;</string>
          </item>
         </layout>
        </item>
-       <item row="14" column="0">
+       <item row="10" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Device Control Board Version</string>
@@ -343,7 +343,7 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="11" column="0">
+       <item row="16" column="0">
         <widget class="QComboBox" name="comboBox_GripSelection">
          <property name="editable">
           <bool>false</bool>
@@ -356,7 +356,7 @@ border: none;</string>
          </property>
         </widget>
        </item>
-       <item row="16" column="0" rowspan="2">
+       <item row="11" column="0" rowspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="spacing">
           <number>6</number>
@@ -495,7 +495,7 @@ QPushButton:pressed {
          </property>
         </spacer>
        </item>
-       <item row="10" column="0">
+       <item row="15" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Active Grip Profile</string>
