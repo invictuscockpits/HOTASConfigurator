@@ -897,16 +897,16 @@ void MainWindow::UiReadFromConfig()
     // Read GUI settings from device config and apply them as if user selected them
     const auto& fp = gEnv.pDeviceConfig->config.force_profile_rt;
 
-    // Set board type dropdown and apply board preset (without asking for confirmation)
-    if (fp.board_type <= 1) {
+    // Board type: force an explicit user selection instead of auto-selecting.
+    // A wiped/factory-reset config reads board_type = 0, which is
+    // indistinguishable from a real "Gen 1-3" selection. Auto-selecting here
+    // skipped the pin preset (applyPinDefaults=false), so a wiped device kept
+    // a pin config without shift register pins and grip profiles could not
+    // map any buttons. Resetting to the placeholder makes the user pick the
+    // board, which applies the full pin preset via onBoardPresetChanged().
+    {
         QSignalBlocker blocker(ui->comboBox_Board);
-        int guiIndex = fp.board_type + 1; // +1 because index 0 is placeholder
-        ui->comboBox_Board->setCurrentIndex(guiIndex);
-
-        // Apply board preset settings (axis sources, channels, etc.) without confirmation
-        // applyPinDefaults=false means we keep the pin config from the device, only update axis sources
-        BoardId boardId = (fp.board_type == 0) ? BoardId::VftControllerGen3 : BoardId::VFTControllerGen4;
-        applyBoardPreset(boardId, /*applyPinDefaults=*/false);
+        ui->comboBox_Board->setCurrentIndex(0);   // "— Select board —"
     }
 
     // Set grip type dropdown and load the grip profile
@@ -1040,16 +1040,11 @@ void MainWindow::UiWriteToConfig()
 // load default config
 void MainWindow::finalInitialization()
 {
-    // Restore saved board selection now that buttons are ready
-    gEnv.pAppSettings->beginGroup("BoardSettings");
-    int savedBoard = gEnv.pAppSettings->value("SelectedBoard", 0).toInt();
-    gEnv.pAppSettings->endGroup();
-
-    // Set the dropdown to the saved board (+1 because index 0 is placeholder)
-    // This will trigger onBoardPresetChanged() which applies the board preset
-    if (savedBoard >= 0 && savedBoard <= 1) {
-        ui->comboBox_Board->setCurrentIndex(savedBoard + 1);
-    }
+    // Board selection is intentionally NOT restored from settings: the
+    // dropdown starts on "— Select board —" and the user must pick the board
+    // each session. A manual pick runs onBoardPresetChanged(), which applies
+    // the full pin preset (shift register pins included) — auto-restoring
+    // skipped that and left wiped devices without working grip buttons.
 
     // load config files
     QStringList filesList = cfgFilesList(m_cfgDirPath);
@@ -1497,6 +1492,18 @@ void MainWindow::on_pushButton_ReadConfig_clicked()
 // write config to device
 void MainWindow::on_pushButton_WriteConfig_clicked()
 {
+    // Board must be explicitly selected before writing — the placeholder
+    // means no pin preset has been applied this session, and writing in
+    // that state can push a config with no shift register pins.
+    if (ui->comboBox_Board->currentIndex() <= 0) {
+        QMessageBox box(this);
+        box.setIcon(QMessageBox::Warning);
+        box.setWindowTitle(tr("Select board"));
+        box.setText(tr("Select your Device Control Board Version before writing settings to the device."));
+        box.exec();
+        return;
+    }
+
     qDebug()<<"Write config started";
     blockWRConfigToDevice(true);  // doesn’t have time to block? timer
 
@@ -1988,6 +1995,15 @@ void MainWindow::onBoardPresetChanged(int index)
     applyBoardPreset(static_cast<BoardId>(v.toInt()));
     // persist if you want:
     QSettings s; s.setValue("BoardSettings/SelectedBoard", v);
+
+    // Re-apply the selected grip profile (if any) so its shift register
+    // count and button mapping land on the pin preset that was just applied.
+    // Without this, a grip chosen before the board keeps the clamped
+    // 4-button mapping from the pre-preset pin state.
+    const int gripIndex = ui->comboBox_GripSelection->currentIndex();
+    if (gripIndex > 0) {
+        onGripSelectionChanged(gripIndex);
+    }
 }
 
 
