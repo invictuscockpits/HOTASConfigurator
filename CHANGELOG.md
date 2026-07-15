@@ -5,6 +5,32 @@ All notable changes to the Invictus HOTAS Configurator will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.3] - 2026-07-14
+
+### Project Status
+
+The HOTAS Configurator and the Invictus SSC firmware (FreeJoy-based, Gen 1-4 boards)
+are considered fully mature. Active development ends with this release: bug fixes
+will continue as problems arise, but no new features or non-critical improvements
+are planned as development migrates to Gen 5 and proprietary, purpose-built
+firmware and software.
+
+### Critical Fixes
+- **Fixed Gen 3 devices stuck at four buttons after firmware upgrade** - A firmware
+  upgrade across v2.4.2.0 resets the device configuration, wiping the shift register
+  pins. The configurator then auto-selected the board from the wiped config without
+  re-applying the pin preset, so grip profiles had no shift register to map onto and
+  every logical button mapping clamped to physical button 4. The device kept
+  enumerating with only four buttons even after writing settings.
+  - Board dropdown now starts at "— Select board —" and resets on every device read;
+    the user must actively select the board, which applies the full pin preset
+  - "Write Device Settings" is blocked with a prompt until a board is selected
+  - Selecting a board re-applies the active grip profile so its shift register
+    count and button mapping land on the fresh pin preset
+  - Saved board selection is no longer auto-restored at startup
+
+---
+
 ## [2.3.3] - 2026-01-13
 
 ### Critical Fixes
